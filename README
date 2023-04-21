@@ -1,6 +1,6 @@
 Ambika Live! (we'll call it that for now)
 
-This project is a series of modifications (improvements) over the top of the YAM fork of the original fimrware for Ambika.
+This project is a series of modifications (improvements) over the top of the YAM fork of the original firmware for Ambika.
 
 Changes:
 
@@ -21,7 +21,7 @@ Turbo patch name editing!
 'Drum' modulation destinations.
 
 	- Same as Osc1 and Osc2 destinations, but with +/-32 semitones range for wider pitch envelopes.
-	- The standard coarse pitch mod destinations don't have enough range for good drum sounds, ad the envelopes curves arent steep enough.
+	- The standard coarse pitch mod destinations don't have enough range for good drum sounds, and the envelopes curves arent steep enough.
 	- But, the standard envelopes can be 'squared' by using the modifiers for a steeper curve. Routing one of these 'squared' envelopes to 'drum' destination with an amount of 32, Ambika can achieve much better drum sounds or 808 like sounds.
 	- e.g Modul.  1|srce mod1|dest drm1|amnt   32
 	-     Modif.  1|in1  env1|in2  env1|oper prod  (squaring the Env1 envelope)
@@ -39,9 +39,9 @@ Arp Latch Mode:
 Chord Sequencer mode:
 
 	-In Chord Seq mode, the sequencer will pass each block of 4 consecutive notes on to the arp as a chord.
-	-The 'lenp' paramenter defines how many steps between chord changes.
+	-The 'lenp' parameter defines how many steps between chord changes.
 	-The note sequence length is locked to 16 steps (4 chords) for now.
-	-Use rests to reduce the number of notes in each chord
+	-Use rests to reduce the number of notes in each chord.
 	
 
 Sequencer Tweaks:
@@ -58,7 +58,7 @@ Performance Page Tweaks
 
 Optional CC Maps (pref page 2)
 
-	-Can choose between Ambika standard, Shruthi XT, and Novation Launchkey CC assignments (more to come)
+	-Can choose between Ambika standard, Shruthi XT, and Novation Launchkey CC assignments (more to come).
 	-Ideally these would be loadable from SDcard, but the only way I can think to fit them would be to use the boot loader to overwrite CC maps in progmem which is beyond my skills :frowning:
 
 
