@@ -344,7 +344,7 @@ void Storage::SysExSendObject(const StorageLocation& l) {
 void Storage::SysExSendRaw(uint8_t command, uint8_t argument, const uint8_t* data, uint8_t size, bool send_address) {
   midi_dispatcher.Flush();
   for (uint8_t i = 0; i < sizeof(sysex_header); ++i) {
-    midi_dispatcher.SendBlocking(pgm_read_byte(sysex_header[i]));
+    midi_dispatcher.SendBlocking(pgm_read_byte(sysex_header + i));
   }
   midi_dispatcher.SendBlocking(command);
   midi_dispatcher.SendBlocking(argument);

@@ -917,10 +917,13 @@ void Part::ClockSequencer() {
         // KZ MOD: -------  Chord Sequencer ------------
   } else if (data_.arp_sequencer_mode() == ARP_SEQUENCER_MODE_CHORD){
     // Step the chord every nth steps. Note sequence Length parameter is now used for n and note sequence is locked at 16.
-    if (chord_step_counter_ % data_.sequence_length(2) == 0){
+    const uint8_t chord_length = data_.sequence_length(2);
+    if (chord_length == 0) {
+      AllNotesOff();
+    } else if (chord_step_counter_ % chord_length == 0){
       AllNotesOff();
       // Play the next 4 notes in the sequencer together as a chord
-      uint8_t chord_step = chord_step_counter_ / data_.sequence_length(2);
+      uint8_t chord_step = chord_step_counter_ / chord_length;
       for (uint8_t i = 0; i < 4; ++i) {
         NoteStep n = data_.note_step(chord_step * 4 + i);
         if (n.gate) {
@@ -929,7 +932,7 @@ void Part::ClockSequencer() {
       }
     }
     ++chord_step_counter_;
-    if (chord_step_counter_ >= 4 * data_.sequence_length(2)){
+    if (chord_length != 0 && chord_step_counter_ >= 4 * chord_length){
       chord_step_counter_ = 0;
     }
 
