@@ -102,15 +102,19 @@ class VoicecardProtocolRx {
         break;
       case COMMAND_WRITE_MOD_MATRIX:
       {
-        auto mod_source = static_cast<ModSource>(arguments_[0]);
-        voice.set_mod_source_value(mod_source, arguments_[1]);
+        if (arguments_[0] < MOD_SRC_COUNT) {
+          auto mod_source = static_cast<ModSource>(arguments_[0]);
+          voice.set_mod_source_value(mod_source, arguments_[1]);
+        }
         break;
       }
       case COMMAND_WRITE_LFO:
       {
         auto lfo_index = lowNibble(command_);
-        auto lfo = static_cast<ModSource>(MOD_SRC_LFO_1 + lfo_index);
-        voice.set_mod_source_value(lfo, arguments_[0]);
+        if (lfo_index < kNumLfos) {
+          auto lfo = static_cast<ModSource>(MOD_SRC_LFO_1 + lfo_index);
+          voice.set_mod_source_value(lfo, arguments_[0]);
+        }
         break;
       }
     }
@@ -151,9 +155,11 @@ class VoicecardProtocolRx {
           Timer<2>::Stop();
           uint8_t size = spi_.Read();
           data_ptr_ = voice.patch().bytes();
-          auto data = data_ptr_;
-          while (size--) {
-            *data++ = spi_.Read();
+          for (uint8_t i = 0; i < size; ++i) {
+            uint8_t value = spi_.Read();
+            if (i < Patch::sizeBytes()) {
+              data_ptr_[i] = value;
+            }
           }
           Timer<2>::Start();
         }
