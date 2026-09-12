@@ -260,7 +260,10 @@ void Parameter::PrintObject(uint8_t part, uint8_t instance, char* buffer, uint8_
     digits[0] = ' ';
     digits[3] = '\0';
     UnsafeItoa<int16_t>(instance + 1, 2, &digits[1]);
-    strcat(buffer, digits);
+    uint8_t length = strnlen(buffer, width);
+    for (uint8_t i = 0; i < 3 && length < width; ++i) {
+      buffer[length++] = digits[i];
+    }
   }
   AlignLeft(buffer, width);
 }
