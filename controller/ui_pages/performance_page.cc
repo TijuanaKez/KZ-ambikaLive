@@ -21,6 +21,8 @@
 
 #include "avrlib/string.h"
 
+#include "common/features.h"
+
 #include "controller/display.h"
 #include "controller/leds.h"
 #include "controller/multi.h"
@@ -61,6 +63,24 @@ uint8_t PerformancePage::OnClick() {
 }
 
 /* static */
+uint8_t PerformancePage::OnKey(uint8_t key) {
+// KZ TODO - Make this a system setting
+
+#ifndef DISABLE_PART_MUTES
+  if (key <= SWITCH_4){
+      multi.ToggleMute(key);
+    return 1;
+  } else if (key == SWITCH_5){
+      multi.SyncPartClocks();
+  } else {
+      return ParameterEditor::OnKey(key);
+  }
+#else
+  return ParameterEditor::OnKey(key);
+#endif
+}
+
+/* static */
 void PerformancePage::UpdateLeds() {
   leds.set_pixel(LED_7, 0xf0);
   if (multi.running()) {
@@ -69,6 +89,14 @@ void PerformancePage::UpdateLeds() {
     }
     leds.set_pixel(LED_1 + (multi.step() & 0x07), 0x03);
   }
+  #ifndef DISABLE_PART_MUTES
+  // KZ MOD - Set the first 4 LEDs according to Part Mutes
+  for (uint8_t led = LED_1; led <= LED_4; led++){
+    if (!multi.IsPartMuted(led)){
+      leds.set_pixel(led, 0xf0);
+    }
+  }
+#endif
 }
 
 }  // namespace ambika

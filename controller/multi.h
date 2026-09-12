@@ -23,6 +23,8 @@
 
 #include "avrlib/base.h"
 
+#include "common/features.h"
+
 #include "controller/controller.h"
 #include "controller/part.h"
 
@@ -121,12 +123,6 @@ public:
     return data.params.knob_assignment[index];
   }
   
-  // Offset: 28-52
-  KnobAssignment knob_assignment[8];
-  
-  // Offset: 52-56
-  uint8_t padding2[4];
-
   static constexpr inline size_t size() {
     return sizeof(Parameters);
   }
@@ -154,6 +150,9 @@ static const uint8_t kNumTicksPerStep = 6;
 class Multi {
  public:
   Multi() = default;
+  static uint8_t launchkey_play_button_note_;
+  static bool launchkey_play_button_note_active_;
+  
   static void Init(bool force_reset);
   
   static void InitSettings(InitializationMode mode);
@@ -306,6 +305,8 @@ class Multi {
 
   static uint8_t SolveAllocationConflicts(uint8_t constraint);
   static void AssignVoicesToParts();
+  static void SyncPartClocks();
+  static void ToggleMute(uint8_t part);
   
   static uint8_t part_channel(Part* part) {
     for (uint8_t i = 0; i < kNumParts; ++i) {
@@ -315,7 +316,8 @@ class Multi {
     }
     return 0;
   }
-  
+
+  static bool IsPartMuted(uint8_t part) { return parts_[part].isMuted(); }
   static uint8_t step() { return step_count_; }
   static uint8_t running() { return running_; }
   static void Touch();

@@ -42,6 +42,7 @@ class VoiceAssigner : public ParameterEditor {
       OnInit,
       SetActiveControl,
       OnIncrement,
+      OnIncrementAndCycle,
       OnClick,
       OnPot,
       OnKey,

@@ -95,18 +95,7 @@ void Oscillator::RenderSimpleWavetable(uint8_t* buffer) {
     wave_2_index = WAV_RES_SINE;
   } else {
     uint8_t wave_index = lowNibble(balance_index);
-    uint8_t base_resource_id;
-    switch (shape) {
-      default:
-        base_resource_id = WAV_RES_BANDLIMITED_TRIANGLE_0;
-        break;
-      case WAVEFORM_SAW:
-        base_resource_id = WAV_RES_BANDLIMITED_SAW_0;
-        break;
-      case WAVEFORM_SQUARE:
-        base_resource_id = WAV_RES_BANDLIMITED_SQUARE_0;
-        break;
-    }
+    const uint8_t base_resource_id = WAV_RES_BANDLIMITED_SAW_0;
     wave_1_index = base_resource_id + wave_index;
     wave_2_index = base_resource_id + U8AddClip(wave_index, 1, kNumZonesFullSampleRate);
   }
@@ -630,8 +619,6 @@ void Oscillator::RenderPolyBlepCSaw(uint8_t* buffer) {
  * Hence a 'last output sample' is needed to be stored as part of the oscillator state
  */
 void Oscillator::RenderPolyBlepWave(uint8_t *buffer) {
-  using rs = ResourcesManager;
-
   // calculate (1/increment) for later multiplication with current phase
   //CALCULATE_DIVISION_FACTOR(highWord24(phase_increment), quotient, quotient_shifts)
 
@@ -683,22 +670,15 @@ void Oscillator::RenderPolyBlepWave(uint8_t *buffer) {
       break;
   }
 
-  // 16-bit version of step_phase_byte, for higher precision blep calculations
-  const uint16_t step_phase = word(step_phase_byte, 0);
-
-    // where does the first sample start in the cycle?
-  bool already_past_step_point = highByte24(phase) >= step_phase_byte;
-
   uint8_t next_sample = data.output_sample;
 
   uint24_t phase_tmp = phase;
   for (uint8_t samples_left = kAudioBlockSize; samples_left > 0; samples_left--) {
-    bool phase_reset = update_phase_and_sync(phase_tmp, phase_increment, sync_input, sync_output);
+    update_phase_and_sync(phase_tmp, phase_increment, sync_input, sync_output);
 
     // move one sample forward ('the future is now')
     uint8_t this_sample = next_sample;
 
-    uint16_t current_phase = highWord24(phase_tmp);
     uint16_t current_phase_byte = highByte24(phase_tmp);
     // small optimisation: 8 bit compare. See note at top of file
     bool past_step_point = current_phase_byte >= step_phase_byte;
@@ -730,8 +710,6 @@ void Oscillator::RenderPolyBlepWave(uint8_t *buffer) {
     // a step discontinuity the first time that the phase exceeds step_phase,
     // aka when past_step_point == true but already_past_step_point == false.
     // For the basic saw, this is a negative step, for the other two waves it's positive.
-
-    bool just_reached_step_point = past_step_point && !already_past_step_point;
 
     /* Don't blep for now -  just alias!
 

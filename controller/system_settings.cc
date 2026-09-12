@@ -36,6 +36,8 @@ static constexpr SystemSettingsData::Parameters init_settings PROGMEM = {
     .autobackup = 1,
     .voicecard_leds = 1,
     .swap_leds_colors = 1,
+    .midi_cc_map = CCMAP_AMBIKA,
+    .launchkey_mode = 0,
     .padding = {0},
     .checksum = 4 // .checksum is the sum of all previous data values
 };

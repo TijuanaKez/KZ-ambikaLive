@@ -21,6 +21,7 @@
 
 import numpy
 
+lfo_memory_diet = False
 
 def convolve(curve, impulse):
   return numpy.fft.irfft(numpy.fft.rfft(curve) * numpy.fft.rfft(impulse))
@@ -38,8 +39,11 @@ def scale(x, min=1, max=254, center=True, dithering=0):
 
 
 custom_lfos = []
+if lfo_memory_diet:
+  t = numpy.arange(0, 128) / 128.0
+else:
+  t = numpy.arange(0, 256) / 256.0
 
-t = numpy.arange(0, 256) / 256.0
 ramp = t
 triangle = 2 * t * (t < 0.5) + (2.0 - 2 * t) * (t >= 0.5)
 square = (t < 0.5)
@@ -87,10 +91,17 @@ custom_lfos.append(convolve(square, bouncy))
 custom_lfos.append(numpy.round(triangle * 3))
 custom_lfos.append(numpy.round(triangle * 15))
 
-lfo_waveforms = numpy.zeros((257 * len(custom_lfos),), dtype=numpy.uint8)
-for i, values in enumerate(custom_lfos):
-  values = scale(values)
-  lfo_waveforms[i * 257: i * 257 + 256] = values
-  lfo_waveforms[i * 257 + 256] = values[0]
+if lfo_memory_diet:
+  lfo_waveforms = numpy.zeros((129 * len(custom_lfos),), dtype=numpy.uint8)
+  for i, values in enumerate(custom_lfos):
+    values = scale(values)
+    lfo_waveforms[i * 129: i * 129 + 128] = values
+    lfo_waveforms[i * 129 + 128] = values[0]
+else:    
+  lfo_waveforms = numpy.zeros((257 * len(custom_lfos),), dtype=numpy.uint8)
+  for i, values in enumerate(custom_lfos):
+    values = scale(values)
+    lfo_waveforms[i * 257: i * 257 + 256] = values
+    lfo_waveforms[i * 257 + 256] = values[0]
 
 waveforms = [('lfo_waveforms', lfo_waveforms)]

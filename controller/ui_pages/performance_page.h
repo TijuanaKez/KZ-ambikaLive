@@ -20,6 +20,8 @@
 #ifndef CONTROLLER_UI_PAGES_PERFORMANCE_PAGE_H_
 #define CONTROLLER_UI_PAGES_PERFORMANCE_PAGE_H_
 
+#include "common/features.h"
+
 #include "controller/ui_pages/ui_page.h"
 #include "controller/ui_pages/parameter_editor.h"
 
@@ -31,13 +33,16 @@ class PerformancePage : public UiPage {
   
   static uint8_t OnIncrement(int8_t increment);
   static uint8_t OnClick();
+  static uint8_t OnKey(uint8_t key);
 
   static void UpdateLeds();
   
+   // NOTE: These now must always reflect exactly EventHandlers struct in ui.h
   static constexpr EventHandlers event_handlers_ PROGMEM = {
       ParameterEditor::OnInit,
       ParameterEditor::SetActiveControl,
       OnIncrement,
+      OnIncrementAndCycle,
       OnClick,
       ParameterEditor::OnPot,
       ParameterEditor::OnKey,

@@ -30,11 +30,11 @@ static const uint32_t kSampleRateDen = 51L;
 // One control signal sample is generated for each 40 audio sample.
 static const uint8_t kControlRate = 40;
   
-const uint8_t kNumArpeggiatorPatterns = 22;
+const uint8_t kNumArpeggiatorPatterns = 30;
 const uint8_t kNumParts = 6;
 const uint8_t kNumVoices = 6;
 
-const uint8_t kSystemVersion = 0x11;
+const uint8_t kSystemVersion = 0x12;
 
 }  // namespace ambika
 

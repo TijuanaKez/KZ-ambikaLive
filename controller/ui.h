@@ -27,6 +27,8 @@
 #include "avrlib/devices/switch.h"
 #include "avrlib/ui/event_queue.h"
 
+#include "common/features.h"
+
 #include "controller/hardware_config.h"
 #include "controller/resources.h"
 
@@ -129,8 +131,12 @@ enum UiPageNumber : uint8_t {
   
   PAGE_LIBRARY,
   PAGE_VERSION_MANAGER,
-  PAGE_SYSTEM_SETTINGS,  
+  PAGE_SYSTEM_SETTINGS, 
+  PAGE_SYSTEM_SETTINGS_B,
   PAGE_OS_INFO,
+  PAGE_CARD_INFO,
+  INCREMENT_ENV,
+  INCREMENT_MODULATION_SLOT,
 };
 
 typedef RotaryEncoder<EncoderALine, EncoderBLine, EncoderClickLine> Encoder;
@@ -143,6 +149,7 @@ struct EventHandlers {
   void (*OnInit)(PageInfo* info);
   void (*SetActiveControl)(ActiveControl);
   uint8_t (*OnIncrement)(int8_t);
+  bool (*OnIncrementAndCycle)(int8_t, int8_t);
   uint8_t (*OnClick)();
   uint8_t (*OnPot)(uint8_t, uint8_t);
   uint8_t (*OnKey)(uint8_t);
@@ -200,6 +207,7 @@ class Ui {
   }
   
   static void ShowPageRelative(int8_t increment);
+  static void MoveActiveControl(int8_t increment);
   static void ShowPage(UiPageNumber page, uint8_t initialize);
   static void ShowPage(UiPageNumber page) {
     ShowPage(page, 1);

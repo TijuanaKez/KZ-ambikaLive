@@ -233,7 +233,13 @@ void SequenceEditor::UpdateScreen() {
         buffer[4] = buffer[11] = '\xa5';
       }
       NoteStep n = part_data().note_step(step_index);
-      Parameter::PrintNote(n.note, &buffer[5]);
+      //KZ MOD - Show tracker style rests
+      if (n.gate) {
+        Parameter::PrintNote(n.note, &buffer[5]);
+      } else {
+        buffer[6] = '-';
+        buffer[7] = '-';
+      }      
       buffer[8] = ' ';
       if (n.gate) {
         buffer[15] = n.legato ? '\x04' : '\x01';

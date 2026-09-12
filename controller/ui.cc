@@ -27,15 +27,25 @@
 #include "controller/resources.h"
 #include "controller/system_settings.h"
 
+#ifndef DISABLE_CARD_INFO_PAGE
 #include "controller/ui_pages/card_info_page.h"
+#endif
+
 #include "controller/ui_pages/dialog_box.h"
 #include "controller/ui_pages/knob_assigner.h"
 #include "controller/ui_pages/library.h"
 #include "controller/ui_pages/os_info_page.h"
 #include "controller/ui_pages/parameter_editor.h"
 #include "controller/ui_pages/performance_page.h"
+
+#ifndef DISABLE_SEQUENCER
 #include "controller/ui_pages/sequence_editor.h"
+#endif
+
+#ifndef DISABLE_VERSION_MANAGER
 #include "controller/ui_pages/version_manager.h"
+#endif
+
 #include "controller/ui_pages/voice_assigner.h"
 #include "controller/voicecard_tx.h"
 
@@ -63,7 +73,7 @@ constexpr PageInfo page_registry[] PROGMEM = {
   { PAGE_ENV_LFO,
     &ParameterEditor::event_handlers_,
     { 24, 30, 31, 29, 25, 26, 27, 28 },
-    PAGE_VOICE_LFO, 2, 0xf0,
+    INCREMENT_ENV, 2, 0xf0,
   },
   
   { PAGE_VOICE_LFO,
@@ -75,27 +85,36 @@ constexpr PageInfo page_registry[] PROGMEM = {
   { PAGE_MODULATIONS,
     &ParameterEditor::event_handlers_,
     { 34, 35, 36, 37, 38, 39, 40, 41 },
-    PAGE_MODULATIONS, 3, 0xf0,
+    INCREMENT_MODULATION_SLOT, 3, 0xf0,
   },
-  
+ #ifdef DISABLE_RAGAS
+  { PAGE_PART,
+    &ParameterEditor::event_handlers_,
+    { 42, 57, 47, 48, 43, 44, 45, 0xff },
+    PAGE_PART_ARPEGGIATOR, 4, 0xf0,
+  },
+#else
   { PAGE_PART,
     &ParameterEditor::event_handlers_,
     { 42, 57, 47, 48, 43, 44, 45, 46 },
     PAGE_PART_ARPEGGIATOR, 4, 0xf0,
   },
-  
+#endif
+
   { PAGE_PART_ARPEGGIATOR,
     &ParameterEditor::event_handlers_,
     { 49, 50, 51, 52, 53, 54, 55, 56 },
     PAGE_PART_SEQUENCER, 4, 0x0f,
   },
   
+#ifndef DISABLE_SEQUENCER
   { PAGE_PART_SEQUENCER,
     &SequenceEditor::event_handlers_,
     { 0, 0, 0, 0, 0, 0, 0, 0 },
     PAGE_PART, 4, 0xff,
   },
-  
+#endif
+
   { PAGE_MULTI,
     &VoiceAssigner::event_handlers_,
     { 58, 59, 60, 61, 0xff, 0xff, 0xff, 0xff },
@@ -126,15 +145,23 @@ constexpr PageInfo page_registry[] PROGMEM = {
     PAGE_LIBRARY, 7, 0xf0,
   },
 
+#ifndef DISABLE_VERSION_MANAGER
   { PAGE_VERSION_MANAGER,
     &VersionManager::event_handlers_,
     { 0, 0, 0, 0, 0, 0, 0, 0, },
     PAGE_LIBRARY, 8, 0xf0,
   },
+#endif
 
   { PAGE_SYSTEM_SETTINGS,
     &ParameterEditor::event_handlers_,
-    { 66, 67, 71, 72, 68, 69, 0xff, 70, },
+    { 66, 67, 71, 72, 68, 69, 70, 0xf8, },
+    PAGE_SYSTEM_SETTINGS_B, 8, 0xf0,
+  },
+
+  { PAGE_SYSTEM_SETTINGS_B,
+    &ParameterEditor::event_handlers_,
+    { 75, 76, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf9, },
     PAGE_SYSTEM_SETTINGS, 8, 0xf0,
   },
 
@@ -143,6 +170,13 @@ constexpr PageInfo page_registry[] PROGMEM = {
     { 0, 0, 0, 0, 0, 0, 0, 0, },
     PAGE_OS_INFO, 8, 0xf0,
   },
+  #ifndef DISABLE_CARD_INFO_PAGE
+  { PAGE_CARD_INFO,
+    &CardInfoPage::event_handlers_,
+    { 0, 0, 0, 0, 0, 0, 0, 0, },
+    PAGE_LIBRARY, 8, 0xf0,
+  },
+#endif
 };
 
 static constexpr uint8_t default_most_recent_page_in_group[9] PROGMEM = {
@@ -271,8 +305,13 @@ void Ui::Poll() {
 /* static */
 void Ui::ShowPageRelative(int8_t increment) {
   // Disable page scrolling for the system pages.
-  if (page_info_.index >= PAGE_LIBRARY) {
-    return; 
+  // KZ MOD - 2nd System settings page
+  if (page_info_.index == PAGE_SYSTEM_SETTINGS || page_info_.index == PAGE_SYSTEM_SETTINGS_B){
+    ShowPage(page_info_.next_page);
+    MoveActiveControl(increment);
+    return;
+  } else if (page_info_.index >= PAGE_LIBRARY) {
+    return;
   }
   
   int8_t current_page = page_info_.index;
@@ -284,6 +323,10 @@ void Ui::ShowPageRelative(int8_t increment) {
     current_page = 0;
   }
   ShowPage(static_cast<UiPageNumber>(current_page));
+    MoveActiveControl(increment);
+}
+  // KZ MOD - Split into 2 functions. why? cant remember
+void Ui::MoveActiveControl(int8_t increment){
   // Jump to the last control when scrolling backwards.
   if (increment >= 0) {
     (*event_handlers_.SetActiveControl)(ACTIVE_CONTROL_FIRST);
@@ -326,9 +369,19 @@ void Ui::DoEvents() {
         
       case CONTROL_SWITCH:
         if (!(*event_handlers_.OnKey)(e.control_id)) {
-          // Cycle through the next page in the group.
+          // Cycle through the next page in the group.          
+          // Check if the switch that was pressed was for the page we're already on.
           if (page_info_.group == e.control_id) {
-            ShowPage(page_info_.next_page);
+            if (page_info_.next_page == INCREMENT_ENV){
+              bool wasLastPage = (*event_handlers_.OnIncrementAndCycle)(24, state_.active_part());
+              if (wasLastPage){
+                ShowPage(PAGE_VOICE_LFO);
+              }
+            } else if (page_info_.next_page == INCREMENT_MODULATION_SLOT){
+              (*event_handlers_.OnIncrementAndCycle)(34, state_.active_part());
+            } else {
+              ShowPage(page_info_.next_page);
+            }          
           } else {
             // Jump to the most recently visited page in the group.
             ShowPage(most_recent_page_in_group_[e.control_id]);

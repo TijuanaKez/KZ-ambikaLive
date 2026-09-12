@@ -86,6 +86,9 @@ swap colors
 inpt filter
 outp mode
 ext
+cc map
+launchkey seq
+lseq
 
 omni
 amnt
@@ -118,9 +121,6 @@ fm
 pwm
 noise
 vowel
-polysaw
-polypwm
-polycsw
 male
 female
 choir
@@ -138,6 +138,11 @@ drone 2
 metallic
 bell
 wavquence
+oldsaw
+qpwm
+fmfb
+csaw
+vowel 2
 
 tri
 sqr
@@ -230,6 +235,8 @@ deca
 rele
 lfo4
 vca
+drm1
+drm2
 
 env 1
 env 2
@@ -256,6 +263,8 @@ gate
 noise
 random
 = 256
+= 128
+= 64
 = 32
 = 16
 = 8
@@ -280,11 +289,14 @@ decay
 release
 lfo 4
 vca
+drum 1
+drum 2
 
 
 lp
 bp
 hp
+nt
 
 free
 env~lfo
@@ -293,6 +305,8 @@ lfo~env
 step seq
 arpeggio
 pattern
+latch
+chord seq
 
  off
 add
@@ -308,6 +322,7 @@ lag
 
 mono
 poly
+solo
 2x unison
 cyclic
 chain
@@ -319,6 +334,7 @@ played
 random
 chord
 
+2/1
 1/1
 3/4
 2/3
@@ -340,6 +356,12 @@ sequencer
 controllr
 chain
 full
+
+ambika
+shruthiXT
+launchkey
+
+lkey
 
 ....
 ...s

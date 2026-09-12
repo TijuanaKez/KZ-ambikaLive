@@ -37,6 +37,8 @@ uint8_t Multi::running_;
 uint8_t Multi::idle_ticks_;
 uint16_t Multi::tick_duration_table_[kNumStepsInGroovePattern];
 uint8_t Multi::flags_;
+uint8_t Multi::launchkey_play_button_note_ = 60;
+bool Multi::launchkey_play_button_note_active_ = false;
 /* </static> */
 
 static constexpr MultiData::Parameters init_settings PROGMEM {
@@ -121,6 +123,22 @@ void Multi::AssignVoicesToParts() {
   }
 }
 
+/* KZ MODs Sync Prts workaroud & Part Mutes */
+/* static */
+void Multi::SyncPartClocks() {
+    for (uint8_t i = 0; i < kNumParts; ++i) {
+        parts_[i].Start();
+    }
+}
+
+/* KZ MODs Mute parts from the performance page */
+/* static */
+#ifndef DISABLE_PART_MUTES
+void Multi::ToggleMute(uint8_t part) {
+    parts_[part].ToggleMute();
+}
+#endif
+
 /* static */
 void Multi::Touch() {
   ComputeInternalClockOverflowsTable();
@@ -164,6 +182,12 @@ void Multi::Clock() {
   }
   
   if (running_)  {
+    for (uint8_t i = 0; i < kNumParts; ++i) {
+      if (parts_[i].SequencerModeChanged()) {
+        SyncPartClocks();
+        break;
+      }
+    }
     // Advance the clock of all parts, and check if some of them are idle.
     midi_dispatcher.OnClock();
     uint8_t idle = 1;

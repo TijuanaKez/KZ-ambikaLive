@@ -40,6 +40,7 @@ class CardInfoPage : public UiPage {
       OnInit,
       SetActiveControl,
       OnIncrement,
+      OnIncrementAndCycle,
       OnClick,
       OnPot,
       OnKey,

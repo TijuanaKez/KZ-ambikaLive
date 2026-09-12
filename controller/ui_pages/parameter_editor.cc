@@ -37,7 +37,7 @@ ParameterEditor::SnapMask ParameterEditor::snapped_;
 uint8_t ParameterEditor::parameter_index(uint8_t control_id) {
   uint8_t parameter_id = info_->data[control_id];
   if (parameter_id >= 0xf0 && parameter_id <= 0xf7) {
-    return multi.data().knob_assignment[lowNibble(parameter_id)].parameter;
+    return multi.data().knobAssignment(lowNibble(parameter_id)).parameter;
   } else {
     return parameter_id;
   }
@@ -47,7 +47,7 @@ uint8_t ParameterEditor::parameter_index(uint8_t control_id) {
 uint8_t ParameterEditor::part_index(uint8_t control_id) {
   uint8_t parameter_id = info_->data[control_id];
   if (parameter_id >= 0xf0 && parameter_id <= 0xf7) {
-    return multi.data().knob_assignment[parameter_id & 0x0f].part;
+    return multi.data().knobAssignment(lowNibble(parameter_id)).part;
   } else {
     return ui.active_part();
   }
@@ -57,7 +57,7 @@ uint8_t ParameterEditor::part_index(uint8_t control_id) {
 uint8_t ParameterEditor::instance_index(uint8_t control_id) {
   uint8_t parameter_id = info_->data[control_id];
   if (parameter_id >= 0xf0 && parameter_id <= 0xf7) {
-    return multi.data().knob_assignment[lowNibble(parameter_id)].instance;
+    return multi.data().knobAssignment(lowNibble(parameter_id)).instance;
   } else {
     if (parameter_id == 0xff) {
       return 0xff;
@@ -94,7 +94,7 @@ void ParameterEditor::SetActiveControl(ActiveControl active_control) {
 uint8_t ParameterEditor::OnIncrement(int8_t increment) {
   if (edit_mode_ != EDIT_IDLE) {
     int8_t active = active_control_;
-    parameter_manager.Increment(parameter_index(active), part_index(active), instance_index(active), increment);
+    parameter_manager.Increment(parameter_index(active), part_index(active), instance_index(active), increment, false);
     edit_mode_ = EDIT_STARTED_BY_ENCODER;
   } else {
     int8_t new_control = active_control_ + increment;
@@ -116,6 +116,19 @@ uint8_t ParameterEditor::OnIncrement(int8_t increment) {
 }
 
 /* static */
+bool ParameterEditor::OnIncrementAndCycle(int8_t parameter_index, int8_t part) {
+  const Parameter& parameter = parameter_manager.parameter(parameter_index);
+  bool isLastPage = false;
+  if (parameter_manager.GetValue(parameter, part, 0) >= parameter.max_value){
+    parameter_manager.SetValue(parameter, part, 0, 0, 1);
+    isLastPage = true;
+  } else {
+    parameter_manager.Increment(parameter, part, 0, 1, false);
+  }
+  return isLastPage;
+}
+
+/* static */
 uint8_t ParameterEditor::OnPot(uint8_t index, uint8_t value) {
   uint8_t parameter_id = parameter_index(index);
   if (parameter_id == 0xff) {
@@ -123,7 +136,7 @@ uint8_t ParameterEditor::OnPot(uint8_t index, uint8_t value) {
   }
   const Parameter& parameter = parameter_manager.parameter(parameter_id);
   if (system_settings.data().snap()) {
-    SnapMask mask = (1 << index);
+    SnapMask mask = (1u << index);
     // If this pot has not reached the right position yet, test if the position
     // of the pot matches the value of the parameter.
     // Pots used to scroll among UI pages are not subject to snap.
@@ -182,7 +195,13 @@ void ParameterEditor::UpdateScreen() {
     if ((row + 10) != kLcdWidth) {
       buffer[10] = kDelimiter;
     }
-    if (parameter_id != 0xff) {
+    if (parameter_id == 0xf8) {
+    // KEZ mod ->more
+      strncpy_P(&buffer[4], PSTR("more->"), 6);
+    } else if (parameter_id == 0xf9) {
+    // KEZ mod <-back
+      strncpy_P(&buffer[4], PSTR("<-back"), 6);
+    } else if (parameter_id != 0xff) {
       const Parameter& parameter = parameter_manager.parameter(parameter_id);
       uint8_t value = parameter_manager.GetValue(parameter, part_index(i), instance_index(i));
 

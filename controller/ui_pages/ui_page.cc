@@ -57,6 +57,13 @@ uint8_t UiPage::OnIncrement(int8_t increment) {
 }
 
 /* static */
+bool UiPage::OnIncrementAndCycle(int8_t parameter_index, int8_t part){
+  // To quiet the compiler warnings
+  IGNORE_UNUSED(parameter_index);
+  IGNORE_UNUSED(part);
+  return false;
+}
+/* static */
 uint8_t UiPage::OnClick() {
   if (edit_mode_ != EDIT_IDLE) {
     edit_mode_ = EDIT_IDLE;

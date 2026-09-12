@@ -26,6 +26,14 @@
 
 namespace ambika {
 
+// KZ MOD
+enum CCMap {
+  CCMAP_AMBIKA,
+  CCMAP_SHRUTHI_XT,
+  CCMAP_LAUNCHKEY,
+  CCMAP_LAST
+};
+
 enum MidiOutMode : uint8_t {
   MIDI_OUT_THRU,
   MIDI_OUT_SEQUENCER,
@@ -42,7 +50,9 @@ enum SystemSettingsParameter : uint8_t {
   PRM_SYSTEM_SNAP,
   PRM_SYSTEM_AUTOBACKUP,
   PRM_SYSTEM_VOICECARD_LEDS,
-  PRM_SYSTEM_VOICECARD_SWAP_LEDS_COLORS
+  PRM_SYSTEM_VOICECARD_SWAP_LEDS_COLORS,
+  PRM_SYSTEM_CC_MAP,
+  PRM_SYSTEM_LAUNCHKEY_MODE
 };
 
 struct SystemSettingsData {
@@ -54,7 +64,9 @@ struct SystemSettingsData {
     uint8_t autobackup;
     uint8_t voicecard_leds;
     uint8_t swap_leds_colors;
-    uint8_t padding[8];
+    CCMap midi_cc_map;
+    uint8_t launchkey_mode;
+    uint8_t padding[6]; // KZ MOD Reduced from 8 to 6 to allow for extra 2 settings
     uint8_t checksum;
   };
 
@@ -96,7 +108,13 @@ public:
   inline uint8_t& swap_leds_colors() {
     return data.params.swap_leds_colors;
   }
-  inline uint8_t& checksum() {
+  inline CCMap& midi_cc_map() { // KZ MOD - getters for new params
+    return data.params.midi_cc_map;
+  }
+  inline uint8_t& launchkey_mode() { // KZ MOD - getters for new params
+    return data.params.launchkey_mode;
+  }
+  inline uint8_t& checksum() { 
     return data.params.checksum;
   }
 };

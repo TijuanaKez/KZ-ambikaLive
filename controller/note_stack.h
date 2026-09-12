@@ -40,6 +40,8 @@
 
 #include "avrlib/base.h"
 
+#include "common/features.h"
+
 namespace ambika {
 
 static const uint8_t kFreeSlot = 0xff;

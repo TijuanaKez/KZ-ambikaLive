@@ -38,25 +38,25 @@ uint8_t OsInfoPage::found_firmware_files_;
 void OsInfoPage::OnInit(PageInfo* info) {
   IGNORE_UNUSED(info);
   active_control_ = 0;
-  FindFirmwareFiles();
+  FindFirmwareFiles(0);
 }
 
 /* static */
-void OsInfoPage::FindFirmwareFiles() {
+void OsInfoPage::FindFirmwareFiles(uint8_t port) {
   found_firmware_files_ = 0;
   if (storage.FileExists(PSTR("/AMBIKA.BIN"))) {
     found_firmware_files_ |= 1;
   }
   
-  if (storage.FileExists(PSTR("/VOICE$.BIN"), '1' + active_control_)) {
+  if (storage.FileExists(PSTR("/VOICE$.BIN"), '1' + port)) {
     found_firmware_files_ |= 2;
   }
 }
 
 /* static */
 uint8_t OsInfoPage::OnIncrement(int8_t increment) {
-  active_control_ = Clip(active_control_ + increment, 0_u8, kNumVoices);
-  FindFirmwareFiles();
+  active_control_ = Clip(active_control_ + increment, 0_u8, U8(kNumVoices + 1));
+  FindFirmwareFiles(active_control_);
   // TODO figure out what the return value does
   return 1;
 }
@@ -79,20 +79,12 @@ uint8_t OsInfoPage::OnKey(uint8_t key) {
       
     case SWITCH_4:
       {
-        if (byteAnd(found_firmware_files_, 2)) {
-          // Resets the voicecard into its bootloader.
-          voicecard_tx.EnterFirmwareUpdateMode(active_control_);
-          // Wait while the voicecard reboots.
-          ConstantDelay(100);
-          uint8_t page_size_nibbles = 0;
-          for (uint8_t i = 0; i < 250; ++i) {
-            // Confirms the reset to the bootloader.
-            page_size_nibbles = voicecard_tx.EnterFirmwareUpdateMode(active_control_);
-          }
-          if (page_size_nibbles) {
-            // Sends the firmware data in nibblized format.
-            storage.SpiCopy(active_control_, PSTR("/VOICE$.BIN"), '1' + active_control_, page_size_nibbles);
-            voicecard_tx.EnterFirmwareUpdateMode(active_control_);
+        if (active_control_ < kNumVoices){
+          UpdateVoiceCard(active_control_);
+        } else {
+          for (uint8_t p=0; p < kNumVoices; p++){
+            FindFirmwareFiles(p);
+            UpdateVoiceCard (p);
           }
         }
       }
@@ -103,6 +95,25 @@ uint8_t OsInfoPage::OnKey(uint8_t key) {
       break;
   }
   return 1;
+}
+
+void OsInfoPage::UpdateVoiceCard (uint8_t port){
+  if (byteAnd(found_firmware_files_, 2)) {
+    // Resets the voicecard into its bootloader.
+    voicecard_tx.EnterFirmwareUpdateMode(port);
+    // Wait while the voicecard reboots.
+    ConstantDelay(100);
+    uint8_t page_size_nibbles = 0;
+    for (uint8_t i = 0; i < 250; ++i) {
+      // Confirms the reset to the bootloader.
+      page_size_nibbles = voicecard_tx.EnterFirmwareUpdateMode(port);
+    }
+    if (page_size_nibbles) {
+      // Sends the firmware data in nibblized format.
+      storage.SpiCopy(port, PSTR("/VOICE$.BIN"), '1' + port, page_size_nibbles);
+      voicecard_tx.EnterFirmwareUpdateMode(port);
+    }
+  }
 }
 
 /* static */
@@ -116,10 +127,10 @@ void OsInfoPage::PrintVersionNumber(char* buffer, uint8_t number) {
 /* static */
 void OsInfoPage::UpdateScreen() {
   char* buffer = display.line_buffer(0) + 1;
-  memcpy_P(&buffer[0], PSTR("ambika"), 6);
+  memcpy_P(&buffer[0], PSTR("KZambika"), 8);
   PrintVersionNumber(&buffer[10], kSystemVersion);
 
-  memcpy_P(&buffer[15], PSTR("port 1 device ?"), 15);
+  memcpy_P(&buffer[15], PSTR("port 1 device ?  "), 17);
   Word version_number = voicecard_tx.GetVersion(active_control_);
   buffer[20] = '1' + active_control_;
   uint8_t valid_device = 0;
@@ -127,6 +138,9 @@ void OsInfoPage::UpdateScreen() {
     buffer[29] = '0' + version_number.bytes[0];
     PrintVersionNumber(&buffer[35], version_number.bytes[1]);
     valid_device = 1;
+  }
+  if (active_control_ == kNumVoices){
+    memcpy_P(&buffer[29], PSTR("ALL"), 3);
   }
   buffer[14] = kDelimiter;
   buffer = display.line_buffer(1) + 1;
@@ -142,6 +156,7 @@ void OsInfoPage::UpdateScreen() {
     }
   }
   strncpy_P(&buffer[35], PSTR("exit"), 4);
+  IGNORE_UNUSED(valid_device);
 }
 
 /* static */

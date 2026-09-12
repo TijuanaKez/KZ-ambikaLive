@@ -60,7 +60,7 @@ uint8_t KnobAssigner::OnIncrement(int8_t increment) {
   // Disabled fast increment / decrement.
   increment = increment > 0 ? 1 : -1;
   
-  KnobAssignment& a = multi.data().knob_assignment[active_knob_];
+  KnobAssignment& a = multi.data().knobAssignment(active_knob_);
   const Parameter& p = parameter_manager.parameter(a.parameter);
   int8_t instance = a.instance + increment;
   if (instance >= 0 && instance < p.num_instances) {
@@ -90,7 +90,7 @@ uint8_t KnobAssigner::OnIncrement(int8_t increment) {
 uint8_t KnobAssigner::OnPot(uint8_t index, uint8_t value) {
   active_control_ = index;
   edit_mode_ = EDIT_STARTED_BY_POT;
-  KnobAssignment& a = multi.data().knob_assignment[active_knob_];
+  KnobAssignment& a = multi.data().knobAssignment(active_knob_);
   switch (index) {
     case 0:
     case 4:
@@ -128,7 +128,7 @@ uint8_t KnobAssigner::OnPot(uint8_t index, uint8_t value) {
 /* static */
 void KnobAssigner::UpdateScreen() {
   char* buffer;
-  const KnobAssignment& a = multi.data().knob_assignment[active_knob_];
+  const KnobAssignment& a = multi.data().knobAssignment(active_knob_);
   const Parameter& parameter = parameter_manager.parameter(a.parameter);
 
   buffer = display.line_buffer(0);

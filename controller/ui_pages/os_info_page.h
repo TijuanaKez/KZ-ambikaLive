@@ -35,10 +35,12 @@ class OsInfoPage : public UiPage {
   static void UpdateScreen();
   static void UpdateLeds();
 
+ // NOTE: These now must always reflect exactly EventHandlers struct in ui.h
   static constexpr EventHandlers event_handlers_ PROGMEM = {
       OnInit,
       SetActiveControl,
       OnIncrement,
+      OnIncrementAndCycle,
       OnClick,
       OnPot,
       OnKey,
@@ -53,7 +55,8 @@ class OsInfoPage : public UiPage {
 private:
   static void PrintVersionNumber(char* buffer, uint8_t number);
   //static void ReadVoicecardVersion();
-  static void FindFirmwareFiles();
+  static void FindFirmwareFiles(uint8_t port);
+  static void UpdateVoiceCard (uint8_t port);
   
   //static uint8_t voicecard_version_;
   //static uint8_t active_port_;

@@ -93,7 +93,7 @@ class Oscillator {
     sync_input = new_sync_input;
     sync_output = new_sync_output;
     // A hack: when pulse width is set to 0, use a simple wavetable.
-    if (new_shape == WAVEFORM_SQUARE) {
+    if (new_shape == WAVEFORM_POLYBLEP_PWM) {
       if (parameter == 0) {
         RenderSimpleWavetable(buffer);
       } else {

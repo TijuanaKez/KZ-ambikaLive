@@ -22,6 +22,8 @@
 
 #include "avrlib/base.h"
 
+#include "common/features.h"
+
 #include "controller/resources.h"
 #include "controller/controller.h"
 
@@ -54,6 +56,7 @@ enum Unit : uint8_t {
   UNIT_MIDI_IN_MASK,
   UNIT_MIDI_OUT_MODE,
   UNIT_MIDI_CHANNEL,
+  UNIT_CC_MAP,
   UNIT_LAST
 };
 
@@ -96,7 +99,7 @@ struct Parameter {
   
   uint8_t Scale(uint8_t value_7bits) const;
   uint8_t Clamp(uint8_t value) const;
-  uint8_t Increment(uint8_t current_value, int8_t increment) const;
+  uint8_t Increment(uint8_t current_value, int8_t increment, bool cycle) const;
   uint8_t RandomValue() const;
   
   uint8_t is_snapped(uint8_t current_value, uint8_t value_7bits) const;
@@ -110,7 +113,7 @@ struct Parameter {
 };
 
 // counts parameters in Patch.h
-constexpr uint8_t kNumParameters = 75;
+constexpr uint8_t kNumParameters = 77; // KZ MOD: 2 Extra system parameters
 
 // The parameter manager is the class who knows how to apply a parameter change
 // for each specific object type.
@@ -124,19 +127,20 @@ class ParameterManager {
   
   static uint8_t ControlChangeToParameterId(uint8_t cc);
   static uint8_t AddressToParameterId(uint8_t address);
+  static uint8_t ParameterMidiCC(uint8_t parameter_id, uint8_t cc_map);
   
   static void SetValue(const Parameter& p, uint8_t part, uint8_t instance_index, uint8_t value, uint8_t user_initiated);
   static uint8_t GetValue(const Parameter& p, uint8_t part, uint8_t instance_index);
 
-  static void Increment(const Parameter& p, uint8_t part, uint8_t instance_index, int8_t increment) {
+  static void Increment(const Parameter& p, uint8_t part, uint8_t instance_index, int8_t increment, bool cycle) {
     uint8_t value = GetValue(p, part, instance_index);
-    value = p.Increment(value, increment);
+    value = p.Increment(value, increment, cycle);
     SetValue(p, part, instance_index, value, 1);
   }
   
-  static void Increment(uint8_t parameter_index, uint8_t part, uint8_t instance_index, int8_t increment) {
+  static void Increment(uint8_t parameter_index, uint8_t part, uint8_t instance_index, int8_t increment, bool cycle) {
     const Parameter& p = parameter(parameter_index);
-    Increment(p, part, instance_index, increment);
+    Increment(p, part, instance_index, increment, cycle);
   }
   
   static void Scale(const Parameter& p, uint8_t part, uint8_t instance_index, uint8_t value) {

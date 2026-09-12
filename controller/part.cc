@@ -27,20 +27,33 @@ using namespace avrlib;
 
 namespace ambika {
 
+// ------ KZ MODs - Launchkey Stuff ----------
+#ifndef DISABLE_LAUNCHKEY_MODE
+static const prog_uint8_t launchkey_rgb_pad_notes_top[8] PROGMEM = {
+  40, 41, 42, 43, 48, 49, 50, 51
+};
+
+static const prog_uint8_t launchkey_rgb_pad_notes_bottom[8] PROGMEM = {
+  36, 37, 38, 39, 44, 45, 46, 47
+};
+#endif
+// --------------------------------
+
 static constexpr uint8_t midi_clock_tick_per_step[15] PROGMEM = {
   96, 72, 64, 48, 36, 32, 24, 16, 12, 8, 6, 4, 3, 2, 1
 };
 
 static constexpr uint16_t lfo_phase_increment_per_clock_tick[15] PROGMEM = {
   683, 910, 1024, 1365, 1820, 2048, 2731,
-  4096, 5461, 8192, 10923, 16384, 21845, 32768, 65536
+  4096, 5461, 8192, 10923, 16384, 21845, 32768, 65535
 };
 
 static constexpr Patch::Parameters init_patch_params PROGMEM {
   // Oscillators
   .osc = {
-    {WAVEFORM_SAW, 0, 0, 0},
-    {WAVEFORM_SQUARE, 32, -12, 12}
+    // MZ MOD: Still using YAM Voicecard
+    {WAVEFORM_POLYBLEP_SAW, 0, 0, 0},
+    {WAVEFORM_POLYBLEP_PWM, 32, -12, 12}
   },
   // Mixer
   .mix_balance = 32,
@@ -245,7 +258,7 @@ void Part::AssignVoices(uint8_t allocation) {
 }
 
 void Part::InitializeAllocators() {
-  if (data_.polyphony_mode() == MONO) {
+  if (data_.polyphony_mode() == MONO || data_.polyphony_mode() == SOLO) {
     mono_allocator_.Init();
   } else {
     uint8_t size = num_allocated_voices_;
@@ -307,9 +320,11 @@ void Part::SetValue(uint8_t address, uint8_t value, uint8_t user_initiated) {
   } else if (address >= PRM_PATCH_ENV_ATTACK && 
              address < PRM_PATCH_VOICE_LFO_SHAPE) {
     TouchLfos();
+#ifndef DISABLE_ARPEGGIO
   } else if (address == PRM_PART_ARP_DIRECTION) {
     arp_direction_ = (data_.arp_direction() == ARPEGGIO_DIRECTION_DOWN ? -1 : 1);
     StartArpeggio();
+#endif
   }
 }
 
@@ -320,9 +335,27 @@ void Part::NoteOn(uint8_t note, uint8_t velocity) {
   }
   if (velocity == 0) {
     NoteOff(note);
+    // KZ MOD: Arp and Seq Latch modes
+  } else if (data_.arp_sequencer_mode() == ARP_SEQUENCER_MODE_ARPEGGIATOR_LATCH){
+    // Toggle notes on NoteOn and ignore NoteOff.
+    bool is_playing = false;
+    for (uint8_t i = 1; i <= pressed_keys_.max_size(); ++i) {
+      NoteEntry* e = pressed_keys_.mutable_note(i);
+      if (e->note == note) {
+        is_playing = true;
+        break;
+      }
+    }
+    if (is_playing){
+      pressed_keys_.NoteOff(note);
   } else {
     pressed_keys_.NoteOn(note, velocity);
-    if (data_.arp_sequencer_mode() == ARP_SEQUENCER_MODE_STEP) {
+     }
+  } else if (data_.arp_sequencer_mode() == ARP_SEQUENCER_MODE_CHORD){
+    // Do nothing
+  } else {
+    pressed_keys_.NoteOn(note, velocity);
+    if (data_.arp_sequencer_mode() == ARP_SEQUENCER_MODE_STEP) {      
       // Sequencer and arpeggiator are off, we directly trigger the note.
       InternalNoteOn(note, velocity);
     }
@@ -333,7 +366,7 @@ void Part::NoteOff(uint8_t note) {
   if (!AcceptNote(note)) { 
     return;
   }
-  if (ignore_note_off_messages_) {
+  if (ignore_note_off_messages_ || data_.arp_sequencer_mode() >= ARP_SEQUENCER_MODE_ARPEGGIATOR_LATCH) {
     for (uint8_t i = 1; i <= pressed_keys_.max_size(); ++i) {
       // Flag the note so that it is removed once the sustain pedal is released.
       NoteEntry* e = pressed_keys_.mutable_note(i);
@@ -415,7 +448,7 @@ void Part::ControlChange(uint8_t controller, uint8_t value) {
           new_value = parameter.Clamp(value);
         } else {
           new_value = parameter.Increment(new_value,
-              controller == midi::kDataIncrement ? 1 : -1);
+              controller == midi::kDataIncrement ? 1 : -1, false);
         }
         if (system_settings.rx_nrpn()) {
           SetValue(address, new_value, 0);
@@ -429,6 +462,9 @@ void Part::ControlChange(uint8_t controller, uint8_t value) {
         if (parameter_id == 0xff) {
           return;
         }
+        // KZ MOD - TODO 
+        //uint8_t cc_map = system_settings.data().midi_cc_map();
+
         const Parameter& parameter = parameter_manager.parameter(parameter_id);
         // Some ranges of MIDI CC might point to the same parameter ID, for
         // different instances of the same object (for example a LFO).
@@ -508,7 +544,7 @@ void Part::Aftertouch(uint8_t velocity) {
 }
 
 void Part::AllSoundOff() {
-  if (data_.polyphony_mode() == MONO) {
+  if (data_.polyphony_mode() == MONO || data_.polyphony_mode() == SOLO) {
     mono_allocator_.Clear();
   } else {
     poly_allocator_.Clear();
@@ -523,7 +559,7 @@ void Part::AllNotesOff() {
   if (ignore_note_off_messages_) {
     return;
   }
-  if (data_.polyphony_mode() == MONO) {
+  if (data_.polyphony_mode() == MONO || data_.polyphony_mode() == SOLO) {
     mono_allocator_.Clear();
   } else {
     poly_allocator_.ClearNotes();
@@ -574,8 +610,18 @@ void Part::Clock() {
   ++midi_clock_counter_;
   if (midi_clock_counter_ >= midi_clock_prescaler_) {
     midi_clock_counter_ = 0;
+    if (arp_previous_mode_ != data_.arp_sequencer_mode()){
+      arp_previous_mode_ = data_.arp_sequencer_mode();
+      Stop();
+      Start();
+      return;
+    }
+#ifndef DISABLE_SEQUENCER
     ClockSequencer();
+#endif
+#ifndef DISABLE_ARPEGGIO
     ClockArpeggiator();
+#endif
   }
   
   for (uint8_t i = 0; i < kNumLfos; ++i) {
@@ -597,14 +643,31 @@ void Part::Clock() {
   }
 }
 
+  // KZ MOD: Allow muting parts with SWITCH1-6 on the performance page.
+#ifndef DISABLE_PART_MUTES
+void Part::ToggleMute(){
+  if (is_muted_){
+    is_muted_ = false;
+    SetValue(PRM_PART_VOLUME, part_volume_, 0);
+  } else {
+    is_muted_ = true;
+    part_volume_ = GetValue(PRM_PART_VOLUME);
+    SetValue(PRM_PART_VOLUME, 0, 0);
+  }
+}
+#endif
 void Part::Start() {
   memset(sequencer_step_, 0, kNumSequences);
   memset(lfo_step_, 0, kNumLfos);
   midi_clock_counter_ = midi_clock_prescaler_;
+  chord_step_counter_ = 0;
   previous_generated_note_ = 0xff;
+#ifndef DISABLE_ARPEGGIO
   arp_pattern_mask_ = 0x1;
   arp_direction_ = (data_.arp_direction() == ARPEGGIO_DIRECTION_DOWN ? -1 : 1);
+  arp_previous_mode_ = data_.arp_sequencer_mode();
   StartArpeggio();
+#endif
 }
 
 void Part::Stop() {
@@ -647,18 +710,28 @@ void Part::InternalNoteOn(uint8_t note, uint8_t velocity) {
   midi_dispatcher.OnNote(this, note, velocity);
 
   uint8_t retrigger_lfos = 0;
-  if (data_.polyphony_mode() == MONO) {
+  if (data_.polyphony_mode() == MONO || data_.polyphony_mode() == SOLO) {
     mono_allocator_.NoteOn(note, velocity);
     uint16_t tuned_note = TuneNote(note);
     uint8_t legato = mono_allocator_.size() > 1;
     uint8_t pitch_drift = 0;
-    for (uint8_t i = 0; i < num_allocated_voices_; ++i) {
+    if (data_.polyphony_mode() == MONO){
+      // Trigger all allocated voices for MONO.
+      for (uint8_t i = 0; i < num_allocated_voices_; ++i) {
+        voicecard_tx.Trigger(
+            allocated_voices_[i],
+            tuned_note + pitch_drift,
+            velocity,
+            legato);
+        pitch_drift += data_.spread();
+      }
+    } else {
+      // Just Trigger first allocated voice for SOLO (single voice mono).
       voicecard_tx.Trigger(
-          allocated_voices_[i],
-          tuned_note + pitch_drift,
-          velocity,
-          legato);
-      pitch_drift += data_.spread();
+                            allocated_voices_[0],
+                            tuned_note + pitch_drift,
+                            velocity,
+                            legato);
     }
     retrigger_lfos = !legato || !data_.legato();
   } else {
@@ -709,12 +782,14 @@ void Part::InternalNoteOff(uint8_t note) {
   midi_dispatcher.OnNote(this, note, 0);
   
   uint8_t retrigger_lfos = 0;
-  if (data_.polyphony_mode() == MONO) {
+  if (data_.polyphony_mode() == MONO || data_.polyphony_mode() == SOLO) {
+    // Only target first allocated voice in SOLO mode
+    uint8_t num_target_voices = (data_.polyphony_mode() == SOLO) ? 1 : num_allocated_voices_;
     uint8_t top_note = mono_allocator_.most_recent_note().note;
     mono_allocator_.NoteOff(note);
     if (mono_allocator_.size() == 0) {
       // No key is pressed, we trigger the release segment.
-      for (uint8_t i = 0; i < num_allocated_voices_; ++i) {
+      for (uint8_t i = 0; i < num_target_voices; ++i) {
         voicecard_tx.Release(allocated_voices_[i]);
       }
     } else {
@@ -723,7 +798,7 @@ void Part::InternalNoteOff(uint8_t note) {
       if (top_note == note) {
         uint16_t tuned_note = TuneNote(mono_allocator_.most_recent_note().note);
         uint8_t pitch_drift = 0;
-        for (uint8_t i = 0; i < num_allocated_voices_; ++i) {
+        for (uint8_t i = 0; i < num_target_voices; ++i) {
           uint8_t velocity = byteAnd(mono_allocator_.most_recent_note().velocity, 0x7f);
           voicecard_tx.Trigger(allocated_voices_[i], tuned_note + pitch_drift, velocity, 1);
           pitch_drift += data_.spread();
@@ -803,6 +878,7 @@ void Part::RetriggerLfos() {
 
 void Part::ClockSequencer() {
   // Update the value of the sequencer in the modulation matrix.
+#ifndef DISABLE_SEQUENCER
   for (uint8_t i = 0; i < 2; ++i) {
     uint8_t value = data_.step_value(i, sequencer_step_[i]);
     if (data_.sequence_length(i)) {
@@ -838,17 +914,60 @@ void Part::ClockSequencer() {
       }
       previous_generated_note_ = note;
     }
+        // KZ MOD: -------  Chord Sequencer ------------
+  } else if (data_.arp_sequencer_mode() == ARP_SEQUENCER_MODE_CHORD){
+    // Step the chord every nth steps. Note sequence Length parameter is now used for n and note sequence is locked at 16.
+    if (chord_step_counter_ % data_.sequence_length(2) == 0){
+      AllNotesOff();
+      // Play the next 4 notes in the sequencer together as a chord
+      uint8_t chord_step = chord_step_counter_ / data_.sequence_length(2);
+      for (uint8_t i = 0; i < 4; ++i) {
+        NoteStep n = data_.note_step(chord_step * 4 + i);
+        if (n.gate) {
+          pressed_keys_.NoteOn(n.note, n.velocity & 0x7f);
+        }
+      }
+    }
+    ++chord_step_counter_;
+    if (chord_step_counter_ >= 4 * data_.sequence_length(2)){
+      chord_step_counter_ = 0;
+    }
+
   }
+#endif
+
+
+#ifndef DISABLE_LAUNCHKEY_MODE
+  // KZ MOD ---- LaunchKeyStuff ------------
+  // Dispatch note to Lanuchkey here?
+  // RGB LED Midi Notes
+  // CH16, Notes 40 - 51, but will need arrays as they arent sequential
+  // Color Set by Velocity, (see lookup table)
+  // THIS IS IN THE WRONG SPOT - SHOULD BE IN MULTI
+  if (system_settings.data().launchkey_mode){
+    uint8_t onPad = sequencer_step_[0] & 7;
+    uint8_t offPad = (sequencer_step_[0] + 7) & 7;
+//    midi_dispatcher.SetLaunchKeyPadColor(pgm_read_byte(launchkey_rgb_pad_notes_top + onPad), 100); // ON
+//    midi_dispatcher.SetLaunchKeyPadColor(pgm_read_byte(launchkey_rgb_pad_notes_top + offPad), 0); // OFF
+  }
+#endif
   
   // Jump to the next step in the sequencer.
   for (uint8_t i = 0; i < kNumSequences; ++i) {
     ++sequencer_step_[i];
-    if (sequencer_step_[i] >= data_.sequence_length(i)) {
+    if (i == 2
+        && data_.arp_sequencer_mode() == ARP_SEQUENCER_MODE_CHORD
+        && sequencer_step_[i] >= 16){
+      // Lock the note sequence length to 16 in Chord Sequencer mode
+      // As the Length parameter is now used to determine the chord duration.
+      sequencer_step_[i] = 0;
+    } else if (sequencer_step_[i] >= data_.sequence_length(i)) {
       sequencer_step_[i] = 0;
     }
   }
 }
 
+#ifndef DISABLE_ARPEGGIO
 void Part::ClockArpeggiator() {
   using rs = ResourcesManager;
   uint16_t pattern = rs::Lookup<uint16_t, uint8_t>(lut_res_arpeggiator_patterns, data_.arp_pattern());
@@ -859,7 +978,7 @@ void Part::ClockArpeggiator() {
   }
   
   // Trigger notes only if the arp is on, and if keys are pressed.
-  if (data_.arp_sequencer_mode() == ARP_SEQUENCER_MODE_ARPEGGIATOR) {
+  if (data_.arp_sequencer_mode() == ARP_SEQUENCER_MODE_ARPEGGIATOR || data_.arp_sequencer_mode() >= ARP_SEQUENCER_MODE_ARPEGGIATOR_LATCH) {
     if (pressed_keys_.size() && has_arpeggiator_note) {
       if (data_.arp_direction() != ARPEGGIO_DIRECTION_CHORD) {
         InternalNoteOff(previous_generated_note_);
@@ -954,6 +1073,7 @@ void Part::StepArpeggio() {
     }
   }
 }
+#endif
 
 void Part::WriteToAllVoices(uint8_t data_type, uint8_t address, uint8_t value) {
   for (uint8_t i = 0; i < num_allocated_voices_; ++i) {

@@ -38,6 +38,7 @@ class UiPage {
   static void SetActiveControl(ActiveControl active_control);
 
   static uint8_t OnIncrement(int8_t increment);
+  static bool OnIncrementAndCycle(int8_t parameter_index, int8_t part);
   static uint8_t OnClick();
   static uint8_t OnPot(uint8_t index, uint8_t value);
   static uint8_t OnKey(uint8_t key);
@@ -52,10 +53,22 @@ class UiPage {
   // In subclasses, make sure that this table comes after the overriding
   // function declarations in the subclass's definition, otherwise the function names
   // will point to those here.
+
+  /*
+  --- More info about EventHandlers ---
+  All these tables are basically a big old hack (credit to Emilie) to allow a limited form of object oriented programming (polymorphism) in C++ without using the actual C++ classes. 
+  When you use actual classes, the compiler generates these function pointer tables for you, and stores them in the program code. 
+  So that makes things much simpler. Normally they are put into RAM when the program is loaded, which on AVR is the (limited) SRAM. 
+  However since they take up space and don’t change throughout program execution, they should be put in AVR PROGMEM instead. 
+  But a limitation in the AVR-G++ compiler, prevents that from happening. It’s actually an open issue against the GCC AVR backend to do this, but compiler work for AVR is going a bit stale at the moment…
+  */
+
+ // NOTE: These now must always reflect exactly EventHandlers struct in ui.h
   static constexpr EventHandlers event_handlers_ PROGMEM = {
       OnInit,
       SetActiveControl,
       OnIncrement,
+      OnIncrementAndCycle,
       OnClick,
       OnPot,
       OnKey,

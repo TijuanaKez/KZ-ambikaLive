@@ -36,6 +36,7 @@ class ParameterEditor : public UiPage {
   static void SetActiveControl(ActiveControl active_control);
 
   static uint8_t OnIncrement(int8_t increment);
+  static bool OnIncrementAndCycle(int8_t parameter_index, int8_t part);
   static uint8_t OnPot(uint8_t index, uint8_t value);
   
   static void UpdateScreen();
@@ -47,10 +48,12 @@ class ParameterEditor : public UiPage {
   static uint8_t part_index(uint8_t control_id);
   static uint8_t instance_index(uint8_t control_id);
   
+   // NOTE: These now must always reflect exactly EventHandlers struct in ui.h
   static constexpr EventHandlers event_handlers_ PROGMEM = {
       OnInit,
       SetActiveControl,
       OnIncrement,
+      OnIncrementAndCycle,
       OnClick,
       OnPot,
       OnKey,

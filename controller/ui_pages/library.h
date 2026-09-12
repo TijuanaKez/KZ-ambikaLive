@@ -20,6 +20,8 @@
 #ifndef CONTROLLER_UI_PAGES_LIBRARY_H_
 #define CONTROLLER_UI_PAGES_LIBRARY_H_
 
+#include "common/features.h"
+
 #include "controller/controller.h"
 #include "controller/storage.h"
 #include "controller/ui_pages/ui_page.h"
@@ -53,7 +55,7 @@ class Library : public UiPage {
   static inline void set_name_dirty() {
     name_dirty_ = 1;
   }
-  static StorageLocation* mutable_location() { return &location_; }
+  static StorageLocation* mutable_location() { return &location_; } // Return a reference to the Library page's location StorageLocation struct.
   static const StorageLocation& location() { return location_; }
 
   static void PrintActiveObjectName(char* buffer);
@@ -65,6 +67,7 @@ class Library : public UiPage {
       OnInit,
       UiPage::SetActiveControl,
       OnIncrement,
+      UiPage::OnIncrementAndCycle,
       OnClick,
       UiPage::OnPot,
       OnKey,

@@ -34,10 +34,12 @@ class VersionManager : public UiPage {
   static void UpdateScreen();
   static void UpdateLeds();
 
+// KZ MOD add OnIncrementAndCycle
   static constexpr EventHandlers event_handlers_ PROGMEM = {
       OnInit,
       SetActiveControl,
       OnIncrement,
+      OnIncrementAndCycle,
       OnClick,
       OnPot,
       OnKey,

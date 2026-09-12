@@ -24,6 +24,7 @@
 
 #include "avrlib/base.h"
 
+#include "common/features.h"
 #include "common/lfo.h"
 #include "common/patch.h"
 
@@ -52,12 +53,15 @@ enum ArpSequencerMode : uint8_t {
   ARP_SEQUENCER_MODE_STEP,
   ARP_SEQUENCER_MODE_ARPEGGIATOR,
   ARP_SEQUENCER_MODE_NOTE,
+  ARP_SEQUENCER_MODE_ARPEGGIATOR_LATCH,
+  ARP_SEQUENCER_MODE_CHORD,
   ARP_SEQUENCER_MODE_LAST
 };
 
 enum PolyphonyMode : uint8_t {
   MONO,
   POLY,
+  SOLO,
   UNISON_2X,
   CYCLIC,
   CHAIN,
@@ -205,6 +209,9 @@ public:
   inline ArpSequencerMode & arp_sequencer_mode() {
     return data.params.arp_sequencer_mode;
   }
+  inline const ArpSequencerMode& arp_sequencer_mode() const {
+    return data.params.arp_sequencer_mode;
+  }
   inline ArpeggiatorDirection& arp_direction() {
     return data.params.arp_direction;
   }
@@ -339,6 +346,10 @@ class Part {
   void Clock();
   void Start();
   void Stop();
+  void ToggleMute();
+  bool SequencerModeChanged() const {
+    return arp_previous_mode_ != data_readonly().arp_sequencer_mode();
+  }
 
   constexpr static inline size_t sizeBytes() {
     return Patch::sizeBytes() + PartData::sizeBytes();
@@ -391,11 +402,10 @@ class Part {
   void UpdateLfos(uint8_t refresh_cycle);
   
   void AssignVoices(uint8_t allocation);
-  inline uint8_t flags() const {
-    return flags_;
-  }
+  inline uint8_t flags() const { return flags_; }
   inline void ClearFlag(uint8_t flag) { flags_ &= byteInverse(flag); }
-  
+
+  inline bool isMuted() const { return is_muted_; }
 
  private:
   void RandomizeRange(uint8_t start, uint8_t size);
@@ -458,6 +468,7 @@ class Part {
   
   // Sequencer state.
   uint8_t sequencer_step_[kNumSequences];
+  uint8_t chord_step_counter_;
   
   // Arpeggiator state.
   uint8_t previous_generated_note_;
@@ -465,6 +476,10 @@ class Part {
   int8_t arp_direction_;
   int8_t arp_step_;
   int8_t arp_octave_;
+  // KZ MODs
+  int8_t arp_previous_mode_;
+  bool is_muted_;
+  int8_t part_volume_;
   
   // Whether some settings have been changed by code.
   uint8_t flags_;
@@ -472,6 +487,7 @@ class Part {
   // Backup copy of the "polyphony mode" parameter to reinitialize if necessary
   // all allocators when a new program is loaded.
   uint8_t polyphony_mode_;
+  uint8_t launchkey_current_program_;
   
   DISALLOW_COPY_AND_ASSIGN(Part);
 };

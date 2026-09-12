@@ -47,6 +47,7 @@ class DialogBox : public UiPage {
       OnInit,
       SetActiveControl,
       OnIncrement,
+      OnIncrementAndCycle,
       OnClick,
       OnPot,
       OnKey,

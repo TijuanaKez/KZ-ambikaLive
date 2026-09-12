@@ -36,8 +36,8 @@ enum StorageObject {
   STORAGE_OBJECT_PATCH,
   STORAGE_OBJECT_SEQUENCE,
   STORAGE_OBJECT_PROGRAM,
-  STORAGE_OBJECT_MULTI,
-  STORAGE_OBJECT_PART,
+  STORAGE_OBJECT_MULTI, // \/ KZ Not sure why but these 2 are swapped compared to the info in the manual
+  STORAGE_OBJECT_PART, // /\ KZ Not sure why but these 2 are swapped compared to the info in the manual
 };
 
 enum SysExReceptionState {
@@ -47,6 +47,31 @@ enum SysExReceptionState {
   RECEIVING_FOOTER = 3,
   RECEPTION_OK = 4,
   RECEPTION_ERROR = 5,
+};
+
+enum SysExCommand {
+    SYSEX_RECEIVE_PATCH_DATA = 0x01, // Recieve Patch dump
+    SYSEX_RECEIVE_SEQUENCER_DATA = 0x02, // Recieve PartData::sequence_data dump
+    SYSEX_RECEIVE_PROGRAM_DATA = 0x03, // According to StorageObject enum. Is this different to Patch + Part Data?
+    SYSEX_RECEIVE_PART_DATA = 0x04, // Recieve PartData dump. According to Manual, but 0x04 and 0x05 seem switched around.
+    SYSEX_RECEIVE_MULTI_DATA =  0x05, // Recieve MultiData dump
+    SYSEX_RECEIVE_PATCH_NAME = 0x06, // Recieve Patch dump
+    SYSEX_RECEIVE_SEQUENCE_NAME = 0x07, // Recieve PartData::sequence_data dump
+    SYSEX_RECEIVE_PROGRAM_NAME = 0x08, // According to StorageObject enum. Is this different to Patch + Part Data?
+    SYSEX_RECEIVE_PART_NAME = 0x09, // Parts dont have names but ......
+    SYSEX_RECEIVE_MULTI_NAME =  0x0a, // Recieve MultiData dump
+    SYSEX_POKE_COMMAND =  0x0f, // ???
+    SYSEX_REQUEST_PATCH_DATA = 0x11, // Request Patch Data
+    SYSEX_REQUEST_SEQUENCER_DATA = 0x12, // Request Sequencer Data
+    SYSEX_REQUEST_PROGRAM_DATA =  0x13, // Request Patch bytes + PartData
+    SYSEX_REQUEST_PART_DATA = 0x14, // Request PartData
+    SYSEX_REQUEST_MULTI_DATA = 0x15, // Request MultiData + Patch and PartData
+    SYSEX_REQUEST_PATCH_NAME =  0x16, // Request Patch Name
+    SYSEX_REQUEST_SEQUENCE_NAME =  0x17, // Request Sequencer Name
+    SYSEX_REQUEST_PROGRAM_NAME = 0x18, // Request Progam Name
+    SYSEX_REQUEST_PART_NAME = 0x19, // Parts dont have names
+    SYSEX_REQUEST_MULTI_NAME = 0x1a, // Request Multi?
+    SYSEX_PEEK_COMMAND = 0x1f,
 };
 
 enum StorageDir {

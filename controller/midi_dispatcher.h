@@ -18,6 +18,8 @@
 #ifndef CONTROLLER_MIDI_DISPATCHER_H_
 #define CONTROLLER_MIDI_DISPATCHER_H_
 
+#include "common/features.h"
+
 #include "avrlib/base.h"
 #include "avrlib/ring_buffer.h"
 
@@ -112,7 +114,7 @@ class MidiDispatcher : public midi::MidiDevice {
         if (current_bank_ < 26) {
           for (uint8_t i = 0; i < kNumParts; ++i) {
             if (multi.data().part_mapping(i).receive_channel(channel)) {
-              StorageLocation* location = Library::mutable_location();
+              StorageLocation* location = Library::mutable_location(); // Create a pointer to a new StorageLocation struct
               location->object = STORAGE_OBJECT_PROGRAM;
               location->name = nullptr;  // We don't want to load the name.
               location->part = i;
@@ -225,6 +227,14 @@ class MidiDispatcher : public midi::MidiDevice {
       Send3(0x90 | multi.part_channel(part), note, velocity);
     }
   }
+  // KZ MOD -- Light up the Lanuchkey LEDs for the ARP
+#ifndef DISABLE_LAUNCHKEY_MODE
+  static inline void SetLaunchKeyPadColor(uint8_t note, uint8_t color) {
+    // If LaunchKey Mode is active
+    // LaunchKey RGB LEDS listen to channel 16 note 40+
+    Send3(0x90 | 15, note, color);
+  }
+#endif
 
   static inline void OnStart() {
     if (mode() == MIDI_OUT_SEQUENCER) {

@@ -402,6 +402,24 @@ void Storage::RIFFWriteObject(const StorageLocation& location) {
 /* static */
 FilesystemStatus Storage::Load(StorageDir type, const StorageLocation& location, uint8_t load_contents) {
   {
+    // Load data from SD
+
+    /*
+  All files are stored in RIFF format.
+
+  The first 4 bytes of the file is the ‘RIFF’ string.
+  The next 4 bytes are the total size of the file in bytes, little endian format.
+  The next 4 bytes is the ‘MBKS’ string.
+
+  This is followed by one or many chunks. Each chunk consists of a 4 chars identifier, a 32-bit integer indicating the size N of the “payload” data, and N bytes of “payload” data. Two types of chunk are present in a file:
+
+    The name chunk is always 16 bytes long and contains the name of the object (multi, patch, program…) stored in the file. The 16th byte must be a null character ; and the name must be padded with spaces.
+    The obj chunk contains data that will be copied into one of Ambika’s internal data structures. It consists of:
+    A byte indicating the data structure (1: Patch, 2: PartData.sequence_data, 4: MultiData, 5: PartData).
+    A byte indicating the part number the data must be loaded into (0: current part or global, 1: part 1, etc.)
+    2 null bytes.
+    The actual data.
+*/
     scoped_resource<SdCardSession> session;
 
     FilesystemStatus s;
@@ -419,27 +437,28 @@ FilesystemStatus Storage::Load(StorageDir type, const StorageLocation& location,
     LongWord size;
     uint16_t read;
   
-    file_.Read(id.bytes, 4, &read);
-    if (id.value != kRiffTag) {
+    file_.Read(id.bytes, 4, &read); // Read and check the RIFF header
+    if (id.value != kRiffTag) { 
       file_.Close();
       return FS_BAD_FILE_FORMAT;
     }
     // Skip the size.
     file_.Read(size.bytes, 4, &read);
-    file_.Read(id.bytes, 4, &read);
+    file_.Read(id.bytes, 4, &read); // Read and check file format tag
     if (id.value != kFormatTag) {
       file_.Close();
       return FS_BAD_FILE_FORMAT;
     }
   
     while (!file_.eof()) {
-      file_.Read(id.bytes, 4, &read);
-      file_.Read(size.bytes, 4, &read);
+      // Load a chunk
+      file_.Read(id.bytes, 4, &read); // Chunk idenitifer
+      file_.Read(size.bytes, 4, &read); // Payload size
       uint8_t skip_data = 1;
     
-      if (id.value == kObjectTag && load_contents) {
+      if (id.value == kObjectTag && load_contents) { // Object Chunk
         file_.Read(id.bytes, 4, &read);
-        StorageLocation destination {
+        StorageLocation destination { // Load the object
             .object = static_cast<StorageObject>(id.bytes[0] - 1),
             .part = U8(id.bytes[1] == 0 ? location.part : (id.bytes[1] - 1)),
             .alias = 0,
@@ -454,7 +473,7 @@ FilesystemStatus Storage::Load(StorageDir type, const StorageLocation& location,
           file_.Read(data, expected_size, &read);
           skip_data = 0;
         }
-      } else if (id.value == kNameTag && location.name) {
+      } else if (id.value == kNameTag && location.name) { // Name Chunk. Size.value should be 16
         file_.Read(location.name, size.value, &read);
         skip_data = 0;
       }
@@ -536,6 +555,7 @@ FilesystemStatus Storage::Save(StorageDir type, const StorageLocation& location)
 
 /* static */
 char* Storage::GetFileName(StorageDir type, const StorageLocation& location) {
+  // Generate a path string for SD Filesystem
   char* p = tmp_buffer_;
 
   // Root.
@@ -563,7 +583,7 @@ char* Storage::GetFileName(StorageDir type, const StorageLocation& location) {
     *p++ = '/';
   }
   
-  // Name.
+  // Name. (3 digit number starting at 000)
   if (type != STORAGE_CLIPBOARD && type != STORAGE_PREVIOUS_CLIPBOARD) {
     UnsafeItoa<int16_t>(location.slot, 3, p);
     PadRight(p, 3, '0');
@@ -656,12 +676,12 @@ uint8_t Storage::FileExists(const char* name, char variable) {
 void Storage::SysExParseCommand() {
   sysex_rx_bytes_received_ = 0;
   sysex_rx_state_ = RECEIVING_DATA;
-  switch (sysex_rx_command_[0]) {
-    case 0x01:
-    case 0x02:
-    case 0x03:
-    case 0x04:
-    case 0x05:
+  switch (static_cast<SysExCommand>(sysex_rx_command_[0])) {
+    case SYSEX_RECEIVE_PATCH_DATA: // Recieve Patch dump
+    case SYSEX_RECEIVE_SEQUENCER_DATA: // Recieve PartData::sequence_data dump
+    case SYSEX_RECEIVE_PROGRAM_DATA: // Program? Not listed in Manual
+    case SYSEX_RECEIVE_MULTI_DATA: // Recieve PartData dump. According to Manual, but 0x04 and 0x05 seem switched around.
+    case SYSEX_RECEIVE_PART_DATA: // Recieve MultiData dump
       {
         StorageLocation location {
           .object = static_cast<StorageObject>(sysex_rx_command_[0] - 1),
@@ -675,23 +695,30 @@ void Storage::SysExParseCommand() {
       }
       break;
       
-    case 0x0f:
+    case SYSEX_POKE_COMMAND:
       // POKE command contains 2 bytes of address + $argument bytes of data.
       {
         sysex_rx_expected_size_ = 2 + sysex_rx_command_[1];
       }
       break;
 
-    case 0x11:
-    case 0x12:
-    case 0x13:
-    case 0x14:
-    case 0x15:
+    case SYSEX_REQUEST_PATCH_DATA: // Request Patch Data
+    case SYSEX_REQUEST_SEQUENCER_DATA: // Request Sequencer Data
+    case SYSEX_REQUEST_PROGRAM_DATA: // Request Patch bytes + PartData
+    case SYSEX_REQUEST_MULTI_DATA: // Request PartData
+    case SYSEX_REQUEST_PART_DATA: // Request MultiData + Patch and PartData
       // Request commands have no data.
       sysex_rx_expected_size_ = 0;
       break;
       
-    case 0x1f:
+    case SYSEX_REQUEST_PATCH_NAME: // 0x16 Request Patch Name
+    case SYSEX_REQUEST_SEQUENCE_NAME: // 0x17 Request Sequencer Name
+    case SYSEX_REQUEST_PROGRAM_NAME: // 0x18 Request Progam Name
+    case SYSEX_REQUEST_MULTI_NAME: // 0x19 Request Mutti Name
+      // Request commands have no data.
+      sysex_rx_expected_size_ = 1; // Change to 1 | Argument = Bank | Data[0] = Slot
+      break;
+    case SYSEX_PEEK_COMMAND:
       // PEEK command accepts 2 bytes (address).
       sysex_rx_expected_size_ = 2;
       break;
@@ -707,47 +734,66 @@ void Storage::SysExAcceptCommand() {
   uint8_t success = 1;
   
   StorageLocation location {
-      .object = static_cast<StorageObject>(0), // null object
-      .part = U8(sysex_rx_command_[1] == 0 ? ui.active_part() : sysex_rx_command_[1] - 1),
+      .object = static_cast<StorageObject>(0), // null object | // If argument=0 use active part, otherwise part=argument
+      .part = U8(sysex_rx_command_[1] == 0 ? ui.active_part() : sysex_rx_command_[1] - 1), 
       .alias = 0,
       .bank = 0,
       .slot = 0,
       .name = nullptr
   };
 
-    switch (sysex_rx_command_[0]) {
-    case 0x01:
-    case 0x02:
-    case 0x03:
-    case 0x04:
-    case 0x05:
-      location.object = static_cast<StorageObject>(sysex_rx_command_[0] - 0x01);
-      ReadObject(location);
-      TouchObject(location);
+    switch (static_cast<SysExCommand>(sysex_rx_command_[0])) {
+    case SYSEX_RECEIVE_PATCH_DATA: // Recieve Patch dump
+    case SYSEX_RECEIVE_SEQUENCER_DATA: // Recieve PartData::sequence_data dump
+    case SYSEX_RECEIVE_PROGRAM_DATA: // Program?
+    case SYSEX_RECEIVE_PART_DATA: // Recieve PartData dump |  These are swapped per the manual, no matter here though due to break;
+    case SYSEX_RECEIVE_MULTI_DATA: // Recieve MultiData dump
+      location.object = static_cast<StorageObject>(sysex_rx_command_[0] - 0x01); // StorageObject type (enum)
+      ReadObject(location); // Copy mutable data to buffer
+      TouchObject(location); // Recompute the dependent variables and update the voicecard
       break;
 
-    case 0x0f:
-      // POKE
+    case 0x0f: 
+    // POKE sysex_rx_command_[1] = Argument = size in bytes of data to be poked
       {
         Word address {
           .bytes = {buffer_[0], buffer_[1]}
         };
-        uint8_t size = sysex_rx_command_[1];
+        uint8_t size = sysex_rx_command_[1]; 
         auto p = reinterpret_cast<uint8_t*>(address.value);
         memcpy(p, buffer_ + 2, size);
       }
       break;
 
-    case 0x11:
-    case 0x12:
-    case 0x13:
-    case 0x14:
-    case 0x15:
+    case SYSEX_REQUEST_PATCH_DATA: // Request Patch Data
+    case SYSEX_REQUEST_SEQUENCER_DATA: // Request Sequencer Data
+    case SYSEX_REQUEST_PROGRAM_DATA: // Request Patch bytes + PartData (Program)
+    case SYSEX_REQUEST_PART_DATA: // Request PartData
+    case SYSEX_REQUEST_MULTI_DATA: // Request MultiData + Patch and PartData
       location.object = static_cast<StorageObject>(sysex_rx_command_[0] - 0x11);
       SysExSend(location);
       break;
       
-    case 0x1f:
+    case SYSEX_REQUEST_PATCH_NAME: // Request Patch name
+    case SYSEX_REQUEST_SEQUENCE_NAME: // Request Sequence name
+    case SYSEX_REQUEST_PROGRAM_NAME: // Request Program name
+    case SYSEX_REQUEST_MULTI_NAME: // Request Multi name
+      {
+      location.object = static_cast<StorageObject>(sysex_rx_command_[0] - 0x16); // (type of object)
+      location.bank = sysex_rx_command_[1]; // Bank  = argument . (0x1f for current)
+      location.slot = buffer_[0]; // Slot = Data[0]
+      Load(STORAGE_BANK, location, 0); // Use this instead of LoadName to get name by reference.
+      auto name = reinterpret_cast<const uint8_t*>(location.name);
+      SysExSendRaw(
+        sysex_rx_command_[0], // Command: Send same command back so we know what we requested.
+        sysex_rx_command_[1], // Argument: Bank (0x1f for current )
+        name,
+        16, // Name is always 16 bytes null terminated and zero-padded
+        false);
+      }
+      break;
+
+    case SYSEX_PEEK_COMMAND:
       // PEEK
       {
         Word address {

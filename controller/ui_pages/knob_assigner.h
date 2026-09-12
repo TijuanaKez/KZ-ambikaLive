@@ -38,6 +38,7 @@ class KnobAssigner : public UiPage {
       OnInit,
       SetActiveControl,
       OnIncrement,
+      OnIncrementAndCycle,
       OnClick,
       OnPot,
       OnKey,
