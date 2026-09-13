@@ -38,6 +38,8 @@ uint8_t ParameterEditor::parameter_index(uint8_t control_id) {
   uint8_t parameter_id = info_->data[control_id];
   if (parameter_id >= 0xf0 && parameter_id <= 0xf7) {
     return multi.data().knobAssignment(lowNibble(parameter_id)).parameter;
+  } else if (parameter_id >= 0xf8) {
+    return 0xff;
   } else {
     return parameter_id;
   }
@@ -59,7 +61,7 @@ uint8_t ParameterEditor::instance_index(uint8_t control_id) {
   if (parameter_id >= 0xf0 && parameter_id <= 0xf7) {
     return multi.data().knobAssignment(lowNibble(parameter_id)).instance;
   } else {
-    if (parameter_id == 0xff) {
+    if (parameter_id >= 0xf8) {
       return 0xff;
     } else {
       const Parameter& parameter = parameter_manager.parameter(parameter_id);
@@ -94,7 +96,10 @@ void ParameterEditor::SetActiveControl(ActiveControl active_control) {
 uint8_t ParameterEditor::OnIncrement(int8_t increment) {
   if (edit_mode_ != EDIT_IDLE) {
     int8_t active = active_control_;
-    parameter_manager.Increment(parameter_index(active), part_index(active), instance_index(active), increment, false);
+    uint8_t parameter_id = parameter_index(active);
+    if (parameter_id != 0xff) {
+      parameter_manager.Increment(parameter_id, part_index(active), instance_index(active), increment, false);
+    }
     edit_mode_ = EDIT_STARTED_BY_ENCODER;
   } else {
     int8_t new_control = active_control_ + increment;
@@ -167,15 +172,17 @@ void ParameterEditor::UpdateScreen() {
     uint8_t line = active_control_ < 4 ? 0 : 1;
     // Leave one char of space for the status icon.
     char* buffer = display.line_buffer(line) + 1;
-    const Parameter& parameter = parameter_manager.parameter(parameter_id);
-    if (parameter.level != PARAMETER_LEVEL_UI) {
+    if (parameter_id != 0xff) {
+      const Parameter& parameter = parameter_manager.parameter(parameter_id);
+      if (parameter.level != PARAMETER_LEVEL_UI) {
       detailed_info_line = line;
       // Include the part number in the name of the parameter iff the current control is a custom knob.
       auto part = highNibbleUnshifted(info_->data[active_control_]) == 0xf0 ? part_index(active_control_) : 0xff;
       parameter.PrintObject(part, instance_index(active_control_), buffer, 19);
       buffer[19] = kDelimiter;
       uint8_t value = parameter_manager.GetValue(parameter, part_index(active_control_), instance_index(active_control_));
-      parameter.Print(value, &buffer[20], 11, 7);
+        parameter.Print(value, &buffer[20], 11, 7);
+      }
     }
   }
   
