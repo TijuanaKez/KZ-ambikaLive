@@ -61,6 +61,7 @@ struct ParameterEditor : UiPage {
   static void UpdateScreen(), UpdateLeds();
 };
 constexpr uint8_t kNumVoices = 6;
+constexpr uint8_t kAudioStarved = 0xfe, kAudioHeadroomUnsupported = 0xff;
 // Records which cards were polled, so the test can check the round-robin.
 struct VoicecardTx {
   uint8_t polled[kNumVoices] = {};
@@ -247,20 +248,29 @@ int main() {
     for (int i = 0; i < 80; ++i) assert(display.memory[i + 1] != 0);
   }
   // The diagnostic page polls one voice card per redraw, round-robin, and
-  // renders every card's headroom. A card that starves reports 255, which must
-  // still fit its 3-character field.
+  // renders every card's headroom in a 3-character field.
   {
     for (uint8_t i = 0; i < kNumVoices; ++i) voicecard_tx.polled[i] = 0;
-    voicecard_tx.reply = 255;
-    for (int pass = 0; pass < kNumVoices * 2; ++pass) {
-      display.clear();
-      OsInfoPage::UpdateScreen();
-      display.check();
+    for (uint8_t reply : {uint8_t(0), uint8_t(40), uint8_t(128), kAudioStarved,
+                          kAudioHeadroomUnsupported}) {
+      voicecard_tx.reply = reply;
+      for (int pass = 0; pass < kNumVoices; ++pass) {
+        display.clear();
+        OsInfoPage::UpdateScreen();
+        display.check();
+      }
+      assert(std::memcmp(display.line_buffer(1), "AUD ", 4) == 0);
+      assert(std::memcmp(display.line_buffer(1) + 36, "exit", 4) == 0);
+      // A card with no counter must read as "--", never as a number: 0xff is
+      // what an older voice card leaves in SPDR, not a real measurement.
+      const char* want = reply == kAudioHeadroomUnsupported ? " --"
+                       : reply == kAudioStarved ? "254"
+                       : reply == 128 ? "128" : (reply == 40 ? " 40" : "  0");
+      for (uint8_t i = 0; i < kNumVoices; ++i) {
+        assert(std::memcmp(display.line_buffer(1) + 4 + i * 5, want, 3) == 0);
+      }
     }
-    for (uint8_t i = 0; i < kNumVoices; ++i) assert(voicecard_tx.polled[i] == 2);
-    assert(std::memcmp(display.line_buffer(1), "AUD ", 4) == 0);
-    assert(std::memcmp(display.line_buffer(1) + 4, "255", 3) == 0);
-    assert(std::memcmp(display.line_buffer(1) + 36, "exit", 4) == 0);
+    for (uint8_t i = 0; i < kNumVoices; ++i) assert(voicecard_tx.polled[i] == 5);
     voicecard_tx.reply = 40;
     display.clear();
     OsInfoPage::UpdateScreen();

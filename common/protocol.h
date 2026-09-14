@@ -66,14 +66,20 @@ enum ProtocolCommands {
   COMMAND_FIRMWARE_UPDATE_MODE = 0xfb,
   COMMAND_GET_SLAVE_ID = 0xfc,
   COMMAND_GET_VERSION_ID = 0xfd,
-  // KZ MOD: returns the audio render headroom, and clears it. See
-  // Voice::audio_drain_peak() -- the peak free space seen in the audio buffer
-  // just before a block was rendered. Around kAudioBlockSize means the
-  // renderer is keeping up comfortably; climbing toward the buffer size means
-  // it is falling behind; 255 means the buffer actually starved.
+  // KZ MOD: returns the audio render headroom, and clears it. The peak free
+  // space seen in the audio buffer just before a block was rendered: around
+  // kAudioBlockSize means the renderer is keeping up, climbing toward the
+  // buffer size means it is falling behind, and kAudioStarved means the buffer
+  // actually ran dry. A voice card that predates this command leaves the
+  // controller's own dummy byte in SPDR, so 0xff must mean "not supported"
+  // and cannot be used as a value.
   COMMAND_GET_AUDIO_HEADROOM = 0xfe,
   COMMAND_SYNC = 0xff
 };
+
+// Replies to COMMAND_GET_AUDIO_HEADROOM.
+static const uint8_t kAudioStarved = 0xfe;
+static const uint8_t kAudioHeadroomUnsupported = 0xff;
 
 enum SlaveId {
   SLAVE_ID_SOLO_VOICECARD = 0x01,

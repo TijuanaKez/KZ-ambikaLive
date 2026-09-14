@@ -83,8 +83,14 @@ void OsInfoPage::UpdateScreen() {
   buffer = display.line_buffer(1);
   memcpy_P(buffer, PSTR("AUD "), 4);
   for (uint8_t i = 0; i < kNumVoices; ++i) {
-    UnsafeItoa<int16_t>(audio_headroom_[i], 3, &buffer[4 + i * 5]);
-    AlignRight(&buffer[4 + i * 5], 3);
+    char* cell = &buffer[4 + i * 5];
+    if (audio_headroom_[i] == kAudioHeadroomUnsupported) {
+      // No counter on that card -- v1.1 firmware, or no card in the slot.
+      memcpy_P(cell, PSTR(" --"), 3);
+    } else {
+      UnsafeItoa<int16_t>(audio_headroom_[i], 3, cell);
+      AlignRight(cell, 3);
+    }
   }
   memcpy_P(&buffer[36], PSTR("exit"), 4);
 }

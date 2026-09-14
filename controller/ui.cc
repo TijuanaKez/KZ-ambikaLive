@@ -221,8 +221,6 @@ EventHandlers Ui::event_handlers_;
 /* extern */
 Ui ui;
 
-static char line[41];
-
 /* static */
 void Ui::Init() {
   memset(&state_, 0, sizeof(UiState));
@@ -238,9 +236,6 @@ void Ui::Init() {
   lcd.SetCustomCharMapRes(character_table[0], 7, 1);
   
   ShowPage(PAGE_FILTER);
-  
-  memset(line, ' ', 41);
-  line[40] = '\0';
   inhibit_switch_ = 0;
 }
 

@@ -179,7 +179,9 @@ class VoicecardProtocolRx {
       // KZ MOD: report and reset the headroom, so each query returns the peak
       // since the previous one. 255 means the buffer starved at least once.
       case COMMAND_GET_AUDIO_HEADROOM:
-        SPDR = audio_starved ? 255 : audio_drain_peak;
+        SPDR = audio_starved ? kAudioStarved
+                             : (audio_drain_peak < kAudioStarved ? audio_drain_peak
+                                                                 : U8(kAudioStarved - 1));
         audio_drain_peak = 0;
         audio_starved = 0;
         break;
