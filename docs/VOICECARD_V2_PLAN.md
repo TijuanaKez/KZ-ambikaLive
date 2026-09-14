@@ -557,25 +557,52 @@ the single cheapest available improvement to the basic waveforms, and it targets
 the exact artefact documented in that thread. Only then consider polyBLAMP, EPTR
 and the signal path.
 
-**Phase 0 — close out v1.** Confirm the deferred-load build on hardware, tag
-`v1.4`, cut the `v2-voicecard` branch. (§1)
+**Phase 0 — close out v1. DONE.** v1.4 confirmed on hardware and released
+2026-09-14. The GCC 9 voice card was then proven on hardware 2026-09-15 —
+pitch, all shapes and the filter all correct — which retired the silent-card
+risk that gated this whole plan. v2 work is proceeding on `master`; cut
+`v1-compat` from the `v1.4` tag if the v1 line ever needs maintenance. (§1)
 
-**Phase 1 — measure.** Enable `TIMING_CODE`, record worst-case `ProcessBlock`
-across existing algorithms, and establish the true free cycles per sample. Write
-it into this document. Nothing else starts until this exists. (§3)
+**Phase 1 — measure. INSTRUMENT BUILT 2026-09-15, readings outstanding.**
+Rather than a scope on the timing pins, each voice card now reports its audio
+render headroom over SPI (`COMMAND_GET_AUDIO_HEADROOM`) and the diagnostic
+controller shows all six on the `AUD` line. The value is the peak free space in
+the 128-sample audio buffer at the moment a block started rendering: around 40 is
+healthy, rising means falling behind, 255 means it starved. Reading clears it.
+
+This is permanent on purpose — Phase 4 requires each new algorithm's cost to be
+recorded before the next is written, and this is what records it. Cost is 50
+bytes of flash and 2 of SRAM on the voice card, diagnostic-only on the
+controller.
+
+**Outstanding: the baseline reading**, taken while playing something demanding,
+and the per-algorithm readings. Write them into this document as they arrive.
+`TIMING_CODE` remains available for cycle-accurate work if a scope is ever
+convenient. (§3)
 
 **Phase 2 — decide the signal path.** 8-bit, dithered 8-bit, or 12/16-bit, using
 the Phase 1 number and the Karplus-Strong RAM question as the test case. (§4, §5)
 
-**Phase 2b — fix the oscillator dispatch.** (§6c) It is a live bug, it makes two
-of the three polyBLEP renderers dead code, and it must be settled before any
-judgement about waveform quality means anything. Do it before Phase 3, since it
-determines what the dead slots should fall back to.
+**Phase 2b — fix the oscillator dispatch. DONE, 2026-09-15.** (§6c) Confirmed by
+ear and fixed in voice card v1.3; the triangle renderer was ported from YAM.
 
-**Phase 3 — remove the wavetables.** Delete the wavetable and bandlimited
-renderers and their tables, reimplement triangle as polyBLEP, and confirm the
-build drops to roughly 15 KB. No new features in this step — it should be a pure
-subtraction, verifiable by size and by listening to the surviving waveforms.
+**Phase 3 — remove the wavetables. DONE, 2026-09-15.** Voice card flash went
+from 30,168 to **18,964** of 32,256, freeing **11,204 bytes**; free space went
+from 2,088 to 13,292. `wav_res_waves`, `wav_res_wavetables`,
+`RenderInterpolatedWavetable` and `RenderWavequence` are gone. The enum slots are
+retained and remapped to `WAVEFORM_POLYBLEP_SAW` in `Oscillator::Render()`, so no
+patch byte changes meaning and no conversion is needed.
+
+Gated on the resource compiler, which needs numpy and had never been run in this
+project. Verified first that regenerating `voicecard/resources.{cc,h}` unchanged
+reproduces the committed files byte for byte — so generator edits are safe, and
+adding tables for new algorithms later is now possible. Use a venv; do not
+install numpy system-wide.
+
+Still available: `WAVEFORM_OLD_SAW` is the only remaining reader of the
+bandlimited zone tables (`wav_res_bandlimited_*`, 4,112 bytes). Retiring it and
+reducing `RenderSimpleWavetable` to the sine path would free roughly **4.3 KB**
+more. Never used in bank A.
 
 **Phase 4 — new oscillator set.** One algorithm at a time, each with its cycle
 cost measured and recorded before the next begins, and each appended after
