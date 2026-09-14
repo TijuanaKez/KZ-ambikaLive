@@ -62,9 +62,10 @@ all read it.
 triangle zones, so "keep triangle" means *reimplement* it as an integrated
 polyBLEP square. That is a small CPU cost and it is what frees the 4,112 bytes.
 
-**Open question — vowel/formant.** `wav_res_formant_*` is 512 bytes and
-`RenderVowel` is 604. It is a signature Shruthi/Ambika sound and is not a
-wavetable in the sense being removed. Recommend keeping it. Flag if you disagree.
+**Vowel/formant stays.** Carey confirmed, September 14, 2026. `wav_res_formant_*`
+(512 bytes) and `RenderVowel` (604) are retained along with `WAVEFORM_VOWEL` and
+`WAVEFORM_VOWEL_2`. It is a signature Shruthi/Ambika sound and is not a wavetable
+in the sense being removed.
 
 ---
 
@@ -127,31 +128,45 @@ character per cycle, and how Emilie parameterised them down to one "timbre" knob
 
 Assessed against our budget, by feasibility:
 
-**Clearly affordable — these are phase-accumulator tricks, not DSP**
+**Already in Ambika — do not "port" these, we have them**
 
-- *Variable saw / saw-square morph* — one accumulator, a comparison, a mix.
-- *Hard sync* — a second accumulator reset by the first. Cheap and very effective.
-- *Triple saw / square / triangle / sine, detuned* — three accumulators and an
-  add. This is the "supersaw" family and the single biggest character-per-cycle
-  win available to us. `RenderQuadSawPad` already proves the pattern works here.
-- *Ring modulation* between the two accumulators — one multiply.
-- *Wavefolding* (triangle fold, sine fold) — a fold is `abs`-based arithmetic or
-  a small table. Cheap, and completely absent from Ambika today.
-- *Buzz / band-limited impulse train* — `wav_res_division_table` already exists.
-- *Feedback FM* — `WAVEFORM_FM_FB` already exists; the BRAIDS variants are
-  parameter choices, not new code.
-- *Digital filter LP/PK/BP/HP on a pulse train* — this **is** the CZ resonance
-  family we already have. Compare implementations rather than porting.
+Check the existing set before adding anything. Several BRAIDS headline models
+already exist here, in some cases more flexibly:
 
-**Marginal — needs the measurement from §3 before committing**
+- *Hard sync.* Fully implemented and user-selectable: `OP_SYNC` as the mixer
+  operator feeds osc 1's `sync_state` into osc 2's sync input
+  (`voice.cc:441-446`, `update_phase_and_sync` in `oscillator.cc:769`). BRAIDS
+  has two fixed sync models; we can sync **any** shape to any other.
+- *Digital filter LP/PK/BP/HP on a pulse train.* This is the CZ phase-distortion
+  family, ten variants of it.
+- *Feedback FM.* `WAVEFORM_FM_FB`. The BRAIDS variants are parameter choices.
+- *Detuned ensemble.* `RenderQuadSawPad` sums four detuned saws — but see below,
+  because they are raw `phase >> 10` saws with no band limiting at all.
+- *Vowel / VOSIM territory.* `RenderVowel` and `WAVEFORM_VOWEL_2`.
+- *Filtered noise, bit crushing.* `RenderFilteredNoise`, and `voice.crush()`.
 
-- *Karplus-Strong pluck.* A delay line at 39.2 kHz needs one byte per sample.
-  With 976 bytes free, the lowest note is about **40 Hz** at 8-bit — actually
-  usable, and a genuinely new voice for Ambika. At 16-bit samples it halves to
-  80 Hz, which is the strongest argument *against* widening the signal path.
-  This one algorithm may decide §4.
-- *VOSIM* — two windowed sine bursts. Affordable if the window is a table.
-- *Swarm* — BRAIDS uses seven detuned saws; three or four is our ceiling.
+**Genuinely absent, and affordable**
+
+- *Wavefolding* (triangle fold, sine fold). A fold is `abs`-based arithmetic or a
+  small table — cheap — and there is nothing like it anywhere in Ambika. This is
+  the clearest win on the list: new territory for very few cycles.
+- *Ring modulation between the two oscillators.* One multiply. `OP_RING_MOD` may
+  already cover this at the mixer; check before implementing.
+
+**Genuinely absent, and worth the cycles — needs §3 first**
+
+- *A delay line, and the family it unlocks.* At 39.2 kHz a delay line costs one
+  byte per sample. With 976 bytes free the lowest usable note is about **40 Hz**
+  at 8-bit — actually usable. Build it once and it gives **Karplus-Strong pluck**
+  *and* **comb/saw-comb** textures, two whole classes of sound Ambika has never
+  had, from one allocation. At 16-bit samples the range halves to 80 Hz, which is
+  the strongest single argument against widening the signal path (§4).
+- *Band-limited detuned ensemble.* Not new in kind — `RenderQuadSawPad` exists —
+  but it sums four **raw, aliasing** saws. It works as a pad because the ensemble
+  masks the aliasing. A polyBLEP version would be the "proper" supersaw and would
+  hold together in the mid and upper registers where the current one falls apart.
+  This is the most expensive item here: four polyBLEP saws per sample. Quite
+  possibly unaffordable, which is exactly why §3 comes first.
 
 **Not feasible on this hardware, do not attempt**
 
@@ -160,10 +175,15 @@ speech/LPC, chord engines, wave-map morphing. These all need either many
 simultaneous oscillators, large tables, or per-sample division. Plaits is even
 further out of reach than BRAIDS — it is a 32-bit floating-point engine.
 
-**Concrete suggestion:** do not try to reproduce BRAIDS. Take the four ideas
-Ambika most obviously lacks — **detuned multi-saw, hard sync, wavefolding, and a
-plucked string** — and do them well. That is a bigger sonic change than a dozen
-half-working ports, and it fits.
+**Concrete suggestion:** do not try to reproduce BRAIDS, and do not re-add what
+Ambika already does. Three areas, in this order:
+
+1. **Wavefolding** — cheapest, genuinely new, start here.
+2. **One delay line, two payoffs** — plucked string and comb. New class of sound,
+   and the RAM decision in §4 hangs off it.
+3. **Band-limited ensemble** — only if the cycle budget turns out to allow it.
+
+That is a bigger sonic change than a dozen half-working ports, and it fits.
 
 ---
 
@@ -215,8 +235,8 @@ build drops to roughly 15 KB. No new features in this step — it should be a pu
 subtraction, verifiable by size and by listening to the surviving waveforms.
 
 **Phase 4 — new oscillator set.** One algorithm at a time, each with its cycle
-cost measured and recorded before the next begins. Start with detuned multi-saw
-and hard sync, which are the cheapest and the most immediately useful.
+cost measured and recorded before the next begins. Order: wavefolding, then the
+delay-line family, then the band-limited ensemble if the budget allows.
 
 **Phase 5 — patch conversion.** New structure ID, firmware remap on load, and a
 pass over the real library to validate the mapping. (§6)
@@ -231,13 +251,11 @@ firmware has been pushed as far as it usefully goes, as recorded in the handover
 
 ---
 
-## Summary of decisions needed from Carey
+## Decisions
 
-1. **Vowel/formant:** keep it (recommended) or remove it with the wavetables? (§2)
+1. ~~**Vowel/formant**~~ — **keep.** Confirmed September 14, 2026. (§2)
 2. **Signal path:** is a 12/16-bit path worth spending cycles on, or stay 8-bit
-   and spend everything on more oscillator types? Karplus-Strong probably
-   decides it. (§4, §5)
-3. **The four starter algorithms** — detuned multi-saw, hard sync, wavefolding,
-   plucked string. Right list? (§5)
-4. **Anything in the current waveform set that must not be lost**, beyond
-   polyBLEP saw/PWM/CSAW, triangle, sine, noise and the CZ family. (§6)
+   and spend everything on oscillator types? The delay-line range halves if the
+   path widens, so the plucked string probably decides it. (§4, §5)
+3. **Anything in the current waveform set that must not be lost**, beyond
+   polyBLEP saw/PWM/CSAW, triangle, sine, noise, vowel and the CZ family. (§6)
