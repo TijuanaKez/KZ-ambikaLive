@@ -77,8 +77,8 @@ PATH. No submodule initialization is needed; the tested avrlib is committed.
 
 ```sh
 python3 tests/run_controller_ui_tests.py --sanitizers undefined
-python3 scripts/build_controller.py --variant release /tmp/kz-controller-rebuild
-python3 scripts/build_controller.py --variant diagnostic /tmp/kz-diag3-rebuild
+python3 scripts/build_firmware.py --variant release /tmp/kz-controller-rebuild
+python3 scripts/build_firmware.py --variant diagnostic /tmp/kz-diag3-rebuild
 ```
 
 Each output directory must not already exist. Compare the resulting BIN hashes

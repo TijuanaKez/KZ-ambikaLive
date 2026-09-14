@@ -27,14 +27,19 @@
   replace it with the obsolete submodule version. Original dependency revisions
   are recorded in `docs/REPOSITORY_CONSOLIDATION.md` and Git history.
 - `build/` contains ignored local artifacts, including historical files; never
-  assume those files match current source. `scripts/build_controller.py --variant {release,diagnostic}` builds either image
+  assume those files match current source. `scripts/build_firmware.py --variant {release,diagnostic}` builds either image
   in a fresh temporary directory and enforces both memory limits. Do not publish incidental generated files or archive
   copies as if they were a new validated release.
 - Diagnostics replace the application's firmware-update page in DIAG2/DIAG3.
   Controller updating remains available through the unchanged bootloader:
   SD-root `AMBIKA.BIN`, hold S8/rightmost button at power-on.
-- v1.4 is in progress on master and has NOT been run on hardware. Do not tag or
-  publish it until Carey reports results; v1.3 remains the published release.
+- v1.4 is released and hardware-confirmed. The published release ships the
+  known-good v1.1 voice card binary; NO freshly compiled voice card image has
+  ever been run on hardware here, and Carey's notes record that later compilers
+  could produce a silent card. Never ship a compiled voicecard BIN in a release
+  until one has been tested on a single card.
+- `scripts/build_firmware.py --target {controller,voicecard}` builds either half
+  and enforces that half's limits. Voice card: flash <31,744, static SRAM <1,920.
 - Claude Code (Opus 5) completed the v1.3 consolidation and release on
   2026-09-14 while Codex was rate-limited; those commits are marked
   `Co-Authored-By: Claude Opus 5`. Either agent may work here.

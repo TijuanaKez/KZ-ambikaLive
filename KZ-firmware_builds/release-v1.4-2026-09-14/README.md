@@ -1,8 +1,9 @@
-# v1.4 test build — deferred library load (2026-09-14)
+# KZ Ambika Live — controller v1.4 (2026-09-14)
 
-**Not released. Not yet run on hardware.** This is the build to test on the unit.
-The OS information page reports **v1.4** so it cannot be confused with the
-published v1.3.
+Deferred library loading. **Confirmed working on hardware by Carey**, September
+14, 2026. The OS information page reports **v1.4**.
+
+Controller only. The voice card is unchanged and does not need reflashing.
 
 | Budget | This build | v1.3 | Limit |
 |---|---:|---:|---:|
@@ -10,12 +11,12 @@ published v1.3.
 | Static SRAM | **3,829** | 3,826 | 3,968 |
 | Runtime headroom | 267 | 270 | — |
 
-The 3 extra bytes of static SRAM are the deferral timer. Peak stack use should
-be unchanged, so the expected `LOW` reading is around **20** rather than 23.
-That is the main thing to confirm — see the diagnostic build in
-`../test-v1.4-2026-09-14-diag/`, which is the same source with the memory screen.
+The 3 extra bytes of static SRAM are the deferral timer. Peak stack use should be
+unchanged, so the expected `LOW` reading is around **20** rather than 23. No
+numerical `LOW` was reported for v1.4; the memory-instrumented build at
+`../release-v1.4-2026-09-14-diag/` will show it if you want the number.
 
-## What to test
+## Using it
 
 **1. The new preference.** Preferences page B (`prefs` -> `more->`) now has a
 third setting, `ldly`, displayed in milliseconds. Range 0–2000 in 10 ms steps.

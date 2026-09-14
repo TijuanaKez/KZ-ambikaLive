@@ -40,19 +40,29 @@ Resume here before following the original phase/work-order text below.
 > described the consolidation as complete when it had not yet been executed
 > (branch, tag and push were all still pending), so I corrected them to match
 > reality; and `scripts/build_controller_diagnostic.py` is now
-> `scripts/build_controller.py --variant {release,diagnostic}`, because a
+> `scripts/build_firmware.py --variant {release,diagnostic}`, because a
 > shipping image was needed alongside the diagnostic one. `AMBIKA_DIAG3.BIN`
 > rebuilds byte-identically from the renamed script, so Carey's hardware
 > sign-off still applies to the artifact in the repository.
 
-### In progress: v1.4 — deferred library loading
+### Released: v1.4 — deferred library loading
 
-`kSystemVersion` is `0x14` on master. **Built and unit-tested, not yet run on
-hardware.** Test packages are at `KZ-firmware_builds/test-v1.4-2026-09-14/`
-(release) and `.../test-v1.4-2026-09-14-diag/` (memory screen). Flash 52,550,
-static SRAM 3,829, so expect `LOW` near 20 instead of 23 — confirm that first.
-Details in Phase 6.2 and the AU/VST section below. Do not tag or publish v1.4
-until Carey reports hardware results.
+**Carey confirmed v1.4 working on hardware, September 14, 2026, and it is
+published.** Tag `v1.4`. Packages at `KZ-firmware_builds/release-v1.4-2026-09-14/`
+and `.../release-v1.4-2026-09-14-diag/`. Flash 52,550, static SRAM 3,829.
+
+No numerical `LOW` was reported for v1.4. Expected around 20, down from 23. Worth
+obtaining before anything else consumes SRAM, but it did not block the release.
+
+The voice card stayed on v1.1 throughout and the release ships that known-good
+binary. `KZ-firmware_builds/test-voicecard-2026-09-14/` holds the first voice
+card image built from this tree on GCC 9 — **compiled and fitting, never run**.
+Carey's notes warn that later compilers could produce a silent card, so that
+build is deliberately excluded from the release. Testing it on a single card is
+a prerequisite for all v2 work, since every part of that plan requires compiling
+this firmware.
+
+Details in Phase 6.2 and the AU/VST section below.
 
 ### Release v1.3 — the stability milestone
 
@@ -138,7 +148,7 @@ initial archaeology or overwrite this baseline from an older checkout.
 - Host UI tests pass with UBSan and checked substitutes. ASan fails during macOS
   runtime initialization, including outside the sandbox. AVR disassembly and
   linked sizes were checked; hardware sign-off is recorded above and in `STABLE_BASELINE.md`.
-- Reproducible packager: `scripts/build_controller.py` within the
+- Reproducible packager: `scripts/build_firmware.py` within the
   local tree. It archives exact source inputs and checks flash/SRAM limits.
 
 Further audit leads found during this pass (not changed in DIAG2):

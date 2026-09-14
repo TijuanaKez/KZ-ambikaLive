@@ -1,7 +1,7 @@
-# v1.4 diagnostic test build (2026-09-14)
+# v1.4 diagnostic build (2026-09-14)
 
-Same source as `../test-v1.4-2026-09-14/`, built with `-DDIAGNOSTIC_BUILD`. Use
-this one to read the stack watermark after the deferred-load change.
+Same source as `../release-v1.4-2026-09-14/`, built with `-DDIAGNOSTIC_BUILD`.
+Use this one to read the stack watermark after the deferred-load change.
 
 Flash 51,866 / 61,440. Static SRAM 3,829 / 3,968. Runtime headroom 267.
 

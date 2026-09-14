@@ -3,16 +3,17 @@
 The single source repository for Carey's KZ Ambika firmware, incorporating the
 preserved local KZ work and controller stabilization on AVR GCC 9.5.0.
 
-**Current release: v1.3 (2026-09-14)** — a stability milestone, not a feature
-release. Download [AMBIKA.BIN](KZ-firmware_builds/release-v1.3-2026-09-14/AMBIKA.BIN):
-flash **51,924 bytes**, static SRAM **3,826 bytes**. Voice-card firmware is
+**Current release: v1.4 (2026-09-14)** — faster preset browsing.
+Download [AMBIKA.BIN](KZ-firmware_builds/release-v1.4-2026-09-14/AMBIKA.BIN):
+flash **52,550 bytes**, static SRAM **3,829 bytes**. Voice-card firmware is
 unchanged at v1.1 and does not need reflashing.
 
-Earlier KZ units report v1.2 on the OS information page; v1.3 is the first
-published build on the modern AVR GCC 9 toolchain, with the preferences-page
-memory corruption fixed.
+v1.3 before it was the stability milestone: the first published build on the
+modern AVR GCC 9 toolchain, with the preferences-page memory corruption fixed.
+Earlier KZ units report v1.2.
 
-- [Release notes and installation](KZ-firmware_builds/release-v1.3-2026-09-14/README.md)
+- [v1.4 release notes and installation](KZ-firmware_builds/release-v1.4-2026-09-14/README.md)
+- [v1.3 release notes](KZ-firmware_builds/release-v1.3-2026-09-14/README.md)
 - [Baseline, hardware sign-off and limits](docs/STABLE_BASELINE.md)
 - [Current handover and improvement plan](docs/KZ_AMBIKA_CODEX_HANDOVER.md)
 - [Repository history and consolidation](docs/REPOSITORY_CONSOLIDATION.md)
@@ -34,10 +35,13 @@ included directly; no submodule checkout or resource regeneration is needed.
 
 ```sh
 python3 tests/run_controller_ui_tests.py --sanitizers undefined
-python3 scripts/build_controller.py --variant release /tmp/kz-controller-build
+python3 scripts/build_firmware.py --target controller --variant release /tmp/kz-build
 ```
 
-Pass `--variant diagnostic` for the DIAG3 memory-instrumented image instead. That
+Pass `--variant diagnostic` for the DIAG3 memory-instrumented image, or
+`--target voicecard` for the voice card. **No freshly compiled voice card image
+has ever been validated on hardware here** — see
+`KZ-firmware_builds/test-voicecard-2026-09-14/README.md` before flashing one. That
 image boots straight to a RAM/stack screen and replaces the firmware-update page,
 so it can only be reflashed with the hold-S8 method.
 
