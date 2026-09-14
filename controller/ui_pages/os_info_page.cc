@@ -50,7 +50,22 @@ uint8_t OsInfoPage::OnKey(uint8_t key) {
   return 1;
 }
 
+/* static */
+uint8_t OsInfoPage::audio_headroom_[kNumVoices];
+
+/* static */
+uint8_t OsInfoPage::audio_headroom_index_;
+
 void OsInfoPage::UpdateScreen() {
+  // Poll one card per redraw. Each query is a blocking SPI transaction with a
+  // settling delay, so asking all six at once would stall the UI.
+  audio_headroom_[audio_headroom_index_] =
+      voicecard_tx.GetAudioHeadroom(audio_headroom_index_);
+  ++audio_headroom_index_;
+  if (audio_headroom_index_ >= kNumVoices) {
+    audio_headroom_index_ = 0;
+  }
+
   char* buffer = display.line_buffer(0);
   memcpy_P(buffer, PSTR("KZ DIAG3 RAM "), 13);
   UnsafeItoa<int16_t>(FreeSram(), 5, &buffer[13]);
@@ -58,11 +73,19 @@ void OsInfoPage::UpdateScreen() {
   memcpy_P(&buffer[21], PSTR("LOW "), 4);
   UnsafeItoa<int16_t>(UntouchedSram(), 5, &buffer[25]);
   AlignRight(&buffer[25], 5);
+  memcpy_P(&buffer[33], PSTR("RST "), 4);
+  buffer[37] = NibbleToAscii(highNibble(ResetCause()));
+  buffer[38] = NibbleToAscii(lowNibble(ResetCause()));
+
+  // Audio render headroom per voice card: free space left in the audio buffer
+  // just before a block was rendered. Around 40 is healthy, rising means the
+  // card is falling behind, 255 means its audio buffer starved.
   buffer = display.line_buffer(1);
-  memcpy_P(buffer, PSTR("RST "), 4);
-  buffer[4] = NibbleToAscii(highNibble(ResetCause()));
-  buffer[5] = NibbleToAscii(lowNibble(ResetCause()));
-  memcpy_P(&buffer[9], PSTR("LOW=untouched bytes"), 19);
+  memcpy_P(buffer, PSTR("AUD "), 4);
+  for (uint8_t i = 0; i < kNumVoices; ++i) {
+    UnsafeItoa<int16_t>(audio_headroom_[i], 3, &buffer[4 + i * 5]);
+    AlignRight(&buffer[4 + i * 5], 3);
+  }
   memcpy_P(&buffer[36], PSTR("exit"), 4);
 }
 

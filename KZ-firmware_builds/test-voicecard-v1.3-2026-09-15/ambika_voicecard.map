@@ -3,33 +3,33 @@ Archive member included to satisfy reference by file (symbol)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_exit.o)
                               /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/crtatmega328p.o (exit)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libc.a(memcpy_P.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/voice.o (symbol from plugin) (memcpy_P)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/voice.o (symbol from plugin) (memcpy_P)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libc.a(memchr.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/string.o (symbol from plugin) (memchr)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/string.o (symbol from plugin) (memchr)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libatmega328p.a(eerd_byte.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/voicecard.o (symbol from plugin) (eeprom_read_byte)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/voicecard.o (symbol from plugin) (eeprom_read_byte)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libatmega328p.a(eewr_byte.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/voicecard.o (symbol from plugin) (eeprom_write_byte)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/voicecard.o (symbol from plugin) (eeprom_write_byte)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulpsi3.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o (__mulpsi3)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o (__mulpsi3)
+/usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o (__tablejump2__)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_copy_data.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o (__do_copy_data)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o (__do_copy_data)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_clear_bss.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o (__do_clear_bss)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o (__do_clear_bss)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_ctors.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o (__do_global_ctors)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o (__do_global_ctors)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulsqipsi3.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o (__mulsqipsi3)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o (__mulsqipsi3)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_umulhisi3.o)
                               /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulpsi3.o) (__umulhisi3)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_usmulhisi3.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o (__usmulhisi3)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o (__usmulhisi3)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_prologue.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o (__prologue_saves__)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o (__prologue_saves__)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_epilogue.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o (__epilogue_restores__)
-/usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
-                              /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_ctors.o) (__tablejump2__)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o (__epilogue_restores__)
 
 Merging object attributes
 
@@ -38,66 +38,66 @@ Discarded input sections
 
  .data          0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/crtatmega328p.o
  .bss           0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/crtatmega328p.o
- .debug_info    0x00000000      0x39d /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccfoolyI.debug.temp.o
- .debug_abbrev  0x00000000      0x1b2 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccfoolyI.debug.temp.o
- .debug_line    0x00000000       0xa0 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccfoolyI.debug.temp.o
- .debug_str     0x00000000      0x727 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccfoolyI.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccfoolyI.debug.temp.o
- .debug_info    0x00000000      0x162 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccwZu765.debug.temp.o
- .debug_abbrev  0x00000000      0x10f /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccwZu765.debug.temp.o
- .debug_line    0x00000000       0x94 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccwZu765.debug.temp.o
- .debug_str     0x00000000      0x377 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccwZu765.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccwZu765.debug.temp.o
- .debug_info    0x00000000       0xae /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc6dmsh3.debug.temp.o
- .debug_abbrev  0x00000000       0x72 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc6dmsh3.debug.temp.o
- .debug_line    0x00000000       0xa6 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc6dmsh3.debug.temp.o
- .debug_str     0x00000000      0x25e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc6dmsh3.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc6dmsh3.debug.temp.o
- .debug_info    0x00000000      0x2a8 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc7xnNpL.debug.temp.o
- .debug_abbrev  0x00000000      0x14d /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc7xnNpL.debug.temp.o
- .debug_line    0x00000000       0xd9 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc7xnNpL.debug.temp.o
- .debug_str     0x00000000      0x31b /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc7xnNpL.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc7xnNpL.debug.temp.o
- .debug_info    0x00000000      0x5d1 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccCUQGuy.debug.temp.o
- .debug_abbrev  0x00000000      0x20e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccCUQGuy.debug.temp.o
- .debug_line    0x00000000       0xa5 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccCUQGuy.debug.temp.o
- .debug_str     0x00000000      0xd4e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccCUQGuy.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccCUQGuy.debug.temp.o
- .debug_info    0x00000000      0xaaa /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNkSzr6.debug.temp.o
- .debug_abbrev  0x00000000      0x2f5 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNkSzr6.debug.temp.o
- .debug_line    0x00000000       0xf0 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNkSzr6.debug.temp.o
- .debug_str     0x00000000     0x171f /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNkSzr6.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNkSzr6.debug.temp.o
- .debug_info    0x00000000      0x3e9 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWWBGoB.debug.temp.o
- .debug_abbrev  0x00000000      0x195 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWWBGoB.debug.temp.o
- .debug_line    0x00000000       0xd7 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWWBGoB.debug.temp.o
- .debug_str     0x00000000      0x754 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWWBGoB.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWWBGoB.debug.temp.o
- .debug_info    0x00000000     0x1edd /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cct4UzzP.debug.temp.o
- .debug_abbrev  0x00000000      0x432 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cct4UzzP.debug.temp.o
- .debug_line    0x00000000      0x117 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cct4UzzP.debug.temp.o
- .debug_str     0x00000000     0x2085 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cct4UzzP.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cct4UzzP.debug.temp.o
- .debug_info    0x00000000      0x4a7 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccoVeqjm.debug.temp.o
- .debug_abbrev  0x00000000       0xc1 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccoVeqjm.debug.temp.o
- .debug_line    0x00000000       0xbb /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccoVeqjm.debug.temp.o
- .debug_str     0x00000000      0xb04 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccoVeqjm.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccoVeqjm.debug.temp.o
- .debug_info    0x00000000     0x3d0a /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc7VlP4w.debug.temp.o
- .debug_abbrev  0x00000000      0x727 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc7VlP4w.debug.temp.o
- .debug_line    0x00000000      0x18e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc7VlP4w.debug.temp.o
- .debug_str     0x00000000     0x4546 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc7VlP4w.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc7VlP4w.debug.temp.o
- .debug_info    0x00000000     0x203e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccRBHudm.debug.temp.o
- .debug_abbrev  0x00000000      0x5c1 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccRBHudm.debug.temp.o
- .debug_line    0x00000000      0x16e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccRBHudm.debug.temp.o
- .debug_str     0x00000000     0x35f8 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccRBHudm.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccRBHudm.debug.temp.o
- .debug_info    0x00000000     0x5fa1 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccv796Gr.debug.temp.o
- .debug_abbrev  0x00000000      0x7c0 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccv796Gr.debug.temp.o
- .debug_line    0x00000000      0x238 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccv796Gr.debug.temp.o
- .debug_str     0x00000000     0xeb36 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccv796Gr.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccv796Gr.debug.temp.o
+ .debug_info    0x00000000      0x39d /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWbQyhM.debug.temp.o
+ .debug_abbrev  0x00000000      0x1b2 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWbQyhM.debug.temp.o
+ .debug_line    0x00000000       0xa0 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWbQyhM.debug.temp.o
+ .debug_str     0x00000000      0x727 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWbQyhM.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWbQyhM.debug.temp.o
+ .debug_info    0x00000000      0x162 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc1cY1vl.debug.temp.o
+ .debug_abbrev  0x00000000      0x10f /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc1cY1vl.debug.temp.o
+ .debug_line    0x00000000       0x94 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc1cY1vl.debug.temp.o
+ .debug_str     0x00000000      0x377 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc1cY1vl.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc1cY1vl.debug.temp.o
+ .debug_info    0x00000000       0xae /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc42OBhK.debug.temp.o
+ .debug_abbrev  0x00000000       0x72 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc42OBhK.debug.temp.o
+ .debug_line    0x00000000       0xa6 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc42OBhK.debug.temp.o
+ .debug_str     0x00000000      0x25e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc42OBhK.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc42OBhK.debug.temp.o
+ .debug_info    0x00000000      0x2a8 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNJ6RNu.debug.temp.o
+ .debug_abbrev  0x00000000      0x14d /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNJ6RNu.debug.temp.o
+ .debug_line    0x00000000       0xd9 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNJ6RNu.debug.temp.o
+ .debug_str     0x00000000      0x31b /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNJ6RNu.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNJ6RNu.debug.temp.o
+ .debug_info    0x00000000      0x5d1 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccuyW38R.debug.temp.o
+ .debug_abbrev  0x00000000      0x20e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccuyW38R.debug.temp.o
+ .debug_line    0x00000000       0xa5 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccuyW38R.debug.temp.o
+ .debug_str     0x00000000      0xd4e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccuyW38R.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccuyW38R.debug.temp.o
+ .debug_info    0x00000000      0xaaa /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccS0wV3m.debug.temp.o
+ .debug_abbrev  0x00000000      0x2f5 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccS0wV3m.debug.temp.o
+ .debug_line    0x00000000       0xf0 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccS0wV3m.debug.temp.o
+ .debug_str     0x00000000     0x171f /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccS0wV3m.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccS0wV3m.debug.temp.o
+ .debug_info    0x00000000      0x409 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc1c1SQf.debug.temp.o
+ .debug_abbrev  0x00000000      0x195 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc1c1SQf.debug.temp.o
+ .debug_line    0x00000000       0xd7 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc1c1SQf.debug.temp.o
+ .debug_str     0x00000000      0x7ac /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc1c1SQf.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc1c1SQf.debug.temp.o
+ .debug_info    0x00000000     0x1f02 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cccRAxZU.debug.temp.o
+ .debug_abbrev  0x00000000      0x439 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cccRAxZU.debug.temp.o
+ .debug_line    0x00000000      0x117 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cccRAxZU.debug.temp.o
+ .debug_str     0x00000000     0x20dd /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cccRAxZU.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cccRAxZU.debug.temp.o
+ .debug_info    0x00000000      0x4a7 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc0KfC9K.debug.temp.o
+ .debug_abbrev  0x00000000       0xc1 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc0KfC9K.debug.temp.o
+ .debug_line    0x00000000       0xbb /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc0KfC9K.debug.temp.o
+ .debug_str     0x00000000      0xb04 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc0KfC9K.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc0KfC9K.debug.temp.o
+ .debug_info    0x00000000     0x3d2a /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccXApXjQ.debug.temp.o
+ .debug_abbrev  0x00000000      0x727 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccXApXjQ.debug.temp.o
+ .debug_line    0x00000000      0x18e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccXApXjQ.debug.temp.o
+ .debug_str     0x00000000     0x459e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccXApXjQ.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccXApXjQ.debug.temp.o
+ .debug_info    0x00000000     0x205e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccvYMy90.debug.temp.o
+ .debug_abbrev  0x00000000      0x5c1 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccvYMy90.debug.temp.o
+ .debug_line    0x00000000      0x16e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccvYMy90.debug.temp.o
+ .debug_str     0x00000000     0x3650 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccvYMy90.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccvYMy90.debug.temp.o
+ .debug_info    0x00000000     0x5fea /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNa9RUJ.debug.temp.o
+ .debug_abbrev  0x00000000      0x7cf /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNa9RUJ.debug.temp.o
+ .debug_line    0x00000000      0x238 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNa9RUJ.debug.temp.o
+ .debug_str     0x00000000     0xebb4 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNa9RUJ.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNa9RUJ.debug.temp.o
  .text          0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_exit.o)
  .data          0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_exit.o)
  .bss           0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_exit.o)
@@ -128,6 +128,21 @@ Discarded input sections
                 0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulpsi3.o)
  .text.libgcc.fixed
                 0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulpsi3.o)
+ .text          0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+ .data          0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+ .bss           0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+ .text.libgcc.mul
+                0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+ .text.libgcc.div
+                0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
  .text          0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_copy_data.o)
  .data          0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_copy_data.o)
  .bss           0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_copy_data.o)
@@ -246,21 +261,6 @@ Discarded input sections
                 0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_epilogue.o)
  .text.libgcc.fixed
                 0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_epilogue.o)
- .text          0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
- .data          0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
- .bss           0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
- .text.libgcc.mul
-                0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
- .text.libgcc.div
-                0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
- .text.libgcc.prologue
-                0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
- .text.libgcc.builtins
-                0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
- .text.libgcc.fmul
-                0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
- .text.libgcc.fixed
-                0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
  .text          0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libc.a(memcpy_P.o)
  .data          0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libc.a(memcpy_P.o)
  .bss           0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libc.a(memcpy_P.o)
@@ -293,31 +293,31 @@ Linker script and memory map
 Address of section .data set to 0x800100
 LOAD /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/crtatmega328p.o
 LOAD /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libm.a
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/adc.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccfoolyI.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccwZu765.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc6dmsh3.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc7xnNpL.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccCUQGuy.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNkSzr6.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWWBGoB.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cct4UzzP.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccoVeqjm.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc7VlP4w.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccRBHudm.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccv796Gr.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/random.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/serial.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/string.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/time.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/wii_nunchuk.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/audio_out.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/oscillator.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/resources.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/voice.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/voicecard_rx.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/voicecard.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/adc.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWbQyhM.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc1cY1vl.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc42OBhK.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNJ6RNu.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccuyW38R.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccS0wV3m.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc1c1SQf.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cccRAxZU.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc0KfC9K.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccXApXjQ.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccvYMy90.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNa9RUJ.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/random.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/serial.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/string.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/time.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/wii_nunchuk.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/audio_out.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/oscillator.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/resources.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/voice.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/voicecard_rx.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/voicecard.o
 START GROUP
 LOAD /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a
 LOAD /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libm.a
@@ -424,7 +424,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x7550
+.text           0x00000000     0x7582
  *(.vectors)
  .vectors       0x00000000       0x68 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/crtatmega328p.o
                 0x00000000                __vectors
@@ -433,7 +433,7 @@ END GROUP
                 0x00000068                        __progmem_start = .
  *(.progmem)
  *(.progmem.*)
- .progmem.data  0x00000068     0x4b27 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o
+ .progmem.data  0x00000068     0x4b27 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o
                 0x00004b8f                        __progmem_end = .
                 0x00000001                        ASSERT (((__progmem_start == __progmem_end) || (__progmem_end <= 0x10000)), .progmem section exceeds 0x10000)
                 0x00004b90                        . = ALIGN (0x2)
@@ -448,7 +448,7 @@ END GROUP
  *(.lowtext*)
                 0x00004b90                        __ctors_start = .
  *(.ctors)
- .ctors         0x00004b90        0x2 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o
+ .ctors         0x00004b90        0x2 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o
                 0x00004b92                        __ctors_end = .
                 0x00004b92                        __dtors_start = .
  *(.dtors)
@@ -512,48 +512,48 @@ END GROUP
                 0x00004be2                __vector_16
                 0x00004be2                __vector_18
                 0x00004be2                __vector_22
- .text          0x00004be6     0x135e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o
+ .text          0x00004be6     0x1372 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o
                 0x00005e52                __vector_9
-                0x00005f44                        . = ALIGN (0x2)
+                0x00005f58                        . = ALIGN (0x2)
  *(.text.*)
- .text.startup  0x00005f44     0x14fa /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o
-                0x00005f44                main
+ .text.startup  0x00005f58     0x150c /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o
+                0x00005f58                main
  .text.libgcc.mul
-                0x0000743e       0x12 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulpsi3.o)
-                0x0000743e                __mulpsi3
+                0x00007464       0x12 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulpsi3.o)
+                0x00007464                __mulpsi3
+ .text.libgcc   0x00007476        0xc /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+                0x00007476                __tablejump2__
  .text.libgcc.mul
-                0x00007450       0x1a /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulsqipsi3.o)
-                0x00007450                __mulsqipsi3
+                0x00007482       0x1a /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulsqipsi3.o)
+                0x00007482                __mulsqipsi3
  .text.libgcc.mul
-                0x0000746a       0x1e /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_umulhisi3.o)
-                0x0000746a                __umulhisi3
+                0x0000749c       0x1e /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_umulhisi3.o)
+                0x0000749c                __umulhisi3
  .text.libgcc.mul
-                0x00007488        0xc /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_usmulhisi3.o)
-                0x00007488                __usmulhisi3
-                0x0000748a                __usmulhisi3_tail
+                0x000074ba        0xc /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_usmulhisi3.o)
+                0x000074ba                __usmulhisi3
+                0x000074bc                __usmulhisi3_tail
  .text.libgcc.prologue
-                0x00007494       0x38 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_prologue.o)
-                0x00007494                __prologue_saves__
+                0x000074c6       0x38 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_prologue.o)
+                0x000074c6                __prologue_saves__
  .text.libgcc.prologue
-                0x000074cc       0x36 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_epilogue.o)
-                0x000074cc                __epilogue_restores__
- .text.libgcc   0x00007502        0xc /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
-                0x00007502                __tablejump2__
+                0x000074fe       0x36 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_epilogue.o)
+                0x000074fe                __epilogue_restores__
  .text.avr-libc
-                0x0000750e       0x12 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libc.a(memcpy_P.o)
-                0x0000750e                memcpy_P
+                0x00007534       0x12 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libc.a(memcpy_P.o)
+                0x00007534                memcpy_P
  .text.avr-libc
-                0x00007520       0x10 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libatmega328p.a(eerd_byte.o)
-                0x00007520                eeprom_read_byte
+                0x00007546       0x10 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libatmega328p.a(eerd_byte.o)
+                0x00007546                eeprom_read_byte
  .text.avr-libc
-                0x00007530       0x1c /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libatmega328p.a(eewr_byte.o)
-                0x00007530                eeprom_write_byte
-                0x00007532                eeprom_write_r18
-                0x0000754c                        . = ALIGN (0x2)
+                0x00007556       0x1c /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libatmega328p.a(eewr_byte.o)
+                0x00007556                eeprom_write_byte
+                0x00007558                eeprom_write_r18
+                0x00007572                        . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000754c        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_exit.o)
-                0x0000754c                exit
-                0x0000754c                _exit
+ .fini9         0x00007572        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_exit.o)
+                0x00007572                exit
+                0x00007572                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -572,46 +572,48 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000754c        0x4 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_exit.o)
+ .fini0         0x00007572        0x4 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_exit.o)
  *(.fini0)
  *(.hightext)
  *(.hightext*)
  *(.progmemx)
  *(.progmemx.*)
-                0x00007550                        . = ALIGN (0x2)
+                0x00007576                        . = ALIGN (0x2)
  *(.jumptables)
  *(.jumptables*)
-                0x00007550                        _etext = .
+ .jumptables.gcc.main
+                0x00007576        0xc /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o
+                0x00007582                        _etext = .
 
-.data           0x00800100       0x56 load address 0x00007550
+.data           0x00800100       0x56 load address 0x00007582
                 0x00800100                        PROVIDE (__data_start = .)
  *(.data)
- .data          0x00800100        0x2 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o
+ .data          0x00800100        0x2 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o
  *(.data*)
  *(.gnu.linkonce.d*)
  *(.rodata)
- .rodata        0x00800102       0x54 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o
+ .rodata        0x00800102       0x54 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o
  *(.rodata*)
  *(.gnu.linkonce.r*)
                 0x00800156                        . = ALIGN (0x2)
                 0x00800156                        _edata = .
                 0x00800156                        PROVIDE (__data_end = .)
 
-.bss            0x00800156      0x3da
+.bss            0x00800156      0x3dc
                 0x00800156                        PROVIDE (__bss_start = .)
  *(.bss)
- .bss           0x00800156      0x3da /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o
+ .bss           0x00800156      0x3dc /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o
  *(.bss*)
  *(COMMON)
-                0x00800530                        PROVIDE (__bss_end = .)
-                0x00007550                        __data_load_start = LOADADDR (.data)
-                0x000075a6                        __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800532                        PROVIDE (__bss_end = .)
+                0x00007582                        __data_load_start = LOADADDR (.data)
+                0x000075d8                        __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800530        0x0
+.noinit         0x00800532        0x0
                 [!provide]                        PROVIDE (__noinit_start = .)
  *(.noinit .noinit.* .gnu.linkonce.n.*)
                 [!provide]                        PROVIDE (__noinit_end = .)
-                0x00800530                        _end = .
+                0x00800532                        _end = .
                 [!provide]                        PROVIDE (__heap_start = .)
                 0x00000000                        __flmap_init_label = DEFINED (__flmap_noinit_start)?__flmap_noinit_start:0x0
                 0x00000000                        __flmap = DEFINED (__flmap)?__flmap:0x0
@@ -652,7 +654,7 @@ END GROUP
 
 .comment        0x00000000       0x24
  *(.comment)
- .comment       0x00000000       0x24 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.458rpW.ltrans0.ltrans.o
+ .comment       0x00000000       0x24 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.HcRwIU.ltrans0.ltrans.o
                                  0x25 (size before relaxing)
 
 .note.gnu.avr.deviceinfo
@@ -685,23 +687,23 @@ END GROUP
  .debug_aranges
                 0x00000020       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulpsi3.o)
  .debug_aranges
-                0x00000040       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_copy_data.o)
+                0x00000040       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
  .debug_aranges
-                0x00000060       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_clear_bss.o)
+                0x00000060       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_copy_data.o)
  .debug_aranges
-                0x00000080       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_ctors.o)
+                0x00000080       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_clear_bss.o)
  .debug_aranges
-                0x000000a0       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulsqipsi3.o)
+                0x000000a0       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_ctors.o)
  .debug_aranges
-                0x000000c0       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_umulhisi3.o)
+                0x000000c0       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulsqipsi3.o)
  .debug_aranges
-                0x000000e0       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_usmulhisi3.o)
+                0x000000e0       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_umulhisi3.o)
  .debug_aranges
-                0x00000100       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_prologue.o)
+                0x00000100       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_usmulhisi3.o)
  .debug_aranges
-                0x00000120       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_epilogue.o)
+                0x00000120       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_prologue.o)
  .debug_aranges
-                0x00000140       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+                0x00000140       0x20 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_epilogue.o)
 
 .debug_pubnames
  *(.debug_pubnames)
@@ -711,45 +713,45 @@ END GROUP
  .debug_info    0x00000000      0x5f4 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/crtatmega328p.o
  .debug_info    0x000005f4       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_exit.o)
  .debug_info    0x0000061a       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulpsi3.o)
- .debug_info    0x00000640       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_copy_data.o)
- .debug_info    0x00000666       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_clear_bss.o)
- .debug_info    0x0000068c       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_ctors.o)
- .debug_info    0x000006b2       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulsqipsi3.o)
- .debug_info    0x000006d8       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_umulhisi3.o)
- .debug_info    0x000006fe       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_usmulhisi3.o)
- .debug_info    0x00000724       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_prologue.o)
- .debug_info    0x0000074a       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_epilogue.o)
- .debug_info    0x00000770       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+ .debug_info    0x00000640       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+ .debug_info    0x00000666       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_copy_data.o)
+ .debug_info    0x0000068c       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_clear_bss.o)
+ .debug_info    0x000006b2       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_ctors.o)
+ .debug_info    0x000006d8       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulsqipsi3.o)
+ .debug_info    0x000006fe       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_umulhisi3.o)
+ .debug_info    0x00000724       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_usmulhisi3.o)
+ .debug_info    0x0000074a       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_prologue.o)
+ .debug_info    0x00000770       0x26 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_epilogue.o)
 
 .debug_abbrev   0x00000000      0x67e
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/crtatmega328p.o
  .debug_abbrev  0x000005a2       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_exit.o)
  .debug_abbrev  0x000005b6       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulpsi3.o)
- .debug_abbrev  0x000005ca       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_copy_data.o)
- .debug_abbrev  0x000005de       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_clear_bss.o)
- .debug_abbrev  0x000005f2       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_ctors.o)
- .debug_abbrev  0x00000606       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulsqipsi3.o)
- .debug_abbrev  0x0000061a       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_umulhisi3.o)
- .debug_abbrev  0x0000062e       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_usmulhisi3.o)
- .debug_abbrev  0x00000642       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_prologue.o)
- .debug_abbrev  0x00000656       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_epilogue.o)
- .debug_abbrev  0x0000066a       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+ .debug_abbrev  0x000005ca       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+ .debug_abbrev  0x000005de       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_copy_data.o)
+ .debug_abbrev  0x000005f2       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_clear_bss.o)
+ .debug_abbrev  0x00000606       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_ctors.o)
+ .debug_abbrev  0x0000061a       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulsqipsi3.o)
+ .debug_abbrev  0x0000062e       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_umulhisi3.o)
+ .debug_abbrev  0x00000642       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_usmulhisi3.o)
+ .debug_abbrev  0x00000656       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_prologue.o)
+ .debug_abbrev  0x0000066a       0x14 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_epilogue.o)
 
 .debug_line     0x00000000      0x6c1
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000       0x1d /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/crtatmega328p.o
  .debug_line    0x0000001d       0x5e /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_exit.o)
  .debug_line    0x0000007b       0x7c /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulpsi3.o)
- .debug_line    0x000000f7       0x94 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_copy_data.o)
- .debug_line    0x0000018b       0x82 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_clear_bss.o)
- .debug_line    0x0000020d       0x8e /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_ctors.o)
- .debug_line    0x0000029b       0xa0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulsqipsi3.o)
- .debug_line    0x0000033b       0xac /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_umulhisi3.o)
- .debug_line    0x000003e7       0x76 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_usmulhisi3.o)
- .debug_line    0x0000045d       0xfa /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_prologue.o)
- .debug_line    0x00000557       0xf4 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_epilogue.o)
- .debug_line    0x0000064b       0x76 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+ .debug_line    0x000000f7       0x76 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
+ .debug_line    0x0000016d       0x94 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_copy_data.o)
+ .debug_line    0x00000201       0x82 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_clear_bss.o)
+ .debug_line    0x00000283       0x8e /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_ctors.o)
+ .debug_line    0x00000311       0xa0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulsqipsi3.o)
+ .debug_line    0x000003b1       0xac /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_umulhisi3.o)
+ .debug_line    0x0000045d       0x76 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_usmulhisi3.o)
+ .debug_line    0x000004d3       0xfa /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_prologue.o)
+ .debug_line    0x000005cd       0xf4 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_epilogue.o)
 
 .debug_frame
  *(.debug_frame)
@@ -759,6 +761,8 @@ END GROUP
  .debug_str     0x00000000      0x208 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/crtatmega328p.o
  .debug_str     0x00000208       0x85 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_exit.o)
  .debug_str     0x0000028d        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulpsi3.o)
+                                 0x85 (size before relaxing)
+ .debug_str     0x0000028d        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
                                  0x85 (size before relaxing)
  .debug_str     0x0000028d        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_copy_data.o)
                                  0x85 (size before relaxing)
@@ -775,8 +779,6 @@ END GROUP
  .debug_str     0x0000028d        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_prologue.o)
                                  0x85 (size before relaxing)
  .debug_str     0x0000028d        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_epilogue.o)
-                                 0x85 (size before relaxing)
- .debug_str     0x0000028d        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
                                  0x85 (size before relaxing)
 
 .debug_loc
@@ -826,5 +828,5 @@ END GROUP
 
 .debug_sup
  *(.debug_sup)
-OUTPUT(/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/ambika_voicecard.elf elf32-avr)
+OUTPUT(/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/ambika_voicecard.elf elf32-avr)
 LOAD linker stubs

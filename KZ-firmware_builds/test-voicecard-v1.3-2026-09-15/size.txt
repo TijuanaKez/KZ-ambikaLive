@@ -1,8 +1,8 @@
-/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-liu8ajbp/ambika_voicecard/ambika_voicecard.elf  :
+/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-85bodhvo/ambika_voicecard/ambika_voicecard.elf  :
 section                     size      addr
 .data                         86   8388864
-.text                      30032         0
-.bss                         986   8388950
+.text                      30082         0
+.bss                         988   8388950
 .comment                      36         0
 .note.gnu.avr.deviceinfo      64         0
 .debug_aranges               352         0
@@ -10,6 +10,6 @@ section                     size      addr
 .debug_abbrev               1662         0
 .debug_line                 1729         0
 .debug_str                   653         0
-Total                      37542
+Total                      37594
 
 

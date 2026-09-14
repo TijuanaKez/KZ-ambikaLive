@@ -53,6 +53,13 @@ enum VoicecardFirmwareUpdateStatus : uint8_t {
   FIRMWARE_UPDATE_PROBING_BOOT_LAST_TRY = 6,
 };
 
+// KZ MOD: audio render headroom, read over SPI with
+// COMMAND_GET_AUDIO_HEADROOM. audio_drain_peak is the largest free space seen
+// in the audio buffer just before rendering a block, so it rises as the
+// renderer falls behind; audio_starved is set if the buffer ever ran dry.
+extern volatile uint8_t audio_drain_peak;
+extern volatile uint8_t audio_starved;
+
 }  // namespace ambika
 
 #endif  // VOICECARD_VOICECARD_H_

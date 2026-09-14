@@ -94,6 +94,8 @@ class VoicecardProtocolTx {
   }
   
   static Word GetVersion(uint8_t voice_id);
+  // KZ MOD: audio render headroom of one voice card, and reset it there.
+  static uint8_t GetAudioHeadroom(uint8_t voice_id);
 
   static inline uint8_t voice_status(uint8_t voice_id) {
     return voice_status_[voice_id];

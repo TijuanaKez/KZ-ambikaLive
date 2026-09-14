@@ -115,6 +115,14 @@ Word VoicecardProtocolTx::GetVersion(uint8_t voice_id) {
 }
 
 /* static */
+uint8_t VoicecardProtocolTx::GetAudioHeadroom(uint8_t voice_id) {
+  Sync(voice_id);
+  BlockingTransaction(voice_id, COMMAND_GET_AUDIO_HEADROOM);
+  ConstantDelay(5);
+  return BlockingTransaction(voice_id, 0xff);
+}
+
+/* static */
 uint8_t VoicecardProtocolTx::WriteAsNibbles(uint8_t voice_id, uint8_t value) {
   voicecard_address_.Write(voice_id);
   spi_.Write(value & 0x0f);

@@ -20,6 +20,7 @@
 #ifndef CONTROLLER_UI_PAGES_OS_INFO_PAGE_H_
 #define CONTROLLER_UI_PAGES_OS_INFO_PAGE_H_
 
+#include "controller/controller.h"
 #include "controller/ui_pages/ui_page.h"
 
 namespace ambika {
@@ -61,6 +62,12 @@ private:
   //static uint8_t voicecard_version_;
   //static uint8_t active_port_;
   static uint8_t found_firmware_files_;
+#ifdef DIAGNOSTIC_BUILD
+  // KZ MOD: latest audio render headroom reported by each voice card, polled
+  // one card per redraw.
+  static uint8_t audio_headroom_[kNumVoices];
+  static uint8_t audio_headroom_index_;
+#endif
   
   DISALLOW_COPY_AND_ASSIGN(OsInfoPage);
 };

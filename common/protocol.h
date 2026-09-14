@@ -66,6 +66,12 @@ enum ProtocolCommands {
   COMMAND_FIRMWARE_UPDATE_MODE = 0xfb,
   COMMAND_GET_SLAVE_ID = 0xfc,
   COMMAND_GET_VERSION_ID = 0xfd,
+  // KZ MOD: returns the audio render headroom, and clears it. See
+  // Voice::audio_drain_peak() -- the peak free space seen in the audio buffer
+  // just before a block was rendered. Around kAudioBlockSize means the
+  // renderer is keeping up comfortably; climbing toward the buffer size means
+  // it is falling behind; 255 means the buffer actually starved.
+  COMMAND_GET_AUDIO_HEADROOM = 0xfe,
   COMMAND_SYNC = 0xff
 };
 

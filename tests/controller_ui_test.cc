@@ -60,9 +60,22 @@ struct ParameterEditor : UiPage {
   static bool OnIncrementAndCycle(int8_t, int8_t);
   static void UpdateScreen(), UpdateLeds();
 };
+constexpr uint8_t kNumVoices = 6;
+// Records which cards were polled, so the test can check the round-robin.
+struct VoicecardTx {
+  uint8_t polled[kNumVoices] = {};
+  uint8_t reply = 40;
+  uint8_t GetAudioHeadroom(uint8_t voice_id) {
+    assert(voice_id < kNumVoices);
+    ++polled[voice_id];
+    return reply;
+  }
+} voicecard_tx;
 struct OsInfoPage : UiPage {
   static void OnInit(PageInfo*), UpdateScreen(), UpdateLeds();
   static uint8_t OnIncrement(int8_t), OnKey(uint8_t);
+  static uint8_t audio_headroom_[kNumVoices];
+  static uint8_t audio_headroom_index_;
 };
 
 PageInfo prefs_a = {15, {66,67,71,72,68,69,70,0xf8}, 16};
@@ -228,9 +241,32 @@ int main() {
     OsInfoPage::UpdateScreen();
     display.check();
     assert(std::memcmp(display.line_buffer(0), "KZ DIAG3", 8) == 0);
-    assert(std::memcmp(display.line_buffer(1), "RST ab", 6) == 0);
+    // RST moved to line 0 when the per-card audio headroom took line 1.
+    assert(std::memcmp(display.line_buffer(0) + 33, "RST ab", 6) == 0);
+    assert(std::memcmp(display.line_buffer(1), "AUD ", 4) == 0);
     for (int i = 0; i < 80; ++i) assert(display.memory[i + 1] != 0);
   }
+  // The diagnostic page polls one voice card per redraw, round-robin, and
+  // renders every card's headroom. A card that starves reports 255, which must
+  // still fit its 3-character field.
+  {
+    for (uint8_t i = 0; i < kNumVoices; ++i) voicecard_tx.polled[i] = 0;
+    voicecard_tx.reply = 255;
+    for (int pass = 0; pass < kNumVoices * 2; ++pass) {
+      display.clear();
+      OsInfoPage::UpdateScreen();
+      display.check();
+    }
+    for (uint8_t i = 0; i < kNumVoices; ++i) assert(voicecard_tx.polled[i] == 2);
+    assert(std::memcmp(display.line_buffer(1), "AUD ", 4) == 0);
+    assert(std::memcmp(display.line_buffer(1) + 4, "255", 3) == 0);
+    assert(std::memcmp(display.line_buffer(1) + 36, "exit", 4) == 0);
+    voicecard_tx.reply = 40;
+    display.clear();
+    OsInfoPage::UpdateScreen();
+    display.check();
+  }
+
   for (uint8_t key = 0; key < 7; ++key) OsInfoPage::OnKey(key);
   assert(ui.previous == 0);
   OsInfoPage::OnKey(SWITCH_8);

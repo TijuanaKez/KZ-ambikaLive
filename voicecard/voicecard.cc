@@ -61,6 +61,16 @@ static volatile uint8_t interrupt_counter;
 static constexpr uint8_t dac_scale = 16;
 static volatile uint8_t update_vca;
 
+// KZ MOD: audio render headroom, for measuring the CPU budget without a scope.
+// The ISR drains one sample per 39.2 kHz tick and the main loop refills a block
+// at a time, so the free space seen just before rendering is a direct measure of
+// how close the renderer came to being late. Sampled once per block; the cost is
+// one comparison per ~980 blocks a second.
+namespace ambika {
+volatile uint8_t audio_drain_peak;
+volatile uint8_t audio_starved;
+}  // namespace ambika
+
 ISR(TIMER2_OVF_vect) {
   static uint8_t sample_counter = 0;
   static Word vca_12bits;
@@ -77,6 +87,10 @@ ISR(TIMER2_OVF_vect) {
     vca_12bits.value = next_vca_value | 0x1000u;
   }
 
+  if (!audio_buffer.isReadable()) {
+    // The renderer did not keep up: this sample period has no audio for it.
+    audio_starved = 1;
+  }
   if (audio_buffer.isReadable()) {
     uint8_t sample = audio_buffer.immediateRead();
     sample_counter++;
@@ -160,7 +174,11 @@ int main() {
 #ifdef TIMING_CODE
     interrupt_counter = 0;
 #endif
-    if (audio_buffer.spaceLeft() >= kAudioBlockSize) {
+    uint8_t space_left = audio_buffer.spaceLeft();
+    if (space_left > audio_drain_peak) {
+      audio_drain_peak = space_left;
+    }
+    if (space_left >= kAudioBlockSize) {
       voicecard_rx.TickRxLed();
 #ifdef TIMING_CODE
       timing_signal1::high();
