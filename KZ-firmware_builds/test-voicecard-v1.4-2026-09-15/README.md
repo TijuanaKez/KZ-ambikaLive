@@ -31,6 +31,21 @@ render a **polyBLEP saw** instead. Every other shape is untouched.
 From the bank A survey: 15 of 92 patches reference a wavetable on at least one
 oscillator, and will sound different. The other 77 are unaffected.
 
+## Polivoks resonance — check this first
+
+`POLIVOKS_FILTERBOARD` is enabled in `common/features.h`, and on the YAM
+firmware your v1.1 cards run it **inverts the resonance CV**, because the
+Polivoks board's resonance input is backwards. The MachFour-derived voice card
+in this tree had no consumer for that switch at all — it was silently doing
+nothing — so every build before this one had **resonance working in reverse** on
+a Polivoks board. Restored here.
+
+If your filter boards are Polivoks, then on the previous test build the
+resonance control on card 1 ran backwards relative to cards 2-6. Sweep resonance
+on card 1 against an untouched card and confirm they now move the same way. If
+they were already the same before this build, your boards are not Polivoks and
+`POLIVOKS_FILTERBOARD` should be commented out in `features.h`.
+
 ## What to check
 
 1. The shapes you actually use sound exactly as they did on v1.3.

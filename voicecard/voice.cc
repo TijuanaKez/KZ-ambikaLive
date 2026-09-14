@@ -19,6 +19,8 @@
 
 #include "voicecard/voice.h"
 
+#include "common/features.h"
+
 #include "voicecard/audio_out.h"
 #include "voicecard/oscillator.h"
 #include "voicecard/sub_oscillator.h"
@@ -357,7 +359,17 @@ inline void Voice::UpdateDestinations() {
   
   // Store in memory all the updated parameters.
   modulation_destinations[MOD_DST_FILTER_CUTOFF] = U14ShiftRight6(cutoff);
+#ifdef POLIVOKS_FILTERBOARD
+  // KZ MOD: restored from the YAM voicecard. The Polivoks filter board's
+  // resonance CV is inverted, so the control has to be flipped here or the
+  // resonance knob works backwards. POLIVOKS_FILTERBOARD is enabled in
+  // common/features.h, but the MachFour-derived voice card in this tree had no
+  // consumer for it at all -- the switch was silently doing nothing.
+  modulation_destinations[MOD_DST_FILTER_RESONANCE] =
+      U14ShiftRight6(16383 - dst[MOD_DST_FILTER_RESONANCE]);
+#else
   modulation_destinations[MOD_DST_FILTER_RESONANCE] = U14ShiftRight6(dst[MOD_DST_FILTER_RESONANCE]);
+#endif
   modulation_destinations[MOD_DST_MIX_CRUSH] = S8(highByte(U16(dst[MOD_DST_MIX_CRUSH]))) + 1;
 
   osc_1.set_parameter(U15ShiftRight7(dst[MOD_DST_PARAMETER_1]));
