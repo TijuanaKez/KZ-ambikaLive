@@ -386,10 +386,30 @@ back to.
 
 ---
 
-## 6c. The oscillator dispatch table is misaligned with the enum
+## 6c. The oscillator dispatch table was misaligned with the enum — FIXED
 
-Found September 14, 2026 while surveying Carey's library. **This is a live bug in
-v1.4, not a v2 concern, and it changes what the wavetable removal actually costs.**
+Found September 14, 2026 while surveying Carey's library, **confirmed on hardware
+September 15, and fixed the same day** in the voice card v1.3 test build.
+
+**Important correction.** An earlier revision of this section said the bug was
+live in shipped firmware and that Carey's wavetable patches were therefore
+already broken. That was wrong. The bug is in *this source tree's* voice card,
+which had never been flashed to hardware until 2026-09-14. Carey's six cards run
+the YAM-derived v1.1 image, whose table is correct. So:
+
+- His patches, including the wavetable ones, render correctly on his instrument
+  today. Removing the wavetables **will** change 15 of his 92 bank-A patches.
+- The bug was a *regression* in any build made from this tree, not a
+  pre-existing defect, and it had to be fixed before the GCC 9 voice card could
+  be compared with v1.1 at all.
+
+**The hardware confirmation.** Carey stepped through the shapes on the v1.2 test
+card against a v1.1 card: saw, PWM and triangle *all sounded like a saw*, and the
+two cards rejoined at sine. That is precisely what the table analysis predicted —
+`POLYBLEP_SAW` reached the bandlimited saw (a saw by luck), `POLYBLEP_PWM` was
+intercepted by a pulse-width special case that also called the saw renderer, and
+`TRIANGLE` reached `RenderSimpleWavetable`, which emits saw zones for anything
+that is not `SINE`. The tree had **no triangle renderer at all**.
 
 `common/patch.h` carries the **YAM** enum: `WAVEFORM_POLYBLEP_SAW = 1`,
 `POLYBLEP_PWM = 2`, `WAVETABLE_1 = 21`, `POLYBLEP_CSAW = 41`, `LAST = 43`
@@ -469,17 +489,32 @@ the survey are not necessarily what he heard when he made them — the byte valu
 are the reliable part. The wavetable patches most likely date from before the
 MachFour merge, when those slots still rendered.
 
-### Recommended resolution
+### How it was fixed (voice card v1.3, 2026-09-15)
 
-Fix the dispatch in v2 rather than in a v1 patch release, because it changes the
-sound of existing patches and v1.4 is a stability line. Then:
+`fn_table` is reordered to match `common/patch.h`, and the dispatch gains YAM's
+offset branch so every shape above the wavetable block indexes correctly. The
+pulse-width special case is deleted. `RenderNewTriangle` is ported from the YAM
+voicecard, and `RenderQuadSawPad` gains the `QUAD_PWM` branch for the same
+reason. `RenderBandlimitedPwm` is left in the tree but is no longer referenced,
+and the linker now drops it — the fixed build is 102 bytes *smaller*.
 
-- Shapes 1 and 2 get their real polyBLEP renderers. Expected to be an
-  improvement, and it should be A/B'd before it is called one.
-- The dead wavetable slots (21-37) map to `POLYBLEP_SAW`. Preserving current
-  behaviour is not worth it — current behaviour is near-silence.
-- `OLD_SAW`, `QUAD_PWM`, `FM_FB`, `VOWEL_2` get their correct renderers back,
-  which is what YAM's offset branch was for.
+Two static_asserts pin the table length against `WAVEFORM_LAST` and the wavetable
+block width, and pin the order of the first four shapes. This drift cannot recur
+silently.
+
+Out-of-range shape bytes are clamped to silence. Carey's card genuinely contains
+patches with shape values 59, 96 and 229, which previously indexed past the end
+of the table.
+
+This does **not** touch the controller or v1.4, which are unaffected: the bug
+lives entirely in the voice card's dispatch.
+
+### What this means for the wavetable removal
+
+Since the wavetables *do* work on Carey's cards, removing them is a real change
+to 15 of his 92 bank-A patches, not a no-op. §2 and §6 are otherwise unaffected:
+those 15 patches were always going to need attention, and the dead slots should
+fall back to `POLYBLEP_SAW`.
 
 ---
 

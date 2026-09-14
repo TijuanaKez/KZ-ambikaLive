@@ -1,4 +1,17 @@
-# Voice card test build (2026-09-14) — UNTESTED, DO NOT SHIP
+# Voice card test build v1.2 (2026-09-14) — SUPERSEDED, kept as evidence
+
+**Superseded by `../test-voicecard-v1.3-2026-09-15/`.** Kept because this is the
+first voice card image built from this tree on the modern toolchain that was
+proven to run on hardware: Carey flashed it on card 1 on 2026-09-14, it made
+sound and it tuned correctly against the v1.1 cards. That result is what
+unblocked the whole v2 plan.
+
+It also exposed the oscillator dispatch bug — its saw, PWM and triangle all
+sounded like a saw — which v1.3 fixes.
+
+---
+
+# Original notes: voice card test build (2026-09-14)
 
 First voice card image compiled from this tree on the modern toolchain
 (AVR GCC 9.5.0). It builds cleanly and fits, and **that is all that is known

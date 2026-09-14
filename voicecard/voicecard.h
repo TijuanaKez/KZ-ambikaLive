@@ -35,10 +35,11 @@ static constexpr uint8_t kControlRate = 40;
 static constexpr uint8_t kAudioBlockSize = kControlRate;
 
 // KZ MOD: 0x12 is the first voice card image built on the modern AVR GCC 9
-// toolchain. The version is display-only -- the controller never gates on it --
+// toolchain; 0x13 fixes the oscillator dispatch table. The version is
+// display-only -- the controller never gates on it --
 // so bumping it is safe, and it is the only way to tell from the OS information
 // page which cards are running a new build. Displayed as v1.2.
-constexpr uint8_t kSystemVersion = 0x12;
+constexpr uint8_t kSystemVersion = 0x13;
 
 static const auto kFirmwareUpdateFlagPtr = reinterpret_cast<uint8_t*>(E2END);
 

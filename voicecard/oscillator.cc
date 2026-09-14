@@ -118,6 +118,27 @@ void Oscillator::RenderSimpleWavetable(uint8_t* buffer) {
   phase = phase_tmp;
 }
 
+// ------- Naive triangle with a fold ----------------------------------------
+// KZ MOD: ported from the YAM voicecard, which is what Carey's v1.1 cards run.
+// parameter folds the triangle back on itself, which is where its timbre comes
+// from; at 0 it is a plain triangle.
+void Oscillator::RenderNewTriangle(uint8_t* buffer) {
+  uint24_t phase_tmp = phase;
+  bool* sync_input_tmp = sync_input;
+  bool* sync_output_tmp = sync_output;
+  for (uint8_t samples_left = kAudioBlockSize; samples_left > 0; samples_left--) {
+    update_phase_and_sync(phase_tmp, phase_increment, sync_input_tmp, sync_output_tmp);
+    uint16_t integral = highWord24(phase_tmp);
+    uint8_t ramp = U8(integral >> 7u);
+    uint8_t value = byteAnd(highByte(integral), 0x80u) ? ramp : byteInverse(ramp);
+    if (value < parameter) {
+      value = U8(U8(parameter << 1u) - value);
+    }
+    *buffer++ = value;
+  }
+  phase = phase_tmp;
+}
+
 // ------- Casio CZ-like synthesis -------------------------------------------
 void Oscillator::RenderCzSaw(uint8_t* buffer) {
   uint24_t phase_tmp = phase;
@@ -323,6 +344,24 @@ void Oscillator::RenderQuadSawPad(uint8_t* buffer) {
   }
 
   uint24_t phase_tmp = phase;
+  // KZ MOD: WAVEFORM_QUAD_PWM shares this renderer, as it does on the YAM
+  // voicecard. Four detuned pulses rather than four detuned saws.
+  if (shape == WAVEFORM_QUAD_PWM) {
+    uint8_t pwm_phase = U8(127 + parameter);
+    for (uint8_t samples_left = kAudioBlockSize; samples_left > 0; samples_left--) {
+      update_phase_and_sync(phase_tmp, phase_increment, sync_input, sync_output);
+      data.qs.phase[0] += increments[0];
+      data.qs.phase[1] += increments[1];
+      data.qs.phase[2] += increments[2];
+      uint8_t value = highWord24(phase_tmp) < U16(pwm_phase << 8u) ? 0 : 63;
+      if (highByte(data.qs.phase[0]) >= pwm_phase) value += 63;
+      if (highByte(data.qs.phase[1]) >= pwm_phase) value += 63;
+      if (highByte(data.qs.phase[2]) >= pwm_phase) value += 63;
+      *buffer++ = value;
+    }
+    phase = phase_tmp;
+    return;
+  }
   for (uint8_t samples_left = kAudioBlockSize; samples_left > 0; samples_left--) {
     update_phase_and_sync(phase_tmp, phase_increment, sync_input, sync_output);
 

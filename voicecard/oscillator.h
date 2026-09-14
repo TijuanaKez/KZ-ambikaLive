@@ -92,22 +92,32 @@ class Oscillator {
     phase_increment = new_phase_increment;
     sync_input = new_sync_input;
     sync_output = new_sync_output;
-    // A hack: when pulse width is set to 0, use a simple wavetable.
-    if (new_shape == WAVEFORM_POLYBLEP_PWM) {
-      if (parameter == 0) {
-        RenderSimpleWavetable(buffer);
-      } else {
-        RenderBandlimitedPwm(buffer);
-      }
+    // KZ MOD: fn_table is indexed by OscillatorAlgorithm. The 16 wavetable
+    // shapes and WAVEQUENCE share one slot, so every shape above them has to be
+    // shifted down by that block's width. Without this the table was being read
+    // with MachFour's original-enum indices while common/patch.h carries YAM's,
+    // which rendered saw for POLYBLEP_PWM and TRIANGLE and silence for
+    // everything from WAVETABLE_1 upwards.
+    uint8_t index;
+    if (new_shape >= WAVEFORM_WAVETABLE_1) {
+      index = new_shape <= WAVEFORM_WAVEQUENCE
+          ? U8(WAVEFORM_WAVETABLE_1)
+          : U8(new_shape - WAVEFORM_WAVEQUENCE + WAVEFORM_WAVETABLE_1);
     } else {
-      uint8_t index = new_shape >= WAVEFORM_WAVETABLE_1 ? WAVEFORM_WAVETABLE_1 : new_shape;
-      RenderFn fn;
-      ResourcesManager::Load(fn_table, index, &fn);
-      if (new_shape == WAVEFORM_WAVEQUENCE) {
-        fn = &Oscillator::RenderWavequence;
-      }
-      (this->*fn)(buffer);
+      index = U8(new_shape);
     }
+    // Patch files written by other firmware do contain out-of-range shape
+    // bytes; a real SD card surveyed here held 59, 96 and 229. Render silence
+    // rather than reading past the table.
+    if (index >= kNumRenderFns) {
+      index = U8(WAVEFORM_NONE);
+    }
+    RenderFn fn;
+    ResourcesManager::Load(fn_table, index, &fn);
+    if (new_shape == WAVEFORM_WAVEQUENCE) {
+      fn = &Oscillator::RenderWavequence;
+    }
+    (this->*fn)(buffer);
   }
   
   inline void set_parameter(uint8_t new_parameter) {
@@ -165,42 +175,56 @@ class Oscillator {
   //void RenderPolyBlepCSaw(uint8_t* buffer);
   // combines previous three functions
   void RenderPolyBlepWave(uint8_t* buffer);
+  void RenderNewTriangle(uint8_t* buffer);
 
-    // Pointer to the render function.
+  // Pointer to the render function. Indexed by OscillatorAlgorithm, with the
+  // wavetable block collapsed to a single slot -- see Render() above. This
+  // ordering must match common/patch.h; the static_assert below pins the
+  // boundaries that have actually drifted before.
   static constexpr RenderFn fn_table[] PROGMEM {
-      &Oscillator::RenderSilence,
+      &Oscillator::RenderSilence,             // WAVEFORM_NONE
 
-      &Oscillator::RenderSimpleWavetable,
-      &Oscillator::RenderBandlimitedPwm,
-      &Oscillator::RenderSimpleWavetable,
-      &Oscillator::RenderSimpleWavetable,
+      &Oscillator::RenderPolyBlepWave,        // POLYBLEP_SAW
+      &Oscillator::RenderPolyBlepWave,        // POLYBLEP_PWM
+      &Oscillator::RenderNewTriangle,         // TRIANGLE
+      &Oscillator::RenderSimpleWavetable,     // SINE
 
-      &Oscillator::RenderCzSaw,
-      &Oscillator::RenderCzResoWave, // saw (LP)
-      &Oscillator::RenderCzResoWave, // saw (BP)
-      &Oscillator::RenderCzResoWave, // saw (HP)
-      &Oscillator::RenderCzResoWave, // saw (PK)
-      &Oscillator::RenderCzResoWave, // pulse (LP)
-      &Oscillator::RenderCzResoWave, // pulse (BP)
-      &Oscillator::RenderCzResoWave, // pulse (HP)
-      &Oscillator::RenderCzResoWave, // pulse (PK)
-      &Oscillator::RenderCzResoWave, // tri (LP)
+      &Oscillator::RenderCzSaw,               // CZ_SAW
+      &Oscillator::RenderCzResoWave,          // CZ_SAW_LP
+      &Oscillator::RenderCzResoWave,          // CZ_SAW_PK
+      &Oscillator::RenderCzResoWave,          // CZ_SAW_BP
+      &Oscillator::RenderCzResoWave,          // CZ_SAW_HP
+      &Oscillator::RenderCzResoWave,          // CZ_PLS_LP
+      &Oscillator::RenderCzResoWave,          // CZ_PLS_PK
+      &Oscillator::RenderCzResoWave,          // CZ_PLS_BP
+      &Oscillator::RenderCzResoWave,          // CZ_PLS_HP
+      &Oscillator::RenderCzResoWave,          // CZ_TRI_LP
 
-      &Oscillator::RenderQuadSawPad,
+      &Oscillator::RenderQuadSawPad,          // QUAD_SAW_PAD
+      &Oscillator::RenderFm,                  // FM
+      &Oscillator::Render8BitLand,            // 8BITLAND
+      &Oscillator::RenderDirtyPwm,            // DIRTY_PWM
+      &Oscillator::RenderFilteredNoise,       // FILTERED_NOISE
+      &Oscillator::RenderVowel,               // VOWEL
 
-      &Oscillator::RenderFm,
+      &Oscillator::RenderInterpolatedWavetable, // WAVETABLE_1..16 and WAVEQUENCE
 
-      &Oscillator::Render8BitLand,
-      &Oscillator::RenderDirtyPwm,
-      &Oscillator::RenderFilteredNoise,
-      &Oscillator::RenderVowel,
-
-      &Oscillator::RenderPolyBlepWave, // saw
-      &Oscillator::RenderPolyBlepWave, //pwm
-      &Oscillator::RenderPolyBlepWave, // csaw
-
-      &Oscillator::RenderInterpolatedWavetable,
+      &Oscillator::RenderSimpleWavetable,     // OLD_SAW
+      &Oscillator::RenderQuadSawPad,          // QUAD_PWM
+      &Oscillator::RenderFm,                  // FM_FB
+      &Oscillator::RenderPolyBlepWave,        // POLYBLEP_CSAW
+      &Oscillator::RenderVowel,               // VOWEL_2
   };
+
+  static constexpr uint8_t kNumRenderFns = sizeof(fn_table) / sizeof(fn_table[0]);
+
+  static_assert(kNumRenderFns ==
+                    WAVEFORM_LAST - (WAVEFORM_WAVEQUENCE - WAVEFORM_WAVETABLE_1),
+                "fn_table must cover every shape, with the wavetable block "
+                "collapsed to one slot");
+  static_assert(WAVEFORM_POLYBLEP_SAW == 1 && WAVEFORM_POLYBLEP_PWM == 2 &&
+                    WAVEFORM_TRIANGLE == 3 && WAVEFORM_SINE == 4,
+                "fn_table's low entries assume this OscillatorAlgorithm order");
 
 
   DISALLOW_COPY_AND_ASSIGN(Oscillator);
