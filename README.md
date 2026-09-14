@@ -1,5 +1,56 @@
-# Ambika
-## A hybrid MIDI polysynth and voicecard host.
+# KZ Ambika Live
+
+The single source repository for Carey's KZ Ambika firmware, incorporating the
+preserved local KZ work and controller stabilization on AVR GCC 9.5.0.
+
+**Current release: v1.3 (2026-09-14)** — a stability milestone, not a feature
+release. Download [AMBIKA.BIN](KZ-firmware_builds/release-v1.3-2026-09-14/AMBIKA.BIN):
+flash **51,924 bytes**, static SRAM **3,826 bytes**. Voice-card firmware is
+unchanged at v1.1 and does not need reflashing.
+
+Earlier KZ units report v1.2 on the OS information page; v1.3 is the first
+published build on the modern AVR GCC 9 toolchain, with the preferences-page
+memory corruption fixed.
+
+- [Release notes and installation](KZ-firmware_builds/release-v1.3-2026-09-14/README.md)
+- [Baseline, hardware sign-off and limits](docs/STABLE_BASELINE.md)
+- [Current handover and improvement plan](docs/KZ_AMBIKA_CODEX_HANDOVER.md)
+- [Repository history and consolidation](docs/REPOSITORY_CONSOLIDATION.md)
+- [DIAG3 memory-diagnostic image](KZ-firmware_builds/diagnostic-2026-09-14-diag3/README.md)
+
+## Install
+
+Copy `AMBIKA.BIN` to the SD card root, then either use **Library -> more ->
+Firmware update**, or power off and hold **S8** (rightmost button) while powering
+on. Keep a backup of your working firmware first.
+
+## Build
+
+Use Python 3, GNU Make, AVR GCC/avr-libc and AVR binutils. Put the AVR executables
+on PATH. The recorded build uses GCC 9.5.0 and binutils 2.46.0.20260210; other
+versions require their own size and behavior checks. The modified `avrlib/` is
+included directly; no submodule checkout or resource regeneration is needed.
+
+```sh
+python3 tests/run_controller_ui_tests.py --sanitizers undefined
+python3 scripts/build_controller.py --variant release /tmp/kz-controller-build
+```
+
+Pass `--variant diagnostic` for the DIAG3 memory-instrumented image instead. That
+image boots straight to a RAM/stack screen and replaces the firmware-update page,
+so it can only be reflashed with the hold-S8 method.
+
+The output directory must be new. The script builds in a fresh temporary directory,
+checks flash <61,440 and static SRAM <3,968, and packages BIN/HEX/ELF, a map, build
+log and exact source manifest. The test command needs a host C++ compiler
+(`clang++` by default, or `CXX`). It tests UI logic, not AVR interrupt timing.
+
+`common/features.h` controls optional features and modifications; record its
+configuration for every build. Do not treat old files in the ignored `build/`
+directory as freshly built firmware.
+
+## About Ambika
+A hybrid MIDI polysynth and voicecard host.
 
 Ambika consists of a compact motherboard serving as a "host" for up to 6 sound synthesis voicecard. While this design is primarily intended to be a flexible hybrid polysynth, it could also be used as a drum module/drum machine.
 
@@ -13,51 +64,3 @@ The firmware is released under a GPL3.0 license. It includes a variant of the fo
 
 The PCB layouts and schematics, documentation, analyses, simulations and 3D models are released under a Creative Commons cc-by-sa 3.0 license.
 
-# Build
-
-You'll need:
-- make
-- gcc-avr
-- avr-libc
-- avrdude
-- python
-
-On Ubuntu:
-```
-    sudo apt-get install gcc-avr make avr-libc
-```
-
-Next, you'll need to grab the projects this repo depends on.
-```
-    git submodule update --init
-```
-
-Once you've got that all settled, you'll need to change the path to `avr-gcc` in avrlib/makefile.mk
-to match the path on your system.
-
-```
-    export AVRPATH=`which avr-gcc`
-    sed "s|AVRLIB_TOOLS_PATH ?=.*|AVRLIB_TOOLS_PATH \?= `dirname $AVRPATH`/|" avrlib/makefile.mk > mkfiletmp
-    mv mkfiletmp avrlib/makefile.mk
-```
-
-Then, for voice card `elf` files:
-
-```
-    make all
-```
-
-And for voice card `bin` files:
-```
-    make bin
-```
-
-For motherboard `elf` files:
-```
-    make bootstrap_controller
-```
-
-For motherboard `bin` files:
-```
-    make -f controller/makefile bin
-```
