@@ -48,6 +48,38 @@ authority is `voicecard/bootloader/makefile`, which links the bootloader at
 HFUSE `0xde` (BOOTSZ = 11). The controller's 61,440 is correct by the same rule:
 its bootloader is linked at `0xf000`.
 
+### Why the GCC 9 build is 30,220 when the shipped v1.1 image is 26,160
+
+Carey noticed the 4,060-byte gap before flashing. Investigated September 14, 2026;
+it is accounted for, and none of it is unexplained bloat.
+
+**The data is the same.** Probing the shipped `ambika_voicecard_v1.1.bin` for byte
+sequences taken from our build's symbols: `wav_res_waves` (10,320),
+`wav_res_wavetables` (288) and `lut_res_vca_linearization` (512) are all present
+verbatim. Only `lut_res_oscillator_increments` (1,536) differs. Both images carry
+roughly 19 KB of identical PROGMEM tables, so the whole difference is **code**:
+about 11 KB in ours against about 7 KB in v1.1.
+
+**Where the code difference comes from:**
+
+| Cause | Bytes |
+|---|---:|
+| `-O2` instead of `-Os` | **1,476** (measured: 30,220 vs 28,744) |
+| GCC 9 codegen and the MachFour refactor | ~2,600 (remainder) |
+
+`voicecard/makefile` sets `OPTIMISATION_LEVEL = -O2`, deliberately overriding the
+`-Os` that `avrlib/makefile.mk` defaults to. That is a reasonable choice for the
+real-time half of the synth, and the controller does not do it.
+
+**This is a live flash/CPU lever for v2, worth 1,476 bytes.** Do not simply flip
+it: the voice card is the CPU-critical half and `-Os` may be slower in exactly
+the inner loops that matter. Measure it in Phase 1 alongside the cycle budget —
+if `-Os` costs nothing measurable at 39.2 kHz, it is 1.5 KB for free.
+
+Note also that a size difference is not evidence of malfunction. The documented
+hazard is a *silent* card from code generation, which size does not predict in
+either direction. Only the hardware test settles that.
+
 Reclaimable, by symbol:
 
 | Table | Bytes | Used by |
