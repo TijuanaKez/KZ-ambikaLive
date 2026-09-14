@@ -826,6 +826,30 @@ proper protocol extension is feasible.
 
 ------------------------------------------------------------------------
 
+# Voice card v2 --- the first deliberate break with Ambika compatibility
+
+Planned September 14, 2026. See **`VOICECARD_V2_PLAN.md`** for the full
+architecture plan; it supersedes the sketch below for anything oscillator- or
+firmware-related. Headlines:
+
+-   `master` stays the compatible v1 line. v2 work lives on `v2-voicecard`.
+    Tag `v1.4` before starting, and that tag is the way back.
+-   The voice card has **1,524 bytes of flash free** out of 31,744. Removing the
+    wavetable and bandlimited-zone tables reclaims about **15,700**, which is
+    what makes new oscillator types possible at all.
+-   The binding constraint is CPU, not flash: **510 cycles per sample** at
+    39.2 kHz, and it has not been measured yet. `TIMING_CODE` in `voicecard.cc`
+    already has the instrumentation. Measure before designing.
+-   SRAM: 1,072 of 2,048 used, **976 free**. This decides whether a
+    Karplus-Strong delay line is possible, and therefore whether the signal path
+    can widen from its current 8 bits.
+-   BRAIDS is STM32/32-bit; no code ports. The portable part is which algorithms
+    earn their cycles. Proposed starting set: detuned multi-saw, hard sync,
+    wavefolding, plucked string.
+-   Old patches convert in firmware on load, keyed off a new RIFF structure ID.
+
+------------------------------------------------------------------------
+
 # FUTURE PROJECT --- Voice Card Hardware
 
 Do **not** begin this until the existing Ambika hardware/firmware has

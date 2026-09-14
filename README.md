@@ -16,6 +16,7 @@ memory corruption fixed.
 - [Baseline, hardware sign-off and limits](docs/STABLE_BASELINE.md)
 - [Current handover and improvement plan](docs/KZ_AMBIKA_CODEX_HANDOVER.md)
 - [Repository history and consolidation](docs/REPOSITORY_CONSOLIDATION.md)
+- [Voice card v2 architecture plan](docs/VOICECARD_V2_PLAN.md) (breaking; not started)
 - [DIAG3 memory-diagnostic image](KZ-firmware_builds/diagnostic-2026-09-14-diag3/README.md)
 
 ## Install
