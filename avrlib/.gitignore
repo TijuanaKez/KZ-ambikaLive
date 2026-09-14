@@ -6,7 +6,6 @@
 *.b#?
 
 # Gerber files
-*.CUT
 *.GBL
 *.GBO
 *.GBS
@@ -25,12 +24,8 @@
 *.log
 *.aux
 
+# Build directory
+build/
+
 # OS X crap
 .DS_Stor?
-
-# Local compiler output. Reviewed firmware packages live in KZ-firmware_builds.
-/build/
-__pycache__/
-
-# Keep the build evidence shipped with reviewed firmware packages.
-!/KZ-firmware_builds/**/build.log
