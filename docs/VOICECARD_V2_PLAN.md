@@ -96,18 +96,81 @@ algorithms are possible at all (see §5).
 
 ---
 
+## 4a. Primary source: Emilie on the 8-bit engine
+
+Recovered September 14, 2026 from the Wayback Machine, since both the Mutable
+Instruments forum and its later mirror are gone. Thread *"Aliasing and noise"*,
+January 2013, archived at
+`web.archive.org/web/20130529002853/http://www.mutable-instruments.net/forum/discussion/2443/aliasing-and-noise`.
+
+A user measured aliasing and noise **up to -40 dB** on the analog waveforms and
+worked out that 8-bit gives only 48 dB of dynamic range. Emilie replied:
+
+> "The internal precision for all audio rendering is 8-bit ; so there will always
+> be quantization noise at -48dB."
+
+and, on band-limiting:
+
+> "Doing proper band-limited synthesis (minblep & co) is out of reach for the kind
+> of cheap MCU used for Ambika. To generate a band-limited sawtooth or square,
+> Ambika/Shruthi use wavetables. The higher the note you play, the simpler the
+> waveform used... we use a simpler wavetable with 6 waveforms having different
+> levels of harmonics (from sawtooth to sine); and crossfading is used... On the
+> Shruthi/Ambika, a zone is 16 notes large. The main implication is that a
+> trade-off has to be found for the point near the crossfade point. If you play
+> conservatively so that no aliasing occurs at the crossfade point, you loose 30%
+> of the higher harmonics at the non-crossfaded points. If you play aggressively
+> so that the non-crossfaded points are maximally bright, you get very audible
+> aliasing at the crossfade point. **The trade-off I have decided on is closer to
+> the aggressive solution.**"
+
+The 16-note zone matches `U8Swap4(note)` in `RenderSimpleWavetable` exactly.
+
+**Three things follow, and the second reverses an earlier recommendation.**
+
+1. There is **no evidence Emilie ever decided that 12-bit would be inaudible**.
+   She states 8-bit as a constraint of the engine, not as a considered choice
+   about audibility. The 8-bit engine is inherited from the Shruthi, whose output
+   was natively 8-bit PWM; Ambika's technical notes say the 12-bit DAC was added
+   to stop the filter self-oscillation interacting with the 39 kHz PWM carrier,
+   not to gain resolution.
+2. **Aliasing measured at -40 dB sits roughly 8 dB *above* the -48 dB
+   quantization floor.** An earlier draft of this plan argued the opposite — that
+   the 8-bit noise floor would mask any improvement in band-limiting. That was
+   wrong, and Emilie's own trade-off statement says why: the zone crossfade was
+   deliberately tuned bright, accepting audible aliasing. **Better oscillator
+   maths is therefore the bigger lever, and the signal path the smaller one.**
+   Reverse the priority in §4 and §6b accordingly.
+3. **Emilie's "out of reach" assessment is dated.** polyBLEP is substantially
+   cheaper than minBLEP, and YAM shipped working polyBLEP renderers for this
+   exact hardware — they are in this tree, merely unreachable (§6c). The
+   documented complaint in that thread is precisely the zone-crossfade artefact
+   that shapes 1 and 2 still render through today.
+
+She also ruled out variable-clock-rate synthesis, in detail, for reasons that
+still hold: it cannot sum several oscillators into one DAC, the ATmega328p has
+only one 16-bit timer, and DMA-to-SPI-DAC is impractical. Do not re-propose it.
+
+---
+
 ## 4. The signal path question, worth settling early
 
 The DAC is 12-bit. The engine is **8-bit**: `audio_data_type` is `uint8_t` and
 the ISR does `sample * 16` to fill the 12-bit word. Four bits of the converter
 are being thrown away, for a noise floor around 48 dB before the analog filter.
 
-Moving the internal path to 12- or 16-bit is a genuine quality improvement that
-needs **no hardware change**. It costs:
+**Read §4a first — it downgrades this from the main lever to a secondary one.**
+Measured aliasing (-40 dB) is above the quantization floor (-48 dB), so fixing
+the band-limiting is worth more than widening the path. This section stands, but
+it is no longer the first thing to spend cycles on.
+
+Moving the internal path to 12- or 16-bit needs **no hardware change**. It costs:
 
 - RAM: the 128-sample ring buffer doubles, +128 bytes of the 976 free.
-- CPU: every oscillator's inner loop widens from 8-bit to 16-bit math, which on
-  an 8-bit AVR is roughly a doubling of the arithmetic in the hottest code.
+- CPU: every oscillator's inner loop widens from 8-bit to 16-bit math. On an
+  8-bit AVR that means multi-byte arithmetic throughout the hottest code, which
+  is very likely what exhausts the 510-cycle budget. This, rather than any
+  judgement about audibility, is the real reason the engine is 8-bit.
 
 That CPU cost is almost certainly the deciding factor, and it trades directly
 against how many new oscillator types fit. **Decide this before writing new
@@ -400,16 +463,18 @@ Candidates, cheapest first:
   naive ramp, then differentiate — but differentiation amplifies quantisation
   noise, so it is precision-hungry. Only viable if the signal path widens (§4).
 
-**The honest caveat, which may matter more than any of the above.** At 8-bit
-output the noise floor is about 48 dB, and that is almost certainly above the
-aliasing residue of the *existing* first-order polyBLEP. Improving the
-band-limiting order may therefore be inaudible while the path stays 8-bit.
+**Corrected by §4a.** An earlier draft argued that the 8-bit noise floor would
+mask any band-limiting improvement, making the signal path the bigger lever. The
+archived forum measurement says otherwise: aliasing at **-40 dB** against a
+quantization floor at **-48 dB**. The aliasing is the louder defect, by about
+8 dB, and Emilie tuned the zone crossfade bright on purpose.
 
-If "better basic waveforms" is the goal, **the signal path (§4) is probably the
-bigger lever than the oscillator maths.** Test this early and cheaply: render the
-current polyBLEP saw at 12-bit into the DAC and compare by ear against the same
-saw at 8-bit. That one experiment decides both §4 and how much polishing the
-oscillator algorithms deserve.
+So the order is: **fix the dispatch (§6c) first**, which moves shapes 1 and 2 —
+57% of Carey's oscillators — off the zone-crossfade wavetables and onto the
+polyBLEP renderers that are already written and already in the binary. That is
+the single cheapest available improvement to the basic waveforms, and it targets
+the exact artefact documented in that thread. Only then consider polyBLAMP, EPTR
+and the signal path.
 
 **Phase 0 — close out v1.** Confirm the deferred-load build on hardware, tag
 `v1.4`, cut the `v2-voicecard` branch. (§1)
