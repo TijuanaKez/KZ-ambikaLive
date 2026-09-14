@@ -348,7 +348,9 @@ void Library::UpdateScreen() {
   if (action_ == LIBRARY_ACTION_BROWSE) {
     buffer = display.line_buffer(1) + 1;
     if (more_) {
-#ifdef DISABLE_CARD_INFO_PAGE
+#ifdef DIAGNOSTIC_BUILD
+      strncpy_P(&buffer[0], PSTR("pref|~ini|DIAG3               more|exit"), 39);
+#elif defined(DISABLE_CARD_INFO_PAGE)
       strncpy_P(&buffer[0], PSTR("pref|~ini|Firmware update     more|exit"), 39);
 #else
       strncpy_P(&buffer[0], PSTR("pref|~ini|OS  |card           more|exit"), 39);

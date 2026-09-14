@@ -25,11 +25,52 @@
 #include "avrlib/watchdog_timer.h"
 
 #include "controller/display.h"
+#include "controller/diagnostics.h"
 #include "controller/leds.h"
 #include "controller/multi.h"
 #include "controller/storage.h"
 
 namespace ambika {
+
+#ifdef DIAGNOSTIC_BUILD
+
+// In diagnostic images this page only reads SRAM. Avoid SD scanning and
+// voicecard transactions while observing a possible memory fault.
+void OsInfoPage::OnInit(PageInfo* info) {
+  UiPage::OnInit(info);
+}
+
+uint8_t OsInfoPage::OnIncrement(int8_t increment) {
+  IGNORE_UNUSED(increment);
+  return 1;
+}
+
+uint8_t OsInfoPage::OnKey(uint8_t key) {
+  if (key == SWITCH_8) ui.ShowPreviousPage();
+  return 1;
+}
+
+void OsInfoPage::UpdateScreen() {
+  char* buffer = display.line_buffer(0);
+  memcpy_P(buffer, PSTR("KZ DIAG3 RAM "), 13);
+  UnsafeItoa<int16_t>(FreeSram(), 5, &buffer[13]);
+  AlignRight(&buffer[13], 5);
+  memcpy_P(&buffer[21], PSTR("LOW "), 4);
+  UnsafeItoa<int16_t>(UntouchedSram(), 5, &buffer[25]);
+  AlignRight(&buffer[25], 5);
+  buffer = display.line_buffer(1);
+  memcpy_P(buffer, PSTR("RST "), 4);
+  buffer[4] = NibbleToAscii(highNibble(ResetCause()));
+  buffer[5] = NibbleToAscii(lowNibble(ResetCause()));
+  memcpy_P(&buffer[9], PSTR("LOW=untouched bytes"), 19);
+  memcpy_P(&buffer[36], PSTR("exit"), 4);
+}
+
+void OsInfoPage::UpdateLeds() {
+  leds.set_pixel(LED_8, 0xf0);
+}
+
+#else
 
 /* static */
 uint8_t OsInfoPage::found_firmware_files_;
@@ -169,5 +210,7 @@ void OsInfoPage::UpdateLeds() {
     leds.set_pixel(LED_4, 0x0f);
   }
 }
+
+#endif  // DIAGNOSTIC_BUILD
 
 }  // namespace ambika

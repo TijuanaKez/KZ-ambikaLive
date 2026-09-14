@@ -20,6 +20,7 @@
 #include "avrlib/serial.h"
 #include "avrlib/watchdog_timer.h"
 
+#include "controller/diagnostics.h"
 #include "controller/midi_dispatcher.h"
 #include "controller/multi.h"
 #include "controller/resources.h"
@@ -87,6 +88,10 @@ ISR(TIMER2_OVF_vect) {
 }
 
 void Init() {
+#ifdef DIAGNOSTIC_BUILD
+  cli();
+  InitDiagnostics();
+#endif
   sei();
   UCSR0B = 0;
   UCSR1B = 0;
@@ -119,6 +124,9 @@ void Init() {
 
 int main() {
   Init();
+#ifdef DIAGNOSTIC_BUILD
+  ui.ShowPage(PAGE_OS_INFO);
+#endif
   ui.FlushEvents();
   while (1) {
     // Do some MIDI.
