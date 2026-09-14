@@ -856,7 +856,14 @@ firmware-related. Headlines:
 -   BRAIDS is STM32/32-bit; no code ports. The portable part is which algorithms
     earn their cycles. Proposed starting set: detuned multi-saw, hard sync,
     wavefolding, plucked string.
--   Old patches convert in firmware on load, keyed off a new RIFF structure ID.
+-   Carey's rule: surviving oscillators keep their enum positions, so most
+    patches need no conversion at all. Only the dead wavetable slots move.
+-   **Live bug found September 14, 2026:** the voice card's oscillator dispatch
+    table came from MachFour and is indexed for the *original* Ambika enum, while
+    `common/patch.h` carries YAM's. Shapes 1 and 2 render the bandlimited saw and
+    PWM rather than polyBLEP, shapes 21-42 mostly render near-silence, and
+    `RenderInterpolatedWavetable` is unreachable. See §6c of the v2 plan. It is
+    not fixed in v1.4 because the fix changes how existing patches sound.
 
 ------------------------------------------------------------------------
 

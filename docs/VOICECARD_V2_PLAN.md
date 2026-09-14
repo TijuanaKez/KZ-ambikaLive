@@ -277,6 +277,103 @@ back to.
 
 ---
 
+## 6c. The oscillator dispatch table is misaligned with the enum
+
+Found September 14, 2026 while surveying Carey's library. **This is a live bug in
+v1.4, not a v2 concern, and it changes what the wavetable removal actually costs.**
+
+`common/patch.h` carries the **YAM** enum: `WAVEFORM_POLYBLEP_SAW = 1`,
+`POLYBLEP_PWM = 2`, `WAVETABLE_1 = 21`, `POLYBLEP_CSAW = 41`, `LAST = 43`
+(verified by compiling, not by reading).
+
+`voicecard/oscillator.h` carries **MachFour's** table and dispatch, written for
+the *original* Ambika enum where `SAW = 1`, `SQUARE = 2`, the polyBLEP shapes sit
+at 21-23 and the wavetables start at 24. Its 25-entry `fn_table` is in that order,
+and its dispatch is
+
+```cpp
+uint8_t index = new_shape >= WAVEFORM_WAVETABLE_1 ? WAVEFORM_WAVETABLE_1 : new_shape;
+```
+
+which is correct in MachFour's world, where the wavetables are last. YAM's
+equivalent has a second branch that MachFour's does not need and this tree lost:
+
+```cpp
+shape_ >= WAVEFORM_WAVETABLE_1
+  ? (shape_ <= WAVEFORM_WAVEQUENCE ? WAVEFORM_WAVETABLE_1
+                                   : shape_ - WAVEFORM_WAVEQUENCE + WAVEFORM_WAVETABLE_1)
+  : shape_
+```
+
+**Consequences in the shipped firmware:**
+
+| Patch byte | Enum name | What actually renders |
+|---:|---|---|
+| 1 | `POLYBLEP_SAW` | `RenderSimpleWavetable` — the *bandlimited* saw, not polyBLEP |
+| 2 | `POLYBLEP_PWM` | `RenderBandlimitedPwm` (or SimpleWavetable at parameter 0) |
+| 3, 4 | `TRIANGLE`, `SINE` | correct |
+| 5-20 | CZ family, quad saw, FM, 8bitland, dirty PWM, noise, vowel | correct |
+| 21-36 | `WAVETABLE_1..16` | `RenderPolyBlepWave`, inner switch unmatched |
+| 37 | `WAVEQUENCE` | correct — explicitly special-cased |
+| 38-40, 42 | `OLD_SAW`, `QUAD_PWM`, `FM_FB`, `VOWEL_2` | `RenderPolyBlepWave`, unmatched |
+| 41 | `POLYBLEP_CSAW` | correct, by luck — the inner switch has a case for it |
+
+For an unmatched shape the inner switch sets `next_sample = 0` for every sample
+below MIDI note 108, leaving only the polyBLEP correction impulses at each phase
+reset. **Those shapes should therefore sound near-silent or like a thin buzz**,
+becoming a naive saw above note 107 where `use_simple_saw` takes over.
+
+`RenderInterpolatedWavetable` at `fn_table[24]` is **unreachable**. It stays in
+the binary at 406 bytes only because its address is in the table.
+
+### Why this matters for the plan
+
+1. **Removing the wavetables costs less than §2 assumed.** They already do not
+   render. Nothing that currently works is lost.
+2. **`wav_res_waves` is only reachable through `RenderWavequence`.** To free the
+   full 10,320 bytes, wavequence has to go too — it is the one shape in that
+   range that still works.
+3. **Two of the three polyBLEP renderers are dead code** while the shapes that
+   should reach them are served by the bandlimited tables instead. The "improved
+   basic waveforms" work in §6b starts by *fixing the dispatch*, which may itself
+   be an audible improvement for free — shapes 1 and 2 are 57% of Carey's
+   oscillators.
+4. **Fixing it changes how existing patches sound.** Shapes 1 and 2 become true
+   polyBLEP (cleaner); shapes 21-42 start rendering as something audible. That is
+   a deliberate decision, not a silent side effect — see below.
+
+### Carey's library, bank A only (the only bank that matters)
+
+92 programs, 184 oscillators, from `utils/survey_library.py`:
+
+| Share | Shapes |
+|---:|---|
+| 57.1% | `POLYBLEP_SAW` (40.8%) + `POLYBLEP_PWM` (16.3%) — both currently bandlimited, not polyBLEP |
+| 23.4% | sine, triangle, CSAW, quad saw pad, CZ saw, noise, dirty PWM, 8bitland, none |
+| **10.9%** | wavetables and wavequence — 15 of 92 patches (16.3%) touch one |
+
+His 95% estimate was close: **77 of 92 patches need nothing at all.** Of the 15
+that do, all but the two wavequence ones are already broken by the dispatch bug.
+
+Note that Carey built these patches on his own firmware, so the enum *names* in
+the survey are not necessarily what he heard when he made them — the byte values
+are the reliable part. The wavetable patches most likely date from before the
+MachFour merge, when those slots still rendered.
+
+### Recommended resolution
+
+Fix the dispatch in v2 rather than in a v1 patch release, because it changes the
+sound of existing patches and v1.4 is a stability line. Then:
+
+- Shapes 1 and 2 get their real polyBLEP renderers. Expected to be an
+  improvement, and it should be A/B'd before it is called one.
+- The dead wavetable slots (21-37) map to `POLYBLEP_SAW`. Preserving current
+  behaviour is not worth it — current behaviour is near-silence.
+- `OLD_SAW`, `QUAD_PWM`, `FM_FB`, `VOWEL_2` get their correct renderers back,
+  which is what YAM's offset branch was for.
+
+---
+
 ## 6b. Better basic subtractive waveforms — Carey's stated priority
 
 Carey's highest priority is not exotica but **better ordinary saw/square/
@@ -323,6 +420,11 @@ it into this document. Nothing else starts until this exists. (§3)
 
 **Phase 2 — decide the signal path.** 8-bit, dithered 8-bit, or 12/16-bit, using
 the Phase 1 number and the Karplus-Strong RAM question as the test case. (§4, §5)
+
+**Phase 2b — fix the oscillator dispatch.** (§6c) It is a live bug, it makes two
+of the three polyBLEP renderers dead code, and it must be settled before any
+judgement about waveform quality means anything. Do it before Phase 3, since it
+determines what the dead slots should fall back to.
 
 **Phase 3 — remove the wavetables.** Delete the wavetable and bandlimited
 renderers and their tables, reimplement triangle as polyBLEP, and confirm the
