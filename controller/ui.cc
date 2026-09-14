@@ -179,6 +179,15 @@ constexpr PageInfo page_registry[] PROGMEM = {
 #endif
 };
 
+// ShowPage indexes this table directly by UiPageNumber. Feature switches
+// must not remove an entry in the middle and shift all subsequent handlers.
+static_assert([] {
+  for (uint8_t i = 0; i < sizeof(page_registry) / sizeof(page_registry[0]); ++i) {
+    if (page_registry[i].index != i) return false;
+  }
+  return true;
+}(), "Page registry must match UiPageNumber; preserve disabled page slots");
+
 static constexpr uint8_t default_most_recent_page_in_group[9] PROGMEM = {
   PAGE_OSCILLATORS,
   PAGE_FILTER,
@@ -217,7 +226,8 @@ static char line[41];
 /* static */
 void Ui::Init() {
   memset(&state_, 0, sizeof(UiState));
-  memcpy_P(most_recent_page_in_group_, default_most_recent_page_in_group, 8);
+  memcpy_P(most_recent_page_in_group_, default_most_recent_page_in_group,
+           sizeof(most_recent_page_in_group_));
 
   encoder_.Init();
   switches_.Init();
@@ -439,6 +449,9 @@ void Ui::DoEvents() {
 
 /* static */
 void Ui::ShowPage(UiPageNumber page, uint8_t initialize) {
+  if (page >= sizeof(page_registry) / sizeof(page_registry[0])) {
+    return;
+  }
   // Flush the event queue.
   queue_.Flush();
   queue_.Touch();

@@ -109,7 +109,8 @@ uint8_t UiPage::OnKey(uint8_t key) {
     return 1;
   }
   
-  if (info_->index == PAGE_SYSTEM_SETTINGS) {
+  if (info_->index == PAGE_SYSTEM_SETTINGS ||
+      info_->index == PAGE_SYSTEM_SETTINGS_B) {
     system_settings.Save();
   }
   

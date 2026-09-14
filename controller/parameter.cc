@@ -31,7 +31,7 @@
 
 namespace ambika {
 
-static constexpr uint16_t units_definitions[UNIT_LAST] PROGMEM = {
+static constexpr uint16_t units_definitions[] PROGMEM = {
   0,                  // UNIT_RAW_UINT8
   0,                  // UNIT_UINT8
   0,                  // UNIT_INDEX
@@ -60,6 +60,8 @@ static constexpr uint16_t units_definitions[UNIT_LAST] PROGMEM = {
   0,                  // UNIT_MIDI_CHANNEL
   STR_RES_AMBIKA,     // UNIT_CC_MAP
 };
+static_assert(sizeof(units_definitions) / sizeof(units_definitions[0]) == UNIT_LAST,
+              "Unit table must match Unit enum");
 
 static constexpr char note_names[] PROGMEM = " CC# DD# E FF# GG# AA# B";
 static constexpr char octaves[] PROGMEM = "-0123456789";
@@ -260,7 +262,7 @@ void Parameter::PrintObject(uint8_t part, uint8_t instance, char* buffer, uint8_
     digits[0] = ' ';
     digits[3] = '\0';
     UnsafeItoa<int16_t>(instance + 1, 2, &digits[1]);
-    uint8_t length = strnlen(buffer, width);
+    uint8_t length = avrlib::strnlen(buffer, width);
     for (uint8_t i = 0; i < 3 && length < width; ++i) {
       buffer[length++] = digits[i];
     }
@@ -417,7 +419,7 @@ static const prog_char launchkey_parameter_midi_cc[7] PROGMEM = {
 #endif
 
 
-static constexpr Parameter parameters[kNumParameters] PROGMEM = {
+static constexpr Parameter parameters[] PROGMEM = {
   // Parameters for patch editor.
   
   // Oscillators
@@ -963,6 +965,9 @@ static constexpr Parameter parameters[kNumParameters] PROGMEM = {
     1, 0, 0xff, 0xff,
     STR_RES_LKEY, STR_RES_LAUNCHKEY_SEQ, STR_RES_SYSTEM },
 };
+
+static_assert(sizeof(parameters) / sizeof(parameters[0]) == kNumParameters,
+              "Parameter table must match kNumParameters");
 
 /* static */
 Parameter ParameterManager::cached_definition_;

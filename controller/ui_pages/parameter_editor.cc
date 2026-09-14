@@ -35,14 +35,14 @@ ParameterEditor::SnapMask ParameterEditor::snapped_;
 // TODO code duplication in the three functions below
 /* static */
 uint8_t ParameterEditor::parameter_index(uint8_t control_id) {
+  if (control_id >= kNumParametersPerPage) {
+    return 0xff;
+  }
   uint8_t parameter_id = info_->data[control_id];
   if (parameter_id >= 0xf0 && parameter_id <= 0xf7) {
-    return multi.data().knobAssignment(lowNibble(parameter_id)).parameter;
-  } else if (parameter_id >= 0xf8) {
-    return 0xff;
-  } else {
-    return parameter_id;
+    parameter_id = multi.data().knobAssignment(lowNibble(parameter_id)).parameter;
   }
+  return parameter_id < kNumParameters ? parameter_id : 0xff;
 }
 
 /* static */
@@ -121,6 +121,21 @@ uint8_t ParameterEditor::OnIncrement(int8_t increment) {
 }
 
 /* static */
+uint8_t ParameterEditor::OnClick() {
+  if (active_control_ >= 0 && active_control_ < kNumParametersPerPage) {
+    uint8_t control = info_->data[active_control_];
+    if (control == 0xf8 || control == 0xf9) {
+      ui.ShowPage(info_->next_page);
+      return 1;
+    }
+    if (parameter_index(active_control_) != 0xff) {
+      return UiPage::OnClick();
+    }
+  }
+  return 1;
+}
+
+/* static */
 bool ParameterEditor::OnIncrementAndCycle(int8_t parameter_index, int8_t part) {
   const Parameter& parameter = parameter_manager.parameter(parameter_index);
   bool isLastPage = false;
@@ -135,6 +150,20 @@ bool ParameterEditor::OnIncrementAndCycle(int8_t parameter_index, int8_t part) {
 
 /* static */
 uint8_t ParameterEditor::OnPot(uint8_t index, uint8_t value) {
+  if (index >= kNumParametersPerPage) {
+    return 1;
+  }
+  uint8_t control = info_->data[index];
+  if (control == 0xf8 || control == 0xf9) {
+    // The navigation knob selects a page; it must never index a Parameter.
+    // Separate thresholds keep continued movement/noise from toggling back
+    // immediately after ShowPage. Page identity supplies the hysteresis state.
+    if ((control == 0xf8 && value >= 80) ||
+        (control == 0xf9 && value <= 47)) {
+      ui.ShowPage(info_->next_page);
+    }
+    return 1;
+  }
   uint8_t parameter_id = parameter_index(index);
   if (parameter_id == 0xff) {
     return 1;
@@ -202,10 +231,10 @@ void ParameterEditor::UpdateScreen() {
     if ((row + 10) != kLcdWidth) {
       buffer[10] = kDelimiter;
     }
-    if (parameter_id == 0xf8) {
+    if (info_->data[i] == 0xf8) {
     // KEZ mod ->more
       strncpy_P(&buffer[4], PSTR("more->"), 6);
-    } else if (parameter_id == 0xf9) {
+    } else if (info_->data[i] == 0xf9) {
     // KEZ mod <-back
       strncpy_P(&buffer[4], PSTR("<-back"), 6);
     } else if (parameter_id != 0xff) {

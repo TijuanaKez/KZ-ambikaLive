@@ -23,11 +23,12 @@
 #include "avrlib/base.h"
 
 #include <avr/pgmspace.h>
+#include <stddef.h>
 
 namespace ambika {
 
 // KZ MOD
-enum CCMap {
+enum CCMap : uint8_t {
   CCMAP_AMBIKA,
   CCMAP_SHRUTHI_XT,
   CCMAP_LAUNCHKEY,
@@ -118,6 +119,13 @@ public:
     return data.params.checksum;
   }
 };
+
+static_assert(sizeof(SystemSettingsData::Parameters) == 16,
+              "Preserve the 16-byte EEPROM settings record");
+static_assert(offsetof(SystemSettingsData::Parameters, midi_cc_map) == PRM_SYSTEM_CC_MAP &&
+              offsetof(SystemSettingsData::Parameters, launchkey_mode) == PRM_SYSTEM_LAUNCHKEY_MODE &&
+              offsetof(SystemSettingsData::Parameters, checksum) == 15,
+              "Settings parameter IDs must match stored byte offsets");
 
 class SystemSettings {
  public:
