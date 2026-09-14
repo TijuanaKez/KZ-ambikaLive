@@ -21,7 +21,9 @@
   specifically intended. LOW reached 23 bytes in DIAG2; keep runtime stack
   headroom in the improvement budget even though Carey signed off stability.
 - Controller flash must be <61,440 bytes; static SRAM must be <3,968 bytes.
-  Voice-card flash must be <31,744 bytes. Preserve enum/table bounds, settings
+  Voice-card flash must be <32,256 bytes. Both flash limits are the bootloader's
+  linked address in its own makefile (`--section-start=.text`), 0xf000 and
+  0x7e00; do not carry over guessed bootloader sizes. Preserve enum/table bounds, settings
   layout and `common/features.h` choices; inspect their consumers before editing.
 - `avrlib/` is intentionally vendored from the exact tested local tree. Do not
   replace it with the obsolete submodule version. Original dependency revisions
@@ -39,7 +41,7 @@
   could produce a silent card. Never ship a compiled voicecard BIN in a release
   until one has been tested on a single card.
 - `scripts/build_firmware.py --target {controller,voicecard}` builds either half
-  and enforces that half's limits. Voice card: flash <31,744, static SRAM <1,920.
+  and enforces that half's limits. Voice card: flash <32,256, static SRAM <1,920.
 - Claude Code (Opus 5) completed the v1.3 consolidation and release on
   2026-09-14 while Codex was rate-limited; those commits are marked
   `Co-Authored-By: Claude Opus 5`. Either agent may work here.

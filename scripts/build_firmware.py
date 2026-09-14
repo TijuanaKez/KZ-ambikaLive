@@ -24,8 +24,12 @@ import subprocess
 import tarfile
 import tempfile
 
-# Flash limits are the device size less its bootloader. SRAM limits reserve a
-# stack margin, per Pichenettes' original build guidance.
+# Flash limits are the address the bootloader is linked at, taken from each
+# bootloader makefile's --section-start=.text, which is the authority:
+#   controller/bootloader/makefile  0xf000 = 61440  (ATmega644P, 4 KB boot)
+#   voicecard/bootloader/makefile   0x7e00 = 32256  (ATmega328P, 512 B boot,
+#                                                    HFUSE 0xde -> BOOTSZ 11)
+# SRAM limits reserve a stack margin, per Pichenettes' original build guidance.
 TARGETS = {
     "controller": {
         "makefile": "controller/makefile",
@@ -53,7 +57,7 @@ TARGETS = {
     "voicecard": {
         "makefile": "voicecard/makefile",
         "target_dir": "ambika_voicecard",
-        "max_flash": 31744,
+        "max_flash": 32256,
         "max_sram": 1920,
         "total_sram": 2048,
         "variants": {

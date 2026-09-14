@@ -245,7 +245,10 @@ Historical notes say the original environment required:
 
 Known size constraints:
 
--   Voice-card flash must remain below **31,744 bytes**.
+-   Voice-card flash must remain below **32,256 bytes**. This corrects an earlier
+    31,744 in these notes, which assumed a 1 KB bootloader. The voice card
+    bootloader is linked at `0x7e00` and its makefile states it must fit 512
+    bytes, matching HFUSE `0xde` (BOOTSZ 11). Verified September 14, 2026.
 -   Motherboard/controller flash must remain below **61,440 bytes**.
 -   Controller RAM target: below **3,968 bytes** (4096 minus 128 bytes
     historical stack margin).

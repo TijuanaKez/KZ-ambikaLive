@@ -37,10 +37,16 @@ Measured from the linked ELF of the current voice card build (AVR GCC 9.5.0):
 | | Bytes |
 |---|---:|
 | Voice card flash in use | **30,220** |
-| Limit (32,768 less the 1,024-byte bootloader) | 31,744 |
-| **Free today** | **1,524** |
+| Limit (0x7e00, where the bootloader is linked) | 32,256 |
+| **Free today** | **2,036** |
 
-That 1,524 bytes is why this has to happen before anything else can.
+That 2,036 bytes is why this has to happen before anything else can.
+
+The limit was previously recorded as 31,744, assuming a 1 KB bootloader. The
+authority is `voicecard/bootloader/makefile`, which links the bootloader at
+`--section-start=.text=0x7e00` and states it must fit within 512 bytes, matching
+HFUSE `0xde` (BOOTSZ = 11). The controller's 61,440 is correct by the same rule:
+its bootloader is linked at `0xf000`.
 
 Reclaimable, by symbol:
 
@@ -269,9 +275,17 @@ iterative wavefolder with bias, symmetry and 1-6 fold stages.
 
 1. **He kept the wavetables.** `WAV_RES_WAVES_SIZE 10320` is still in his
    `resources.h`, and his log contains *"Bump to Carcosa v2.04, fix flash
-   overflow"*. He was adding three engines to a firmware that already had
-   1.5 KB free. We delete 15.7 KB **first** — that is the space he never had, and
+   overflow"*. He was adding three engines to a firmware that already had only
+   2 KB free. We delete 15.7 KB **first** — that is the space he never had, and
    it is the main reason to keep Phase 3 ahead of Phase 4.
+
+   His shipped image on Carey's SD card, `CARCOSA/VOICE1.BIN`, is 32,062 bytes.
+   That **does** fit under 32,256, with 194 bytes to spare — an earlier note here
+   claimed it was too large, which was wrong and came from the incorrect 31,744
+   limit. So flash size alone does not explain why his binaries would not load;
+   the CPU cost in (2) and the pitch clamp in (3) remain the better explanations.
+   Worth remembering that 194 bytes is no margin at all for a firmware doing
+   per-sample 32-bit arithmetic.
 2. **`int32_t` arithmetic in per-sample loops.** 8 occurrences in `karplus.h`,
    4 in `fm4op.h`, 3 in `westcoast.h`, including
    `(static_cast<int32_t>(avg - lp_state_) * lp_cutoff) >> 8` inside the KS inner
