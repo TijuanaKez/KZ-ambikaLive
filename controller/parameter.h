@@ -57,6 +57,7 @@ enum Unit : uint8_t {
   UNIT_MIDI_OUT_MODE,
   UNIT_MIDI_CHANNEL,
   UNIT_CC_MAP,
+  UNIT_TIME_MS,  // KZ MOD: stored in units of 10 ms, displayed in ms
   UNIT_LAST
 };
 
@@ -113,7 +114,7 @@ struct Parameter {
 };
 
 // counts parameters in Patch.h
-constexpr uint8_t kNumParameters = 77; // KZ MOD: 2 Extra system parameters
+constexpr uint8_t kNumParameters = 78; // KZ MOD: 3 Extra system parameters
 
 // The parameter manager is the class who knows how to apply a parameter change
 // for each specific object type.

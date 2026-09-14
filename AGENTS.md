@@ -33,6 +33,8 @@
 - Diagnostics replace the application's firmware-update page in DIAG2/DIAG3.
   Controller updating remains available through the unchanged bootloader:
   SD-root `AMBIKA.BIN`, hold S8/rightmost button at power-on.
+- v1.4 is in progress on master and has NOT been run on hardware. Do not tag or
+  publish it until Carey reports results; v1.3 remains the published release.
 - Claude Code (Opus 5) completed the v1.3 consolidation and release on
   2026-09-14 while Codex was rate-limited; those commits are marked
   `Co-Authored-By: Claude Opus 5`. Either agent may work here.

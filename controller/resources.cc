@@ -397,6 +397,13 @@ static const char str_res_chandradeep[] PROGMEM = "chandradeep";
 static const char str_res_kaushik_todi[] PROGMEM = "kaushik todi";
 static const char str_res_jogeshwari[] PROGMEM = "jogeshwari";
 static const char str_res_rasia[] PROGMEM = "rasia";
+// KZ MOD: appended by hand rather than regenerated. Resource generation
+// needs numpy and would rewrite every wavetable and lookup table, which is
+// not acceptable on a stability baseline. controller/resources/strings.py
+// carries the same two entries in the same order, so a future regeneration
+// reproduces these indices.
+static const char str_res_ldly[] PROGMEM = "ldly";
+static const char str_res_load_delay[] PROGMEM = "load delay";
 
 
 const char* const string_table[] PROGMEM = {
@@ -799,6 +806,8 @@ const char* const string_table[] PROGMEM = {
   str_res_kaushik_todi,
   str_res_jogeshwari,
   str_res_rasia,
+  str_res_ldly,
+  str_res_load_delay,
 };
 
 const uint16_t lut_res_lfo_increments[] PROGMEM = {

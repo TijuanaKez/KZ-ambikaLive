@@ -34,9 +34,10 @@ const uint8_t kNumArpeggiatorPatterns = 30;
 const uint8_t kNumParts = 6;
 const uint8_t kNumVoices = 6;
 
-// KZ MOD: 0x13 is the first published KZ Ambika Live baseline built on the
-// modern AVR GCC 9 toolchain. Displayed as v1.3 on the OS information page.
-const uint8_t kSystemVersion = 0x13;
+// KZ MOD: 0x13 was the first published KZ Ambika Live baseline built on the
+// modern AVR GCC 9 toolchain. 0x14 adds deferred library loading and the
+// working SysEx name query. Displayed as v1.4 on the OS information page.
+const uint8_t kSystemVersion = 0x14;
 
 }  // namespace ambika
 

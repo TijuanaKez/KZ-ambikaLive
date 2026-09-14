@@ -413,4 +413,6 @@ PROGRAM
 MULTI
 ___
 equal
+ldly
+load delay
 """

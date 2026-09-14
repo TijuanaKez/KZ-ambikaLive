@@ -45,6 +45,15 @@ Resume here before following the original phase/work-order text below.
 > rebuilds byte-identically from the renamed script, so Carey's hardware
 > sign-off still applies to the artifact in the repository.
 
+### In progress: v1.4 — deferred library loading
+
+`kSystemVersion` is `0x14` on master. **Built and unit-tested, not yet run on
+hardware.** Test packages are at `KZ-firmware_builds/test-v1.4-2026-09-14/`
+(release) and `.../test-v1.4-2026-09-14-diag/` (memory screen). Flash 52,550,
+static SRAM 3,829, so expect `LOW` near 20 instead of 23 — confirm that first.
+Details in Phase 6.2 and the AU/VST section below. Do not tag or publish v1.4
+until Carey reports hardware results.
+
 ### Release v1.3 — the stability milestone
 
 `kSystemVersion` is now `0x13`, so the OS information page reports **v1.3**.
@@ -561,6 +570,45 @@ Do not delete content before documenting exactly what would be lost.
 Requested by Carey on September 14, 2026 as a low-hanging-fruit candidate
 after firmware stabilization, on the existing hardware.
 
+### Stage 1 implemented, September 14, 2026 (v1.4, awaiting hardware test)
+
+The delayed load is done and **no cache was needed for it**. Measurements that
+shaped this, all verified in source rather than assumed:
+
+- Presets are one file per slot, `/PATCH/BANK/A/000.PAT` and so on, over banks
+  A-Z and slots 0-127, so 3,328 slots per object type.
+- The bottleneck was not name reading. `Library::OnIncrement` ran the full
+  `storage.Load()` on every detent: whole RIFF parse, voice-card parameter push,
+  and a snapshot **write** to the card when the patch had unsaved edits. That is
+  now deferred; scrolling calls `LoadName()`, which skips the object chunks and
+  the snapshot.
+- A RAM cache is impossible: 270 bytes free, one bank of names is 2,048.
+- EEPROM cannot hold one either, and the binding reason is capacity, not write
+  endurance. The stored multi occupies 6 x (PartData 112 + 1 + Patch 84 + 1) +
+  MultiData 56 + 1 = **1,245 bytes** of the 2,048, plus 16 bytes of settings and
+  the firmware flag. About 786 bytes remain, roughly 49 names.
+- The delay is a system setting (`PRM_SYSTEM_BROWSE_LOAD_DELAY`, shown as `ldly`
+  on preferences page B) in units of 10 ms, so it can be tuned on the unit
+  without reflashing. 0 restores the old behaviour and is the default on
+  settings that have not been re-saved.
+- Cost: 3 bytes of static SRAM for the timer, taking the expected `LOW` from 23
+  to about 20. **Confirm on hardware before building anything else here.**
+
+### Stage 2, if Stage 1 is not enough
+
+Only if browsing still feels slow after the deferral. One flat index file per
+bank, `NAMES.IDX`, 128 x 16 bytes, indexed by slot; browsing becomes a seek and
+a 16-byte read. `ffconf.h` sets `_FS_TINY 1`, so FatFs keeps a single shared
+512-byte sector buffer and **32 names live in one sector** — scrolling inside a
+32-slot window would cost no SD reads at all.
+
+Do not add a second persistent `File` object for it: `sizeof(FIL)` is 32 and the
+stack has nothing like that to spare. Reuse `Storage::file_`, which is already
+opened and closed constantly and is not held open while browsing.
+
+Staleness is free to handle: the deferred load opens the real file anyway, so
+compare the name then and correct the entry.
+
 Carey reports that Ambika's sluggish preset browsing comes from accessing
 individual preset files on the SD card as the selection changes. Verify
 and time the current browsing/name-read/full-load paths before designing
@@ -751,6 +799,27 @@ Use the shared preset-name cache planned in Phase 6.2 as the source for
 AU/VST name browsing/synchronization, with full-list retrieval and a way to
 identify subsequent name changes or cache rebuilds. Reading names through
 the editor should not require loading each preset into the synthesizer.
+
+**The Ambika side of this now works (v1.4, September 14, 2026).**
+`SYSEX_REQUEST_PATCH_NAME` (0x16), `_SEQUENCE_NAME` (0x17), `_PROGRAM_NAME`
+(0x18) and `_MULTI_NAME` (0x1a) take the bank in the argument byte and the slot
+in data[0], and reply with the same command/argument plus the 16-byte name,
+nibblized like every other Ambika payload.
+
+The scaffolding existed but had never worked: `Load()` fills a caller-supplied
+buffer and never sets `location.name`, so the handler passed a null pointer to
+`SysExSendRaw`, which nibblized 16 bytes read from **address 0** — the AVR
+register file — out over MIDI. It now supplies a buffer from the scratch half of
+`tmp_buffer_`, rejects banks outside A-Z, and always replies, using a blank name
+for an empty or invalid slot so the editor can distinguish "empty" from "no
+answer". Note that `buffer_` is the shared FatFs sector buffer, so the slot byte
+must be read before `Load()` touches the card.
+
+Not built, deliberately: a bulk range request. One request per name means 128
+round trips for a bank, which is acceptable for background population. A bulk
+reply buffer would cost static SRAM the controller does not have until the stack
+margin improves. Revisit together with Stage 2 above, which produces exactly the
+index a bulk reply would want to stream from.
 
 Do not rely on arbitrary RAM PEEK as the long-term plugin API if a
 proper protocol extension is feasible.

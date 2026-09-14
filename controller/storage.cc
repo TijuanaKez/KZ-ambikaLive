@@ -474,7 +474,14 @@ FilesystemStatus Storage::Load(StorageDir type, const StorageLocation& location,
           skip_data = 0;
         }
       } else if (id.value == kNameTag && location.name) { // Name Chunk. Size.value should be 16
-        file_.Read(location.name, size.value, &read);
+        // size.value comes from the file and must never be trusted: every
+        // destination buffer is kObjectNameSize bytes. A larger declared chunk
+        // is read up to the buffer size and the remainder skipped below.
+        uint16_t name_bytes = size.value < kObjectNameSize ? U16(size.value) : kObjectNameSize;
+        file_.Read(location.name, name_bytes, &read);
+        if (size.value > name_bytes) {
+          file_.Seek(file_.tell() + (size.value - name_bytes));
+        }
         skip_data = 0;
       }
       if (skip_data) {
@@ -505,7 +512,7 @@ FilesystemStatus Storage::Save(StorageDir type, const StorageLocation& location)
   
   // Create a backup of the older version.
   if (type == STORAGE_CLIPBOARD || (type == STORAGE_BANK && system_settings.data().autobackup())) {
-    char* backup_name = tmp_buffer_ + 32;
+    char* backup_name = tmp_buffer_ + kNameScratchOffset;
     strcpy(backup_name, name);
     backup_name[strlen(backup_name) - 3] = '~';
     
@@ -542,9 +549,9 @@ FilesystemStatus Storage::Save(StorageDir type, const StorageLocation& location)
   // NAME block.
   w.value = kNameTag;
   file_.Write(w.bytes, 4, &written);
-  w.value = 16;
+  w.value = kObjectNameSize;
   file_.Write(w.bytes, 4, &written);
-  file_.Write(location.name, 16, &written);
+  file_.Write(location.name, kObjectNameSize, &written);
 
   // Write subchunks.
   ForEachObject(location, &RIFFWriteObject);
@@ -779,16 +786,29 @@ void Storage::SysExAcceptCommand() {
     case SYSEX_REQUEST_PROGRAM_NAME: // Request Program name
     case SYSEX_REQUEST_MULTI_NAME: // Request Multi name
       {
+      // KZ MOD: Load() fills a caller-supplied buffer and never sets
+      // location.name. This previously passed the still-null location.name
+      // straight to SysExSendRaw, which nibblized 16 bytes read from address 0
+      // out over MIDI instead of the patch name.
+      char* name = tmp_buffer_ + kNameScratchOffset;
       location.object = static_cast<StorageObject>(sysex_rx_command_[0] - 0x16); // (type of object)
-      location.bank = sysex_rx_command_[1]; // Bank  = argument . (0x1f for current)
+      location.bank = sysex_rx_command_[1]; // Bank  = argument
+      // buffer_ is the shared FatFs sector buffer, so the slot must be taken
+      // before Load() reads from the card and overwrites it.
       location.slot = buffer_[0]; // Slot = Data[0]
-      Load(STORAGE_BANK, location, 0); // Use this instead of LoadName to get name by reference.
-      auto name = reinterpret_cast<const uint8_t*>(location.name);
+      location.name = name;
+      if (location.bank >= kNumBanks ||
+          Load(STORAGE_BANK, location, 0) != FS_OK) {
+        // Always answer. An editor must be able to tell an empty or invalid
+        // slot from a request that never arrived, so reply with a blank name.
+        memset(name, ' ', kObjectNameSize - 1);
+        name[kObjectNameSize - 1] = '\0';
+      }
       SysExSendRaw(
         sysex_rx_command_[0], // Command: Send same command back so we know what we requested.
-        sysex_rx_command_[1], // Argument: Bank (0x1f for current )
-        name,
-        16, // Name is always 16 bytes null terminated and zero-padded
+        sysex_rx_command_[1], // Argument: Bank
+        reinterpret_cast<const uint8_t*>(name),
+        kObjectNameSize, // Name is always 16 bytes null terminated and zero-padded
         false);
       }
       break;

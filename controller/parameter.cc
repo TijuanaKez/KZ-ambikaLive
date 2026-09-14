@@ -59,6 +59,7 @@ static constexpr uint16_t units_definitions[] PROGMEM = {
   STR_RES_THRU,       // UNIT_MIDI_OUT_MODE
   0,                  // UNIT_MIDI_CHANNEL
   STR_RES_AMBIKA,     // UNIT_CC_MAP
+  0,                  // UNIT_TIME_MS
 };
 static_assert(sizeof(units_definitions) / sizeof(units_definitions[0]) == UNIT_LAST,
               "Unit table must match Unit enum");
@@ -188,11 +189,19 @@ void Parameter::PrintNote(uint8_t note, char* buffer) {
 
 void Parameter::PrintValue(uint8_t value, char* buffer, uint8_t width) const {
   ResourceId text = ResourcesManager::Lookup<uint16_t, uint8_t>(units_definitions, unit);
+  // Most units print the stored byte. UNIT_TIME_MS prints a scaled value that
+  // does not fit in one, so the numeric path carries its own widened copy.
+  int16_t numeric = value;
   switch (unit) {
     default:
       break;
     case UNIT_INDEX:
       ++value;
+      ++numeric;
+      break;
+
+    case UNIT_TIME_MS:
+      numeric = S16(value) * 10;
       break;
 
     case UNIT_LFO_RATE:
@@ -234,7 +243,7 @@ void Parameter::PrintValue(uint8_t value, char* buffer, uint8_t width) const {
   if (text) {
     ResourcesManager::LoadStringResource(text + value, buffer, width);
   } else if (unit != UNIT_NOTE) {
-    int16_t v = (unit == UNIT_INT8) ? static_cast<int8_t>(value) : value;
+    int16_t v = (unit == UNIT_INT8) ? static_cast<int8_t>(value) : numeric;
     UnsafeItoa<int16_t>(v, width, buffer);
   }
   AlignRight(buffer, width);
@@ -964,6 +973,13 @@ static constexpr Parameter parameters[] PROGMEM = {
     UNIT_BOOLEAN, 0, 1,
     1, 0, 0xff, 0xff,
     STR_RES_LKEY, STR_RES_LAUNCHKEY_SEQ, STR_RES_SYSTEM },
+
+  // 77
+  { PARAMETER_LEVEL_SYSTEM,
+    SystemSettingsParameter::PRM_SYSTEM_BROWSE_LOAD_DELAY,
+    UNIT_TIME_MS, 0, kMaxBrowseLoadDelay,
+    1, 0, 0xff, 0xff,
+    STR_RES_LDLY, STR_RES_LOAD_DELAY, STR_RES_SYSTEM },
 };
 
 static_assert(sizeof(parameters) / sizeof(parameters[0]) == kNumParameters,

@@ -44,6 +44,11 @@ enum MidiOutMode : uint8_t {
 };
 
 // has to match members of SystemSettingsData::Parameters
+// KZ MOD: upper bound of PRM_SYSTEM_BROWSE_LOAD_DELAY, in units of 10 ms.
+// 200 is 2000 ms, the widest value that still fits the 4-character value
+// field on the preferences page.
+constexpr uint8_t kMaxBrowseLoadDelay = 200;
+
 enum SystemSettingsParameter : uint8_t {
   PRM_SYSTEM_MIDI_IN_MASK,
   PRM_SYSTEM_MIDI_OUT_MODE,
@@ -53,7 +58,8 @@ enum SystemSettingsParameter : uint8_t {
   PRM_SYSTEM_VOICECARD_LEDS,
   PRM_SYSTEM_VOICECARD_SWAP_LEDS_COLORS,
   PRM_SYSTEM_CC_MAP,
-  PRM_SYSTEM_LAUNCHKEY_MODE
+  PRM_SYSTEM_LAUNCHKEY_MODE,
+  PRM_SYSTEM_BROWSE_LOAD_DELAY
 };
 
 struct SystemSettingsData {
@@ -67,7 +73,11 @@ struct SystemSettingsData {
     uint8_t swap_leds_colors;
     CCMap midi_cc_map;
     uint8_t launchkey_mode;
-    uint8_t padding[6]; // KZ MOD Reduced from 8 to 6 to allow for extra 2 settings
+    // KZ MOD: library browsing defers the real patch load until the encoder has
+    // been still for this long. Stored in units of 10 ms so it fits one byte;
+    // 0 loads immediately, which is the pre-v1.4 behaviour.
+    uint8_t browse_load_delay;
+    uint8_t padding[5]; // KZ MOD Reduced from 8 to 5 to allow for extra 3 settings
     uint8_t checksum;
   };
 
@@ -115,6 +125,12 @@ public:
   inline uint8_t& launchkey_mode() { // KZ MOD - getters for new params
     return data.params.launchkey_mode;
   }
+  inline uint8_t& browse_load_delay() { // KZ MOD - deferred library load
+    return data.params.browse_load_delay;
+  }
+  inline uint16_t browse_load_delay_ms() const {
+    return static_cast<uint16_t>(data.params.browse_load_delay) * 10u;
+  }
   inline uint8_t& checksum() { 
     return data.params.checksum;
   }
@@ -124,6 +140,8 @@ static_assert(sizeof(SystemSettingsData::Parameters) == 16,
               "Preserve the 16-byte EEPROM settings record");
 static_assert(offsetof(SystemSettingsData::Parameters, midi_cc_map) == PRM_SYSTEM_CC_MAP &&
               offsetof(SystemSettingsData::Parameters, launchkey_mode) == PRM_SYSTEM_LAUNCHKEY_MODE &&
+              offsetof(SystemSettingsData::Parameters, browse_load_delay) ==
+                  PRM_SYSTEM_BROWSE_LOAD_DELAY &&
               offsetof(SystemSettingsData::Parameters, checksum) == 15,
               "Settings parameter IDs must match stored byte offsets");
 

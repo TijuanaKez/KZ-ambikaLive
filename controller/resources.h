@@ -483,6 +483,8 @@ extern const uint8_t wav_res_lfo_waveforms[] PROGMEM;
 #define STR_RES_KAUSHIK_TODI 396  // kaushik todi
 #define STR_RES_JOGESHWARI 397  // jogeshwari
 #define STR_RES_RASIA 398  // rasia
+#define STR_RES_LDLY 399  // ldly
+#define STR_RES_LOAD_DELAY 400  // load delay
 #define LUT_RES_LFO_INCREMENTS 0
 #define LUT_RES_LFO_INCREMENTS_SIZE 128
 #define LUT_RES_SCALE_JUST 1

@@ -25,6 +25,7 @@
 #include "controller/controller.h"
 #include "controller/storage.h"
 #include "controller/ui_pages/ui_page.h"
+#include "controller/deferred_load.h"
 
 namespace ambika {
 
@@ -49,6 +50,13 @@ class Library : public UiPage {
   static void UpdateLeds();
   
   static void OnDialogClosed(uint8_t dialog_id, uint8_t return_value);
+
+  // KZ MOD: deferred browsing. TickDeferredLoad is polled by the UI loop and
+  // returns 1 when it performed the postponed load, so the caller can redraw.
+  // FlushDeferredLoad performs it immediately, and must be called before
+  // anything that depends on the browsed object actually being loaded.
+  static uint8_t TickDeferredLoad();
+  static void FlushDeferredLoad();
   static void SaveLocation() {
     loaded_objects_indices_[location_.index()] = location_.bank_slot();
   }
@@ -81,6 +89,7 @@ class Library : public UiPage {
 
 private:
   static void Browse();
+  static void CommitLoad();
   static void ShowDiskErrorMessage();
 
   static uint8_t OnKeyBrowse(uint8_t key);
@@ -94,6 +103,7 @@ private:
   static uint8_t more_;
   static uint8_t initialization_mode_;
   static uint8_t name_dirty_;
+  static DeferredLoad deferred_load_;
   
   DISALLOW_COPY_AND_ASSIGN(Library);
 };

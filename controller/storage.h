@@ -106,6 +106,18 @@ typedef void (*ObjectFn)(const StorageLocation& location);
 
 static const uint16_t kFsInitTimeout = 750;
 
+// Length of the RIFF 'name' chunk, and of every buffer a name is read into.
+static constexpr uint16_t kObjectNameSize = 16;
+
+// Banks are directories A..Z under each object type.
+static constexpr uint8_t kNumBanks = 26;
+
+// tmp_buffer_ is split in two: GetFileName builds a path in the low half, and
+// the high half is scratch for callers that need a second string across that
+// call (Save's backup name, the SysEx name reply). The longest generated path
+// is "/PROGRAM/BANK/A/000.PRG", well inside the split.
+static constexpr uint8_t kNameScratchOffset = 32;
+
 class Storage {
  public:
   Storage() = default;

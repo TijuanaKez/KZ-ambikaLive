@@ -1,0 +1,15 @@
+/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-diagnostic-lbvnna03/ambika_controller/ambika_controller.elf  :
+section                     size      addr
+.data                         58   8388864
+.text                      51808         0
+.bss                        3771   8388922
+.comment                      36         0
+.note.gnu.avr.deviceinfo      64         0
+.debug_aranges               576         0
+.debug_info                 2424         0
+.debug_abbrev               2006         0
+.debug_line                 2981         0
+.debug_str                   727         0
+Total                      64451
+
+

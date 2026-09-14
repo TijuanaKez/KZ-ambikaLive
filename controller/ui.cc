@@ -161,7 +161,7 @@ constexpr PageInfo page_registry[] PROGMEM = {
 
   { PAGE_SYSTEM_SETTINGS_B,
     &ParameterEditor::event_handlers_,
-    { 75, 76, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf9, },
+    { 75, 76, 77, 0xff, 0xff, 0xff, 0xff, 0xf9, },
     PAGE_SYSTEM_SETTINGS, 8, 0xf0,
   },
 
@@ -412,6 +412,10 @@ void Ui::DoEvents() {
     }
   }
   
+  if (Library::TickDeferredLoad()) {
+    redraw = 1;
+  }
+  
   if (multi.flags() & FLAG_HAS_CHANGE) {
     redraw = 1;
     multi.ClearFlag(FLAG_HAS_CHANGE);
@@ -452,6 +456,7 @@ void Ui::ShowPage(UiPageNumber page, uint8_t initialize) {
   if (page >= sizeof(page_registry) / sizeof(page_registry[0])) {
     return;
   }
+  Library::FlushDeferredLoad();
   // Flush the event queue.
   queue_.Flush();
   queue_.Touch();

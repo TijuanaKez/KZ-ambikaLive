@@ -6,6 +6,8 @@
 #include <cstring>
 #include <initializer_list>
 
+#include "controller/deferred_load.h"
+
 #define PSTR(s) (s)
 #define strncpy_P std::strncpy
 #define memcpy_P std::memcpy
@@ -13,7 +15,7 @@
 #define DIAGNOSTIC_BUILD
 
 namespace ambika {
-constexpr uint8_t kNumParameters = 77, kNumParametersPerPage = 8;
+constexpr uint8_t kNumParameters = 78, kNumParametersPerPage = 8;
 constexpr uint8_t kLcdWidth = 40, kDelimiter = 7;
 constexpr uint8_t PAGE_ENV_LFO = 3, PAGE_SYSTEM_SETTINGS = 15;
 constexpr uint8_t PAGE_SYSTEM_SETTINGS_B = 16, LED_STATUS = 14, LED_8 = 7;
@@ -216,7 +218,7 @@ int main() {
   ParameterEditor::OnInit(&knobs);
   for (unsigned id = 0; id < 256; ++id) {
     multi.knobs[0].parameter = id;
-    assert(ParameterEditor::parameter_index(0) == (id < 77 ? id : 255));
+    assert(ParameterEditor::parameter_index(0) == (id < 78 ? id : 255));
   }
 
   // Exercise the actual diagnostic renderer at boundary values.
@@ -233,5 +235,45 @@ int main() {
   assert(ui.previous == 0);
   OsInfoPage::OnKey(SWITCH_8);
   assert(ui.previous == 1);
-  std::puts("PASS: preferences navigation, synthetic/invalid IDs, pots, rendering and diagnostic screen");
+  // Deferred library load: the timer that replaces a full patch load on every
+  // encoder detent. Exercised directly because library.cc needs the SD card.
+  {
+    DeferredLoad timer;
+    // Nothing is due until something is armed, whatever the clock says.
+    for (uint16_t now : {uint16_t(0), uint16_t(1), uint16_t(40000), uint16_t(65535)}) {
+      assert(!timer.armed());
+      assert(!timer.Due(now, 0));
+      assert(!timer.Due(now, 500));
+    }
+
+    timer.Arm(1000);
+    assert(timer.armed());
+    assert(!timer.Due(1000, 500));
+    assert(!timer.Due(1499, 500));
+    assert(timer.Due(1500, 500));   // exactly at the delay
+    assert(timer.Due(9000, 500));   // and any time after
+    assert(timer.Due(1000, 0));     // a zero delay is due at once
+
+    // Re-arming while the user keeps scrolling pushes the deadline out.
+    timer.Arm(1400);
+    assert(!timer.Due(1500, 500));
+    assert(timer.Due(1900, 500));
+
+    timer.Disarm();
+    assert(!timer.armed());
+    assert(!timer.Due(9000, 500));
+
+    // The 16-bit millisecond snapshot wraps every 65.536 s. An armed load must
+    // survive the rollover rather than waiting most of a minute for the clock
+    // to catch up, or firing instantly.
+    timer.Arm(65500);
+    assert(!timer.Due(65535, 500));           // 35 ms elapsed
+    assert(!timer.Due(35, 500));              // 71 ms elapsed, past the wrap
+    assert(timer.Due(64, 100));               // 100 ms elapsed exactly
+    assert(timer.Due(500, 750) == 0);         // 536 ms elapsed, not yet
+    assert(timer.Due(750, 750));              // 786 ms elapsed
+  }
+
+  std::puts("PASS: preferences navigation, synthetic/invalid IDs, pots, rendering, "
+            "diagnostic screen and deferred load timing");
 }

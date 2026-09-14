@@ -20,6 +20,9 @@
 #include "controller/ui_pages/library.h"
 
 #include "avrlib/string.h"
+#include "avrlib/time.h"
+
+#include "controller/system_settings.h"
 
 #include "controller/display.h"
 #include "controller/leds.h"
@@ -41,6 +44,7 @@ char Library::name_[16];
 uint8_t Library::is_edit_buffer_;
 uint8_t Library::more_;
 uint8_t Library::initialization_mode_;
+DeferredLoad Library::deferred_load_;
 uint16_t Library::loaded_objects_indices_[kNumVoices * 3 + 1] = {
   0, 0, 0,
   0, 0, 0,
@@ -87,7 +91,7 @@ uint8_t Library::OnIncrement(int8_t increment) {
     if (active_control_ == 0) {
       // 0 Change Bank
       int8_t bank = location_.bank;
-      location_.bank = Clip(bank + increment, 0, 25);
+      location_.bank = Clip(bank + increment, 0, kNumBanks - 1);
     } else if (active_control_ == 1) {
       // 1 Change Slot
       //int16_t slot = location_.slot;
@@ -107,24 +111,62 @@ uint8_t Library::OnIncrement(int8_t increment) {
   
   if (action_ == LIBRARY_ACTION_BROWSE) {
     if (location_.bank_slot() != loaded_objects_indices_[location_.index()]) {
-      // Send program change.
-      if (location_.object == STORAGE_OBJECT_PROGRAM) {
-        midi_dispatcher.OnProgramLoaded(
-            multi.data().part_mapping(location_.part).tx_channel(), location_.bank, location_.slot);
-      }
-      
-      // KEZ TODO - Put the actual load on a timer and just increment the displayed slot index.
-      if (storage.Load(location_) != FS_OK) {
-        is_edit_buffer_ = 1;
-        memcpy_P(name_, blank_patch_name, sizeof(name_));
+      if (system_settings.data().browse_load_delay_ms() == 0) {
+        // Delay disabled: load on every detent, as before.
+        CommitLoad();
       } else {
-        is_edit_buffer_ = 0;
+        // Read the name only. Scrolling then costs one file open instead of a
+        // full RIFF parse, a voice-card parameter push and possibly a snapshot
+        // write to the card. TickDeferredLoad performs the real load once the
+        // encoder has been still, and sends the program change with it rather
+        // than once per detent.
+        if (storage.LoadName(location_) != FS_OK) {
+          memcpy_P(name_, blank_patch_name, sizeof(name_));
+        }
+        deferred_load_.Arm(U16(milliseconds()));
       }
-      SaveLocation();
     }
   }
   
   return 1;
+}
+
+/* static */
+void Library::CommitLoad() {
+  // Disarm first: nothing below may re-enter here through FlushDeferredLoad.
+  deferred_load_.Disarm();
+  if (location_.bank_slot() == loaded_objects_indices_[location_.index()]) {
+    return;
+  }
+  // Send program change.
+  if (location_.object == STORAGE_OBJECT_PROGRAM) {
+    midi_dispatcher.OnProgramLoaded(
+        multi.data().part_mapping(location_.part).tx_channel(), location_.bank, location_.slot);
+  }
+  if (storage.Load(location_) != FS_OK) {
+    is_edit_buffer_ = 1;
+    memcpy_P(name_, blank_patch_name, sizeof(name_));
+  } else {
+    is_edit_buffer_ = 0;
+  }
+  SaveLocation();
+}
+
+/* static */
+uint8_t Library::TickDeferredLoad() {
+  if (!deferred_load_.Due(U16(milliseconds()),
+                          system_settings.data().browse_load_delay_ms())) {
+    return 0;
+  }
+  CommitLoad();
+  return 1;
+}
+
+/* static */
+void Library::FlushDeferredLoad() {
+  if (deferred_load_.armed()) {
+    CommitLoad();
+  }
 }
 
 /* static */
@@ -140,6 +182,7 @@ uint8_t Library::OnClick() {
 /* static */
 uint8_t Library::OnKey(uint8_t key) {
   if (action_ == LIBRARY_ACTION_BROWSE) {
+    FlushDeferredLoad();
     return OnKeyBrowse(key);
   } else {
     return OnKeySave(key);
