@@ -176,14 +176,63 @@ simultaneous oscillators, large tables, or per-sample division. Plaits is even
 further out of reach than BRAIDS — it is a 32-bit floating-point engine.
 
 **Concrete suggestion:** do not try to reproduce BRAIDS, and do not re-add what
-Ambika already does. Three areas, in this order:
+Ambika already does. Priorities, per Carey, September 14, 2026:
 
-1. **Wavefolding** — cheapest, genuinely new, start here.
-2. **One delay line, two payoffs** — plucked string and comb. New class of sound,
-   and the RAM decision in §4 hangs off it.
-3. **Band-limited ensemble** — only if the cycle budget turns out to allow it.
+1. **Better basic subtractive waveforms** (§6b) — the stated top priority.
+2. **Karplus-Strong pluck** — the most wanted new algorithm. See the prior art
+   in §5b before writing any of it.
+3. **Wavefolding** — cheap, genuinely absent. See §5b; a working implementation
+   already exists to study.
+4. **Band-limited ensemble** — only if the cycle budget allows, and only as an
+   *additional* shape. `QUAD_SAW_PAD` stays exactly as it is (§6).
 
 That is a bigger sonic change than a dozen half-working ports, and it fits.
+
+---
+
+## 5b. Prior art: joegiralt's "Carcosa" fork
+
+<https://github.com/joegiralt/ambika> — tags through `v2.06`. Carey reports the
+binaries would not load on his unit and it was buggy. Source read September 14,
+2026; it is worth studying because he built **exactly** the two things proposed
+above, and the ways it went wrong are instructive.
+
+He restructured the voice card into four engines — `ENGINE_CLASSIC`,
+`ENGINE_FM4OP`, `ENGINE_KS_PLUCK`, `ENGINE_WESTCOAST` — in `voicecard/karplus.h`,
+`westcoast.h` and `fm4op.h`. The west coast engine is a proper Buchla-style
+iterative wavefolder with bias, symmetry and 1-6 fold stages.
+
+**Why the binaries likely failed, and what to do differently:**
+
+1. **He kept the wavetables.** `WAV_RES_WAVES_SIZE 10320` is still in his
+   `resources.h`, and his log contains *"Bump to Carcosa v2.04, fix flash
+   overflow"*. He was adding three engines to a firmware that already had
+   1.5 KB free. We delete 15.7 KB **first** — that is the space he never had, and
+   it is the main reason to keep Phase 3 ahead of Phase 4.
+2. **`int32_t` arithmetic in per-sample loops.** 8 occurrences in `karplus.h`,
+   4 in `fm4op.h`, 3 in `westcoast.h`, including
+   `(static_cast<int32_t>(avg - lp_state_) * lp_cutoff) >> 8` inside the KS inner
+   loop. A 32-bit multiply on an 8-bit AVR costs tens of cycles against a budget
+   of 510 for *everything*. The YAM history has a matching commit, *"Fix for CPU
+   overload with FM, qpwm and pad oscillators"* — this is a known failure mode on
+   this hardware. Our rule: **no 32-bit arithmetic inside a per-sample loop.**
+3. **His KS cannot play bass.** `kKarplusBufferSize = 192` with an `int16_t`
+   delay line is 384 bytes, and 192 samples at 39.2 kHz puts the lowest
+   fundamental at about **204 Hz — G#3**. `SetPitch` clamps
+   `len` to the buffer size, so every note below that simply plays at the wrong
+   pitch rather than failing audibly. His commit *"KS pitch tracking fix: fill
+   entire buffer on trigger"* is him chasing the symptoms.
+   **We have 976 bytes free.** At 8-bit samples that is about 40 Hz; at 16-bit,
+   about 80 Hz. This is the concrete form of the §4 decision.
+4. **He repurposes oscillator patch fields per engine** — `karplus.h` documents
+   `osc[1].shape` becoming the excitation type, `osc[1].detune` becoming pluck
+   position, and so on. That is wholesale patch incompatibility, and it is the
+   opposite of Carey's requirement in §6. **Take his ideas, not his
+   architecture.** New engines must be new shapes in the existing enum, with
+   their extra parameters found somewhere that does not overload existing fields.
+
+His fold routine and excitation types are good reference material and the licence
+is GPL-3.0, the same as ours, so borrowing with attribution is fine.
 
 ---
 
@@ -192,32 +241,78 @@ That is a bigger sonic change than a dozen half-working ports, and it fits.
 `Patch` is 84 bytes, `PartData` 112, `MultiData` 56, all stored as RIFF chunks
 with a structure-ID byte (1: Patch, 2: sequence, 4: MultiData, 5: PartData).
 
-That structure-ID byte is the clean way through. **Give v2 patches a new
-structure ID.** The controller then knows unambiguously which layout a file
-holds, with no version guessing and no format sniffing.
+**Carey's rule, September 14, 2026: every surviving algorithmic oscillator keeps
+its current enum position.** New algorithms are appended after them. This is the
+single most important compatibility decision and it makes everything else easy.
 
-Then convert **in firmware, on load**, not offline:
+Consequences:
 
-- The controller has ~8.9 KB of flash free, and an old-to-new waveform remap is
-  a table of about 40 bytes plus a little code.
-- The user experience is that old patches simply open. An offline tool means
-  every user has to find and run it.
-- Waveforms with no successor (the 16 wavetables, wavequence) map to the nearest
-  survivor — most plausibly a detuned multi-saw or the polyBLEP wave — and the
-  patch is marked as converted so saving it writes the v2 layout.
+- `WAVEFORM_NONE` through `WAVEFORM_VOWEL` keep their values. `QUAD_SAW_PAD`
+  stays as-is — aliasing and all — because it is what Carey's patches reference.
+  Any band-limited version is an **additional** shape, not a replacement.
+- Only the 17 wavetable slots (`WAVEFORM_WAVETABLE_1`..`_16`, `WAVEFORM_WAVEQUENCE`)
+  change meaning, plus `WAVEFORM_OLD_SAW` and `WAVEFORM_QUAD_PWM` if the
+  bandlimited zones go.
+- The enum has a hole where the wavetables were. **Leave the hole.** Do not
+  compact it to save a byte of table; renumbering is exactly what breaks patches.
+  Point the dead slots at a defined fallback and append new shapes after
+  `WAVEFORM_VOWEL_2`.
+- `WAVEFORM_TRIANGLE` and `WAVEFORM_SINE` keep their positions even though their
+  implementation changes underneath (§2). The patch byte is unaffected.
 
-Carey's own estimate is that **95% of his patches use only the first few
-oscillator types** — polyBLEP, triangle, noise, sine — so the remap will be a
-no-op for almost everything real. Worth confirming by running a script over the
-actual SD card library before designing the fallback mapping; `utils/` already
-has `list_bank.py` and `ambika_program_as_text.py` to build on.
+Because only the dead slots move, **most patches need no conversion at all** —
+consistent with Carey's estimate that 95% of his use only the first few types.
+A patch referencing a wavetable renders the fallback instead. That can be handled
+entirely in the voice card with no file rewriting, no new structure ID, and no
+converter.
 
-An offline batch converter in `utils/` is still worth having for bulk library
-migration, but as a convenience, not as the mechanism.
+So the structure-ID and firmware-remap machinery described previously is **not
+needed for the oscillator change**. Keep it in reserve for a later change that
+actually alters the 84-byte `Patch` layout; at that point a new structure ID is
+still the right mechanism, since the RIFF object chunk already carries one.
+
+Still worth doing: run `utils/list_bank.py` over the real SD library to count
+which shapes are actually referenced, before choosing what the dead slots fall
+back to.
 
 ---
 
-## 7. Road ahead
+## 6b. Better basic subtractive waveforms — Carey's stated priority
+
+Carey's highest priority is not exotica but **better ordinary saw/square/
+triangle/pulse, using better maths**. Current state: `RenderPolyBlepSaw`,
+`RenderPolyBlepPwm` and `RenderPolyBlepCSaw` are first-order polyBLEP; triangle
+and sine come from tables; `OLD_SAW` and `QUAD_PWM` use the bandlimited zones.
+
+Candidates, cheapest first:
+
+- **polyBLAMP for triangle.** PolyBLEP corrects a *value* discontinuity; polyBLAMP
+  corrects a *slope* discontinuity, which is what a triangle has. It gives a
+  properly band-limited triangle with no tables at all — replacing about 1.8 KB
+  of bandlimited triangle zones with roughly a hundred bytes of code, at a cost
+  comparable to the existing polyBLEP saw. Best effort-to-reward on this list,
+  and it is what makes "keep triangle" cheap in §2.
+- **EPTR (Efficient Polynomial Transition Regions).** A cheaper formulation than
+  polyBLEP for saw and square at comparable quality — it modifies the waveform
+  near the discontinuity instead of adding a correction, saving the separate
+  residual computation. Worth prototyping head-to-head against the existing
+  polyBLEP saw and keeping whichever measures better.
+- **Second-order polyBLEP** for the existing saw/PWM where cycles allow. Better
+  high-frequency behaviour, strictly more expensive.
+- **DPW (differentiated parabolic wave).** Very cheap in principle — square the
+  naive ramp, then differentiate — but differentiation amplifies quantisation
+  noise, so it is precision-hungry. Only viable if the signal path widens (§4).
+
+**The honest caveat, which may matter more than any of the above.** At 8-bit
+output the noise floor is about 48 dB, and that is almost certainly above the
+aliasing residue of the *existing* first-order polyBLEP. Improving the
+band-limiting order may therefore be inaudible while the path stays 8-bit.
+
+If "better basic waveforms" is the goal, **the signal path (§4) is probably the
+bigger lever than the oscillator maths.** Test this early and cheaply: render the
+current polyBLEP saw at 12-bit into the DAC and compare by ear against the same
+saw at 8-bit. That one experiment decides both §4 and how much polishing the
+oscillator algorithms deserve.
 
 **Phase 0 — close out v1.** Confirm the deferred-load build on hardware, tag
 `v1.4`, cut the `v2-voicecard` branch. (§1)
@@ -235,11 +330,18 @@ build drops to roughly 15 KB. No new features in this step — it should be a pu
 subtraction, verifiable by size and by listening to the surviving waveforms.
 
 **Phase 4 — new oscillator set.** One algorithm at a time, each with its cycle
-cost measured and recorded before the next begins. Order: wavefolding, then the
-delay-line family, then the band-limited ensemble if the budget allows.
+cost measured and recorded before the next begins, and each appended after
+`WAVEFORM_VOWEL_2` so no existing patch byte changes meaning (§6). Order:
+improved basic waveforms (§6b), Karplus-Strong, wavefolding, then the
+band-limited ensemble if the budget allows.
 
-**Phase 5 — patch conversion.** New structure ID, firmware remap on load, and a
-pass over the real library to validate the mapping. (§6)
+Hard rule throughout, learned from §5b: **no 32-bit arithmetic inside a
+per-sample loop.**
+
+**Phase 5 — patch fallbacks.** Much smaller than originally scoped, because
+surviving shapes keep their enum positions. Decide what the dead wavetable slots
+render, after counting what the real library actually references with
+`utils/list_bank.py`. No file conversion and no new structure ID needed. (§6)
 
 **Phase 6 — the AU/VST editor.** The SysEx name query works as of v1.4, so the
 editor can already enumerate presets. A v2 patch layout means the editor's
@@ -254,8 +356,10 @@ firmware has been pushed as far as it usefully goes, as recorded in the handover
 ## Decisions
 
 1. ~~**Vowel/formant**~~ — **keep.** Confirmed September 14, 2026. (§2)
-2. **Signal path:** is a 12/16-bit path worth spending cycles on, or stay 8-bit
-   and spend everything on oscillator types? The delay-line range halves if the
-   path widens, so the plucked string probably decides it. (§4, §5)
-3. **Anything in the current waveform set that must not be lost**, beyond
-   polyBLEP saw/PWM/CSAW, triangle, sine, noise, vowel and the CZ family. (§6)
+2. ~~**Waveform set**~~ — **keep every algorithmic oscillator, at its current
+   enum position**, `QUAD_SAW_PAD` included. New shapes append after
+   `WAVEFORM_VOWEL_2`. Confirmed September 14, 2026. (§6)
+3. **Signal path:** is a 12/16-bit path worth spending cycles on, or stay 8-bit
+   and spend everything on oscillator types? Two things hang off it — the
+   Karplus-Strong bass range (§5b) and whether better band-limiting maths is even
+   audible (§6b). The cheap experiment in §6b settles it; run that early.
