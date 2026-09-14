@@ -32,5 +32,9 @@
 /build/
 __pycache__/
 
-# Keep the build evidence shipped with reviewed firmware packages.
+# Keep the build evidence shipped with reviewed firmware packages. The Eagle
+# and Gerber rules above are case-insensitive on macOS, so *.TXT would
+# otherwise swallow the section sizes and symbol table the manifests hash.
 !/KZ-firmware_builds/**/build.log
+!/KZ-firmware_builds/**/size.txt
+!/KZ-firmware_builds/**/symbols.txt
