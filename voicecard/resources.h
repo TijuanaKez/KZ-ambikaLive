@@ -73,8 +73,6 @@ extern const uint8_t wav_res_lfo_waveforms[] PROGMEM;
 extern const uint8_t wav_res_env_expo[] PROGMEM;
 extern const uint8_t wav_res_division_table[] PROGMEM;
 extern const uint8_t wav_res_square_table[] PROGMEM;
-extern const uint8_t wav_res_waves[] PROGMEM;
-extern const uint8_t wav_res_wavetables[] PROGMEM;
 #define STR_RES_DUMMY 0  // dummy
 #define LUT_RES_LFO_INCREMENTS 0
 #define LUT_RES_LFO_INCREMENTS_SIZE 128
@@ -148,10 +146,6 @@ extern const uint8_t wav_res_wavetables[] PROGMEM;
 #define WAV_RES_DIVISION_TABLE_SIZE 128
 #define WAV_RES_SQUARE_TABLE 29
 #define WAV_RES_SQUARE_TABLE_SIZE 128
-#define WAV_RES_WAVES 30
-#define WAV_RES_WAVES_SIZE 10320
-#define WAV_RES_WAVETABLES 31
-#define WAV_RES_WAVETABLES_SIZE 288
 
 using ResourcesManager = avrlib::ResourcesManager<ResourceId,
     avrlib::ResourcesTables<string_table, lookup_table_table>>;

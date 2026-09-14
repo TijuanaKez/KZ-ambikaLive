@@ -87,6 +87,12 @@ class Oscillator {
 
   inline void Render(OscillatorAlgorithm new_shape, uint8_t new_note, uint24_t new_phase_increment,
                      bool* new_sync_input, bool* new_sync_output, uint8_t* buffer) {
+    // KZ MOD: the wavetables are gone (voice card v2). Their enum slots are
+    // kept so existing patch bytes still mean what they meant, and render a
+    // polyBLEP saw instead. Remap before anything reads `shape`.
+    if (new_shape >= WAVEFORM_WAVETABLE_1 && new_shape <= WAVEFORM_WAVEQUENCE) {
+      new_shape = WAVEFORM_POLYBLEP_SAW;
+    }
     shape = new_shape;
     note = new_note;
     phase_increment = new_phase_increment;
@@ -114,9 +120,6 @@ class Oscillator {
     }
     RenderFn fn;
     ResourcesManager::Load(fn_table, index, &fn);
-    if (new_shape == WAVEFORM_WAVEQUENCE) {
-      fn = &Oscillator::RenderWavequence;
-    }
     (this->*fn)(buffer);
   }
   
@@ -167,8 +170,6 @@ class Oscillator {
   void RenderDirtyPwm(uint8_t* buffer);
   void RenderQuadSawPad(uint8_t* buffer);
   void RenderFilteredNoise(uint8_t* buffer);
-  void RenderInterpolatedWavetable(uint8_t* buffer);
-  void RenderWavequence(uint8_t* buffer);
   // polyblep synthesis methods by Bjarne (bjoeri on github)
   //void RenderPolyBlepSaw(uint8_t* buffer);
   //void RenderPolyBlepPwm(uint8_t* buffer);
@@ -207,7 +208,9 @@ class Oscillator {
       &Oscillator::RenderFilteredNoise,       // FILTERED_NOISE
       &Oscillator::RenderVowel,               // VOWEL
 
-      &Oscillator::RenderInterpolatedWavetable, // WAVETABLE_1..16 and WAVEQUENCE
+      // WAVETABLE_1..16 and WAVEQUENCE: remapped to POLYBLEP_SAW in Render(),
+      // so this slot exists only to keep the indices of the shapes after it.
+      &Oscillator::RenderSilence,
 
       &Oscillator::RenderSimpleWavetable,     // OLD_SAW
       &Oscillator::RenderQuadSawPad,          // QUAD_PWM

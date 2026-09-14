@@ -407,41 +407,10 @@ void Oscillator::RenderFilteredNoise(uint8_t* buffer) {
   data.no.rng_state = rng_state;
 }
 
-// The position is freely determined by the parameter
-void Oscillator::RenderInterpolatedWavetable(uint8_t* buffer) {
-  const uint8_t* which_wavetable = wav_res_wavetables + U8(shape - WAVEFORM_WAVETABLE_1) * U8(18);
+// KZ MOD: RenderInterpolatedWavetable and RenderWavequence removed with the
+// wavetables they read. Their shapes are remapped to WAVEFORM_POLYBLEP_SAW in
+// Oscillator::Render(). See docs/VOICECARD_V2_PLAN.md.
 
-  // Get a 8:8 value with the wave index in the first byte, and the
-  // balance amount in the second byte.
-  auto num_steps = ResourcesManager::Lookup<uint8_t, uint8_t>(which_wavetable, 0);
-  uint16_t pointer = U8(parameter * 2) * num_steps;
-  auto wave_index_1 = ResourcesManager::Lookup<uint8_t, uint8_t>(which_wavetable, 1 + highByte(pointer));
-  auto wave_index_2 = ResourcesManager::Lookup<uint8_t, uint8_t>(which_wavetable, 2 + highByte(pointer));
-  uint8_t gain = lowByte(pointer);
-  const uint8_t* wave_1 = wav_res_waves + U8U8Mul(wave_index_1, 129);
-  const uint8_t* wave_2 = wav_res_waves + U8U8Mul(wave_index_2, 129);
-
-  uint24_t phase_tmp = phase;
-  bool *sync_input_tmp = sync_input;
-  bool *sync_output_tmp = sync_output;
-  for (uint8_t samples_left = kAudioBlockSize; samples_left > 0; samples_left--) {
-    update_phase_and_sync(phase_tmp, phase_increment, sync_input_tmp, sync_output_tmp);
-    *buffer++ = InterpolateTwoTables(wave_1, wave_2, highWord24(phase_tmp) / 2, ~gain, gain);
-  }
-  phase = phase_tmp;
-}
-
-// The position is freely determined by the parameter
-void Oscillator::RenderWavequence(uint8_t* buffer) {
-  const uint8_t* wave = wav_res_waves + U8U8Mul(parameter, 129);
-
-  uint24_t phase_tmp = phase;
-  for (uint8_t samples_left = kAudioBlockSize; samples_left > 0; samples_left--) {
-    update_phase_and_sync(phase_tmp, phase_increment, sync_input, sync_output);
-    *buffer++ = InterpolateSample(wave, highWord24(phase_tmp) / 2);
-  }
-  phase = phase_tmp;
-}
 
 #define CALCULATE_DIVISION_FACTOR(divisor, result_quotient, result_quotient_shifts) \
   uint16_t div_table_index = divisor; \

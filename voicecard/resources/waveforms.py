@@ -231,46 +231,16 @@ waveforms.append(('square_table', square_table))
 
 
 """----------------------------------------------------------------------------
-Wavetables
+Wavetables -- REMOVED in voice card v2.
+
+The 16 PPG-style wavetables and their index cost 10,608 bytes of PROGMEM, a
+third of the voice card's flash, and Carey does not use them. Removing them is
+what makes room for new oscillator algorithms; see docs/VOICECARD_V2_PLAN.md.
+
+The enum slots WAVEFORM_WAVETABLE_1..16 and WAVEFORM_WAVEQUENCE are deliberately
+retained in common/patch.h so that existing patch bytes keep their meaning.
+Oscillator::Render() remaps them to WAVEFORM_POLYBLEP_SAW.
+
+data/waves.bin is still in the repository if these are ever wanted back.
 -----------------------------------------------------------------------------"""
 
-
-with open('data/waves.bin', 'rb') as wave_file:
-    waveforms.append(('waves', list(wave_file.read())))
-
-wavetables = [
-# Male
-16, 57, 52, 59, 53, 54, 55, 56, 57, 58, 62, 69, 59, 61, 60, 61, 62, 62,
-# Female
-16, 59, 52, 59, 71, 52, 70, 52, 56, 71, 14, 69, 71, 70, 71, 71, 71, 71,
-# Choir
-1, 70, 71, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-# Tampura
-8, 14, 15, 15, 15, 16, 17, 17, 18, 18, 0, 0, 0, 0, 0, 0, 0, 0,
-# Bowed
-8, 34, 35, 36, 36, 37, 38, 39, 40, 40, 0, 0, 0, 0, 0, 0, 0, 0,
-# Cello
-1, 69, 57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-# Vibes
-8, 74, 75, 76, 77, 78, 79, 79, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0,
-# Slap
-8, 41, 42, 43, 43, 44, 44, 44, 44, 44, 0, 0, 0, 0, 0, 0, 0, 0,
-# Epiano
-8, 73, 73, 69, 72, 72, 72, 72, 72, 72, 0, 0, 0, 0, 0, 0, 0, 0,
-# Organ
-16, 3, 45, 45, 72, 46, 46, 46, 47, 48, 48, 49, 50, 50, 46, 51, 51, 51,
-# Waves
-16, 13, 0, 1, 2, 3, 4, 4, 5, 6, 7, 8, 9, 10, 11, 11, 12, 12,
-# Digital
-16, 3, 34, 19, 20, 21, 21, 66, 66, 22, 22, 23, 23, 24, 24, 25, 26, 26,
-# Drone 1
-8, 66, 68, 66, 72, 65, 65, 66, 66, 66, 0, 0, 0, 0, 0, 0, 0, 0,
-# Drone 2
-4, 67, 67, 68, 69, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-# Metallic
-8, 27, 28, 29, 30, 31, 31, 32, 33, 33, 0, 0, 0, 0, 0, 0, 0, 0,
-# Bell
-4, 63, 63, 63, 64, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-]
-
-waveforms.append(('wavetables', wavetables))
