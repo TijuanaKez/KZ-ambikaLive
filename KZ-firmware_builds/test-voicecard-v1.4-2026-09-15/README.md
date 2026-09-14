@@ -31,7 +31,15 @@ render a **polyBLEP saw** instead. Every other shape is untouched.
 From the bank A survey: 15 of 92 patches reference a wavetable on at least one
 oscillator, and will sound different. The other 77 are unaffected.
 
-## Polivoks resonance — check this first
+## Polivoks: switched OFF
+
+Carey confirmed he does not have Polivoks filter boards, so
+`POLIVOKS_FILTERBOARD` is now commented out in `common/features.h` and the
+resonance CV is not inverted. That matches the behaviour of every build he has
+tested, so nothing changes for him. The code is in `voicecard/voice.cc` for
+anyone who does have those boards.
+
+## Polivoks resonance — background
 
 `POLIVOKS_FILTERBOARD` is enabled in `common/features.h`, and on the YAM
 firmware your v1.1 cards run it **inverts the resonance CV**, because the

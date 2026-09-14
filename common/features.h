@@ -39,4 +39,6 @@
 #define DISABLE_CC_MAPS
 #define DISABLE_LAUNCHKEY_MODE
 #define DISABLE_PART_MUTES
-#define POLIVOKS_FILTERBOARD
+// Carey does not have Polivoks filter boards; left here for others. Enabling
+// it inverts the resonance CV in voicecard/voice.cc.
+//#define POLIVOKS_FILTERBOARD
