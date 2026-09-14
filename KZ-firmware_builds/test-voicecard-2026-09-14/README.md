@@ -6,6 +6,11 @@ about it.** It has never been run on hardware.
 
 Flash 30,220 / 31,744. Static SRAM 1,072 / 2,048, leaving 976 bytes.
 
+**It reports v1.2 on the OS information page**, against v1.1 for every untouched
+card. The voice card version is display-only -- the controller reads it but never
+gates on it -- so bumping it is safe, and without it a flashed card would be
+indistinguishable from an unflashed one.
+
 ## Why it is not in the v1.4 release
 
 Carey's historical notes, recorded in the handover, say that later compilers
@@ -27,11 +32,19 @@ Do this with **one** voice card, not six, and keep the others on v1.1 so the
 synth stays playable and the comparison is direct.
 
 1. Copy `VOICE.BIN` to the card root as `VOICE1.BIN` (the digit is the card
-   number — see the manual).
-2. Install it on card 1 through the controller's firmware-update page.
-3. Play card 1 alone. Listen for: silence, wrong pitch, aliasing that the other
-   cards do not have, stuck notes, and whether the filter and VCA still track.
-4. Compare directly against an untouched card on the same patch.
+   number — see the manual). Leave `VOICE2.BIN`..`VOICE6.BIN` on v1.1.
+2. Open **Library → more → Firmware update**. Turn the encoder to select port
+   **1** — *not* ALL. The right-hand side of the screen shows `upgrade`.
+3. Press **S4**, the switch under the right-hand `upgrade`. S1 is the
+   *controller* update; do not press that.
+4. When it finishes, the page should show card 1 as **v1.2** and the others as
+   v1.1. That is the confirmation the flash took.
+5. Play card 1 alone. Listen for: silence, wrong pitch, aliasing the other cards
+   do not have, stuck notes, and whether the filter and VCA still track.
+6. Compare directly against an untouched card on the same patch.
+
+To roll back, copy the v1.1 image over `VOICE1.BIN` and repeat. A known-good copy
+is in this repository at `../legacy-v1.2-published/ambika_voicecard_v1.1.bin`.
 
 If it is silent, that confirms the compiler hazard is real on GCC 9 and it
 becomes the first thing to investigate before any v2 voice card work — since

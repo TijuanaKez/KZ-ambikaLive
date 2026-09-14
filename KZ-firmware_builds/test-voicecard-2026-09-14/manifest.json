@@ -2,8 +2,8 @@
   "label": "KZ Ambika Live voice card",
   "target": "voicecard",
   "variant": "release",
-  "displayed_version": "v1.1",
-  "git_head": "ec5cbcead3fe624ff61455ee64f81fc7eddcff0f",
+  "displayed_version": "v1.2",
+  "git_head": "3fecde9dff5dfd44242322c6cab4c25f450d9a85",
   "source_state": "Working tree; exact source inputs included in source.tar.gz",
   "compiler": "avr-gcc (Homebrew AVR GCC 9.5.0) 9.5.0",
   "objcopy": "GNU objcopy (GNU Binutils) 2.46.0.20260210",
@@ -13,10 +13,10 @@
     "voicecard/makefile",
     "bin",
     "all",
-    "BUILD_ROOT=/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/",
+    "BUILD_ROOT=/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/",
     "AVRLIB_TOOLS_PATH=/usr/local/bin/",
     "AVRLIB_TOOLS_PATH_LEGACY=/usr/local/bin/",
-    "EXTRA_LD_FLAGS=,-Map,/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/firmware.map"
+    "EXTRA_LD_FLAGS=,-Map,/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/firmware.map"
   ],
   "flash_bytes": 30220,
   "max_flash_bytes": 31744,
@@ -124,19 +124,19 @@
     "voicecard/voice.cc": "5121e959284a9f399c0bd0f29e455dabd1e10beba7e85afc01e11e103ebeb7e4",
     "voicecard/voice.h": "7e8340fd42a8eb9d45bc66036aafe1c97501dbe4dd3111843745f58effd5e127",
     "voicecard/voicecard.cc": "9174fcac9c7d41fdfa72f2ab1fd858c7f9f60c1db5865444c3e6eadc3161c690",
-    "voicecard/voicecard.h": "69b210660b2f9093fcfd45e451205228789be1ad2cd62014a043d40555d5a554",
+    "voicecard/voicecard.h": "ace200282c97907198a1ccc577ae4ddd2b878b287434134a922d3ddcff196943",
     "voicecard/voicecard_rx.cc": "2f61215114af0b3af17c73c774f710ef10da31c31d5b0e4976bdf2f6909618a9",
     "voicecard/voicecard_rx.h": "6f2c8eab191ef353327afa572e44d7e42ca30f55055d7729d0f3685ecf2cfab3"
   },
   "artifact_sha256": {
-    "VOICE.BIN": "c6107f2d4b03b7d73d5f2a22817541be6f01b68d9a157302ae29793f852c2d24",
-    "ambika_voicecard.elf": "042068db45b891c99cded4e0c93514919e763d5c9cb2566a7f5757b563975947",
-    "ambika_voicecard.hex": "b7aeba61e977e993f7b83ab4b7da13cd32fc0a4156e96c7eb796576dc1e38cf6",
-    "ambika_voicecard.map": "a169ae68c72cc2bd381a58055a536d38d0421844513dc1ee79df4c0b4e088976",
-    "build.log": "b8c33606a57cdba3babfd56b8b66bf314cc8775cfd218587211f6e105ca0a8b6",
+    "VOICE.BIN": "8b75ba5cd861189d2f4fa496006fb64409cceec5703ba31f653d4b195eb37b0f",
+    "ambika_voicecard.elf": "464fa20ff31dd29335b78b96583e9fb270d33955decd2f120076fb1614321012",
+    "ambika_voicecard.hex": "3e3cf29af3577e8cac4a5033362d03c6ade15351ba86e5e037162f1be3535a18",
+    "ambika_voicecard.map": "be28499a451d2236e955707ffbef0a3c2a11a8e16b568eb084c2b93416e54f00",
+    "build.log": "276541b63119ec4773ad056b357b230f9760c404978854775b37b98a3b1f359e",
     "features.h": "f1505c13c874bdb38f25e4f3317b2483b071203d8b1b55113b099b5155f072c8",
-    "size.txt": "c04e85091845a21d4f105bac3a62ab13195be063a6fd9bc4d9667c3edc96bd80",
-    "source.tar.gz": "39afe3ee7e8cdb28e7d425cfceee302dd2b00e86d30b7c06f5fa0cd166517d98",
+    "size.txt": "0887defc2f1fd4d1d210cf2f52bad4758b5e5dba9f0de605a30340246c8bd1dc",
+    "source.tar.gz": "95ea80eae64e73cea8d61d820af1e77bd6aac227cea0a797e0a5bafadf6fb862",
     "symbols.txt": "aa0cb6222f09baf2738efffa928bc34d5d1a8f4348445eba59ee84b8c977b383"
   }
 }

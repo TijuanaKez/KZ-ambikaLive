@@ -3,31 +3,31 @@ Archive member included to satisfy reference by file (symbol)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_exit.o)
                               /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/crtatmega328p.o (exit)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libc.a(memcpy_P.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/voice.o (symbol from plugin) (memcpy_P)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/voice.o (symbol from plugin) (memcpy_P)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libc.a(memchr.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/string.o (symbol from plugin) (memchr)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/string.o (symbol from plugin) (memchr)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libatmega328p.a(eerd_byte.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/voicecard.o (symbol from plugin) (eeprom_read_byte)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/voicecard.o (symbol from plugin) (eeprom_read_byte)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libatmega328p.a(eewr_byte.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/voicecard.o (symbol from plugin) (eeprom_write_byte)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/voicecard.o (symbol from plugin) (eeprom_write_byte)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulpsi3.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o (__mulpsi3)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o (__mulpsi3)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_copy_data.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o (__do_copy_data)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o (__do_copy_data)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_clear_bss.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o (__do_clear_bss)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o (__do_clear_bss)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_ctors.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o (__do_global_ctors)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o (__do_global_ctors)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulsqipsi3.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o (__mulsqipsi3)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o (__mulsqipsi3)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_umulhisi3.o)
                               /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulpsi3.o) (__umulhisi3)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_usmulhisi3.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o (__usmulhisi3)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o (__usmulhisi3)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_prologue.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o (__prologue_saves__)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o (__prologue_saves__)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_epilogue.o)
-                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o (__epilogue_restores__)
+                              /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o (__epilogue_restores__)
 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_tablejump2.o)
                               /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_ctors.o) (__tablejump2__)
 
@@ -38,66 +38,66 @@ Discarded input sections
 
  .data          0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/crtatmega328p.o
  .bss           0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/crtatmega328p.o
- .debug_info    0x00000000      0x39d /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccwbiYwy.debug.temp.o
- .debug_abbrev  0x00000000      0x1b2 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccwbiYwy.debug.temp.o
- .debug_line    0x00000000       0xa0 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccwbiYwy.debug.temp.o
- .debug_str     0x00000000      0x727 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccwbiYwy.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccwbiYwy.debug.temp.o
- .debug_info    0x00000000      0x162 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccpGkPLw.debug.temp.o
- .debug_abbrev  0x00000000      0x10f /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccpGkPLw.debug.temp.o
- .debug_line    0x00000000       0x94 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccpGkPLw.debug.temp.o
- .debug_str     0x00000000      0x377 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccpGkPLw.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccpGkPLw.debug.temp.o
- .debug_info    0x00000000       0xae /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWMjkNc.debug.temp.o
- .debug_abbrev  0x00000000       0x72 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWMjkNc.debug.temp.o
- .debug_line    0x00000000       0xa6 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWMjkNc.debug.temp.o
- .debug_str     0x00000000      0x25e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWMjkNc.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWMjkNc.debug.temp.o
- .debug_info    0x00000000      0x2a8 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccICMhCd.debug.temp.o
- .debug_abbrev  0x00000000      0x14d /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccICMhCd.debug.temp.o
- .debug_line    0x00000000       0xd9 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccICMhCd.debug.temp.o
- .debug_str     0x00000000      0x31b /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccICMhCd.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccICMhCd.debug.temp.o
- .debug_info    0x00000000      0x5d1 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccZoxK3N.debug.temp.o
- .debug_abbrev  0x00000000      0x20e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccZoxK3N.debug.temp.o
- .debug_line    0x00000000       0xa5 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccZoxK3N.debug.temp.o
- .debug_str     0x00000000      0xd4e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccZoxK3N.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccZoxK3N.debug.temp.o
- .debug_info    0x00000000      0xaaa /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccrt2CW5.debug.temp.o
- .debug_abbrev  0x00000000      0x2f5 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccrt2CW5.debug.temp.o
- .debug_line    0x00000000       0xf0 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccrt2CW5.debug.temp.o
- .debug_str     0x00000000     0x171f /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccrt2CW5.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccrt2CW5.debug.temp.o
- .debug_info    0x00000000      0x3e9 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc4bUYLa.debug.temp.o
- .debug_abbrev  0x00000000      0x195 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc4bUYLa.debug.temp.o
- .debug_line    0x00000000       0xd7 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc4bUYLa.debug.temp.o
- .debug_str     0x00000000      0x754 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc4bUYLa.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc4bUYLa.debug.temp.o
- .debug_info    0x00000000     0x1db5 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccqzII6u.debug.temp.o
- .debug_abbrev  0x00000000      0x419 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccqzII6u.debug.temp.o
- .debug_line    0x00000000      0x117 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccqzII6u.debug.temp.o
- .debug_str     0x00000000     0x1fbf /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccqzII6u.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccqzII6u.debug.temp.o
- .debug_info    0x00000000      0x4a7 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNbcaUO.debug.temp.o
- .debug_abbrev  0x00000000       0xc1 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNbcaUO.debug.temp.o
- .debug_line    0x00000000       0xbb /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNbcaUO.debug.temp.o
- .debug_str     0x00000000      0xb04 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNbcaUO.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNbcaUO.debug.temp.o
- .debug_info    0x00000000     0x3cb0 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccA0yAOa.debug.temp.o
- .debug_abbrev  0x00000000      0x70e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccA0yAOa.debug.temp.o
- .debug_line    0x00000000      0x18e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccA0yAOa.debug.temp.o
- .debug_str     0x00000000     0x4489 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccA0yAOa.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccA0yAOa.debug.temp.o
- .debug_info    0x00000000     0x203e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccSF8RCy.debug.temp.o
- .debug_abbrev  0x00000000      0x5c1 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccSF8RCy.debug.temp.o
- .debug_line    0x00000000      0x16e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccSF8RCy.debug.temp.o
- .debug_str     0x00000000     0x35f8 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccSF8RCy.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccSF8RCy.debug.temp.o
- .debug_info    0x00000000     0x5fa1 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNzike7.debug.temp.o
- .debug_abbrev  0x00000000      0x7c0 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNzike7.debug.temp.o
- .debug_line    0x00000000      0x238 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNzike7.debug.temp.o
- .debug_str     0x00000000     0xeb36 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNzike7.debug.temp.o
- .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNzike7.debug.temp.o
+ .debug_info    0x00000000      0x39d /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccRErQCH.debug.temp.o
+ .debug_abbrev  0x00000000      0x1b2 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccRErQCH.debug.temp.o
+ .debug_line    0x00000000       0xa0 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccRErQCH.debug.temp.o
+ .debug_str     0x00000000      0x727 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccRErQCH.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccRErQCH.debug.temp.o
+ .debug_info    0x00000000      0x162 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cccXUYaY.debug.temp.o
+ .debug_abbrev  0x00000000      0x10f /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cccXUYaY.debug.temp.o
+ .debug_line    0x00000000       0x94 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cccXUYaY.debug.temp.o
+ .debug_str     0x00000000      0x377 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cccXUYaY.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cccXUYaY.debug.temp.o
+ .debug_info    0x00000000       0xae /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccYR68ST.debug.temp.o
+ .debug_abbrev  0x00000000       0x72 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccYR68ST.debug.temp.o
+ .debug_line    0x00000000       0xa6 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccYR68ST.debug.temp.o
+ .debug_str     0x00000000      0x25e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccYR68ST.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccYR68ST.debug.temp.o
+ .debug_info    0x00000000      0x2a8 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccpEfUIO.debug.temp.o
+ .debug_abbrev  0x00000000      0x14d /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccpEfUIO.debug.temp.o
+ .debug_line    0x00000000       0xd9 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccpEfUIO.debug.temp.o
+ .debug_str     0x00000000      0x31b /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccpEfUIO.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccpEfUIO.debug.temp.o
+ .debug_info    0x00000000      0x5d1 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccFH5PvH.debug.temp.o
+ .debug_abbrev  0x00000000      0x20e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccFH5PvH.debug.temp.o
+ .debug_line    0x00000000       0xa5 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccFH5PvH.debug.temp.o
+ .debug_str     0x00000000      0xd4e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccFH5PvH.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccFH5PvH.debug.temp.o
+ .debug_info    0x00000000      0xaaa /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc2fMZGB.debug.temp.o
+ .debug_abbrev  0x00000000      0x2f5 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc2fMZGB.debug.temp.o
+ .debug_line    0x00000000       0xf0 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc2fMZGB.debug.temp.o
+ .debug_str     0x00000000     0x171f /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc2fMZGB.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc2fMZGB.debug.temp.o
+ .debug_info    0x00000000      0x3e9 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccdxCKqp.debug.temp.o
+ .debug_abbrev  0x00000000      0x195 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccdxCKqp.debug.temp.o
+ .debug_line    0x00000000       0xd7 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccdxCKqp.debug.temp.o
+ .debug_str     0x00000000      0x754 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccdxCKqp.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccdxCKqp.debug.temp.o
+ .debug_info    0x00000000     0x1db5 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc8umIFv.debug.temp.o
+ .debug_abbrev  0x00000000      0x419 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc8umIFv.debug.temp.o
+ .debug_line    0x00000000      0x117 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc8umIFv.debug.temp.o
+ .debug_str     0x00000000     0x1fbf /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc8umIFv.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc8umIFv.debug.temp.o
+ .debug_info    0x00000000      0x4a7 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cctxIuSM.debug.temp.o
+ .debug_abbrev  0x00000000       0xc1 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cctxIuSM.debug.temp.o
+ .debug_line    0x00000000       0xbb /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cctxIuSM.debug.temp.o
+ .debug_str     0x00000000      0xb04 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cctxIuSM.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cctxIuSM.debug.temp.o
+ .debug_info    0x00000000     0x3cb0 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccuW5ig4.debug.temp.o
+ .debug_abbrev  0x00000000      0x70e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccuW5ig4.debug.temp.o
+ .debug_line    0x00000000      0x18e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccuW5ig4.debug.temp.o
+ .debug_str     0x00000000     0x4489 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccuW5ig4.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccuW5ig4.debug.temp.o
+ .debug_info    0x00000000     0x203e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccJ6nyUG.debug.temp.o
+ .debug_abbrev  0x00000000      0x5c1 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccJ6nyUG.debug.temp.o
+ .debug_line    0x00000000      0x16e /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccJ6nyUG.debug.temp.o
+ .debug_str     0x00000000     0x35f8 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccJ6nyUG.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccJ6nyUG.debug.temp.o
+ .debug_info    0x00000000     0x5fa1 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cchlwE0a.debug.temp.o
+ .debug_abbrev  0x00000000      0x7c0 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cchlwE0a.debug.temp.o
+ .debug_line    0x00000000      0x238 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cchlwE0a.debug.temp.o
+ .debug_str     0x00000000     0xeb36 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cchlwE0a.debug.temp.o
+ .comment       0x00000000       0x25 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cchlwE0a.debug.temp.o
  .text          0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_exit.o)
  .data          0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_exit.o)
  .bss           0x00000000        0x0 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_exit.o)
@@ -293,31 +293,31 @@ Linker script and memory map
 Address of section .data set to 0x800100
 LOAD /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/crtatmega328p.o
 LOAD /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libm.a
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/adc.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccwbiYwy.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccpGkPLw.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccWMjkNc.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccICMhCd.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccZoxK3N.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccrt2CW5.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc4bUYLa.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccqzII6u.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNbcaUO.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccA0yAOa.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccSF8RCy.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccNzike7.debug.temp.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/random.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/serial.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/string.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/time.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/wii_nunchuk.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/audio_out.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/oscillator.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/resources.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/voice.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/voicecard_rx.o
-LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/voicecard.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/adc.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccRErQCH.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cccXUYaY.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccYR68ST.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccpEfUIO.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccFH5PvH.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc2fMZGB.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccdxCKqp.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cc8umIFv.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cctxIuSM.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccuW5ig4.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ccJ6nyUG.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//cchlwE0a.debug.temp.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/random.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/serial.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/string.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/time.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/wii_nunchuk.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/audio_out.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/oscillator.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/resources.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/voice.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/voicecard_rx.o
+LOAD /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/voicecard.o
 START GROUP
 LOAD /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a
 LOAD /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/../../../../../../avr/lib/avr5/libm.a
@@ -433,7 +433,7 @@ END GROUP
                 0x00000068                        __progmem_start = .
  *(.progmem)
  *(.progmem.*)
- .progmem.data  0x00000068     0x4b1f /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o
+ .progmem.data  0x00000068     0x4b1f /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o
                 0x00004b87                        __progmem_end = .
                 0x00000001                        ASSERT (((__progmem_start == __progmem_end) || (__progmem_end <= 0x10000)), .progmem section exceeds 0x10000)
                 0x00004b88                        . = ALIGN (0x2)
@@ -448,7 +448,7 @@ END GROUP
  *(.lowtext*)
                 0x00004b88                        __ctors_start = .
  *(.ctors)
- .ctors         0x00004b88        0x2 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o
+ .ctors         0x00004b88        0x2 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o
                 0x00004b8a                        __ctors_end = .
                 0x00004b8a                        __dtors_start = .
  *(.dtors)
@@ -512,11 +512,11 @@ END GROUP
                 0x00004bda                __vector_16
                 0x00004bda                __vector_18
                 0x00004bda                __vector_22
- .text          0x00004bde     0x13e4 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o
+ .text          0x00004bde     0x13e4 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o
                 0x00005ed0                __vector_9
                 0x00005fc2                        . = ALIGN (0x2)
  *(.text.*)
- .text.startup  0x00005fc2     0x14e2 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o
+ .text.startup  0x00005fc2     0x14e2 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o
                 0x00005fc2                main
  .text.libgcc.mul
                 0x000074a4       0x12 /usr/local/Cellar/avr-gcc@9/9.5.0/lib/avr-gcc/9/gcc/avr/9.5.0/avr5/libgcc.a(_mulpsi3.o)
@@ -586,11 +586,11 @@ END GROUP
 .data           0x00800100       0x56 load address 0x000075b6
                 0x00800100                        PROVIDE (__data_start = .)
  *(.data)
- .data          0x00800100        0x2 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o
+ .data          0x00800100        0x2 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o
  *(.data*)
  *(.gnu.linkonce.d*)
  *(.rodata)
- .rodata        0x00800102       0x54 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o
+ .rodata        0x00800102       0x54 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o
  *(.rodata*)
  *(.gnu.linkonce.r*)
                 0x00800156                        . = ALIGN (0x2)
@@ -600,7 +600,7 @@ END GROUP
 .bss            0x00800156      0x3da
                 0x00800156                        PROVIDE (__bss_start = .)
  *(.bss)
- .bss           0x00800156      0x3da /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o
+ .bss           0x00800156      0x3da /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o
  *(.bss*)
  *(COMMON)
                 0x00800530                        PROVIDE (__bss_end = .)
@@ -652,7 +652,7 @@ END GROUP
 
 .comment        0x00000000       0x24
  *(.comment)
- .comment       0x00000000       0x24 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.PI4H4F.ltrans0.ltrans.o
+ .comment       0x00000000       0x24 /var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T//ambika_voicecard.elf.jhbOx3.ltrans0.ltrans.o
                                  0x25 (size before relaxing)
 
 .note.gnu.avr.deviceinfo
@@ -826,5 +826,5 @@ END GROUP
 
 .debug_sup
  *(.debug_sup)
-OUTPUT(/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/ambika_voicecard.elf elf32-avr)
+OUTPUT(/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/ambika_voicecard.elf elf32-avr)
 LOAD linker stubs

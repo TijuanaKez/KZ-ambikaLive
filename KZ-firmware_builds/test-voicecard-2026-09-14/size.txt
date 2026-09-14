@@ -1,4 +1,4 @@
-/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-3u4jctjq/ambika_voicecard/ambika_voicecard.elf  :
+/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-9zwifcll/ambika_voicecard/ambika_voicecard.elf  :
 section                     size      addr
 .data                         86   8388864
 .text                      30134         0
