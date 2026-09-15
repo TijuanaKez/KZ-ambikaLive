@@ -557,6 +557,49 @@ the single cheapest available improvement to the basic waveforms, and it targets
 the exact artefact documented in that thread. Only then consider polyBLAMP, EPTR
 and the signal path.
 
+---
+
+## 6d. Envelope curves — from the Carcosa fork
+
+Carey's request, 2026-09-15. joegiralt's fork added envelope curve options and
+the implementation is small enough to be worth taking. In his
+`voicecard/envelope.h` the whole change is one branch in the render step:
+
+```cpp
+uint8_t step = linear_ ? (phase_ >> 8)
+                       : InterpolateSample(wav_res_env_expo, phase_);
+```
+
+Our envelope already does the `InterpolateSample(wav_res_env_expo, phase)` half
+(`voicecard/envelope.h:84`), so **linear is free** — the branch is what is
+missing, not a table. His `ENVELOPE_CURVE_LOOP` and `LOOP_LINEAR` re-arm the
+envelope at the end of its decay, turning it into an LFO-ish AD loop.
+
+Cost: one branch per envelope render, plus state. Two bits per envelope selects
+among four curves, so all three envelopes fit in **one byte**. The voice card has
+978 bytes of SRAM free, so this is not a constraint.
+
+**The important part is where that byte goes.** `Patch::Parameters` ends with
+`uint8_t padding[6]` (`common/patch.h:352`). Putting the curve selection there
+keeps `Patch` at 84 bytes, which matters more than it looks: `Storage::Load`
+accepts an object chunk only when `expected_size == size.value - 4`, so **any
+change to the size of `Patch` makes every existing patch file silently fail to
+load**. A padding byte means old patches load unchanged and read zero, which must
+therefore be `ENVELOPE_CURVE_EXPONENTIAL` — today's behaviour.
+
+Same trick that housed the deferred-load delay in the settings record, and the
+pattern for every future patch-level parameter until the padding runs out. Six
+bytes left; spend them deliberately.
+
+Worth considering beyond Carcosa's four: a per-envelope curve *amount* rather
+than a discrete linear/exponential choice costs a byte per envelope instead of
+two bits. Note §6b though — at 8-bit resolution the audible difference between
+curve shapes is coarse.
+
+---
+
+## 7. Road ahead
+
 **Phase 0 — close out v1. DONE.** v1.4 confirmed on hardware and released
 2026-09-14. The GCC 9 voice card was then proven on hardware 2026-09-15 —
 pitch, all shapes and the filter all correct — which retired the silent-card
@@ -568,7 +611,9 @@ Rather than a scope on the timing pins, each voice card now reports its audio
 render headroom over SPI (`COMMAND_GET_AUDIO_HEADROOM`) and the diagnostic
 controller shows all six on the `AUD` line. The value is the peak free space in
 the 128-sample audio buffer at the moment a block started rendering: around 40 is
-healthy, rising means falling behind, 255 means it starved. Reading clears it.
+healthy, rising means falling behind, `kAudioStarved` (254) means it ran dry,
+and `kAudioHeadroomUnsupported` (255) means that card predates the counter and
+is displayed as `--`. Reading clears it.
 
 This is permanent on purpose — Phase 4 requires each new algorithm's cost to be
 recorded before the next is written, and this is what records it. Cost is 50
