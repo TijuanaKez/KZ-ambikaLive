@@ -74,9 +74,17 @@ struct VoicecardTx {
 } voicecard_tx;
 struct OsInfoPage : UiPage {
   static void OnInit(PageInfo*), UpdateScreen(), UpdateLeds();
-  static uint8_t OnIncrement(int8_t), OnKey(uint8_t);
+  static uint8_t OnIncrement(int8_t), OnKey(uint8_t), OnClick();
+  static void MemoryOnInit(PageInfo*), MemoryUpdateScreen(), MemoryUpdateLeds();
+  static uint8_t MemoryOnIncrement(int8_t), MemoryOnKey(uint8_t);
+  // Defined below as no-ops: the firmware-update half is a separate
+  // translation unit that these tests do not compile.
+  static void FirmwareOnInit(PageInfo*), FirmwareUpdateScreen(), FirmwareUpdateLeds();
+  static uint8_t FirmwareOnIncrement(int8_t), FirmwareOnKey(uint8_t);
+  static void FindFirmwareFiles(uint8_t);
   static uint8_t audio_headroom_[kNumVoices];
   static uint8_t audio_headroom_index_;
+  static uint8_t show_memory_;
 };
 
 PageInfo prefs_a = {15, {66,67,71,72,68,69,70,0xf8}, 16};
@@ -148,7 +156,19 @@ uint8_t ResetCause() { return 0xab; }
 }  // namespace ambika
 
 #include "controller/ui_pages/parameter_editor.cc"
-#include "controller/ui_pages/os_info_page.cc"
+// The firmware-update half lives in os_info_page.cc and needs the SD card, the
+// voice card protocol and EEPROM; the diagnostic view is what these tests are
+// about, so only that translation unit is compiled. Its dispatchers reference
+// the firmware entry points, which are stubbed here.
+namespace ambika {
+void OsInfoPage::FirmwareOnInit(PageInfo*) {}
+uint8_t OsInfoPage::FirmwareOnIncrement(int8_t) { return 1; }
+uint8_t OsInfoPage::FirmwareOnKey(uint8_t) { return 1; }
+void OsInfoPage::FirmwareUpdateScreen() {}
+void OsInfoPage::FirmwareUpdateLeds() {}
+void OsInfoPage::FindFirmwareFiles(uint8_t) {}
+}  // namespace ambika
+#include "controller/ui_pages/os_info_page_diag.cc"
 
 int main() {
   using namespace ambika;
@@ -247,6 +267,17 @@ int main() {
     assert(std::memcmp(display.line_buffer(1), "AUD ", 4) == 0);
     for (int i = 0; i < 80; ++i) assert(display.memory[i + 1] != 0);
   }
+  // Clicking swaps to the firmware-update view and back, so a diagnostic build
+  // can still flash voice cards.
+  {
+    OsInfoPage::OnInit(&prefs_a);
+    assert(OsInfoPage::show_memory_ == 1);
+    OsInfoPage::OnClick();
+    assert(OsInfoPage::show_memory_ == 0);
+    OsInfoPage::OnClick();
+    assert(OsInfoPage::show_memory_ == 1);
+  }
+
   // The diagnostic page polls one voice card per redraw, round-robin, and
   // renders every card's headroom in a 3-character field.
   {
@@ -260,6 +291,8 @@ int main() {
         display.check();
       }
       assert(std::memcmp(display.line_buffer(1), "AUD ", 4) == 0);
+      // The click hint must not land on a card's cell.
+      assert(std::memcmp(display.line_buffer(1) + 29, "clk:fw", 6) == 0);
       assert(std::memcmp(display.line_buffer(1) + 36, "exit", 4) == 0);
       // A card with no counter must read as "--", never as a number: 0xff is
       // what an older voice card leaves in SPDR, not a real measurement.
@@ -267,7 +300,7 @@ int main() {
                        : reply == kAudioStarved ? "254"
                        : reply == 128 ? "128" : (reply == 40 ? " 40" : "  0");
       for (uint8_t i = 0; i < kNumVoices; ++i) {
-        assert(std::memcmp(display.line_buffer(1) + 4 + i * 5, want, 3) == 0);
+        assert(std::memcmp(display.line_buffer(1) + 4 + i * 4, want, 3) == 0);
       }
     }
     for (uint8_t i = 0; i < kNumVoices; ++i) assert(voicecard_tx.polled[i] == 5);

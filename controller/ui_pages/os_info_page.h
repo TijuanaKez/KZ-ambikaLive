@@ -35,6 +35,13 @@ class OsInfoPage : public UiPage {
   static uint8_t OnIncrement(int8_t increment);
   static void UpdateScreen();
   static void UpdateLeds();
+#ifdef DIAGNOSTIC_BUILD
+  // Clicking the encoder switches between the memory/headroom view and the
+  // ordinary firmware-update view, so a diagnostic build can still flash voice
+  // cards. Without this the update action is unreachable, because the
+  // diagnostic screen took its page.
+  static uint8_t OnClick();
+#endif
 
  // NOTE: These now must always reflect exactly EventHandlers struct in ui.h
   static constexpr EventHandlers event_handlers_ PROGMEM = {
@@ -42,7 +49,7 @@ class OsInfoPage : public UiPage {
       SetActiveControl,
       OnIncrement,
       OnIncrementAndCycle,
-      OnClick,
+      OnClick,  // OsInfoPage::OnClick in diagnostic builds, UiPage's otherwise
       OnPot,
       OnKey,
       nullptr,
@@ -54,6 +61,23 @@ class OsInfoPage : public UiPage {
 
 
 private:
+  // The ordinary firmware-update implementation. Always compiled; in a
+  // diagnostic build the public entry points above dispatch to it or to the
+  // Memory* pair below.
+  static void FirmwareOnInit(PageInfo* info);
+  static uint8_t FirmwareOnKey(uint8_t key);
+  static uint8_t FirmwareOnIncrement(int8_t increment);
+  static void FirmwareUpdateScreen();
+  static void FirmwareUpdateLeds();
+#ifdef DIAGNOSTIC_BUILD
+  static void MemoryOnInit(PageInfo* info);
+  static uint8_t MemoryOnKey(uint8_t key);
+  static uint8_t MemoryOnIncrement(int8_t increment);
+  static void MemoryUpdateScreen();
+  static void MemoryUpdateLeds();
+  static uint8_t show_memory_;
+#endif
+
   static void PrintVersionNumber(char* buffer, uint8_t number);
   //static void ReadVoicecardVersion();
   static void FindFirmwareFiles(uint8_t port);

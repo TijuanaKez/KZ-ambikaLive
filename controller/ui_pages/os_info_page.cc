@@ -32,80 +32,11 @@
 
 namespace ambika {
 
-#ifdef DIAGNOSTIC_BUILD
-
-// In diagnostic images this page only reads SRAM. Avoid SD scanning and
-// voicecard transactions while observing a possible memory fault.
-void OsInfoPage::OnInit(PageInfo* info) {
-  UiPage::OnInit(info);
-}
-
-uint8_t OsInfoPage::OnIncrement(int8_t increment) {
-  IGNORE_UNUSED(increment);
-  return 1;
-}
-
-uint8_t OsInfoPage::OnKey(uint8_t key) {
-  if (key == SWITCH_8) ui.ShowPreviousPage();
-  return 1;
-}
-
-/* static */
-uint8_t OsInfoPage::audio_headroom_[kNumVoices];
-
-/* static */
-uint8_t OsInfoPage::audio_headroom_index_;
-
-void OsInfoPage::UpdateScreen() {
-  // Poll one card per redraw. Each query is a blocking SPI transaction with a
-  // settling delay, so asking all six at once would stall the UI.
-  audio_headroom_[audio_headroom_index_] =
-      voicecard_tx.GetAudioHeadroom(audio_headroom_index_);
-  ++audio_headroom_index_;
-  if (audio_headroom_index_ >= kNumVoices) {
-    audio_headroom_index_ = 0;
-  }
-
-  char* buffer = display.line_buffer(0);
-  memcpy_P(buffer, PSTR("KZ DIAG3 RAM "), 13);
-  UnsafeItoa<int16_t>(FreeSram(), 5, &buffer[13]);
-  AlignRight(&buffer[13], 5);
-  memcpy_P(&buffer[21], PSTR("LOW "), 4);
-  UnsafeItoa<int16_t>(UntouchedSram(), 5, &buffer[25]);
-  AlignRight(&buffer[25], 5);
-  memcpy_P(&buffer[33], PSTR("RST "), 4);
-  buffer[37] = NibbleToAscii(highNibble(ResetCause()));
-  buffer[38] = NibbleToAscii(lowNibble(ResetCause()));
-
-  // Audio render headroom per voice card: free space left in the audio buffer
-  // just before a block was rendered. Around 40 is healthy, rising means the
-  // card is falling behind, 255 means its audio buffer starved.
-  buffer = display.line_buffer(1);
-  memcpy_P(buffer, PSTR("AUD "), 4);
-  for (uint8_t i = 0; i < kNumVoices; ++i) {
-    char* cell = &buffer[4 + i * 5];
-    if (audio_headroom_[i] == kAudioHeadroomUnsupported) {
-      // No counter on that card -- v1.1 firmware, or no card in the slot.
-      memcpy_P(cell, PSTR(" --"), 3);
-    } else {
-      UnsafeItoa<int16_t>(audio_headroom_[i], 3, cell);
-      AlignRight(cell, 3);
-    }
-  }
-  memcpy_P(&buffer[36], PSTR("exit"), 4);
-}
-
-void OsInfoPage::UpdateLeds() {
-  leds.set_pixel(LED_8, 0xf0);
-}
-
-#else
-
 /* static */
 uint8_t OsInfoPage::found_firmware_files_;
 
 /* static */
-void OsInfoPage::OnInit(PageInfo* info) {
+void OsInfoPage::FirmwareOnInit(PageInfo* info) {
   IGNORE_UNUSED(info);
   active_control_ = 0;
   FindFirmwareFiles(0);
@@ -124,7 +55,7 @@ void OsInfoPage::FindFirmwareFiles(uint8_t port) {
 }
 
 /* static */
-uint8_t OsInfoPage::OnIncrement(int8_t increment) {
+uint8_t OsInfoPage::FirmwareOnIncrement(int8_t increment) {
   active_control_ = Clip(active_control_ + increment, 0_u8, U8(kNumVoices + 1));
   FindFirmwareFiles(active_control_);
   // TODO figure out what the return value does
@@ -132,7 +63,7 @@ uint8_t OsInfoPage::OnIncrement(int8_t increment) {
 }
 
 /* static */
-uint8_t OsInfoPage::OnKey(uint8_t key) {
+uint8_t OsInfoPage::FirmwareOnKey(uint8_t key) {
   switch(key) {
     default:
       break;
@@ -195,7 +126,7 @@ void OsInfoPage::PrintVersionNumber(char* buffer, uint8_t number) {
 }
 
 /* static */
-void OsInfoPage::UpdateScreen() {
+void OsInfoPage::FirmwareUpdateScreen() {
   char* buffer = display.line_buffer(0) + 1;
   memcpy_P(&buffer[0], PSTR("KZambika"), 8);
   PrintVersionNumber(&buffer[10], kSystemVersion);
@@ -230,7 +161,7 @@ void OsInfoPage::UpdateScreen() {
 }
 
 /* static */
-void OsInfoPage::UpdateLeds() {
+void OsInfoPage::FirmwareUpdateLeds() {
   leds.set_pixel(LED_8, 0xf0);
   if (byteAnd(found_firmware_files_, 1)) {
     leds.set_pixel(LED_1, 0x0f);
@@ -240,6 +171,13 @@ void OsInfoPage::UpdateLeds() {
   }
 }
 
-#endif  // DIAGNOSTIC_BUILD
+#ifndef DIAGNOSTIC_BUILD
+// Release builds have only the firmware-update view; these collapse away.
+void OsInfoPage::OnInit(PageInfo* info) { FirmwareOnInit(info); }
+uint8_t OsInfoPage::OnIncrement(int8_t increment) { return FirmwareOnIncrement(increment); }
+uint8_t OsInfoPage::OnKey(uint8_t key) { return FirmwareOnKey(key); }
+void OsInfoPage::UpdateScreen() { FirmwareUpdateScreen(); }
+void OsInfoPage::UpdateLeds() { FirmwareUpdateLeds(); }
+#endif
 
 }  // namespace ambika
