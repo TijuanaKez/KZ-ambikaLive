@@ -38,13 +38,13 @@ const uint8_t kDataEntryResendRate = 32;
 
 struct LowPriorityBufferSpecs {
   enum {
-    // KZ MOD: 128 originally. Halved to buy 64 bytes of stack headroom on the
-    // controller after LOW reached 0 while loading programs -- a stack/static
-    // collision is a worse problem than a shallower MIDI output queue. At
-    // 31,250 baud this still buffers about 20 ms of output, and SysEx dumps do
-    // not use it (SysExSendRaw goes through SendBlocking). Raise it back if
-    // dense MIDI output ever misbehaves, and find the bytes elsewhere.
-    buffer_size = 64,
+    // Emilie's value, unchanged through MachFour and YAM. Briefly halved to 64
+    // on 2026-09-15 to buy stack headroom; reverted after MIDI stopped
+    // responding under a controller flood. The stack headroom now comes from
+    // bounding the TIMER1 re-entrancy in controller.cc instead, which is the
+    // actual cause rather than a symptom. Do not shrink this again without
+    // evidence from the MID reading on the diagnostic page.
+    buffer_size = 128,
     data_size = 8,
   };
   typedef avrlib::DataTypeForSize<data_size>::Type Value;

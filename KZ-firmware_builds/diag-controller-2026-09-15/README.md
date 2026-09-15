@@ -4,8 +4,14 @@ Reports **v1.4**, same as the release, but this is the `DIAGNOSTIC_BUILD`. It
 replaces the firmware-update page with the memory screen, so it can only be
 reflashed by holding **S8** at power-on.
 
-Flash 53,120 / 61,440. Static SRAM 3,732 / 3,968, leaving **364 bytes** for the
-stack. The matching release build has **372**, against 267 in v1.4.
+Flash 53,188 / 61,440. Static SRAM 3,798 / 3,968, leaving **298 bytes** for the
+stack; the release build has 306.
+
+That is *less* headroom than the previous build, deliberately. The MIDI output
+buffer is back to Emilie's 128 bytes, and the stack safety now comes from
+bounding TIMER1 re-entrancy instead — see below. Measured peak stack was 334
+bytes *with* unbounded nesting; the guard should cut that well below 298, and
+the `LOW` reading is how we find out.
 
 **Click the encoder to switch between the memory view and the ordinary
 firmware-update view.** Earlier diagnostic builds replaced the update page
@@ -21,8 +27,9 @@ AUD nnn nnn nnn nnn nnn nnn  clk:fw     exit
 - **RAM** — free SRAM between the heap start and the stack pointer.
 - **LOW** — untouched-stack watermark. Measured at **30** on 2026-09-15, so peak
   stack use is **334 bytes** against 364 of headroom.
-- **MID** — high-water mark of the MIDI output queue, against its 64-byte size.
-  This exists to settle whether halving that buffer from Emilie's 128 was safe.
+- **MID** — high-water mark of the MIDI output queue, against its 128-byte size.
+  It reached 22 under a controller flood when the buffer was 64, then froze,
+  which was the clue that the main loop had stopped running.
 - **RST** — reset cause. The bootloader can clear MCUSR, so `00` is inconclusive.
 - **AUD** — audio CPU load per voice card, in audio ticks consumed per 40-sample
   block. See below.

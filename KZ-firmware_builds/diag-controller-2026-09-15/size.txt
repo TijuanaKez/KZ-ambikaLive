@@ -1,8 +1,8 @@
-/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-controller-diagnostic-yp_t3xbo/ambika_controller/ambika_controller.elf  :
+/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-controller-diagnostic-t03g0scv/ambika_controller/ambika_controller.elf  :
 section                     size      addr
 .data                         58   8388864
-.text                      53114         0
-.bss                        3675   8388922
+.text                      53130         0
+.bss                        3740   8388922
 .comment                      36         0
 .note.gnu.avr.deviceinfo      64         0
 .debug_aranges               576         0
@@ -10,6 +10,6 @@ section                     size      addr
 .debug_abbrev               2006         0
 .debug_line                 2981         0
 .debug_str                   727         0
-Total                      65661
+Total                      65742
 
 

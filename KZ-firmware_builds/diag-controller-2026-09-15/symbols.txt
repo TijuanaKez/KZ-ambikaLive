@@ -1,68 +1,68 @@
 00002e2e T __bad_interrupt
-00800f95 B __bss_end
+00800fd6 B __bss_end
 0080013a B __bss_start
 00002ddc T __ctors_end
 00002dda T __ctors_start
 0080013a D __data_end
-0000cfb4 A __data_load_end
-0000cf7a A __data_load_start
+0000cfc4 A __data_load_end
+0000cf8a A __data_load_start
 0000ffa0 A __DATA_REGION_LENGTH__
 00800060 A __DATA_REGION_ORIGIN__
 00800100 D __data_start
-0000cc72 T __divmodhi4
-0000cc96 t __divmodhi4_exit
-0000cc88 t __divmodhi4_neg1
-0000cc90 t __divmodhi4_neg2
-0000ccdc T __divmodsi4
-0000cd02 t __divmodsi4_exit
-0000ccf4 t __divmodsi4_neg2
+0000cc82 T __divmodhi4
+0000cca6 t __divmodhi4_exit
+0000cc98 t __divmodhi4_neg1
+0000cca0 t __divmodhi4_neg2
+0000ccec T __divmodsi4
+0000cd12 t __divmodsi4_exit
+0000cd04 t __divmodsi4_neg2
 00002e00 T __do_clear_bss
 00002dea T __do_copy_data
 00002e10 T __do_global_ctors
-0000cefe T __do_global_dtors
+0000cf0e T __do_global_dtors
 00002dde T __dtors_end
 00002ddc T __dtors_start
 00810000 N __eeprom_end
 00010000 A __EEPROM_REGION_LENGTH__
-0000cda2 T __epilogue_restores__
+0000cdb2 T __epilogue_restores__
 00000000 A __flmap
 00000000 A __flmap_init_label
 00000003 A __FUSE_REGION_LENGTH__
 00000000 W __heap_end
-00800f95 B __heap_start
+00800fd6 B __heap_start
 00002dde W __init
 00000400 A __LOCK_REGION_LENGTH__
-0000cd20 T __mulhisi3
-0000cd56 T __muluhisi3
-0000cd04 T __negsi2
+0000cd30 T __mulhisi3
+0000cd66 T __muluhisi3
+0000cd14 T __negsi2
 00002dda T __progmem_end
 0000007c T __progmem_start
-0000cd6a T __prologue_saves__
+0000cd7a T __prologue_saves__
 00000400 A __SIGNATURE_REGION_LENGTH__
 0000003e a __SP_H__
 0000003d a __SP_L__
 0000003f a __SREG__
 000010ff W __stack
-0000cf14 t __stop_program
-0000cd14 T __tablejump2__
+0000cf24 t __stop_program
+0000cd24 T __tablejump2__
 00020000 A __TEXT_REGION_LENGTH__
 00000000 A __TEXT_REGION_ORIGIN__
 00000000 a __tmp_reg__
 00002dda T __trampolines_end
 00002dda T __trampolines_start
-0000cc4a T __udivmodhi4
-0000cc60 t __udivmodhi4_ep
-0000cc52 t __udivmodhi4_loop
-0000cc32 T __udivmodqi4
-0000cc40 t __udivmodqi4_ep
-0000cc38 t __udivmodqi4_loop
-0000cc98 T __udivmodsi4
-0000ccbe t __udivmodsi4_ep
-0000cca4 t __udivmodsi4_loop
-0000cd2c T __umulhisi3
+0000cc5a T __udivmodhi4
+0000cc70 t __udivmodhi4_ep
+0000cc62 t __udivmodhi4_loop
+0000cc42 T __udivmodqi4
+0000cc50 t __udivmodqi4_ep
+0000cc48 t __udivmodqi4_loop
+0000cca8 T __udivmodsi4
+0000ccce t __udivmodsi4_ep
+0000ccb4 t __udivmodsi4_loop
+0000cd3c T __umulhisi3
 00000400 A __USER_SIGNATURE_REGION_LENGTH__
-0000cd4a T __usmulhisi3
-0000cd4c T __usmulhisi3_tail
+0000cd5a T __usmulhisi3
+0000cd5c T __usmulhisi3_tail
 00002e2e W __vector_1
 00002e2e W __vector_10
 0000bc3c T __vector_11
@@ -96,32 +96,32 @@
 00000000 W __vector_default
 00000000 T __vectors
 00000001 a __zero_reg__
-0000cc72 T _div
+0000cc82 T _div
 0080013a D _edata
-00800f95 B _end
-0000cf7a T _etext
-0000cefe T _exit
-0000c206 t global constructors keyed to 65535_0_adc.o.7297
-0000cc26 t _GLOBAL__sub_D__ZN6ambika7Storage3fs_E
+00800fd6 B _end
+0000cf8a T _etext
+0000cf0e T _exit
+0000c216 t global constructors keyed to 65535_0_adc.o.7298
+0000cc36 t _GLOBAL__sub_D__ZN6ambika7Storage3fs_E
 00009cd0 t midi::MidiStreamParser<ambika::MidiDispatcher>::MessageReceived(unsigned char) [clone .constprop.0]
 0000567a t ambika::OsInfoPage::UpdateLeds()
 00008856 t ambika::OsInfoPage::OnIncrement(signed char)
 00800113 d ambika::OsInfoPage::show_memory_
 0000b468 t ambika::OsInfoPage::UpdateScreen()
-00800423 b ambika::OsInfoPage::audio_headroom_
+00800464 b ambika::OsInfoPage::audio_headroom_
 00000444 t ambika::OsInfoPage::event_handlers_
 000086a4 t ambika::OsInfoPage::UpdateVoiceCard(unsigned char) [clone .part.0]
 0000881c t ambika::OsInfoPage::FindFirmwareFiles(unsigned char)
-00800429 b ambika::OsInfoPage::audio_headroom_index_
-0080042a b ambika::OsInfoPage::found_firmware_files_
+0080046a b ambika::OsInfoPage::audio_headroom_index_
+0080046b b ambika::OsInfoPage::found_firmware_files_
 0000a9f0 t ambika::OsInfoPage::OnKey(unsigned char)
 000088b2 t ambika::OsInfoPage::OnInit(ambika::PageInfo*)
 0000888c t ambika::OsInfoPage::OnClick()
 0000837e t ambika::KnobAssigner::OnIncrement(signed char)
-008003e2 b ambika::KnobAssigner::active_knob_
+00800423 b ambika::KnobAssigner::active_knob_
 00008a88 t ambika::KnobAssigner::UpdateScreen()
 0000048c t ambika::KnobAssigner::event_handlers_
-008003e1 b ambika::KnobAssigner::num_parameters_
+00800422 b ambika::KnobAssigner::num_parameters_
 000082d2 t ambika::KnobAssigner::OnPot(unsigned char, unsigned char)
 0000841e t ambika::KnobAssigner::OnInit(ambika::PageInfo*)
 00002851 t ambika::string_table
@@ -135,27 +135,27 @@
 0000a88e t ambika::VoiceAssigner::OnClick()
 00006308 t ambika::MidiDispatcher::ForwardNote(ambika::Part*, unsigned char, unsigned char) [clone .part.0]
 0000973c t ambika::MidiDispatcher::ProcessSysEx(unsigned char)
-008004ae b ambika::MidiDispatcher::current_bank_
-00800298 b ambika::MidiDispatcher::data_entry_counter_
+008004ef b ambika::MidiDispatcher::current_bank_
+008002d9 b ambika::MidiDispatcher::data_entry_counter_
 00800112 d ambika::MidiDispatcher::current_parameter_address_
 00006900 t ambika::MidiDispatcher::Send(unsigned char, unsigned char*, unsigned char)
 00005b62 t ambika::MidiDispatcher::Flush()
 000062f0 t ambika::MidiDispatcher::Send3(unsigned char, unsigned char, unsigned char)
 00006376 t ambika::MidiDispatcher::OnNote(ambika::Part*, unsigned char, unsigned char)
 00006308 t ambika::MidiDispatcher::OnNote(ambika::Part*, unsigned char, unsigned char) [clone .part.0]
-00800422 b ambika::MidiDispatcher::out_peak_
+00800463 b ambika::MidiDispatcher::out_peak_
 000053ac t ambika::SequenceEditor::actual_step(unsigned char, unsigned char)
 0000aaa0 t ambika::SequenceEditor::OnIncrement(signed char)
 0000b292 t ambika::SequenceEditor::UpdateScreen()
 000004d4 t ambika::SequenceEditor::event_handlers_
 0000acbe t ambika::SequenceEditor::SetActiveControl(ambika::ActiveControl)
 000053dc t ambika::SequenceEditor::OnPot(unsigned char, unsigned char)
-0080046f b ambika::SequenceEditor::step_
+008004b0 b ambika::SequenceEditor::step_
 0000acd2 t ambika::SequenceEditor::OnInit(ambika::PageInfo*)
 0000550e t ambika::SequenceEditor::OnNote(unsigned char, unsigned char)
 000054f0 t ambika::SequenceEditor::OnClick()
 000088de t ambika::SystemSettings::Init(bool)
-00800500 b ambika::SystemSettings::data_
+00800541 b ambika::SystemSettings::data_
 00005344 t ambika::VersionManager::UpdateLeds()
 0000b20a t ambika::VersionManager::UpdateScreen()
 0000045c t ambika::VersionManager::event_handlers_
@@ -176,16 +176,16 @@
 0000a67c t ambika::ParameterEditor::OnPot(unsigned char, unsigned char)
 0000adca t ambika::ParameterEditor::OnInit(ambika::PageInfo*)
 0000a856 t ambika::ParameterEditor::OnClick()
-0080046c b ambika::ParameterEditor::snapped_
+008004ad b ambika::ParameterEditor::snapped_
 00005592 t ambika::PerformancePage::UpdateLeds()
 00007960 t ambika::PerformancePage::OnIncrement(signed char)
-0080046d b ambika::PerformancePage::note_active_
+008004ae b ambika::PerformancePage::note_active_
 000004a4 t ambika::PerformancePage::event_handlers_
 00800114 d ambika::PerformancePage::note_
 0000791e t ambika::PerformancePage::OnClick()
 0080010f d ambika::ParameterManager::cached_index_
 00800100 d ambika::ParameterManager::dummy_parameter_
-00800288 b ambika::ParameterManager::cached_definition_
+008002c9 b ambika::ParameterManager::cached_definition_
 00005ef0 t ambika::ParameterManager::GetValue(ambika::Parameter const&, unsigned char, unsigned char)
 00007720 t ambika::ParameterManager::SetValue(ambika::Parameter const&, unsigned char, unsigned char, unsigned char, unsigned char)
 000077a0 t ambika::ParameterManager::Increment(ambika::Parameter const&, unsigned char, unsigned char, signed char, bool) [clone .constprop.0]
@@ -204,7 +204,7 @@
 00006a9a t ambika::VoicecardProtocolTx::BeginSdCard()
 000057f8 t ambika::VoicecardProtocolTx::FlushBuffers()
 0080014b b ambika::VoicecardProtocolTx::sd_card_busy_
-008004a7 b ambika::VoicecardProtocolTx::voice_status_
+008004e8 b ambika::VoicecardProtocolTx::voice_status_
 0000697a t ambika::VoicecardProtocolTx::BlockingTransaction(unsigned char, unsigned char)
 0000699e t ambika::VoicecardProtocolTx::Sync(unsigned char)
 00005798 t ambika::VoicecardProtocolTx::Write(unsigned char, unsigned char)
@@ -242,20 +242,20 @@
 0000018c t ambika::lut_res_scale_kaushik_todi
 0000027c t ambika::lut_res_scale_parameshwari
 00001eb4 t ambika::lut_res_arpeggiator_patterns
-0080034d b ambika::Ui::page_info_
+0080038e b ambika::Ui::page_info_
 0080014c b ambika::Ui::pot_value_
-0080035b b ambika::Ui::active_page_
+0080039c b ambika::Ui::active_page_
 00008136 t ambika::Ui::ShowDialogBox(unsigned char, ambika::Dialog, unsigned char)
 0000adf2 t ambika::Ui::CloseDialogBox(unsigned char)
-008004af b ambika::Ui::event_handlers_
-00800173 b ambika::Ui::inhibit_switch_
+008004f0 b ambika::Ui::event_handlers_
+00800174 b ambika::Ui::inhibit_switch_
 0000aa6a t ambika::Ui::ShowPageRelative(signed char)
 0000a904 t ambika::Ui::ShowPreviousPage()
 000059c6 t ambika::Ui::MoveActiveControl(signed char)
-00800344 b ambika::Ui::most_recent_page_in_group_
-008003e3 b ambika::Ui::most_recent_non_system_page_
+00800385 b ambika::Ui::most_recent_page_in_group_
+00800424 b ambika::Ui::most_recent_non_system_page_
 00800164 b ambika::Ui::cycle_
-00800489 b ambika::Ui::state_
+008004ca b ambika::Ui::state_
 0000a672 t ambika::Ui::ShowPage(ambika::UiPageNumber)
 0000a5ac t ambika::Ui::ShowPage(ambika::UiPageNumber, unsigned char) [clone .part.0]
 00005ff2 t ambika::Part::AcceptNote(unsigned char)
@@ -277,62 +277,62 @@
 00006020 t ambika::Part::TuneNote(unsigned char)
 000084f0 t ambika::Part::InitPatch(ambika::InitializationMode)
 00005e6a t ambika::Part::TouchLfos()
-00800286 b ambika::Multi::idle_ticks_
-0080046e b ambika::Multi::step_count_
-00800287 b ambika::Multi::tick_count_
+008002c7 b ambika::Multi::idle_ticks_
+008004af b ambika::Multi::step_count_
+008002c8 b ambika::Multi::tick_count_
 00008556 t ambika::Multi::InitSettings(ambika::InitializationMode)
-0080016b b ambika::Multi::clock_counter_
-00800264 b ambika::Multi::tick_duration_
-008001a0 b ambika::Multi::num_clock_events_
-008001a1 b ambika::Multi::lfo_refresh_cycle_
+0080016c b ambika::Multi::clock_counter_
+008002a5 b ambika::Multi::tick_duration_
+008001a1 b ambika::Multi::num_clock_events_
+008001a2 b ambika::Multi::lfo_refresh_cycle_
 000075f8 t ambika::Multi::AssignVoicesToParts()
-008001a2 b ambika::Multi::lfo_refresh_counter_
-00800266 b ambika::Multi::tick_duration_table_
+008001a3 b ambika::Multi::lfo_refresh_counter_
+008002a7 b ambika::Multi::tick_duration_table_
 0000614a t ambika::Multi::SolveAllocationConflicts(unsigned char)
 00006092 t ambika::Multi::ComputeInternalClockOverflowsTable()
 00007294 t ambika::Multi::Stop()
 000079c4 t ambika::Multi::Clock()
-008004c7 b ambika::Multi::data_
+00800508 b ambika::Multi::data_
 00007896 t ambika::Multi::Start()
 0000768c t ambika::Multi::Touch()
-00800297 b ambika::Multi::flags_
-00800767 b ambika::Multi::parts_
+008002d8 b ambika::Multi::flags_
+008007a8 b ambika::Multi::parts_
 0000724a t ambika::Multi::NoteOff(unsigned char, unsigned char, unsigned char) [clone .isra.0]
-008004ff b ambika::Multi::running_
+00800540 b ambika::Multi::running_
 000078ec t ambika::Multi::StartNote(unsigned char)
-00800488 b ambika::UiPage::edit_mode_
+008004c9 b ambika::UiPage::edit_mode_
 0000535e t ambika::UiPage::UpdateLeds()
 000053a6 t ambika::UiPage::OnIncrement(signed char)
 00005374 t ambika::UiPage::OnDialogClosed(unsigned char, unsigned char)
-0080048e b ambika::UiPage::active_control_
+008004cf b ambika::UiPage::active_control_
 000053aa t ambika::UiPage::SetActiveControl(ambika::ActiveControl)
 000053a2 t ambika::UiPage::OnIncrementAndCycle(signed char, signed char)
-00800470 b ambika::UiPage::info_
+008004b1 b ambika::UiPage::info_
 00009a82 t ambika::UiPage::OnKey(unsigned char)
 00005386 t ambika::UiPage::OnPot(unsigned char, unsigned char)
 00005376 t ambika::UiPage::OnIdle()
 0000538a t ambika::UiPage::OnClick()
 0000a4e4 t ambika::Library::CommitLoad()
 000056aa t ambika::Library::UpdateLeds()
-008004ad b ambika::Library::name_dirty_
+008004ee b ambika::Library::name_dirty_
 0000b09e t ambika::Library::OnIncrement(signed char)
 00006a72 t ambika::Library::SaveLocation()
 00009602 t ambika::Library::UpdateScreen()
-0080040a b ambika::Library::deferred_load_
+0080044b b ambika::Library::deferred_load_
 00009b88 t ambika::Library::OnDialogClosed(unsigned char, unsigned char)
 000095e2 t ambika::Library::UpdateLocation()
 00000474 t ambika::Library::event_handlers_
-0080041d b ambika::Library::is_edit_buffer_
-00800420 b ambika::Library::initialization_mode_
+0080045e b ambika::Library::is_edit_buffer_
+00800461 b ambika::Library::initialization_mode_
 000081ac t ambika::Library::ShowDiskErrorMessage()
 00008642 t ambika::Library::PrintActiveObjectName(char*)
-008003e4 b ambika::Library::loaded_objects_indices_
-0080041e b ambika::Library::more_
-0080040d b ambika::Library::name_
+00800425 b ambika::Library::loaded_objects_indices_
+0080045f b ambika::Library::more_
+0080044e b ambika::Library::name_
 0000ae72 t ambika::Library::OnKey(unsigned char)
 0000954a t ambika::Library::Browse()
 00009718 t ambika::Library::OnInit(ambika::PageInfo*)
-0080041f b ambika::Library::action_
+00800460 b ambika::Library::action_
 000056e0 t ambika::Library::OnClick()
 00800117 d ambika::Library::location_
 0000892a t ambika::Storage::EepromRead(void*, unsigned char, unsigned char**)
@@ -340,14 +340,14 @@
 0000858e t ambika::Storage::EepromWrite(void const*, unsigned char, unsigned char**)
 00008bac t ambika::Storage::GetFileName(ambika::StorageDir, ambika::StorageLocation const&)
 00005a5c t ambika::Storage::object_data(ambika::StorageLocation const&)
-0080042b b ambika::Storage::tmp_buffer_
+0080046c b ambika::Storage::tmp_buffer_
 000076a0 t ambika::Storage::TouchObject(ambika::StorageLocation const&)
 00006208 t ambika::Storage::SysExSendRaw(unsigned char, unsigned char, unsigned char const*, unsigned char, bool)
 000059dc t ambika::Storage::ForEachObject(ambika::StorageLocation const&, void (*)(ambika::StorageLocation const&))
 00006f4c t ambika::Storage::InitFilesystem()
 000094e8 t ambika::Storage::PreviousVersion(ambika::StorageLocation const&) [clone .constprop.0]
 00005ac0 t ambika::Storage::RIFFWriteObject(ambika::StorageLocation const&)
-0080046b b ambika::Storage::sysex_rx_state_
+008004ac b ambika::Storage::sysex_rx_state_
 000062b6 t ambika::Storage::SysExSendObject(ambika::StorageLocation const&)
 00800144 b ambika::Storage::sysex_rx_command_
 00800148 b ambika::Storage::sysex_rx_checksum_
@@ -358,11 +358,11 @@
 00009276 t ambika::Storage::Load(ambika::StorageDir, ambika::StorageLocation const&, unsigned char)
 00009c54 t ambika::Storage::Load(ambika::StorageLocation)
 00008ca6 t ambika::Storage::Save(ambika::StorageDir, ambika::StorageLocation const&)
-00800746 b ambika::Storage::file_
+00800787 b ambika::Storage::file_
 00008678 t ambika::Storage::Expand(char const*, char)
-00800174 b ambika::Storage::buffer_
+00800175 b ambika::Storage::buffer_
 000099f6 t ambika::Storage::Snapshot(ambika::StorageLocation const&)
-00800494 b ambika::Storage::version_
+008004d5 b ambika::Storage::version_
 00006184 t ambika::FreeSram()
 000056fc t ambika::DialogBox::UpdateLeds()
 00005754 t ambika::DialogBox::OnIncrement(signed char)
@@ -370,7 +370,7 @@
 000025f4 t ambika::DialogBox::event_handlers_
 0000ae3c t ambika::DialogBox::OnKey(unsigned char)
 00005734 t ambika::DialogBox::OnPot(unsigned char, unsigned char)
-008003e0 b ambika::DialogBox::choice
+00800421 b ambika::DialogBox::choice
 0000ae1c t ambika::DialogBox::OnIdle()
 00005792 t ambika::DialogBox::OnInit(ambika::PageInfo*)
 0000ae30 t ambika::DialogBox::OnClick()
@@ -394,7 +394,7 @@
 00000c35 t ambika::str_res_on
 000007fe t ambika::str_res_up
 00002d6a t ambika::midi_cc_map
-00800421 b ambika::reset_cause
+00800462 b ambika::reset_cause
 00000630 t ambika::str_res____
 000007dc t ambika::str_res_1_1
 000007d0 t ambika::str_res_1_2
@@ -774,43 +774,43 @@
 00001ee0 t ambika::lfo_phase_increment_per_clock_tick
 00001f4e t ambika::octaves
 0000b204 t avrlib::AlignRight(char*, unsigned char)
-0080029b b avrlib::EventQueue<(unsigned char)8>::last_event_time_
+008002dc b avrlib::EventQueue<(unsigned char)8>::last_event_time_
 00006ba8 t avrlib::EventQueue<(unsigned char)8>::Touch()
 00006934 t avrlib::EventQueue<(unsigned char)8>::AddEvent(unsigned char, unsigned char, unsigned char)
-00800518 b avrlib::Filesystem::fs_
+00800559 b avrlib::Filesystem::fs_
 00006b30 t avrlib::Filesystem::Init(unsigned int) [clone .constprop.0]
 0000593e t avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2>::StartWrite(unsigned char)
 000059a2 t avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2>::SlowCommand(unsigned char)
 00005902 t avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2>::WriteCommand(unsigned char)
-00800172 b avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2>::transmitting_
-00800219 b avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2>::status_counter_
+00800173 b avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2>::transmitting_
+0080021a b avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2>::status_counter_
 0000598a t avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2>::SlowWrite(unsigned char)
 00005952 t avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2>::WriteData(unsigned char)
-0080039d b avrlib::RingBuffer<ambika::OddOutputBufferSpecs>::write_ptr_
-0080035d b avrlib::RingBuffer<ambika::OddOutputBufferSpecs>::buffer_
-0080035c b avrlib::RingBuffer<ambika::OddOutputBufferSpecs>::read_ptr_
-008003df b avrlib::RingBuffer<ambika::EvenOutputBufferSpecs>::write_ptr_
-0080039f b avrlib::RingBuffer<ambika::EvenOutputBufferSpecs>::buffer_
-0080039e b avrlib::RingBuffer<ambika::EvenOutputBufferSpecs>::read_ptr_
-0080029a b avrlib::RingBuffer<ambika::LowPriorityBufferSpecs>::write_ptr_
+008003de b avrlib::RingBuffer<ambika::OddOutputBufferSpecs>::write_ptr_
+0080039e b avrlib::RingBuffer<ambika::OddOutputBufferSpecs>::buffer_
+0080039d b avrlib::RingBuffer<ambika::OddOutputBufferSpecs>::read_ptr_
+00800420 b avrlib::RingBuffer<ambika::EvenOutputBufferSpecs>::write_ptr_
+008003e0 b avrlib::RingBuffer<ambika::EvenOutputBufferSpecs>::buffer_
+008003df b avrlib::RingBuffer<ambika::EvenOutputBufferSpecs>::read_ptr_
+008002db b avrlib::RingBuffer<ambika::LowPriorityBufferSpecs>::write_ptr_
 000061f6 t avrlib::RingBuffer<ambika::LowPriorityBufferSpecs>::Write(unsigned char)
-0080021b b avrlib::RingBuffer<ambika::LowPriorityBufferSpecs>::buffer_
+0080021c b avrlib::RingBuffer<ambika::LowPriorityBufferSpecs>::buffer_
 000061de t avrlib::RingBuffer<ambika::LowPriorityBufferSpecs>::Overwrite(unsigned char)
-00800299 b avrlib::RingBuffer<ambika::LowPriorityBufferSpecs>::read_ptr_
-00800263 b avrlib::RingBuffer<ambika::HighPriorityBufferSpecs>::write_ptr_
-0080025b b avrlib::RingBuffer<ambika::HighPriorityBufferSpecs>::buffer_
+008002da b avrlib::RingBuffer<ambika::LowPriorityBufferSpecs>::read_ptr_
+008002a4 b avrlib::RingBuffer<ambika::HighPriorityBufferSpecs>::write_ptr_
+0080029c b avrlib::RingBuffer<ambika::HighPriorityBufferSpecs>::buffer_
 0000616c t avrlib::RingBuffer<ambika::HighPriorityBufferSpecs>::Overwrite(unsigned char)
 00800149 b avrlib::RingBuffer<ambika::HighPriorityBufferSpecs>::read_ptr_
-00800342 b avrlib::RingBuffer<avrlib::EventQueue<(unsigned char)8> >::write_ptr_
-00800208 b avrlib::RingBuffer<avrlib::EventQueue<(unsigned char)8> >::buffer_
-00800343 b avrlib::RingBuffer<avrlib::EventQueue<(unsigned char)8> >::read_ptr_
-00800331 b avrlib::RingBuffer<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::write_ptr_
-008002f1 b avrlib::RingBuffer<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::buffer_
+00800383 b avrlib::RingBuffer<avrlib::EventQueue<(unsigned char)8> >::write_ptr_
+00800209 b avrlib::RingBuffer<avrlib::EventQueue<(unsigned char)8> >::buffer_
+00800384 b avrlib::RingBuffer<avrlib::EventQueue<(unsigned char)8> >::read_ptr_
+00800372 b avrlib::RingBuffer<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::write_ptr_
+00800332 b avrlib::RingBuffer<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::buffer_
 000058f2 t avrlib::RingBuffer<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::writable()
-008002f0 b avrlib::RingBuffer<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::read_ptr_
-0080017e b avrlib::RingBuffer<avrlib::SerialInput<avrlib::SerialPort<avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)3, (unsigned char)8>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)5, (unsigned char)32>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)4, (unsigned char)16>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)1, (unsigned char)2>, avrlib::UBRR0HRegister, avrlib::UBRR0LRegister, avrlib::UDR0Register, (unsigned char)32, (unsigned char)32> > >::write_ptr_
-0080017f b avrlib::RingBuffer<avrlib::SerialInput<avrlib::SerialPort<avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)3, (unsigned char)8>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)5, (unsigned char)32>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)4, (unsigned char)16>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)1, (unsigned char)2>, avrlib::UBRR0HRegister, avrlib::UBRR0LRegister, avrlib::UDR0Register, (unsigned char)32, (unsigned char)32> > >::buffer_
-0080019f b avrlib::RingBuffer<avrlib::SerialInput<avrlib::SerialPort<avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)3, (unsigned char)8>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)5, (unsigned char)32>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)4, (unsigned char)16>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)1, (unsigned char)2>, avrlib::UBRR0HRegister, avrlib::UBRR0LRegister, avrlib::UDR0Register, (unsigned char)32, (unsigned char)32> > >::read_ptr_
+00800331 b avrlib::RingBuffer<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::read_ptr_
+0080017f b avrlib::RingBuffer<avrlib::SerialInput<avrlib::SerialPort<avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)3, (unsigned char)8>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)5, (unsigned char)32>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)4, (unsigned char)16>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)1, (unsigned char)2>, avrlib::UBRR0HRegister, avrlib::UBRR0LRegister, avrlib::UDR0Register, (unsigned char)32, (unsigned char)32> > >::write_ptr_
+00800180 b avrlib::RingBuffer<avrlib::SerialInput<avrlib::SerialPort<avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)3, (unsigned char)8>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)5, (unsigned char)32>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)4, (unsigned char)16>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)1, (unsigned char)2>, avrlib::UBRR0HRegister, avrlib::UBRR0LRegister, avrlib::UDR0Register, (unsigned char)32, (unsigned char)32> > >::buffer_
+008001a0 b avrlib::RingBuffer<avrlib::SerialInput<avrlib::SerialPort<avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)3, (unsigned char)8>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)5, (unsigned char)32>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)4, (unsigned char)16>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)1, (unsigned char)2>, avrlib::UBRR0HRegister, avrlib::UBRR0LRegister, avrlib::UDR0Register, (unsigned char)32, (unsigned char)32> > >::read_ptr_
 00800141 b avrlib::RingBuffer<avrlib::I2cInput<(unsigned char)8> >::write_ptr_
 00800140 b avrlib::RingBuffer<avrlib::I2cInput<(unsigned char)8> >::read_ptr_
 0080013f b avrlib::RingBuffer<avrlib::I2cOutput<(unsigned char)4> >::write_ptr_
@@ -826,34 +826,34 @@
 000058ee t avrlib::BitInRegister<avrlib::PORTCRegister, (unsigned char)4, (unsigned char)16>::set()
 000058ea t avrlib::BitInRegister<avrlib::PORTCRegister, (unsigned char)7, (unsigned char)128>::clear()
 0080014a b avrlib::BicolorLedArray<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)4>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)7>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)5>, (unsigned char)2>::refresh_cycle_
-00800472 b avrlib::BicolorLedArray<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)4>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)7>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)5>, (unsigned char)2>::buffered_pixels_
-008001f9 b avrlib::BicolorLedArray<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)4>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)7>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)5>, (unsigned char)2>::pixels_
+008004b3 b avrlib::BicolorLedArray<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)4>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)7>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)5>, (unsigned char)2>::buffered_pixels_
+008001fa b avrlib::BicolorLedArray<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)4>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)7>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)5>, (unsigned char)2>::pixels_
 00006924 t avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::set_status(unsigned char)
 000059b6 t avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::line_buffer(unsigned char)
-008001a5 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::scan_column_
-008001f8 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::scan_position_
-0080048d b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::cursor_position_
+008001a6 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::scan_column_
+008001f9 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::scan_position_
+008004ce b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::cursor_position_
 00800115 d avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::cursor_character_
-00800218 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::previous_status_counter_
-008001a6 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::scan_position_last_write_
-008001f7 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::blink_
-0080029f b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::local_
-008001a7 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::remote_
-0080021a b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::status_
-008001a4 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::scan_row_
-00800170 b avrlib::DebouncedSwitch<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)1>, true>::state_
-0080016f b avrlib::DebouncedSwitch<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)2>, true>::state_
-0080016e b avrlib::DebouncedSwitch<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)3>, true>::state_
+00800219 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::previous_status_counter_
+008001a7 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::scan_position_last_write_
+008001f8 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::blink_
+008002e0 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::local_
+008001a8 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::remote_
+0080021b b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::status_
+008001a5 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::scan_row_
+00800171 b avrlib::DebouncedSwitch<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)1>, true>::state_
+00800170 b avrlib::DebouncedSwitch<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)2>, true>::state_
+0080016f b avrlib::DebouncedSwitch<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)3>, true>::state_
 00006f5c t avrlib::ResourcesManager<unsigned int, avrlib::ResourcesTables<&ambika::string_table, &ambika::lookup_table_table> >::LoadStringResource(unsigned int, char*, unsigned char) [clone .part.0] [clone .lto_priv.0]
 00006f5c t avrlib::ResourcesManager<unsigned int, avrlib::ResourcesTables<&ambika::string_table, &ambika::lookup_table_table> >::LoadStringResource(unsigned int, char*, unsigned char) [clone .part.0] [clone .lto_priv.1]
 00006f5c t avrlib::ResourcesManager<unsigned int, avrlib::ResourcesTables<&ambika::string_table, &ambika::lookup_table_table> >::LoadStringResource(unsigned int, char*, unsigned char) [clone .part.0] [clone .lto_priv.2]
 00006f5c t avrlib::ResourcesManager<unsigned int, avrlib::ResourcesTables<&ambika::string_table, &ambika::lookup_table_table> >::LoadStringResource(unsigned int, char*, unsigned char) [clone .part.0] [clone .lto_priv.3]
 00005fd2 t int avrlib::ResourcesManager<unsigned int, avrlib::ResourcesTables<&ambika::string_table, &ambika::lookup_table_table> >::Lookup<int, unsigned char>(unsigned int, unsigned char)
-00800176 b avrlib::DebouncedSwitches<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)4>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)7>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)6>, (unsigned char)8, (avrlib::DataOrder)1>::state_
+00800177 b avrlib::DebouncedSwitches<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)4>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)7>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)6>, (unsigned char)8, (avrlib::DataOrder)1>::state_
 00800169 b avrlib::timer0_fractional
 00800165 b avrlib::timer0_milliseconds
-00800171 b avrlib::HysteresisPotScanner<(unsigned char)8, (unsigned char)0, (unsigned char)8, (unsigned char)7>::scan_cycle_
-00800332 b avrlib::HysteresisPotScanner<(unsigned char)8, (unsigned char)0, (unsigned char)8, (unsigned char)7>::thresholds_
+00800172 b avrlib::HysteresisPotScanner<(unsigned char)8, (unsigned char)0, (unsigned char)8, (unsigned char)7>::scan_cycle_
+00800373 b avrlib::HysteresisPotScanner<(unsigned char)8, (unsigned char)0, (unsigned char)8, (unsigned char)7>::thresholds_
 00800154 b avrlib::HysteresisPotScanner<(unsigned char)8, (unsigned char)0, (unsigned char)8, (unsigned char)7>::value_
 00006d78 t avrlib::File::Open(char const*, unsigned char, unsigned int) [clone .constprop.0]
 0000491a t avrlib::File::Read(unsigned char*, unsigned int, unsigned int*) [clone .constprop.0]
@@ -879,6 +879,7 @@
 000089f6 t ambika::Parameter::PrintObject(unsigned char, unsigned char, char*, unsigned char) const
 0000b87a t ambika::Parameter::Print(unsigned char, char*, unsigned char, unsigned char) const
 00005f7c t ambika::Parameter::Scale(unsigned char) const
+0080016b b __vector_15::in_progress
 0080016a b __vector_15::cycle
 00002bf0 t ambika::OsInfoPage::UpdateVoiceCard(unsigned char)::__c
 00002be4 t ambika::OsInfoPage::FindFirmwareFiles(unsigned char)::__c
@@ -906,7 +907,7 @@
 00002c30 t ambika::VersionManager::UpdateScreen()::__c
 00002c03 t ambika::ParameterEditor::UpdateScreen()::__c
 00002bfc t ambika::ParameterEditor::UpdateScreen()::__c
-0080016d b ambika::VoicecardProtocolTx::SendBytes()::flop
+0080016e b ambika::VoicecardProtocolTx::SendBytes()::flop
 0000274f t ambika::Library::OnKeyBrowse(unsigned char)::__c
 000027c3 t ambika::Library::UpdateScreen()::__c
 0000279b t ambika::Library::UpdateScreen()::__c
@@ -917,35 +918,35 @@
 000025c9 t ambika::Storage::GetFileName(ambika::StorageDir, ambika::StorageLocation const&)::__c
 000025c2 t ambika::Storage::GetFileName(ambika::StorageDir, ambika::StorageLocation const&)::__c
 00002708 t ambika::DialogBox::UpdateScreen()::__c
-00800481 b avrlib::UnsafeItoa<int>(int, unsigned char, char*)::digits
+008004c2 b avrlib::UnsafeItoa<int>(int, unsigned char, char*)::digits
 00002e08 t .do_clear_bss_loop
 00002e0a t .do_clear_bss_start
 00002df6 t .L__do_copy_data_loop
 00002dfa t .L__do_copy_data_start
 00002e18 t .L__do_global_ctors_loop
 00002e20 t .L__do_global_ctors_start
-0000cf06 t .L__do_global_dtors_loop
-0000cf0c t .L__do_global_dtors_start
-0000ce48 t .L_memchr_loop
-0000ce5a t .L_memchr_notfound
-0000ce66 t .L_memcpy_loop
-0000cdf8 t .L_memcpy_P_loop
-0000cdfc t .L_memcpy_P_start
-0000ce6a t .L_memcpy_start
-0000ce76 t .L_memset_loop
-0000ce78 t .L_memset_start
-0000ce10 t .L_strcat_P_loop
-0000ce08 t .L_strcat_P_skip
-0000ce84 t .L_strcpy_loop
-0000ce1e t .L_strcpy_P_loop
-0000ce90 t .L_strlen_loop
-0000ce3c t .L_strncpy_P_clr_loop
-0000ce3e t .L_strncpy_P_clr_start
-0000ce44 t .L_strncpy_P_done
-0000ce2c t .L_strncpy_P_loop
-0000cce6 t .L01
+0000cf16 t .L__do_global_dtors_loop
+0000cf1c t .L__do_global_dtors_start
+0000ce58 t .L_memchr_loop
+0000ce6a t .L_memchr_notfound
+0000ce76 t .L_memcpy_loop
+0000ce08 t .L_memcpy_P_loop
+0000ce0c t .L_memcpy_P_start
+0000ce7a t .L_memcpy_start
+0000ce86 t .L_memset_loop
+0000ce88 t .L_memset_start
+0000ce20 t .L_strcat_P_loop
+0000ce18 t .L_strcat_P_skip
+0000ce94 t .L_strcpy_loop
+0000ce2e t .L_strcpy_P_loop
+0000cea0 t .L_strlen_loop
+0000ce4c t .L_strncpy_P_clr_loop
+0000ce4e t .L_strncpy_P_clr_start
+0000ce54 t .L_strncpy_P_done
+0000ce3c t .L_strncpy_P_loop
+0000cc8c t .L01
 000059f2 t .L01
-0000cc7c t .L01
+0000ccf6 t .L01
 00009b30 t .L010
 0000a93e t .L011
 0000a972 t .L012
@@ -953,7 +954,7 @@
 0000af18 t .L014
 0000afc8 t .L015
 0000b1be t .L016
-0000c21c t .L017
+0000c22c t .L017
 0000817a t .L02
 000081ce t .L03
 000093c2 t .L04
@@ -1019,13 +1020,13 @@
 00007538 t .L1097
 00007510 t .L1098
 0000755c t .L1099
-0000ced6 t .L11
-0000cea6 t .L11
-0000cee4 t .L11
-0000cec0 t .L11
-0000cdde t .L11
-0000cd2a t .L11
+0000cef4 t .L11
 0000305e t .L11
+0000cd3a t .L11
+0000cdee t .L11
+0000cee6 t .L11
+0000ced0 t .L11
+0000ceb6 t .L11
 00002e6c t .L11
 00003a28 t .L110
 00003194 t .L110
@@ -1443,7 +1444,7 @@
 00009ee8 t .L1731
 00009ea0 t .L1734
 0000a0e0 t .L1735
-0000cf16 t .L1736
+0000cf26 t .L1736
 0000a0bc t .L1737
 0000a094 t .L1738
 0000a05e t .L1739
@@ -1519,12 +1520,12 @@
 0000a484 t .L1811
 0000a2ac t .L1815
 0000b9b0 t .L182
-0000c39c t .L183
-0000c3b0 t .L184
-0000c3bc t .L185
-0000c3c8 t .L186
-0000c9a8 t .L187
-0000befa t .L188
+0000c3ac t .L183
+0000c3c0 t .L184
+0000c3cc t .L185
+0000c3d8 t .L186
+0000c9b8 t .L187
+0000bf08 t .L188
 00003978 t .L19
 00009cfa t .L1906
 0000a2e2 t .L1907
@@ -1564,7 +1565,7 @@
 0000a900 t .L1973
 0000a990 t .L1976
 0000a930 t .L1977
-0000cf26 t .L1978
+0000cf36 t .L1978
 0000a9e8 t .L1979
 000038ba t .L198
 0000a99a t .L1980
@@ -1631,7 +1632,7 @@
 0000391e t .L208
 0000afa6 t .L2081
 0000afbc t .L2083
-0000cf36 t .L2084
+0000cf46 t .L2084
 0000af9e t .L2085
 0000af98 t .L2086
 0000af62 t .L2087
@@ -1645,13 +1646,13 @@
 0000afb4 t .L2095
 0000aff0 t .L2098
 0000aef8 t .L2099
+0000ceea t .L21
 0000a6f2 t .L21
-0000ceda t .L21
-0000cde6 t .L21
-0000ceac t .L21
+0000cdf6 t .L21
+0000cebc t .L21
 00002f14 t .L21
 00003a52 t .L210
-0000cf46 t .L2100
+0000cf56 t .L2100
 0000b084 t .L2101
 0000b078 t .L2102
 0000b058 t .L2103
@@ -1750,7 +1751,7 @@
 0000b910 t .L2238
 0000b934 t .L2239
 00003b90 t .L224
-0000cf56 t .L2240
+0000cf66 t .L2240
 0000b998 t .L2241
 0000b980 t .L2242
 0000b98e t .L2243
@@ -1789,165 +1790,166 @@
 0000bc24 t .L2301
 0000bc16 t .L2302
 0000bc38 t .L2303
-0000c212 t .L2308
+0000c222 t .L2308
 00003cf4 t .L231
-0000c398 t .L2315
-0000c44c t .L2316
-0000c4a0 t .L2317
-0000c55e t .L2318
+0000c3a8 t .L2315
+0000c45c t .L2316
+0000c4b0 t .L2317
+0000c56e t .L2318
 00003cfc t .L232
-0000c4c4 t .L2320
-0000c4b6 t .L2321
-0000c4cc t .L2322
-0000c56e t .L2323
-0000c4f8 t .L2324
-0000c580 t .L2325
-0000c5aa t .L2326
-0000c578 t .L2329
-0000c4ee t .L2331
-0000c516 t .L2333
-0000c6a8 t .L2334
-0000c550 t .L2335
-0000c5da t .L2336
-0000c692 t .L2338
+0000c4d4 t .L2320
+0000c4c6 t .L2321
+0000c4dc t .L2322
+0000c57e t .L2323
+0000c508 t .L2324
+0000c590 t .L2325
+0000c5ba t .L2326
+0000c588 t .L2329
+0000c4fe t .L2331
+0000c526 t .L2333
+0000c6b8 t .L2334
+0000c560 t .L2335
+0000c5ea t .L2336
+0000c6a2 t .L2338
 00003cf2 t .L234
-0000c604 t .L2340
-0000c5fe t .L2341
-0000c65e t .L2342
-0000c60c t .L2343
-0000c670 t .L2344
-0000c680 t .L2345
-0000c62c t .L2346
-0000c67c t .L2347
-0000c630 t .L2348
+0000c614 t .L2340
+0000c60e t .L2341
+0000c66e t .L2342
+0000c61c t .L2343
+0000c680 t .L2344
+0000c690 t .L2345
+0000c63c t .L2346
+0000c68c t .L2347
+0000c640 t .L2348
 00003da0 t .L235
-0000c890 t .L2350
-0000c704 t .L2351
-0000c6d6 t .L2352
-0000c74e t .L2353
-0000c7a6 t .L2354
-0000c77a t .L2355
-0000c7be t .L2359
+0000c8a0 t .L2350
+0000c714 t .L2351
+0000c6e6 t .L2352
+0000c75e t .L2353
+0000c7b6 t .L2354
+0000c78a t .L2355
+0000c7ce t .L2359
 00003d36 t .L236
-0000c7b8 t .L2360
-0000c7c8 t .L2362
-0000c814 t .L2363
-0000c810 t .L2364
-0000c7d2 t .L2365
-0000c834 t .L2366
-0000c856 t .L2367
-0000c85c t .L2369
-0000c6f0 t .L2370
-0000c72c t .L2371
-0000c8b0 t .L2372
-0000c8a6 t .L2373
-0000c8ca t .L2376
-0000c8ee t .L2377
-0000c914 t .L2378
-0000c90c t .L2379
+0000c7c8 t .L2360
+0000c7d8 t .L2362
+0000c824 t .L2363
+0000c820 t .L2364
+0000c7e2 t .L2365
+0000c844 t .L2366
+0000c866 t .L2367
+0000c86c t .L2369
+0000c700 t .L2370
+0000c73c t .L2371
+0000c8c0 t .L2372
+0000c8b6 t .L2373
+0000c8da t .L2376
+0000c8fe t .L2377
+0000c924 t .L2378
+0000c91c t .L2379
 00003daa t .L238
-0000c8fe t .L2380
-0000c952 t .L2381
-0000c9d0 t .L2382
-0000c9e6 t .L2385
-0000c978 t .L2386
-0000caa4 t .L2387
-0000c9f0 t .L2388
-0000ca44 t .L2389
+0000c90e t .L2380
+0000c962 t .L2381
+0000c9e0 t .L2382
+0000c9f6 t .L2385
+0000c988 t .L2386
+0000cab4 t .L2387
+0000ca00 t .L2388
+0000ca54 t .L2389
 00003df6 t .L239
-0000ca06 t .L2391
-0000ca12 t .L2392
-0000c9ca t .L2394
-0000ca24 t .L2395
-0000ca3a t .L2396
-0000ca98 t .L2398
-0000ca82 t .L2399
+0000ca16 t .L2391
+0000ca22 t .L2392
+0000c9da t .L2394
+0000ca34 t .L2395
+0000ca4a t .L2396
+0000caa8 t .L2398
+0000ca92 t .L2399
 0000a8a6 t .L24
 00002f30 t .L24
 00003e3e t .L240
-0000cade t .L2401
-0000cb14 t .L2402
-0000cc04 t .L2403
-0000cb4e t .L2404
-0000cb8a t .L2405
-0000cb5e t .L2406
-0000cbbc t .L2407
-0000cc0c t .L2408
-0000cbf4 t .L2409
+0000caee t .L2401
+0000cb24 t .L2402
+0000cc14 t .L2403
+0000cb5e t .L2404
+0000cb9a t .L2405
+0000cb6e t .L2406
+0000cbcc t .L2407
+0000cc1c t .L2408
+0000cc04 t .L2409
 00003d6c t .L241
-0000cc10 t .L2410
+0000cc20 t .L2410
 00003e74 t .L242
-0000c85a t .L2435
+0000c86a t .L2435
 00003f20 t .L244
 00003ec4 t .L245
 00003eee t .L246
 00004026 t .L247
-0000c57c t .L2482
-0000c668 t .L2483
-0000c628 t .L2484
-0000c944 t .L2485
-0000ca7c t .L2486
-0000ca94 t .L2487
+0000c58c t .L2482
+0000c678 t .L2483
+0000c638 t .L2484
+0000c954 t .L2485
+0000ca8c t .L2486
+0000caa4 t .L2487
 0000bd24 t .L2488
 0000bca8 t .L2489
 00003f38 t .L249
 0000bcec t .L2490
 00002f3a t .L25
 00003f80 t .L250
-0000c020 t .L2501
-0000bdb2 t .L2502
-0000c054 t .L2503
-0000bde4 t .L2505
-0000c06c t .L2506
-0000c092 t .L2508
-0000c0a0 t .L2509
+0000c032 t .L2501
+0000bdc0 t .L2503
+0000c066 t .L2504
+0000bdf2 t .L2506
+0000c07e t .L2507
+0000c0a4 t .L2509
 00003f66 t .L251
-0000be34 t .L2510
-0000c0b4 t .L2511
+0000c0b2 t .L2510
+0000be42 t .L2511
 0000c0c6 t .L2512
-0000be42 t .L2513
-0000c0d2 t .L2514
-0000c0da t .L2517
-0000c13a t .L2518
+0000c0d6 t .L2513
+0000be50 t .L2514
+0000c0e2 t .L2515
+0000c0ea t .L2518
+0000c14a t .L2519
 00003f1a t .L252
-0000c0fc t .L2520
-0000c130 t .L2521
-0000c13e t .L2522
-0000c150 t .L2523
-0000be48 t .L2524
-0000c116 t .L2525
-0000be5a t .L2526
-0000be94 t .L2527
-0000beb6 t .L2528
-0000c15c t .L2529
+0000c10c t .L2521
+0000c140 t .L2522
+0000c14e t .L2523
+0000c160 t .L2524
+0000be56 t .L2525
+0000c126 t .L2526
+0000be68 t .L2527
+0000bea2 t .L2528
+0000bec4 t .L2529
 00003ef2 t .L253
-0000bec4 t .L2530
-0000bee6 t .L2531
-0000bf20 t .L2532
-0000bf1a t .L2533
-0000bf5a t .L2534
-0000bf54 t .L2535
-0000bf8e t .L2536
-0000bf98 t .L2538
-0000bf9a t .L2539
-0000bfc6 t .L2540
-0000c166 t .L2541
-0000bfb6 t .L2542
-0000bfa8 t .L2543
-0000bf7e t .L2544
-0000c16a t .L2545
-0000bff6 t .L2546
-0000c012 t .L2548
-0000c19c t .L2549
-0000c1da t .L2551
-0000c1ec t .L2553
-0000c1fa t .L2554
-0000c0ce t .L2555
-0000c162 t .L2558
+0000c16c t .L2530
+0000bed2 t .L2531
+0000bef4 t .L2532
+0000bf2e t .L2533
+0000bf28 t .L2534
+0000bf68 t .L2535
+0000bf62 t .L2536
+0000bf9c t .L2537
+0000bfa6 t .L2539
+0000bfa8 t .L2540
+0000bfd4 t .L2541
+0000c176 t .L2542
+0000bfc4 t .L2543
+0000bfb6 t .L2544
+0000bf8c t .L2545
+0000c17a t .L2546
+0000c004 t .L2547
+0000c020 t .L2549
+0000c1ac t .L2550
+0000c1ea t .L2552
+0000c02e t .L2553
+0000c1fc t .L2554
+0000c20a t .L2555
+0000c0de t .L2556
+0000c172 t .L2558
 00004020 t .L256
 00003ff2 t .L257
-0000bde0 t .L2583
-0000c10a t .L2584
+0000bdee t .L2583
+0000c11a t .L2584
 00003fc0 t .L259
 00002f4e t .L26
 00003f5c t .L260
@@ -1975,8 +1977,8 @@
 000042ea t .L306
 00004424 t .L307
 0000442e t .L308
-0000cdee t .L31
-0000ceb8 t .L31
+0000cec8 t .L31
+0000cdfe t .L31
 00004422 t .L310
 00004482 t .L312
 000044a2 t .L313
@@ -2466,256 +2468,256 @@
 00000243 N .Lname97
 00000248 N .Lname98
 0000024d N .Lname99
-0000cf12 t .Loc.0
-0000cc72 t .Loc.0
-0000cc4a t .Loc.0
-0000cd6a t .Loc.0
-0000cc98 t .Loc.0
-0000cda2 t .Loc.0
-0000cd56 t .Loc.0
-0000cc32 t .Loc.0
+0000cf22 t .Loc.0
+0000cc82 t .Loc.0
+0000cc5a t .Loc.0
+0000cd7a t .Loc.0
+0000cca8 t .Loc.0
+0000cdb2 t .Loc.0
+0000cd66 t .Loc.0
+0000cc42 t .Loc.0
 00002e10 t .Loc.0
-0000ccdc t .Loc.0
-0000cd4a t .Loc.0
+0000ccec t .Loc.0
+0000cd5a t .Loc.0
 00002e00 t .Loc.0
-0000cd04 t .Loc.0
 0000cd14 t .Loc.0
+0000cd24 t .Loc.0
 00002dea t .Loc.0
-0000cefe t .Loc.0
-0000cd20 t .Loc.0
-0000cd2c t .Loc.0
-0000cd4c t .Loc.1
-0000cc34 t .Loc.1
-0000cd58 t .Loc.1
+0000cf0e t .Loc.0
+0000cd30 t .Loc.0
+0000cd3c t .Loc.0
+0000cd5c t .Loc.1
+0000cc44 t .Loc.1
+0000cd68 t .Loc.1
 00002dec t .Loc.1
-0000cd16 t .Loc.1
-0000cd2e t .Loc.1
-0000cd22 t .Loc.1
-0000cf14 t .Loc.1
-0000cf00 t .Loc.1
+0000cd26 t .Loc.1
+0000cd3e t .Loc.1
+0000cd32 t .Loc.1
+0000cf24 t .Loc.1
+0000cf10 t .Loc.1
 00002e02 t .Loc.1
-0000ccde t .Loc.1
+0000ccee t .Loc.1
 00002e12 t .Loc.1
-0000cda4 t .Loc.1
-0000cc9a t .Loc.1
-0000cd6c t .Loc.1
-0000cc74 t .Loc.1
-0000cd12 t .Loc.1
-0000cc4c t .Loc.1
-0000ccf0 t .Loc.10
-0000cc46 t .Loc.10
-0000cc5e t .Loc.10
-0000cdb6 t .Loc.10
-0000cd40 t .Loc.10
-0000cc86 t .Loc.10
+0000cdb4 t .Loc.1
+0000ccaa t .Loc.1
+0000cd7c t .Loc.1
+0000cc84 t .Loc.1
+0000cd22 t .Loc.1
+0000cc5c t .Loc.1
+0000cd00 t .Loc.10
+0000cc56 t .Loc.10
+0000cc6e t .Loc.10
+0000cdc6 t .Loc.10
+0000cd50 t .Loc.10
+0000cc96 t .Loc.10
 00002dfe t .Loc.10
-0000cd7e t .Loc.10
-0000ccac t .Loc.10
-0000cc88 t .Loc.11
-0000cdb8 t .Loc.11
-0000cc60 t .Loc.11
-0000cc48 t .Loc.11
-0000ccae t .Loc.11
-0000ccf2 t .Loc.11
-0000cd42 t .Loc.11
-0000cd80 t .Loc.11
-0000ccb0 t .Loc.12
-0000cd82 t .Loc.12
-0000cc62 t .Loc.12
-0000cdba t .Loc.12
-0000cd44 t .Loc.12
-0000cc8a t .Loc.12
-0000ccf4 t .Loc.12
-0000cd46 t .Loc.13
-0000ccb2 t .Loc.13
-0000ccf6 t .Loc.13
-0000cd84 t .Loc.13
-0000cc8c t .Loc.13
-0000cdbc t .Loc.13
-0000cc64 t .Loc.13
-0000cd48 t .Loc.14
-0000cd86 t .Loc.14
-0000cdbe t .Loc.14
-0000ccf8 t .Loc.14
-0000cc66 t .Loc.14
-0000ccb4 t .Loc.14
-0000cc8e t .Loc.14
-0000cc90 t .Loc.15
-0000ccb6 t .Loc.15
-0000ccfa t .Loc.15
-0000cc68 t .Loc.15
-0000cdc0 t .Loc.15
-0000cd88 t .Loc.15
-0000cc6a t .Loc.16
-0000cc92 t .Loc.16
-0000ccb8 t .Loc.16
-0000ccfc t .Loc.16
-0000cd8a t .Loc.16
-0000cdc2 t .Loc.16
-0000cc6c t .Loc.17
-0000ccba t .Loc.17
-0000ccfe t .Loc.17
-0000cc94 t .Loc.17
-0000cdc4 t .Loc.17
-0000cd8c t .Loc.17
-0000cdc6 t .Loc.18
-0000cd00 t .Loc.18
-0000cc6e t .Loc.18
-0000cc96 t .Loc.18
-0000cd8e t .Loc.18
-0000ccbc t .Loc.18
-0000cd02 t .Loc.19
-0000cd90 t .Loc.19
-0000cc70 t .Loc.19
-0000ccbe t .Loc.19
-0000cdc8 t .Loc.19
-0000cd5a t .Loc.2
-0000cd18 t .Loc.2
-0000cf02 t .Loc.2
+0000cd8e t .Loc.10
+0000ccbc t .Loc.10
+0000cc98 t .Loc.11
+0000cdc8 t .Loc.11
+0000cc70 t .Loc.11
+0000cc58 t .Loc.11
+0000ccbe t .Loc.11
+0000cd02 t .Loc.11
+0000cd52 t .Loc.11
+0000cd90 t .Loc.11
+0000ccc0 t .Loc.12
+0000cd92 t .Loc.12
+0000cc72 t .Loc.12
+0000cdca t .Loc.12
+0000cd54 t .Loc.12
+0000cc9a t .Loc.12
+0000cd04 t .Loc.12
+0000cd56 t .Loc.13
+0000ccc2 t .Loc.13
+0000cd06 t .Loc.13
+0000cd94 t .Loc.13
+0000cc9c t .Loc.13
+0000cdcc t .Loc.13
+0000cc74 t .Loc.13
+0000cd58 t .Loc.14
+0000cd96 t .Loc.14
+0000cdce t .Loc.14
+0000cd08 t .Loc.14
+0000cc76 t .Loc.14
+0000ccc4 t .Loc.14
+0000cc9e t .Loc.14
+0000cca0 t .Loc.15
+0000ccc6 t .Loc.15
+0000cd0a t .Loc.15
+0000cc78 t .Loc.15
+0000cdd0 t .Loc.15
+0000cd98 t .Loc.15
+0000cc7a t .Loc.16
+0000cca2 t .Loc.16
+0000ccc8 t .Loc.16
+0000cd0c t .Loc.16
+0000cd9a t .Loc.16
+0000cdd2 t .Loc.16
+0000cc7c t .Loc.17
+0000ccca t .Loc.17
+0000cd0e t .Loc.17
+0000cca4 t .Loc.17
+0000cdd4 t .Loc.17
+0000cd9c t .Loc.17
+0000cdd6 t .Loc.18
+0000cd10 t .Loc.18
+0000cc7e t .Loc.18
+0000cca6 t .Loc.18
+0000cd9e t .Loc.18
+0000cccc t .Loc.18
+0000cd12 t .Loc.19
+0000cda0 t .Loc.19
+0000cc80 t .Loc.19
+0000ccce t .Loc.19
+0000cdd8 t .Loc.19
+0000cd6a t .Loc.2
+0000cd28 t .Loc.2
+0000cf12 t .Loc.2
 00002e04 t .Loc.2
-0000cce0 t .Loc.2
+0000ccf0 t .Loc.2
 00002e14 t .Loc.2
-0000cd4e t .Loc.2
-0000cc36 t .Loc.2
-0000cd30 t .Loc.2
-0000cc9c t .Loc.2
-0000cd6e t .Loc.2
-0000cc4e t .Loc.2
-0000cda6 t .Loc.2
-0000cc76 t .Loc.2
+0000cd5e t .Loc.2
+0000cc46 t .Loc.2
+0000cd40 t .Loc.2
+0000ccac t .Loc.2
+0000cd7e t .Loc.2
+0000cc5e t .Loc.2
+0000cdb6 t .Loc.2
+0000cc86 t .Loc.2
 00002dee t .Loc.2
-0000cd24 t .Loc.2
-0000ccc0 t .Loc.20
-0000cd92 t .Loc.20
-0000cdca t .Loc.20
-0000ccc2 t .Loc.21
-0000cdcc t .Loc.21
-0000cd94 t .Loc.21
-0000cdce t .Loc.22
-0000ccc4 t .Loc.22
-0000cd96 t .Loc.22
-0000ccc6 t .Loc.23
-0000cdd0 t .Loc.23
-0000cd98 t .Loc.23
-0000cd9a t .Loc.24
-0000ccc8 t .Loc.24
-0000cdd2 t .Loc.24
-0000cdd4 t .Loc.25
-0000ccca t .Loc.25
-0000cd9c t .Loc.25
-0000cd9e t .Loc.26
-0000cdd6 t .Loc.26
-0000cccc t .Loc.26
-0000ccce t .Loc.27
-0000cda0 t .Loc.27
-0000ccd0 t .Loc.28
-0000ccd2 t .Loc.29
-0000cd32 t .Loc.3
-0000cce2 t .Loc.3
+0000cd34 t .Loc.2
+0000ccd0 t .Loc.20
+0000cda2 t .Loc.20
+0000cdda t .Loc.20
+0000ccd2 t .Loc.21
+0000cddc t .Loc.21
+0000cda4 t .Loc.21
+0000cdde t .Loc.22
+0000ccd4 t .Loc.22
+0000cda6 t .Loc.22
+0000ccd6 t .Loc.23
+0000cde0 t .Loc.23
+0000cda8 t .Loc.23
+0000cdaa t .Loc.24
+0000ccd8 t .Loc.24
+0000cde2 t .Loc.24
+0000cde4 t .Loc.25
+0000ccda t .Loc.25
+0000cdac t .Loc.25
+0000cdae t .Loc.26
+0000cde6 t .Loc.26
+0000ccdc t .Loc.26
+0000ccde t .Loc.27
+0000cdb0 t .Loc.27
+0000cce0 t .Loc.28
+0000cce2 t .Loc.29
+0000cd42 t .Loc.3
+0000ccf2 t .Loc.3
 00002e06 t .Loc.3
 00002e16 t .Loc.3
-0000cda8 t .Loc.3
-0000cf04 t .Loc.3
-0000cd1a t .Loc.3
-0000cc50 t .Loc.3
-0000cc78 t .Loc.3
-0000cd70 t .Loc.3
-0000cc9e t .Loc.3
-0000cd26 t .Loc.3
+0000cdb8 t .Loc.3
+0000cf14 t .Loc.3
+0000cd2a t .Loc.3
+0000cc60 t .Loc.3
+0000cc88 t .Loc.3
+0000cd80 t .Loc.3
+0000ccae t .Loc.3
+0000cd36 t .Loc.3
 00002df0 t .Loc.3
-0000cd50 t .Loc.3
-0000cc38 t .Loc.3
-0000cd5c t .Loc.3
-0000ccd4 t .Loc.30
-0000ccd6 t .Loc.31
-0000ccd8 t .Loc.32
-0000ccda t .Loc.33
-0000cce4 t .Loc.4
-0000cd1c t .Loc.4
-0000cca0 t .Loc.4
-0000cd72 t .Loc.4
-0000cc3a t .Loc.4
-0000cc52 t .Loc.4
-0000cd28 t .Loc.4
+0000cd60 t .Loc.3
+0000cc48 t .Loc.3
+0000cd6c t .Loc.3
+0000cce4 t .Loc.30
+0000cce6 t .Loc.31
+0000cce8 t .Loc.32
+0000ccea t .Loc.33
+0000ccf4 t .Loc.4
+0000cd2c t .Loc.4
+0000ccb0 t .Loc.4
+0000cd82 t .Loc.4
+0000cc4a t .Loc.4
+0000cc62 t .Loc.4
+0000cd38 t .Loc.4
 00002e18 t .Loc.4
-0000cd5e t .Loc.4
-0000cf06 t .Loc.4
-0000cd52 t .Loc.4
-0000cdaa t .Loc.4
+0000cd6e t .Loc.4
+0000cf16 t .Loc.4
+0000cd62 t .Loc.4
+0000cdba t .Loc.4
 00002e08 t .Loc.4
-0000cc7a t .Loc.4
-0000cd34 t .Loc.4
+0000cc8a t .Loc.4
+0000cd44 t .Loc.4
 00002df2 t .Loc.4
-0000cd1e t .Loc.5
-0000cd36 t .Loc.5
-0000cc3c t .Loc.5
-0000cd2a t .Loc.5
-0000cd54 t .Loc.5
+0000cd2e t .Loc.5
+0000cd46 t .Loc.5
+0000cc4c t .Loc.5
+0000cd3a t .Loc.5
+0000cd64 t .Loc.5
 00002df4 t .Loc.5
-0000cdac t .Loc.5
-0000cd60 t .Loc.5
-0000cca2 t .Loc.5
-0000cc7c t .Loc.5
-0000cd74 t .Loc.5
+0000cdbc t .Loc.5
+0000cd70 t .Loc.5
+0000ccb2 t .Loc.5
+0000cc8c t .Loc.5
+0000cd84 t .Loc.5
 00002e1a t .Loc.5
-0000cc54 t .Loc.5
-0000cf08 t .Loc.5
+0000cc64 t .Loc.5
+0000cf18 t .Loc.5
 00002e0a t .Loc.5
-0000cce6 t .Loc.5
-0000cd38 t .Loc.6
-0000cd76 t .Loc.6
-0000cd62 t .Loc.6
-0000cdae t .Loc.6
+0000ccf6 t .Loc.5
+0000cd48 t .Loc.6
+0000cd86 t .Loc.6
+0000cd72 t .Loc.6
+0000cdbe t .Loc.6
 00002df6 t .Loc.6
-0000cf0a t .Loc.6
-0000cce8 t .Loc.6
+0000cf1a t .Loc.6
+0000ccf8 t .Loc.6
 00002e0c t .Loc.6
 00002e1c t .Loc.6
-0000cc3e t .Loc.6
-0000cca4 t .Loc.6
-0000cc7e t .Loc.6
-0000cc56 t .Loc.6
+0000cc4e t .Loc.6
+0000ccb4 t .Loc.6
+0000cc8e t .Loc.6
+0000cc66 t .Loc.6
 00002df8 t .Loc.7
-0000cd3a t .Loc.7
-0000cdb0 t .Loc.7
+0000cd4a t .Loc.7
+0000cdc0 t .Loc.7
 00002e0e t .Loc.7
-0000cc80 t .Loc.7
-0000cf0c t .Loc.7
-0000ccea t .Loc.7
-0000cd78 t .Loc.7
+0000cc90 t .Loc.7
+0000cf1c t .Loc.7
+0000ccfa t .Loc.7
+0000cd88 t .Loc.7
 00002e20 t .Loc.7
-0000cc58 t .Loc.7
-0000cd64 t .Loc.7
-0000cca6 t .Loc.7
-0000cc40 t .Loc.7
-0000cc42 t .Loc.8
-0000cc5a t .Loc.8
-0000cca8 t .Loc.8
-0000ccec t .Loc.8
-0000cd7a t .Loc.8
+0000cc68 t .Loc.7
+0000cd74 t .Loc.7
+0000ccb6 t .Loc.7
+0000cc50 t .Loc.7
+0000cc52 t .Loc.8
+0000cc6a t .Loc.8
+0000ccb8 t .Loc.8
+0000ccfc t .Loc.8
+0000cd8a t .Loc.8
 00002e22 t .Loc.8
-0000cdb2 t .Loc.8
+0000cdc2 t .Loc.8
 00002dfa t .Loc.8
-0000cf0e t .Loc.8
-0000cc82 t .Loc.8
-0000cd66 t .Loc.8
-0000cd3c t .Loc.8
+0000cf1e t .Loc.8
+0000cc92 t .Loc.8
+0000cd76 t .Loc.8
+0000cd4c t .Loc.8
 00002e24 t .Loc.9
-0000cf10 t .Loc.9
-0000ccee t .Loc.9
+0000cf20 t .Loc.9
+0000ccfe t .Loc.9
 00002dfc t .Loc.9
-0000ccaa t .Loc.9
-0000cd3e t .Loc.9
-0000cc5c t .Loc.9
-0000cc44 t .Loc.9
-0000cdb4 t .Loc.9
-0000cd68 t .Loc.9
-0000cc84 t .Loc.9
-0000cd7c t .Loc.9
+0000ccba t .Loc.9
+0000cd4e t .Loc.9
+0000cc6c t .Loc.9
+0000cc54 t .Loc.9
+0000cdc4 t .Loc.9
+0000cd78 t .Loc.9
+0000cc94 t .Loc.9
+0000cd8c t .Loc.9
 00000000 N .Lproducer
 00000017 N .Luint16_t_name
 0000000f N .Luint8_t_name
-00800493 b CardType
+008004d4 b CardType
 000032f0 t check_fs
 00003360 t chk_mounted
 00003808 t clust2sect
@@ -2729,20 +2731,20 @@
 0000317c t disk_initialize
 000030e8 t disk_read
 00003026 t disk_write
-0000cea0 T eeprom_read_block
-0000cea4 T eeprom_read_blraw
-0000cec0 T eeprom_read_byte
-0000ced0 T eeprom_write_block
-0000cee2 T eeprom_write_byte
-0000cee4 T eeprom_write_r18
-0000cefe W exit
+0000ceb0 T eeprom_read_block
+0000ceb4 T eeprom_read_blraw
+0000ced0 T eeprom_read_byte
+0000cee0 T eeprom_write_block
+0000cef2 T eeprom_write_byte
+0000cef4 T eeprom_write_r18
+0000cf0e W exit
 0000508e t f_open.constprop.0
 00006db8 t f_unlink
-00800516 b FatFs
+00800557 b FatFs
 000045ee t follow_path
-0080048f b Fsid
+008004d0 b Fsid
 00003b12 t get_fat
-0000cda2 t L0
+0000cdb2 t L0
 000079dc t L0
 000079ea t L0
 00007a10 t L0
@@ -2908,34 +2910,34 @@
 0000bb4a t L0
 0000bb98 t L0
 0000bba4 t L0
-0000c4b4 t L0
-0000c52a t L0
-0000c554 t L0
-0000c5bc t L0
-0000c5d2 t L0
-0000c63c t L0
-0000c652 t L0
-0000c684 t L0
-0000c6b6 t L0
-0000c8b8 t L0
-0000c93c t L0
-0000c942 t L0
-0000c986 t L0
-0000c9c2 t L0
-0000ca78 t L0
-0000bdc0 t L0
-0000be2c t L0
-0000be32 t L0
-0000be46 t L0
-0000bebe t L0
-0000bee2 t L0
-0000bfb2 t L0
-0000bfec t L0
-0000c00c t L0
+0000c4c4 t L0
+0000c53a t L0
+0000c564 t L0
+0000c5cc t L0
+0000c5e2 t L0
+0000c64c t L0
+0000c662 t L0
+0000c694 t L0
+0000c6c6 t L0
+0000c8c8 t L0
+0000c94c t L0
+0000c952 t L0
+0000c996 t L0
+0000c9d2 t L0
+0000ca88 t L0
+0000bdce t L0
+0000be3a t L0
+0000be40 t L0
+0000be54 t L0
+0000becc t L0
+0000bef0 t L0
+0000bfc0 t L0
+0000bffa t L0
 0000c01a t L0
-0000c070 t L0
-0000c096 t L0
-0000c09e t L0
+0000c028 t L0
+0000c082 t L0
+0000c0a8 t L0
+0000c0b0 t L0
 00002e00 t L0
 00002dea t L0
 00002e00 t L0
@@ -2953,56 +2955,56 @@
 000063b2 t L0
 000063ac t L0
 00006396 t L0
-0000cc4a t L0
-0000cc32 t L0
-0000cc4a t L0
+0000cc5a t L0
+0000cc42 t L0
+0000cc5a t L0
 00005c86 t L0
 00005c52 t L0
-0000cc72 t L0
-0000cc4a t L0
-0000cc72 t L0
+0000cc82 t L0
+0000cc5a t L0
+0000cc82 t L0
 00005bb8 t L0
 00005b84 t L0
-0000cc98 t L0
-0000cc72 t L0
-0000cc98 t L0
+0000cca8 t L0
+0000cc82 t L0
+0000cca8 t L0
 000053fa t L0
 00005154 t L0
 00005106 t L0
-0000ccdc t L0
-0000cc98 t L0
-0000ccdc t L0
-0000cd04 t L0
-0000ccdc t L0
-0000cd04 t L0
+0000ccec t L0
+0000cca8 t L0
+0000ccec t L0
+0000cd14 t L0
+0000ccec t L0
+0000cd14 t L0
 00004f0a t L0
+0000cd24 t L0
 0000cd14 t L0
-0000cd04 t L0
-0000cd14 t L0
-0000cd20 t L0
-0000cd14 t L0
-0000cd20 t L0
-0000cd2c t L0
-0000cd20 t L0
-0000cd2c t L0
+0000cd24 t L0
+0000cd30 t L0
+0000cd24 t L0
+0000cd30 t L0
+0000cd3c t L0
+0000cd30 t L0
+0000cd3c t L0
 00004efe t L0
-0000cd4a t L0
-0000cd2c t L0
-0000cd4a t L0
-0000cd56 t L0
-0000cd4a t L0
-0000cd56 t L0
-0000cd6a t L0
-0000cd56 t L0
-0000cd6a t L0
-0000cda2 t L0
-0000cd6a t L0
+0000cd5a t L0
+0000cd3c t L0
+0000cd5a t L0
+0000cd66 t L0
+0000cd5a t L0
+0000cd66 t L0
+0000cd7a t L0
+0000cd66 t L0
+0000cd7a t L0
+0000cdb2 t L0
+0000cd7a t L0
 000077fa t L0
-0000cdd8 t L0
-0000cda2 t L0
-0000cdd8 t L0
+0000cde8 t L0
+0000cdb2 t L0
+0000cde8 t L0
 00004eb8 t L0
-0000c178 t L0
+0000c188 t L0
 00004eae t L0
 00004e88 t L0
 00004e74 t L0
@@ -3020,19 +3022,19 @@
 000048f4 t L0
 0000484c t L0
 00004838 t L0
-0000c1c2 t L0
+0000c1d2 t L0
 000047f4 t L0
 000047ce t L0
 000047c8 t L0
 000047c2 t L0
 000047a2 t L0
 0000478e t L0
-0000cf16 t L0
-0000cf12 t L0
-0000cf16 t L0
-0000cf12 t L0
-0000cefe t L0
-0000cf12 t L0
+0000cf26 t L0
+0000cf22 t L0
+0000cf26 t L0
+0000cf22 t L0
+0000cf0e t L0
+0000cf22 t L0
 00004788 t L0
 0000473e t L0
 000046a2 t L0
@@ -3093,14 +3095,14 @@
 00003042 t L0
 00002fa8 t L0
 00002f9c t L0
-0000c22e T main
+0000c23e T main
 00004900 t mem_cpy
-0000ce46 T memchr
-0000cdd8 T memcmp_P
-0000ce60 T memcpy
-0000cdf2 T memcpy_P
-0000ce72 T memset
-00800510 b midi_parser
+0000ce56 T memchr
+0000cde8 T memcmp_P
+0000ce70 T memcpy
+0000ce02 T memcpy_P
+0000ce82 T memset
+00800551 b midi_parser
 00003884 t move_window
 0000396c t put_fat.part.0
 00002e40 t rcvr_datablock
@@ -3109,14 +3111,14 @@
 00002f5c t select
 00002f7a t send_cmd
 00800116 d Stat
-0000ce04 T strcat_P
-0000ce80 T strcpy
-0000ce1a T strcpy_P
-0000ce8e T strlen
-0000ce28 T strncpy_P
+0000ce14 T strcat_P
+0000ce90 T strcpy
+0000ce2a T strcpy_P
+0000ce9e T strlen
+0000ce38 T strncpy_P
 00006bbc t sync
-00800492 b Timer1
-00800491 b Timer2
+008004d3 b Timer1
+008004d2 b Timer2
 000032c2 t validate
 00002ec2 t wait_ready
 00002ee4 t xmit_datablock

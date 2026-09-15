@@ -66,6 +66,22 @@ inline void PollMidiIn() {
 // - Debouncing the switches and refreshing the LCD at 4.882kHz
 // - Ticking the ms sys clock at 4.882kHz / 4 = 1.221 kHz
 ISR(TIMER1_OVF_vect, ISR_NOBLOCK) {
+  // KZ MOD: ISR_NOBLOCK re-enables interrupts on entry, so this handler can
+  // interrupt itself if one pass ever takes longer than its 205 us period --
+  // which a MIDI controller flood makes likely, since PollMidiIn, FlushMidiOut
+  // and ui.Poll all live here. Each re-entry costs another full frame of stack,
+  // and this is the deepest interrupt in the firmware, so unbounded nesting
+  // walks the stack straight into static data.
+  //
+  // The guard bounds nesting at one. A tick that arrives while a previous one
+  // is still running is dropped; at 4.882 kHz that is invisible, and it is
+  // strictly better than the alternative, which is running out of SRAM.
+  static volatile uint8_t in_progress = 0;
+  if (in_progress) {
+    return;
+  }
+  in_progress = 1;
+
   static uint8_t cycle = 0;
   PollMidiIn();
   FlushMidiOut();
@@ -78,6 +94,7 @@ ISR(TIMER1_OVF_vect, ISR_NOBLOCK) {
     cycle = 0;
     storage.Tick();
   }
+  in_progress = 0;
 }
 
 // This timer is responsible for keeping track of time for the internal clock,
