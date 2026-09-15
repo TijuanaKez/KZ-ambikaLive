@@ -128,8 +128,63 @@ $KC sch export bom --fields "Reference,Value,Footprint,LCSC,\${QUANTITY}" \
     --group-by "Value,Footprint,LCSC" -o bom.csv Voicecard-4P-SMD.kicad_sch
 ```
 
+## Board preparation (done, nothing placed)
+
+The board was updated from the schematic with footprints replaced in place:
+each footprint sits at its predecessor's position, orientation and layer, and
+keeps its schematic path. kicad-cli has no update-from-schematic command and
+pcbnew does not wrap `BOARD_NETLIST_UPDATER`, so `board_prep.py` does it
+explicitly through pcbnew and the result is checked against the schematic
+netlist rather than trusted:
+
+| Check | Result |
+|---|---|
+| Footprints | 92 (81 replaced, 5 board-only: U$1 U$2 U$4 U$5 U$6, 6 kept THT) |
+| Pad nets vs schematic netlist | 277 of 277, no mismatch, nothing extra |
+| Nets | same set as the schematic, none added or lost |
+| Library ids | all library-qualified (`Resistor_SMD:R_0603...`) |
+| Tracks / vias / zones | 445 segments, 20 vias and 1 zone deleted; 0 remain |
+| Locked | Edge.Cuts (8 segments), U$1 U$2 U$4 U$5, JP1–JP4, ISP0 |
+| Outline | 118.8 × 60.38 mm, unchanged |
+
+IC2 pads 7–10 carry no net: the LM13700 buffer half the 4P does not use.
+
+### Design rules and net classes
+
+JLCPCB 2-layer standard, set in the `.kicad_pro`:
+
+| Rule | Was | Now |
+|---|---|---|
+| Minimum track width | 0.2 | **0.127 mm** |
+| Minimum clearance | 0.2032 | **0.127 mm** |
+| Minimum via drill | 0.3 | 0.3 mm |
+| Minimum via diameter | 0.5 | **0.6 mm** |
+
+| Net class | Track | Via | Nets |
+|---|---|---|---|
+| Default | 0.2 mm | 0.6 / 0.3 mm | everything else |
+| Power | 0.4 mm | 0.6 / 0.3 mm | +5V, VCC, VEE, GND |
+
+### DRC at the starting point
+
+`kicad-cli pcb drc` reports 196 unconnected-item errors, which is the whole
+point of this state: no track has been laid. Besides those:
+
+- **1 error**, `copper_edge_clearance`: C33's pad crosses the board edge,
+  because the 6.3 mm electrolytic sits where a smaller through-hole can sat.
+  It goes away when C33 is placed.
+- **57 warnings**: silkscreen overlap, silk over copper, silk clipped by the
+  edge, two undersized 'SEL' texts, and 4 `lib_footprint_mismatch` on the
+  Eagle-imported mounting holes. All inherited from the import, not caused by
+  the SMD work: the untouched `../KiCad/` baseline board reports 205
+  violations of the same kinds, including 6 of those mismatches.
+
+Silkscreen is worth a pass after placement; reference designators are what
+JLC's assembly drawing needs.
+
 ## Next (not done)
 
-Plan §6 step 5: open the board, Update PCB from Schematic *with* "replace
-footprints", then delete all tracks and zones and place from the locked
-outline, mounting holes and JP1–JP4 positions.
+Placement, then routing. The outline, mounting holes and connectors are
+locked, so placement starts from them. Plan §3 layout rules apply: analog
+section together and away from the AVR clock and DAC lines, GND pour both
+sides stitched, values off the silkscreen.
