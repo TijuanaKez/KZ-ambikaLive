@@ -103,7 +103,7 @@ library at order time — it shifts.
 | IC1 | TL074P | TL074CDR | SOIC-14 | Basic. |
 | IC3, IC5 | TL072P | TL072CDR | SOIC-8 | Basic. |
 | IC2 | LM13700N | LM13700MX | SOIC-16 | Extended. Pins 7–10 (buffers) stay unconnected. |
-| IC4 | V2164D | **V2164M** (Coolaudio) or AS2164 SOIC | SOIC-16 | Same die family as SSM2164. Coolaudio stock at LCSC is intermittent — check before committing the footprint; AS2164 (Alfa) is the fallback with an identical pinout. |
+| IC4 | V2164D | **SSI2164** (Sound Semiconductor) | SOIC-16 | Pin-compatible SSM2164 successor, lower noise. **Not assembled by JLC** — V2164M is perpetually out of stock at LCSC and dear when it isn't. Ordered ×12 from Cabintech (Sep 2026), hand-soldered on arrival. Leave IC4 out of the JLC BOM (`DNP`/no LCSC field). |
 | IC6 | MCP4822 | MCP4822-E/SN | SOIC-8 | Extended. Stage A keeps it. |
 | IC7 | ATmega328P (DIP-28) | ATMEGA328P-AU | **TQFP-32** | Extended. TQFP-32 has two extra ADC pins (ADC6/ADC7) vs DIP-28 — leave NC. Fuses/bootloader identical. |
 | Q1, Q2 | 2N3906 | MMBT3906 | SOT-23 | Basic. Check the Eagle symbol pin order vs SOT-23 EBC when assigning. |
@@ -122,8 +122,8 @@ library at order time — it shifts.
 | U$1/2/4/5 | M3 holes | Positions fixed by the mobo standoffs. |
 
 JLCPCB assembles THT on request but it is a separate, dearer service. The
-clean option for Stage A: SMD-assembled by JLC, four SIP headers and the
-trimmer hand-soldered on arrival. That's five parts per card.
+clean option for Stage A: SMD-assembled by JLC, then four SIP headers, the
+trimmer and the SSI2164 hand-soldered on arrival. That's six parts per card.
 
 ---
 
