@@ -61,6 +61,7 @@ struct HighPriorityBufferSpecs {
 class MidiDispatcher : public midi::MidiDevice {
  public:
   typedef avrlib::RingBuffer<LowPriorityBufferSpecs> OutputBufferLowPriority;
+  static uint8_t out_peak_;
   typedef avrlib::RingBuffer<HighPriorityBufferSpecs> OutputBufferHighPriority;
 
   MidiDispatcher() { }
@@ -209,7 +210,19 @@ class MidiDispatcher : public midi::MidiDevice {
   }
   
   static uint8_t readable_low_priority() {
-    return OutputBufferLowPriority::readable();
+    uint8_t pending = OutputBufferLowPriority::readable();
+    // KZ MOD: high-water mark of the MIDI output queue. The buffer was halved
+    // from Emilie's 128 to buy stack headroom, and this is how we find out
+    // whether that was safe rather than assuming it either way. Sampled here
+    // because the transmit path asks this constantly, so peaks cannot hide.
+    if (pending > out_peak_) {
+      out_peak_ = pending;
+    }
+    return pending;
+  }
+
+  static uint8_t out_peak() {
+    return out_peak_;
   }
 
   static uint8_t ImmediateReadHighPriority() {

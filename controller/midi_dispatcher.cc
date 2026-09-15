@@ -24,6 +24,7 @@
 namespace ambika {
 
 /* static */
+uint8_t MidiDispatcher::out_peak_ = 0;
 uint8_t MidiDispatcher::current_bank_ = 0;
 /* static */
 uint8_t MidiDispatcher::current_parameter_address_ = 0xff;

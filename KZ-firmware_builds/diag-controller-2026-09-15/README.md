@@ -14,14 +14,18 @@ outright, which made it impossible to flash a voice card while running one.
 ## What it shows
 
 ```
-KZ DIAG3 RAM   nnnnn LOW   nnnnn        RST xx
+RAM  nnnnn LOW  nnnnn MID nnn RST xx
 AUD nnn nnn nnn nnn nnn nnn  clk:fw     exit
 ```
 
 - **RAM** — free SRAM between the heap start and the stack pointer.
-- **LOW** — untouched-stack watermark. Expected around 20 on v1.4.
+- **LOW** — untouched-stack watermark. Measured at **30** on 2026-09-15, so peak
+  stack use is **334 bytes** against 364 of headroom.
+- **MID** — high-water mark of the MIDI output queue, against its 64-byte size.
+  This exists to settle whether halving that buffer from Emilie's 128 was safe.
 - **RST** — reset cause. The bootloader can clear MCUSR, so `00` is inconclusive.
-- **AUD** — new. Audio render headroom for voice cards 1 to 6.
+- **AUD** — audio CPU load per voice card, in audio ticks consumed per 40-sample
+  block. See below.
 
 ## Reading AUD — this is the CPU budget, without a scope
 
@@ -30,13 +34,23 @@ the moment it starts rendering a block. The ISR drains one sample per 39.2 kHz
 tick and the main loop refills 40 at a time, so that number says how close the
 renderer came to being late.
 
+The ISR drains exactly one sample per 39.2 kHz tick, so counting ticks during one
+`ProcessBlock()` says how much of that block's 40 sample-times the render used.
+
 | Reading | Meaning |
 |---|---|
-| ~40–48 | Healthy. The renderer refills as soon as a block's worth is free. |
-| rising above ~64 | Falling behind; the buffer is draining faster than it fills. |
-| approaching 128 | Nearly starved. |
-| **254** | The buffer **did** run dry. Over budget. |
+| 40 | 100% of budget — the render takes as long as the audio it makes. |
+| 20 | 50%. |
+| 12 | 30%. |
+| **254** | The audio buffer ran dry. Over budget. |
 | `--` | That card has no counter: v1.1 firmware, or an empty slot. |
+
+The earlier version of this reading reported free buffer space instead, which
+saturated at 40 as soon as the renderer was keeping up and so could only detect
+trouble, never measure headroom. This one is a percentage.
+
+Cost is one increment per audio interrupt, about 1% of the cycle budget. That is
+the price of being able to measure each new oscillator in Phase 4.
 
 The value is the peak since the last read, and reading it clears it — so it
 answers "what was the worst case since I last looked", not "what is it now".

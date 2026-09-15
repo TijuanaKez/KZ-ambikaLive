@@ -3,7 +3,7 @@
   "target": "voicecard",
   "variant": "release",
   "displayed_version": "v1.4",
-  "git_head": "e1118a451b0a2212fc0e8c63d3afebae06febad7",
+  "git_head": "87453f796ab2eb48c25077826d11175cf2cade28",
   "source_state": "Working tree; exact source inputs included in source.tar.gz",
   "compiler": "avr-gcc (Homebrew AVR GCC 9.5.0) 9.5.0",
   "objcopy": "GNU objcopy (GNU Binutils) 2.46.0.20260210",
@@ -13,16 +13,16 @@
     "voicecard/makefile",
     "bin",
     "all",
-    "BUILD_ROOT=/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-x_hjdc5s/",
+    "BUILD_ROOT=/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-dznts2aw/",
     "AVRLIB_TOOLS_PATH=/usr/local/bin/",
     "AVRLIB_TOOLS_PATH_LEGACY=/usr/local/bin/",
-    "EXTRA_LD_FLAGS=,-Map,/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-x_hjdc5s/firmware.map"
+    "EXTRA_LD_FLAGS=,-Map,/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-voicecard-release-dznts2aw/firmware.map"
   ],
-  "flash_bytes": 18984,
+  "flash_bytes": 19012,
   "max_flash_bytes": 32256,
-  "static_sram_bytes": 1070,
+  "static_sram_bytes": 1071,
   "max_static_sram_bytes": 1920,
-  "remaining_sram_bytes": 978,
+  "remaining_sram_bytes": 977,
   "source_sha256": {
     "avrlib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "avrlib/adc.cc": "dc7ea1caad0ca70d087d8fb8c0cedf21efb3773e7f1f6eff1a08dbe2dabd8ff3",
@@ -123,20 +123,20 @@
     "voicecard/transient_generator.h": "5d65e22aa2272883916e9edbc8933f3096e8e64f0d734ad2d63bd2571bc61328",
     "voicecard/voice.cc": "c5e6b8858a1e92755d0c9c51b750025d41f195634f56c54dbed52db7723cf0c0",
     "voicecard/voice.h": "7e8340fd42a8eb9d45bc66036aafe1c97501dbe4dd3111843745f58effd5e127",
-    "voicecard/voicecard.cc": "7db4768d8c8c723a9abc722d1a8f48118ab6bd734ae3ae389e04a6e6fe793383",
-    "voicecard/voicecard.h": "64bab36aefe771a03e3df54061779bcc7ab113075f8a444a8486c8079c049bfb",
+    "voicecard/voicecard.cc": "2b9f064461bd5ba34322d95f8a3fa5da215dae30ab3c1dd3947e8624d293ffb5",
+    "voicecard/voicecard.h": "cb7e98cc64331f2bf3f8bc856a11ed4a3d478b4d20907ba44d137433a3837be3",
     "voicecard/voicecard_rx.cc": "2f61215114af0b3af17c73c774f710ef10da31c31d5b0e4976bdf2f6909618a9",
-    "voicecard/voicecard_rx.h": "0d37f7d62a5d02e8fded30705c39713cfa672388e5ead102dfef0ae63aa586cf"
+    "voicecard/voicecard_rx.h": "277a701faaa59d46844f3543d551a7068b1ef990cf8dbfaa01f77c6551752dc3"
   },
   "artifact_sha256": {
-    "VOICE.BIN": "fcaab19bb3efecd1a1482390a229cbc911a20fe77558730f96e97fa5b5984835",
-    "ambika_voicecard.elf": "5b9c589eba276bd77433c83dc827b5c19f6164e0e4aa6553a8fa6a20c182d79b",
-    "ambika_voicecard.hex": "14806a77b40b2e74349d757d94e0a4f03e0ea57e6f34851fdd0a711a67c78b35",
-    "ambika_voicecard.map": "d9a74f13e84c7f92d2560f7507b13cfe017fba638c529806d4665e9deb122c26",
-    "build.log": "ee5de1e98b0713eca3859e9436ba4232765cd0d8907f340856ba2ead51ee26bf",
+    "VOICE.BIN": "942848138bd0d70ec4876efc58a6328701f308ba6bc7fb65bc6dc3b90855f1bb",
+    "ambika_voicecard.elf": "c80a747592b3091652259e536c8b31622e204d33a33813cc25670e3c1adbf295",
+    "ambika_voicecard.hex": "80285554f352cbd5d583a55c64d7792a708a2597f33c3dd1cf0e30a5af4bf047",
+    "ambika_voicecard.map": "c9c8f9c7b3eba539baab6d75bd943d66ff3450c3674362d9cdd8991adbe62d1b",
+    "build.log": "3f93b5b201f469df7d4955862e4e93fdd507e1527f42f598169ce93685c8724f",
     "features.h": "4f8f39e5f2e000e9b4c90aa8802ff575b8245e5f5ec19f8ee95d258b0f1c92e6",
-    "size.txt": "cd89c4c056feb31f37eaf1b403f6da249b8afdf3b3b0058a91c09a7a6081a53c",
-    "source.tar.gz": "9b2a39121ddf640995ad9f9491db9330cce5f21d4249f6fd304d8b0a3838b587",
-    "symbols.txt": "bad6c4751572a63b4250f44473f87f47c113e751199c7af5760636955bb9b6d5"
+    "size.txt": "4988b403269f374b26f28cd5df36fddf9c14eee686c84c3180424daabe428dd6",
+    "source.tar.gz": "2262940a30bf04b0932d772dfbaf0a493134a0ce95344aded3253fda17216e0f",
+    "symbols.txt": "c39d4e326fe3f7d02bf1c2302602630f04e183440746a86904b2168132fe8170"
   }
 }

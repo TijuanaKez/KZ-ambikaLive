@@ -61,13 +61,20 @@ static volatile uint8_t interrupt_counter;
 static constexpr uint8_t dac_scale = 16;
 static volatile uint8_t update_vca;
 
-// KZ MOD: audio render headroom, for measuring the CPU budget without a scope.
-// The ISR drains one sample per 39.2 kHz tick and the main loop refills a block
-// at a time, so the free space seen just before rendering is a direct measure of
-// how close the renderer came to being late. Sampled once per block; the cost is
-// one comparison per ~980 blocks a second.
+// KZ MOD: audio CPU load, for measuring the budget without a scope.
+//
+// The ISR drains exactly one sample per 39.2 kHz tick, so counting ticks during
+// one ProcessBlock() says how many of the 40 sample-times that block was allowed
+// were actually used. 40 means the render took as long as the audio it produced,
+// i.e. 100% of budget; half that is 50%. Unlike free-space-in-the-buffer, this
+// does not saturate while the renderer is keeping up, so it can measure headroom
+// rather than only detect its absence.
+//
+// The cost is one increment per audio interrupt, about 1% of the cycle budget.
+// That is the price of being able to measure every new oscillator in Phase 4.
 namespace ambika {
-volatile uint8_t audio_drain_peak;
+volatile uint8_t audio_tick_counter;
+volatile uint8_t audio_load_peak;
 volatile uint8_t audio_starved;
 }  // namespace ambika
 
@@ -87,6 +94,9 @@ ISR(TIMER2_OVF_vect) {
     vca_12bits.value = next_vca_value | 0x1000u;
   }
 
+  if (audio_tick_counter < 255) {
+    ++audio_tick_counter;
+  }
   if (!audio_buffer.isReadable()) {
     // The renderer did not keep up: this sample period has no audio for it.
     audio_starved = 1;
@@ -174,11 +184,8 @@ int main() {
 #ifdef TIMING_CODE
     interrupt_counter = 0;
 #endif
-    uint8_t space_left = audio_buffer.spaceLeft();
-    if (space_left > audio_drain_peak) {
-      audio_drain_peak = space_left;
-    }
-    if (space_left >= kAudioBlockSize) {
+    if (audio_buffer.spaceLeft() >= kAudioBlockSize) {
+      audio_tick_counter = 0;
       voicecard_rx.TickRxLed();
 #ifdef TIMING_CODE
       timing_signal1::high();
@@ -187,6 +194,12 @@ int main() {
 #else
       voice.ProcessBlock();
 #endif
+      // Ticks elapsed during ProcessBlock, out of the kAudioBlockSize the block
+      // was worth. Read before anything else can consume time.
+      uint8_t load = audio_tick_counter;
+      if (load > audio_load_peak) {
+        audio_load_peak = load;
+      }
       vcf_cutoff_out.Write(voice.cutoff());
       vcf_resonance_out.Write(voice.resonance());
       vcf_mode.Write(filter_mode_bytes[voice.patch().filter(0).mode]);

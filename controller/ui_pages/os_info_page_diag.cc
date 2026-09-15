@@ -30,6 +30,7 @@
 #include "avrlib/watchdog_timer.h"
 
 #include "controller/display.h"
+#include "controller/midi_dispatcher.h"
 #include "controller/diagnostics.h"
 #include "controller/leds.h"
 #include "controller/multi.h"
@@ -121,15 +122,19 @@ void OsInfoPage::MemoryUpdateScreen() {
   }
 
   char* buffer = display.line_buffer(0);
-  memcpy_P(buffer, PSTR("KZ DIAG3 RAM "), 13);
-  UnsafeItoa<int16_t>(FreeSram(), 5, &buffer[13]);
-  AlignRight(&buffer[13], 5);
-  memcpy_P(&buffer[21], PSTR("LOW "), 4);
-  UnsafeItoa<int16_t>(UntouchedSram(), 5, &buffer[25]);
-  AlignRight(&buffer[25], 5);
-  memcpy_P(&buffer[33], PSTR("RST "), 4);
-  buffer[37] = NibbleToAscii(highNibble(ResetCause()));
-  buffer[38] = NibbleToAscii(lowNibble(ResetCause()));
+  memcpy_P(buffer, PSTR("RAM "), 4);
+  UnsafeItoa<int16_t>(FreeSram(), 5, &buffer[4]);
+  AlignRight(&buffer[4], 5);
+  memcpy_P(&buffer[10], PSTR("LOW "), 4);
+  UnsafeItoa<int16_t>(UntouchedSram(), 5, &buffer[14]);
+  AlignRight(&buffer[14], 5);
+  // High-water mark of the MIDI output queue, against its 64-byte size.
+  memcpy_P(&buffer[20], PSTR("MID "), 4);
+  UnsafeItoa<int16_t>(midi_dispatcher.out_peak(), 3, &buffer[24]);
+  AlignRight(&buffer[24], 3);
+  memcpy_P(&buffer[28], PSTR("RST "), 4);
+  buffer[32] = NibbleToAscii(highNibble(ResetCause()));
+  buffer[33] = NibbleToAscii(lowNibble(ResetCause()));
 
   // Audio render headroom per voice card: free space left in the audio buffer
   // just before a block was rendered. Around 40 is healthy, rising means the

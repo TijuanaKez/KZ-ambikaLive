@@ -72,6 +72,10 @@ struct VoicecardTx {
     return reply;
   }
 } voicecard_tx;
+struct MidiDispatcher {
+  uint8_t peak = 0;
+  uint8_t out_peak() const { return peak; }
+} midi_dispatcher;
 struct OsInfoPage : UiPage {
   static void OnInit(PageInfo*), UpdateScreen(), UpdateLeds();
   static uint8_t OnIncrement(int8_t), OnKey(uint8_t), OnClick();
@@ -261,9 +265,10 @@ int main() {
     display.clear();
     OsInfoPage::UpdateScreen();
     display.check();
-    assert(std::memcmp(display.line_buffer(0), "KZ DIAG3", 8) == 0);
-    // RST moved to line 0 when the per-card audio headroom took line 1.
-    assert(std::memcmp(display.line_buffer(0) + 33, "RST ab", 6) == 0);
+    assert(std::memcmp(display.line_buffer(0), "RAM ", 4) == 0);
+    assert(std::memcmp(display.line_buffer(0) + 10, "LOW ", 4) == 0);
+    assert(std::memcmp(display.line_buffer(0) + 20, "MID ", 4) == 0);
+    assert(std::memcmp(display.line_buffer(0) + 28, "RST ab", 6) == 0);
     assert(std::memcmp(display.line_buffer(1), "AUD ", 4) == 0);
     for (int i = 0; i < 80; ++i) assert(display.memory[i + 1] != 0);
   }
@@ -285,6 +290,8 @@ int main() {
     for (uint8_t reply : {uint8_t(0), uint8_t(40), uint8_t(128), kAudioStarved,
                           kAudioHeadroomUnsupported}) {
       voicecard_tx.reply = reply;
+      // The MIDI queue peak shares line 0 and must not collide with RST.
+      midi_dispatcher.peak = 64;
       for (int pass = 0; pass < kNumVoices; ++pass) {
         display.clear();
         OsInfoPage::UpdateScreen();
@@ -294,6 +301,8 @@ int main() {
       // The click hint must not land on a card's cell.
       assert(std::memcmp(display.line_buffer(1) + 29, "clk:fw", 6) == 0);
       assert(std::memcmp(display.line_buffer(1) + 36, "exit", 4) == 0);
+      assert(std::memcmp(display.line_buffer(0) + 24, " 64", 3) == 0);
+      assert(std::memcmp(display.line_buffer(0) + 28, "RST ab", 6) == 0);
       // A card with no counter must read as "--", never as a number: 0xff is
       // what an older voice card leaves in SPDR, not a real measurement.
       const char* want = reply == kAudioHeadroomUnsupported ? " --"
