@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "Voicecard-4P-v01-import-fps") (type "KiCad") (uri "${KIPRJMOD}/Voicecard-4P-v01-import-fps.pretty") (options "kicad_import_cache=1") (descr ""))
+)

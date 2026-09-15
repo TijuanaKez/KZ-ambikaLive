@@ -41,4 +41,5 @@ __pycache__/
 
 # KiCad local backups and lock files
 voicecard/hardware_design/pcb/KiCad/.history/
+voicecard/hardware_design/pcb/KiCad-SMD/.history/
 *.lck
