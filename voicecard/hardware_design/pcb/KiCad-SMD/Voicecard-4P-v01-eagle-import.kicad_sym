@@ -51300,9 +51300,9 @@
 					)
 				)
 			)
-			(pin no_connect line
-				(at 0 -3.81 90)
-				(length 2.032)
+			(pin passive line
+				(at 0 5.08 270)
+				(length 3.302)
 				(name "GND"
 					(effects
 						(font
@@ -51310,25 +51310,7 @@
 						)
 					)
 				)
-				(number "4"
-					(effects
-						(font
-							(size 0 0)
-						)
-					)
-				)
-			)
-			(pin no_connect line
-				(at 0 3.81 270)
-				(length 2.032)
-				(name "GND"
-					(effects
-						(font
-							(size 0 0)
-						)
-					)
-				)
-				(number "2"
+				(number "[2,4]"
 					(effects
 						(font
 							(size 0 0)

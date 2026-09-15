@@ -2651,9 +2651,9 @@
 						)
 					)
 				)
-				(pin no_connect line
-					(at 0 -3.81 90)
-					(length 2.032)
+				(pin passive line
+					(at 0 5.08 270)
+					(length 3.302)
 					(name "GND"
 						(effects
 							(font
@@ -2661,25 +2661,7 @@
 							)
 						)
 					)
-					(number "4"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-				)
-				(pin no_connect line
-					(at 0 3.81 270)
-					(length 2.032)
-					(name "GND"
-						(effects
-							(font
-								(size 0 0)
-							)
-						)
-					)
-					(number "2"
+					(number "[2,4]"
 						(effects
 							(font
 								(size 0 0)
@@ -8588,6 +8570,104 @@
 								(size 0 0)
 							)
 						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+			(symbol "Voicecard-4P-SMD-extras:PWR_FLAG"
+			(power global)
+			(exclude_from_sim no)
+			(in_bom no)
+			(on_board no)
+			(in_pos_files no)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#FLG"
+				(at 0 1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "PWR_FLAG"
+				(at 0 3.556 0)
+				(hide yes)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Special symbol for telling ERC where power comes from"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_0"
+				(pin power_out line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type solid)
+					)
+					(fill
+						(type none)
 					)
 				)
 			)
@@ -25878,11 +25958,8 @@
 		(pin "3"
 			(uuid "65f65a7a-fe48-44ed-9f77-13aaca5da4f6")
 		)
-		(pin "4"
-			(uuid "ebda0ae0-eaa2-4f43-8d09-05674fc8a000")
-		)
-		(pin "2"
-			(uuid "59581929-0601-413e-bc8f-a7e000c7d808")
+		(pin "[2,4]"
+			(uuid "46ed50e7-7a53-408e-8945-a82c6d4d7b46")
 		)
 		(instances
 			(project "Voicecard-4P-SMD"
@@ -27291,4 +27368,384 @@
 		)
 	)
 	(embedded_fonts no)
+	(symbol
+		(lib_id "Voicecard-4P-SMD-extras:PWR_FLAG")
+		(at 43.18 50.8 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "4b303d06-ba09-4061-a501-fb660b4406c1")
+		(property "Reference" "#FLG1"
+			(at 43.18 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 43.18 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 43.18 50.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 43.18 50.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 43.18 50.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f90e012e-6dbb-42ef-9613-a53198200127")
+		)
+		(instances
+			(project "Voicecard-4P-SMD"
+				(path "/fb42ca17-4eb1-4e39-96de-926079457c87"
+					(reference "#FLG1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Voicecard-4P-SMD-extras:PWR_FLAG")
+		(at 373.38 40.64 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "0deae513-6e8c-41a4-9664-dba3495d48dd")
+		(property "Reference" "#FLG2"
+			(at 373.38 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 373.38 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 373.38 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 373.38 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 373.38 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "ebc48786-c245-4218-851b-04668850b0e7")
+		)
+		(instances
+			(project "Voicecard-4P-SMD"
+				(path "/fb42ca17-4eb1-4e39-96de-926079457c87"
+					(reference "#FLG2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Voicecard-4P-SMD-extras:PWR_FLAG")
+		(at 373.38 66.04 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "75ac32c2-9ebb-4fc3-a2e1-ea5347bb2095")
+		(property "Reference" "#FLG3"
+			(at 373.38 63.50000000000001 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 373.38 60.96000000000001 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 373.38 66.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 373.38 66.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 373.38 66.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e0fc5c10-6842-40e1-bb41-5e1f0bd194af")
+		)
+		(instances
+			(project "Voicecard-4P-SMD"
+				(path "/fb42ca17-4eb1-4e39-96de-926079457c87"
+					(reference "#FLG3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Voicecard-4P-SMD-extras:PWR_FLAG")
+		(at 383.54 58.42 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "e53bcf51-ece6-4572-8f27-8c0e728eb5ce")
+		(property "Reference" "#FLG4"
+			(at 383.54 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 383.54 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 383.54 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 383.54 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 383.54 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "05a4f6a6-9140-4f4b-84f6-f3237ec15e77")
+		)
+		(instances
+			(project "Voicecard-4P-SMD"
+				(path "/fb42ca17-4eb1-4e39-96de-926079457c87"
+					(reference "#FLG4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(no_connect
+		(at 96.52 96.52)
+		(uuid "a9056b3f-c932-4a9a-891e-10c703d1fba4")
+	)
+	(no_connect
+		(at 144.78 88.9)
+		(uuid "4474a2c4-de2c-4534-aaac-e96ae6a75f42")
+	)
+	(no_connect
+		(at 144.78 91.44)
+		(uuid "9854f579-5bca-4736-ab7b-829f952af930")
+	)
+	(no_connect
+		(at 144.78 93.98)
+		(uuid "1aaa99e6-c4e4-4e40-bdb9-70c4af17c407")
+	)
+	(no_connect
+		(at 144.78 96.52)
+		(uuid "a9a21379-8430-40d4-89bf-44d4be5aa372")
+	)
+	(no_connect
+		(at 144.78 111.76)
+		(uuid "f08f1a99-221a-4bcf-9d29-53b10b69d9e2")
+	)
+	(no_connect
+		(at 144.78 119.38)
+		(uuid "6f439a6c-f6ed-4b12-8e81-fb4dbe6eb551")
+	)
+	(no_connect
+		(at 144.78 129.54)
+		(uuid "653d96f8-8b3c-4c6d-b1ea-0de5ba859261")
+	)
+	(no_connect
+		(at 144.78 134.62)
+		(uuid "af10659b-78e4-4a9b-90a5-da29890ab99b")
+	)
+	(no_connect
+		(at 144.78 137.16)
+		(uuid "db1ef259-2f6c-4bd1-bcc6-eefd8558b3f3")
+	)
+	(no_connect
+		(at 228.6 238.76)
+		(uuid "bd551caf-3975-4e2c-b21b-e852bad22ede")
+	)
+	(no_connect
+		(at 345.44 205.74)
+		(uuid "0b256434-e9ba-42bc-934a-b2b0819e0c10")
+	)
+	(no_connect
+		(at 381.0 50.8)
+		(uuid "f8a2207a-1a02-436c-abc5-0e347b09ae2e")
+	)
+	(wire
+		(pts
+			(xy 81.28 109.22) (xy 73.66 109.22)
+		)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(uuid "7ad46a77-3af6-40cd-adec-ef578ac90b1b")
+	)
+	(junction
+		(at 73.66 109.22)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "339ed5e9-5c67-4d55-bb01-930f78eeed6d")
+	)
 )

@@ -9,12 +9,13 @@ footprint libraries keep their `Voicecard-4P-v01-*` names, so every `lib_id`
 in the schematic and board is unchanged. `../KiCad/` stays untouched as the
 reference for the original through-hole board.
 
-State: schematic footprints and LCSC fields assigned. **No board work done** —
+State: schematic footprints and LCSC fields assigned, ERC clean. **No board
+work done** —
 `Voicecard-4P-SMD.kicad_pcb` is still the original through-hole layout.
 
 ## Pin renumbering (symbol pads, not nets)
 
-Six Eagle symbols numbered their pins for the through-hole footprint. The
+Eight Eagle symbols numbered their pins for the through-hole footprint. The
 standard-library SMD footprints number pads differently, so the pin *numbers*
 in the symbols were changed. Schematic wires attach to pin positions, not pin
 numbers, so this changes which pad a pin lands on and nothing else; the
@@ -37,10 +38,9 @@ Added pins, all of them pads the DIP package did not have:
   TQFP's second VCC and GND pads join +5V and GND. Both must be connected;
   the datasheet requires it.
 - IC7 ADC6 (19) and ADC7 (22): TQFP-only ADC inputs, left unconnected.
-- Q3 pads 2 and 4: the 3225's case pads, left unconnected. **Decision
-  pending** — convention is to ground them, which needs a GND connection
-  added to the schematic. Left floating for now because Stage A changes
-  packages only.
+- Q3 pads 2 and 4: the 3225's case pads, grounded (Carey, 2026-09-16) as
+  convention for the package. They are one pin with the stacked number
+  `[2,4]`, wired to the C31/C32 ground rail.
 
 ## Footprints and parts
 
@@ -75,9 +75,9 @@ Value fields still read as the original parts (`TL074P`, `2N3906`,
 `LED3MM`, …) because Stage A does not change values; the `LCSC` field carries
 the part that is actually fitted.
 
-Crystal load capacitance: C31/C32 stay at 20 p, which with strays gives a load
-of roughly 12–14 pF, so a 12 pF crystal was chosen. A 20 pF-load crystal such
-as C9004 would need those caps changed and was rejected for that reason.
+Crystal load capacitance: C31/C32 stay at 20 p — two 20 p in series is 10 pF,
+plus a few pF of stray, so 12–14 pF. Hence the 12 pF-load crystal. A 20 pF-load
+part such as C9004 would mean changing those values, which Stage A does not do.
 
 ### Kept through-hole
 
@@ -90,27 +90,33 @@ arrival, so they carry no LCSC field.
 
 R28's imported footprint is the triangular Bourns 3296P pad pattern, matching
 KiCad's `Potentiometer_Bourns_3296P_Horizontal`, not the 3296W named in the
-plan. Switch to a 3224W SMD trimmer if hand-fitting is not wanted.
+plan. Kept through-hole for Stage A (Carey, 2026-09-16): it is the pattern the
+original used, and the card is already being finished by hand. An SMD 3224W
+is a question for the STM32 board.
 
 ## ERC
 
-`kicad-cli sch erc` reports 20 errors and 1 warning — item for item the same
-as the untouched `../KiCad/` baseline, except that six unconnected IC7 pins
-are now reported by their TQFP pad numbers. All of them are pre-existing
-properties of the Eagle schematic, not faults introduced here:
+`kicad-cli sch erc` reports **0 errors and 1 warning**: IC2 has unplaced units
+A and B, the LM13700's two Darlington buffers, unused in the 4P (pins 7–10).
+That warning is inherent to using half of an LM13700 and is left alone; it is
+also what Update PCB from Schematic reports about pads 7–10.
 
-- 10 unconnected AVR pins (AREF, PD0, PD3, PD7, PB0, PB1, PC0–PC3) and
-  IC2 pins 2/15 (LM13700 diode-bias inputs) and IC4 pin 1 (2164 mode pin) —
-  unconnected in the original board too, and never given no-connect flags on
-  import.
-- 4 "input power pin not driven" errors, because the imported sheet has no
-  PWR_FLAG on +5V, VCC, VEE and GND.
-- 1 warning: IC2 has unplaced units A and B — the LM13700's two Darlington
-  buffers, unused in the 4P, pins 7–10.
+The Eagle import arrived with 20 ERC errors, all of them missing annotation
+rather than circuit faults, and all cleared here (Carey, 2026-09-16) so that a
+real error is visible later. No net and no value changed:
 
-Clearing these would mean adding no-connect flags and power flags to the
-schematic. That is a change to the drawing, so it has been left for a
-decision rather than done silently.
+- 13 no-connect flags on pins that are unused by design: IC7 AREF, PC0–PC3,
+  PD0, PD3, PD7, PB0, PB1; IC2 pins 2 and 15 (LM13700 diode-bias inputs);
+  IC4 pin 1 (2164 MODE). ADC6/ADC7 on the TQFP need no flag — those pins are
+  declared as no-connect in the symbol.
+- 4 PWR_FLAGs, on +5V, VCC, VEE and GND, telling ERC where power enters the
+  card. They sit on the existing supply symbols' pins; their value text is
+  hidden so it does not cover JP2's pin numbers. PWR_FLAG lives in
+  `Voicecard-4P-SMD-extras.kicad_sym`, a project library, so the schematic
+  does not depend on KiCad's global symbol libraries. Flags carry no
+  footprint and stay out of the BOM.
+
+These flags exist only in KiCad-SMD; `../KiCad/` keeps its original ERC state.
 
 ## Reproducing the checks
 
