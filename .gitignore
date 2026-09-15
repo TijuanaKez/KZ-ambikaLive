@@ -38,3 +38,7 @@ __pycache__/
 !/KZ-firmware_builds/**/build.log
 !/KZ-firmware_builds/**/size.txt
 !/KZ-firmware_builds/**/symbols.txt
+
+# KiCad local backups and lock files
+voicecard/hardware_design/pcb/KiCad/.history/
+*.lck
