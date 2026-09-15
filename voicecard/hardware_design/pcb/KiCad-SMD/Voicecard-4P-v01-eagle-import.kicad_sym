@@ -286,7 +286,7 @@
 						)
 					)
 				)
-				(number "A"
+				(number "2"
 					(effects
 						(font
 							(size 0 0)
@@ -304,7 +304,7 @@
 						)
 					)
 				)
-				(number "C"
+				(number "1"
 					(effects
 						(font
 							(size 0 0)
@@ -812,7 +812,7 @@
 						)
 					)
 				)
-				(number "1"
+				(number "3"
 					(effects
 						(font
 							(size 0 0)
@@ -830,7 +830,7 @@
 						)
 					)
 				)
-				(number "2"
+				(number "1"
 					(effects
 						(font
 							(size 0 0)
@@ -848,7 +848,7 @@
 						)
 					)
 				)
-				(number "3"
+				(number "2"
 					(effects
 						(font
 							(size 0 0)
@@ -3924,7 +3924,7 @@
 						)
 					)
 				)
-				(number "3"
+				(number "2"
 					(effects
 						(font
 							(size 0 0)
@@ -4590,7 +4590,7 @@
 						)
 					)
 				)
-				(number "+"
+				(number "1"
 					(effects
 						(font
 							(size 0 0)
@@ -4608,7 +4608,7 @@
 						)
 					)
 				)
-				(number "-"
+				(number "2"
 					(effects
 						(font
 							(size 0 0)
@@ -28077,7 +28077,7 @@
 						)
 					)
 				)
-				(number "+"
+				(number "1"
 					(effects
 						(font
 							(size 0 0)
@@ -28095,7 +28095,7 @@
 						)
 					)
 				)
-				(number "-"
+				(number "2"
 					(effects
 						(font
 							(size 0 0)
@@ -51292,6 +51292,42 @@
 						)
 					)
 				)
+				(number "3"
+					(effects
+						(font
+							(size 0 0)
+						)
+					)
+				)
+			)
+			(pin no_connect line
+				(at 0 -3.81 90)
+				(length 2.032)
+				(name "GND"
+					(effects
+						(font
+							(size 0 0)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 0 0)
+						)
+					)
+				)
+			)
+			(pin no_connect line
+				(at 0 3.81 270)
+				(length 2.032)
+				(name "GND"
+					(effects
+						(font
+							(size 0 0)
+						)
+					)
+				)
 				(number "2"
 					(effects
 						(font
@@ -54395,7 +54431,7 @@
 						)
 					)
 				)
-				(number "A"
+				(number "2"
 					(effects
 						(font
 							(size 0 0)
@@ -54413,7 +54449,7 @@
 						)
 					)
 				)
-				(number "K"
+				(number "1"
 					(effects
 						(font
 							(size 0 0)
@@ -71204,7 +71240,7 @@
 						)
 					)
 				)
-				(number "1"
+				(number "29"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71222,7 +71258,7 @@
 						)
 					)
 				)
-				(number "2"
+				(number "30"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71240,7 +71276,7 @@
 						)
 					)
 				)
-				(number "3"
+				(number "31"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71258,7 +71294,7 @@
 						)
 					)
 				)
-				(number "4"
+				(number "32"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71276,7 +71312,7 @@
 						)
 					)
 				)
-				(number "5"
+				(number "1"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71294,7 +71330,7 @@
 						)
 					)
 				)
-				(number "6"
+				(number "2"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71312,7 +71348,7 @@
 						)
 					)
 				)
-				(number "7"
+				(number "[4,6]"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71330,7 +71366,7 @@
 						)
 					)
 				)
-				(number "8"
+				(number "[3,5]"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71348,7 +71384,7 @@
 						)
 					)
 				)
-				(number "9"
+				(number "7"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71366,7 +71402,7 @@
 						)
 					)
 				)
-				(number "10"
+				(number "8"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71384,7 +71420,7 @@
 						)
 					)
 				)
-				(number "11"
+				(number "9"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71402,7 +71438,7 @@
 						)
 					)
 				)
-				(number "12"
+				(number "10"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71420,7 +71456,7 @@
 						)
 					)
 				)
-				(number "13"
+				(number "11"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71438,7 +71474,7 @@
 						)
 					)
 				)
-				(number "14"
+				(number "12"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71456,7 +71492,7 @@
 						)
 					)
 				)
-				(number "15"
+				(number "13"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71474,7 +71510,7 @@
 						)
 					)
 				)
-				(number "16"
+				(number "14"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71492,7 +71528,7 @@
 						)
 					)
 				)
-				(number "17"
+				(number "15"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71510,7 +71546,7 @@
 						)
 					)
 				)
-				(number "18"
+				(number "16"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71528,7 +71564,7 @@
 						)
 					)
 				)
-				(number "19"
+				(number "17"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71546,7 +71582,7 @@
 						)
 					)
 				)
-				(number "20"
+				(number "18"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71564,7 +71600,7 @@
 						)
 					)
 				)
-				(number "21"
+				(number "20"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71582,7 +71618,7 @@
 						)
 					)
 				)
-				(number "22"
+				(number "21"
 					(effects
 						(font
 							(size 1.524 1.524)
@@ -71691,6 +71727,42 @@
 					)
 				)
 				(number "28"
+					(effects
+						(font
+							(size 1.524 1.524)
+						)
+					)
+				)
+			)
+			(pin no_connect line
+				(at 25.4 10.16 180)
+				(length 5.08)
+				(name "ADC7"
+					(effects
+						(font
+							(size 1.524 1.524)
+						)
+					)
+				)
+				(number "22"
+					(effects
+						(font
+							(size 1.524 1.524)
+						)
+					)
+				)
+			)
+			(pin no_connect line
+				(at 25.4 12.7 180)
+				(length 5.08)
+				(name "ADC6"
+					(effects
+						(font
+							(size 1.524 1.524)
+						)
+					)
+				)
+				(number "19"
 					(effects
 						(font
 							(size 1.524 1.524)

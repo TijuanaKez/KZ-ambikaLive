@@ -289,7 +289,7 @@
 							)
 						)
 					)
-					(number "A"
+					(number "2"
 						(effects
 							(font
 								(size 0 0)
@@ -307,7 +307,7 @@
 							)
 						)
 					)
-					(number "C"
+					(number "1"
 						(effects
 							(font
 								(size 0 0)
@@ -543,7 +543,7 @@
 							)
 						)
 					)
-					(number "1"
+					(number "3"
 						(effects
 							(font
 								(size 0 0)
@@ -561,7 +561,7 @@
 							)
 						)
 					)
-					(number "2"
+					(number "1"
 						(effects
 							(font
 								(size 0 0)
@@ -579,7 +579,7 @@
 							)
 						)
 					)
-					(number "3"
+					(number "2"
 						(effects
 							(font
 								(size 0 0)
@@ -1919,7 +1919,7 @@
 							)
 						)
 					)
-					(number "3"
+					(number "2"
 						(effects
 							(font
 								(size 0 0)
@@ -2060,7 +2060,7 @@
 							)
 						)
 					)
-					(number "+"
+					(number "1"
 						(effects
 							(font
 								(size 0 0)
@@ -2078,7 +2078,7 @@
 							)
 						)
 					)
-					(number "-"
+					(number "2"
 						(effects
 							(font
 								(size 0 0)
@@ -2400,7 +2400,7 @@
 							)
 						)
 					)
-					(number "+"
+					(number "1"
 						(effects
 							(font
 								(size 0 0)
@@ -2418,7 +2418,7 @@
 							)
 						)
 					)
-					(number "-"
+					(number "2"
 						(effects
 							(font
 								(size 0 0)
@@ -2637,6 +2637,42 @@
 					(at 2.54 0 180)
 					(length 0)
 					(name "2"
+						(effects
+							(font
+								(size 0 0)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 0 0)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at 0 -3.81 90)
+					(length 2.032)
+					(name "GND"
+						(effects
+							(font
+								(size 0 0)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 0 0)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at 0 3.81 270)
+					(length 2.032)
+					(name "GND"
 						(effects
 							(font
 								(size 0 0)
@@ -2974,7 +3010,7 @@
 							)
 						)
 					)
-					(number "A"
+					(number "2"
 						(effects
 							(font
 								(size 0 0)
@@ -2992,7 +3028,7 @@
 							)
 						)
 					)
-					(number "K"
+					(number "1"
 						(effects
 							(font
 								(size 0 0)
@@ -5334,7 +5370,7 @@
 							)
 						)
 					)
-					(number "1"
+					(number "29"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5352,7 +5388,7 @@
 							)
 						)
 					)
-					(number "2"
+					(number "30"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5370,7 +5406,7 @@
 							)
 						)
 					)
-					(number "3"
+					(number "31"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5388,7 +5424,7 @@
 							)
 						)
 					)
-					(number "4"
+					(number "32"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5406,7 +5442,7 @@
 							)
 						)
 					)
-					(number "5"
+					(number "1"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5424,7 +5460,7 @@
 							)
 						)
 					)
-					(number "6"
+					(number "2"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5442,7 +5478,7 @@
 							)
 						)
 					)
-					(number "7"
+					(number "[4,6]"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5460,7 +5496,7 @@
 							)
 						)
 					)
-					(number "8"
+					(number "[3,5]"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5478,7 +5514,7 @@
 							)
 						)
 					)
-					(number "9"
+					(number "7"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5496,7 +5532,7 @@
 							)
 						)
 					)
-					(number "10"
+					(number "8"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5514,7 +5550,7 @@
 							)
 						)
 					)
-					(number "11"
+					(number "9"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5532,7 +5568,7 @@
 							)
 						)
 					)
-					(number "12"
+					(number "10"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5550,7 +5586,7 @@
 							)
 						)
 					)
-					(number "13"
+					(number "11"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5568,7 +5604,7 @@
 							)
 						)
 					)
-					(number "14"
+					(number "12"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5586,7 +5622,7 @@
 							)
 						)
 					)
-					(number "15"
+					(number "13"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5604,7 +5640,7 @@
 							)
 						)
 					)
-					(number "16"
+					(number "14"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5622,7 +5658,7 @@
 							)
 						)
 					)
-					(number "17"
+					(number "15"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5640,7 +5676,7 @@
 							)
 						)
 					)
-					(number "18"
+					(number "16"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5658,7 +5694,7 @@
 							)
 						)
 					)
-					(number "19"
+					(number "17"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5676,7 +5712,7 @@
 							)
 						)
 					)
-					(number "20"
+					(number "18"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5694,7 +5730,7 @@
 							)
 						)
 					)
-					(number "21"
+					(number "20"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5712,7 +5748,7 @@
 							)
 						)
 					)
-					(number "22"
+					(number "21"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -5821,6 +5857,42 @@
 						)
 					)
 					(number "28"
+						(effects
+							(font
+								(size 1.524 1.524)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at 25.4 10.16 180)
+					(length 5.08)
+					(name "ADC7"
+						(effects
+							(font
+								(size 1.524 1.524)
+							)
+						)
+					)
+					(number "22"
+						(effects
+							(font
+								(size 1.524 1.524)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at 25.4 12.7 180)
+					(length 5.08)
+					(name "ADC6"
+						(effects
+							(font
+								(size 1.524 1.524)
+							)
+						)
+					)
+					(number "19"
 						(effects
 							(font
 								(size 1.524 1.524)
@@ -13796,7 +13868,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL16"
+		(property "Footprint" "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm"
 			(at 353.06 205.74 0)
 			(hide yes)
 			(show_name no)
@@ -13819,6 +13891,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 353.06 205.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C174050"
 			(at 353.06 205.74 0)
 			(hide yes)
 			(show_name no)
@@ -13919,7 +14002,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 129.54 218.44 0)
 			(hide yes)
 			(show_name no)
@@ -13942,6 +14025,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 129.54 218.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C107054"
 			(at 129.54 218.44 0)
 			(hide yes)
 			(show_name no)
@@ -14000,7 +14094,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 345.44 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -14023,6 +14117,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 345.44 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C31850"
 			(at 345.44 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -14159,7 +14264,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:ENP11-6.3"
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 48.26 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -14192,10 +14297,21 @@
 				)
 			)
 		)
-		(pin "+"
+		(property "LCSC" "C29823"
+			(at 48.26 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
 			(uuid "1b87e7e2-4e8c-4a68-b901-8a3a635bfe34")
 		)
-		(pin "-"
+		(pin "2"
 			(uuid "18c57b7c-34b1-4a3e-ac01-84fbe56416e9")
 		)
 		(instances
@@ -14241,7 +14357,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 101.6 40.64 0)
 			(hide yes)
 			(show_name no)
@@ -14264,6 +14380,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 101.6 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C22962"
 			(at 101.6 40.64 0)
 			(hide yes)
 			(show_name no)
@@ -14400,7 +14527,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 256.54 208.28 0)
 			(hide yes)
 			(show_name no)
@@ -14423,6 +14550,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 256.54 208.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C23179"
 			(at 256.54 208.28 0)
 			(hide yes)
 			(show_name no)
@@ -14559,7 +14697,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 129.54 208.28 0)
 			(hide yes)
 			(show_name no)
@@ -14582,6 +14720,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 129.54 208.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C23179"
 			(at 129.54 208.28 0)
 			(hide yes)
 			(show_name no)
@@ -14718,7 +14867,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 314.96 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -14741,6 +14890,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 314.96 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
 			(at 314.96 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -14799,7 +14959,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 93.98 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -14822,6 +14982,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 93.98 81.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25804"
 			(at 93.98 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -14880,7 +15051,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:TO92-"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 			(at 299.72 139.7 0)
 			(hide yes)
 			(show_name no)
@@ -14913,13 +15084,24 @@
 				)
 			)
 		)
-		(pin "1"
-			(uuid "17318f06-0ab0-4fb4-a2ae-c7155a347853")
-		)
-		(pin "2"
-			(uuid "8576f631-3673-4bf7-b237-3a104f9e8b6f")
+		(property "LCSC" "C53444"
+			(at 299.72 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(pin "3"
+			(uuid "17318f06-0ab0-4fb4-a2ae-c7155a347853")
+		)
+		(pin "1"
+			(uuid "8576f631-3673-4bf7-b237-3a104f9e8b6f")
+		)
+		(pin "2"
 			(uuid "ce0cae98-38e5-4df7-a633-c7e627136ef8")
 		)
 		(instances
@@ -14964,7 +15146,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 337.82 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -14987,6 +15169,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 337.82 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
 			(at 337.82 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -15207,7 +15400,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL16"
+		(property "Footprint" "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm"
 			(at 139.7 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -15408,7 +15601,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 314.96 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -15431,6 +15624,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 314.96 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
 			(at 314.96 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -15597,7 +15801,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 231.14 228.6 0)
 			(hide yes)
 			(show_name no)
@@ -15620,6 +15824,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 231.14 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C23179"
 			(at 231.14 228.6 0)
 			(hide yes)
 			(show_name no)
@@ -15678,7 +15893,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 198.12 208.28 0)
 			(hide yes)
 			(show_name no)
@@ -15701,6 +15916,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 198.12 208.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C23179"
 			(at 198.12 208.28 0)
 			(hide yes)
 			(show_name no)
@@ -15759,7 +15985,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 345.44 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -15782,6 +16008,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 345.44 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
 			(at 345.44 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -15840,7 +16077,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 198.12 218.44 0)
 			(hide yes)
 			(show_name no)
@@ -15863,6 +16100,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 198.12 218.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C107054"
 			(at 198.12 218.44 0)
 			(hide yes)
 			(show_name no)
@@ -15921,7 +16169,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 226.06 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -15944,6 +16192,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 226.06 180.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C4216"
 			(at 226.06 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -16002,7 +16261,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 264.16 101.6 0)
 			(hide yes)
 			(show_name no)
@@ -16025,6 +16284,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 264.16 101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C31850"
 			(at 264.16 101.6 0)
 			(hide yes)
 			(show_name no)
@@ -16083,7 +16353,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL16"
+		(property "Footprint" "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm"
 			(at 78.74 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -16206,7 +16476,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 337.82 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -16229,6 +16499,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 337.82 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
 			(at 337.82 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -16443,7 +16724,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 78.74 114.3 0)
 			(hide yes)
 			(show_name no)
@@ -16466,6 +16747,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 78.74 114.3 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1648"
 			(at 78.74 114.3 0)
 			(hide yes)
 			(show_name no)
@@ -16526,7 +16818,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL08"
+		(property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
 			(at 299.72 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -16549,6 +16841,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 299.72 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C6961"
 			(at 299.72 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -16781,7 +17084,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 281.94 121.92 0)
 			(hide yes)
 			(show_name no)
@@ -16804,6 +17107,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 281.94 121.92 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C4190"
 			(at 281.94 121.92 0)
 			(hide yes)
 			(show_name no)
@@ -17253,7 +17567,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 101.6 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -17276,6 +17590,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 101.6 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C22962"
 			(at 101.6 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -17334,7 +17659,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:D-5"
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 332.74 99.06 0)
 			(hide yes)
 			(show_name no)
@@ -17367,10 +17692,21 @@
 				)
 			)
 		)
-		(pin "A"
+		(property "LCSC" "C173408"
+			(at 332.74 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
 			(uuid "eb7073a6-9f1d-4ca6-8914-d906695ba030")
 		)
-		(pin "C"
+		(pin "1"
 			(uuid "6abb07a0-684d-4eef-a29d-18811f0ddafb")
 		)
 		(instances
@@ -17416,7 +17752,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL14"
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 281.94 104.14 0)
 			(hide yes)
 			(show_name no)
@@ -17439,6 +17775,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 281.94 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C12594"
 			(at 281.94 104.14 0)
 			(hide yes)
 			(show_name no)
@@ -17533,7 +17880,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 101.6 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -17556,6 +17903,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 101.6 50.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C22962"
 			(at 101.6 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -17614,7 +17972,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:ENP11-6.3"
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 317.5 203.2 0)
 			(hide yes)
 			(show_name no)
@@ -17647,10 +18005,21 @@
 				)
 			)
 		)
-		(pin "+"
+		(property "LCSC" "C29823"
+			(at 317.5 203.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
 			(uuid "c925a27a-d967-436d-9476-c08ba8c50fe2")
 		)
-		(pin "-"
+		(pin "2"
 			(uuid "8cbccd74-02c6-406b-8024-27d64406f313")
 		)
 		(instances
@@ -17851,7 +18220,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:LED3MM"
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric"
 			(at 165.1 96.52 0)
 			(hide yes)
 			(show_name no)
@@ -17884,10 +18253,21 @@
 				)
 			)
 		)
-		(pin "A"
+		(property "LCSC" "C84256"
+			(at 165.1 96.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
 			(uuid "8dfc751d-ba1d-4bbb-ad54-d756c57cf492")
 		)
-		(pin "K"
+		(pin "1"
 			(uuid "b9f22ab3-686c-4a75-897b-57284b26dad7")
 		)
 		(instances
@@ -18010,7 +18390,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL28-3"
+		(property "Footprint" "Package_QFP:TQFP-32_7x7mm_P0.8mm"
 			(at 119.38 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -18043,70 +18423,81 @@
 				)
 			)
 		)
-		(pin "1"
+		(property "LCSC" "C14877"
+			(at 119.38 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "29"
 			(uuid "fd1c2f24-ba09-4a97-9568-a8731922d4d2")
 		)
-		(pin "2"
+		(pin "30"
 			(uuid "fdc37b20-c77e-4fc5-8138-37ddadb05a26")
 		)
-		(pin "3"
+		(pin "31"
 			(uuid "991f1436-b386-4b15-a75f-13b13fc50984")
 		)
-		(pin "4"
+		(pin "32"
 			(uuid "d867795d-8948-47a3-be99-44ecce1d284e")
 		)
-		(pin "5"
+		(pin "1"
 			(uuid "355804b4-24a6-4056-99ca-12c2ff3c0f5c")
 		)
-		(pin "6"
+		(pin "2"
 			(uuid "526e6192-32c2-42d1-9839-ee9476fd4228")
 		)
-		(pin "7"
+		(pin "[4,6]"
 			(uuid "36099504-453c-4c22-a9c3-3df07af93c19")
 		)
-		(pin "8"
+		(pin "[3,5]"
 			(uuid "38145d8f-c57c-4ee4-834c-19192b528890")
 		)
-		(pin "9"
+		(pin "7"
 			(uuid "3728b9fa-040d-43b6-9735-ec6682c05019")
 		)
-		(pin "10"
+		(pin "8"
 			(uuid "835f6ac4-df7c-4682-8cf8-cc81ea829d05")
 		)
-		(pin "11"
+		(pin "9"
 			(uuid "5ad969f8-761c-48fe-bd31-e5910568e659")
 		)
-		(pin "12"
+		(pin "10"
 			(uuid "6e8201e6-0ef1-408c-b257-00f1376f3a14")
 		)
-		(pin "13"
+		(pin "11"
 			(uuid "1ee880d6-98ef-4eef-9d75-07bc2c6f6e7b")
 		)
-		(pin "14"
+		(pin "12"
 			(uuid "b40deeb3-daad-44fd-8d33-dd091ea02836")
 		)
-		(pin "15"
+		(pin "13"
 			(uuid "c9dc4591-0e13-40ca-bc8e-b970f044b5de")
 		)
-		(pin "16"
+		(pin "14"
 			(uuid "26f202ac-7894-416d-a873-e4360e3012ce")
 		)
-		(pin "17"
+		(pin "15"
 			(uuid "25ae85ca-0d00-44cd-8066-ef2864ba285e")
 		)
-		(pin "18"
+		(pin "16"
 			(uuid "ea219bb1-d3aa-47ac-844d-1ef050e11b62")
 		)
-		(pin "19"
+		(pin "17"
 			(uuid "158a8f13-3b56-4719-9f15-05862f19dfc8")
 		)
-		(pin "20"
+		(pin "18"
 			(uuid "4606187f-92d8-436d-8f53-da2049c391cf")
 		)
-		(pin "21"
+		(pin "20"
 			(uuid "cedb81a2-2857-4208-8ff3-74dd48590c5d")
 		)
-		(pin "22"
+		(pin "21"
 			(uuid "3691270f-98be-4ca7-9269-07176fab4515")
 		)
 		(pin "23"
@@ -18126,6 +18517,12 @@
 		)
 		(pin "28"
 			(uuid "57f11c2c-9f86-45c5-b14f-6da81c5553b5")
+		)
+		(pin "22"
+			(uuid "917b6e74-53b7-40f8-913f-7a63081bf281")
+		)
+		(pin "19"
+			(uuid "0dad5301-5447-46cf-9d1b-3573df5ec29f")
 		)
 		(instances
 			(project "Voicecard-4P-SMD"
@@ -18169,7 +18566,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 363.22 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -18192,6 +18589,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 363.22 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25804"
 			(at 363.22 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -18334,7 +18742,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 78.74 104.14 0)
 			(hide yes)
 			(show_name no)
@@ -18357,6 +18765,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 78.74 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1648"
 			(at 78.74 104.14 0)
 			(hide yes)
 			(show_name no)
@@ -18415,7 +18834,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:D-5"
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 99.06 187.96 0)
 			(hide yes)
 			(show_name no)
@@ -18448,10 +18867,21 @@
 				)
 			)
 		)
-		(pin "A"
+		(property "LCSC" "C173412"
+			(at 99.06 187.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
 			(uuid "abc5bd60-75a4-4358-8b1b-8d4e4ea0ae50")
 		)
-		(pin "C"
+		(pin "1"
 			(uuid "5aa92173-e8e8-4302-8158-56e407a3fb48")
 		)
 		(instances
@@ -18496,7 +18926,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 256.54 218.44 0)
 			(hide yes)
 			(show_name no)
@@ -18519,6 +18949,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 256.54 218.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C107054"
 			(at 256.54 218.44 0)
 			(hide yes)
 			(show_name no)
@@ -18657,7 +19098,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL14"
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 309.88 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -18680,6 +19121,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 309.88 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C12594"
 			(at 309.88 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -18774,7 +19226,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 330.2 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -18797,6 +19249,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 330.2 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
 			(at 330.2 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -18855,7 +19318,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 322.58 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -18878,6 +19341,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 322.58 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
 			(at 322.58 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -19014,7 +19488,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL16"
+		(property "Footprint" "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm"
 			(at 205.74 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -19137,7 +19611,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:LED3MM"
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric"
 			(at 165.1 101.6 0)
 			(hide yes)
 			(show_name no)
@@ -19170,10 +19644,21 @@
 				)
 			)
 		)
-		(pin "A"
+		(property "LCSC" "C84256"
+			(at 165.1 101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
 			(uuid "1d81b25e-4d3a-408f-9348-cde59a4e8f4d")
 		)
-		(pin "K"
+		(pin "1"
 			(uuid "e4f9e8e4-86c8-433c-b750-20fc40375ce6")
 		)
 		(instances
@@ -19296,7 +19781,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL16"
+		(property "Footprint" "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm"
 			(at 266.7 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -19419,7 +19904,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 287.02 129.54 0)
 			(hide yes)
 			(show_name no)
@@ -19442,6 +19927,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 287.02 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
 			(at 287.02 129.54 0)
 			(hide yes)
 			(show_name no)
@@ -19500,7 +19996,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 264.16 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -19523,6 +20019,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 264.16 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
 			(at 264.16 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -19582,7 +20089,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C2.5_5-4"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 101.6 195.58 0)
 			(hide yes)
 			(show_name no)
@@ -19615,13 +20122,24 @@
 				)
 			)
 		)
+		(property "LCSC" "C106210"
+			(at 101.6 195.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "278044a4-8f32-4519-81e1-2e13e76a0fb9")
 		)
 		(pin "2"
 			(uuid "03e69913-04ae-4f6c-bfbd-cd23c5c06a52")
 		)
-		(pin "3"
+		(pin "2"
 			(uuid "96fecb8d-a6af-4aa0-9d76-730d0e10a80b")
 		)
 		(instances
@@ -19667,7 +20185,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL14"
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 381 208.28 0)
 			(hide yes)
 			(show_name no)
@@ -19690,6 +20208,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 381 208.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C12594"
 			(at 381 208.28 0)
 			(hide yes)
 			(show_name no)
@@ -19784,7 +20313,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:D-5"
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 109.22 187.96 0)
 			(hide yes)
 			(show_name no)
@@ -19817,10 +20346,21 @@
 				)
 			)
 		)
-		(pin "A"
+		(property "LCSC" "C173412"
+			(at 109.22 187.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
 			(uuid "232989bc-b693-433b-b66d-d79982885dee")
 		)
-		(pin "C"
+		(pin "1"
 			(uuid "2b72589a-4017-4ced-be31-ac27c2085c3a")
 		)
 		(instances
@@ -19866,7 +20406,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL08"
+		(property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
 			(at 104.14 203.2 0)
 			(hide yes)
 			(show_name no)
@@ -19889,6 +20429,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 104.14 203.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C6961"
 			(at 104.14 203.2 0)
 			(hide yes)
 			(show_name no)
@@ -19965,7 +20516,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 381 190.5 0)
 			(hide yes)
 			(show_name no)
@@ -19988,6 +20539,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 381 190.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14858"
 			(at 381 190.5 0)
 			(hide yes)
 			(show_name no)
@@ -20046,7 +20608,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:E2,5-6"
+		(property "Footprint" "Capacitor_SMD:CP_Elec_6.3x7.7"
 			(at 353.06 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -20079,10 +20641,21 @@
 				)
 			)
 		)
-		(pin "+"
+		(property "LCSC" "C72477"
+			(at 353.06 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
 			(uuid "4216735e-3324-43f7-88d7-644ef9512d49")
 		)
-		(pin "-"
+		(pin "2"
 			(uuid "9c8a7b93-b42d-4f41-9f20-6c7e9224e8ca")
 		)
 		(instances
@@ -20205,7 +20778,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 281.94 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -20228,6 +20801,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 281.94 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C4190"
 			(at 281.94 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -20364,7 +20948,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 279.4 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -20387,6 +20971,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 279.4 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
 			(at 279.4 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -20446,7 +21041,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL08"
+		(property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
 			(at 294.64 203.2 0)
 			(hide yes)
 			(show_name no)
@@ -20469,6 +21064,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 294.64 203.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C6961"
 			(at 294.64 203.2 0)
 			(hide yes)
 			(show_name no)
@@ -20623,7 +21229,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 271.78 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -20646,6 +21252,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 271.78 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
 			(at 271.78 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -20782,7 +21399,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 345.44 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -20805,6 +21422,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 345.44 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
 			(at 345.44 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -20863,7 +21491,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 99.06 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -20886,6 +21514,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 99.06 180.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C4216"
 			(at 99.06 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -20945,7 +21584,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL08"
+		(property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
 			(at 231.14 203.2 0)
 			(hide yes)
 			(show_name no)
@@ -20968,6 +21607,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 231.14 203.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C6961"
 			(at 231.14 203.2 0)
 			(hide yes)
 			(show_name no)
@@ -21045,7 +21695,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C2.5_5-4"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 167.64 193.04 0)
 			(hide yes)
 			(show_name no)
@@ -21078,13 +21728,24 @@
 				)
 			)
 		)
+		(property "LCSC" "C106210"
+			(at 167.64 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "85760cec-4eee-4b92-95c3-20ece0a6b08e")
 		)
 		(pin "2"
 			(uuid "6973d4b1-14ab-4f0b-8c79-6763d7d9a177")
 		)
-		(pin "3"
+		(pin "2"
 			(uuid "0d99f79c-b79b-480b-b5a9-74bd07a93952")
 		)
 		(instances
@@ -21129,7 +21790,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 330.2 203.2 0)
 			(hide yes)
 			(show_name no)
@@ -21152,6 +21813,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 330.2 203.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C4216"
 			(at 330.2 203.2 0)
 			(hide yes)
 			(show_name no)
@@ -21210,7 +21882,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 287.02 93.98 0)
 			(hide yes)
 			(show_name no)
@@ -21233,6 +21905,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 287.02 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
 			(at 287.02 93.98 0)
 			(hide yes)
 			(show_name no)
@@ -21447,7 +22130,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:E2,5-6"
+		(property "Footprint" "Capacitor_SMD:CP_Elec_6.3x7.7"
 			(at 353.06 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -21480,10 +22163,21 @@
 				)
 			)
 		)
-		(pin "+"
+		(property "LCSC" "C72477"
+			(at 353.06 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
 			(uuid "8ff4cc1f-3330-4b36-861d-3c46325b0d20")
 		)
-		(pin "-"
+		(pin "2"
 			(uuid "69636021-21f2-4f8f-b248-b27b61ed6cea")
 		)
 		(instances
@@ -21606,7 +22300,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 190.5 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -21629,6 +22323,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 190.5 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C4216"
 			(at 190.5 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -21780,7 +22485,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 264.16 137.16 0)
 			(hide yes)
 			(show_name no)
@@ -21803,6 +22508,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 264.16 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C31850"
 			(at 264.16 137.16 0)
 			(hide yes)
 			(show_name no)
@@ -21861,7 +22577,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 345.44 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -21884,6 +22600,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 345.44 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C31850"
 			(at 345.44 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -22104,7 +22831,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 248.92 241.3 0)
 			(hide yes)
 			(show_name no)
@@ -22127,6 +22854,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 248.92 241.3 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C21120"
 			(at 248.92 241.3 0)
 			(hide yes)
 			(show_name no)
@@ -22185,7 +22923,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 330.2 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -22208,6 +22946,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 330.2 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
 			(at 330.2 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -22266,7 +23015,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:TO92-"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 			(at 299.72 104.14 0)
 			(hide yes)
 			(show_name no)
@@ -22299,13 +23048,24 @@
 				)
 			)
 		)
-		(pin "1"
-			(uuid "c4c72765-92cb-4eaa-beb0-c976ebd4bc72")
-		)
-		(pin "2"
-			(uuid "061c94c6-d1ca-4484-8b48-a0e8b5f98472")
+		(property "LCSC" "C53444"
+			(at 299.72 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(pin "3"
+			(uuid "c4c72765-92cb-4eaa-beb0-c976ebd4bc72")
+		)
+		(pin "1"
+			(uuid "061c94c6-d1ca-4484-8b48-a0e8b5f98472")
+		)
+		(pin "2"
 			(uuid "e67664b8-a5bf-45ee-a5a3-af820e60945a")
 		)
 		(instances
@@ -22350,7 +23110,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL16"
+		(property "Footprint" "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm"
 			(at 220.98 238.76 0)
 			(hide yes)
 			(show_name no)
@@ -22373,6 +23133,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 220.98 238.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C174050"
 			(at 220.98 238.76 0)
 			(hide yes)
 			(show_name no)
@@ -22473,7 +23244,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 337.82 210.82 0)
 			(hide yes)
 			(show_name no)
@@ -22496,6 +23267,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 337.82 210.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C23179"
 			(at 337.82 210.82 0)
 			(hide yes)
 			(show_name no)
@@ -22647,7 +23429,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 71.12 218.44 0)
 			(hide yes)
 			(show_name no)
@@ -22670,6 +23452,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 71.12 218.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C107054"
 			(at 71.12 218.44 0)
 			(hide yes)
 			(show_name no)
@@ -22807,7 +23600,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C2.5_5-4"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 231.14 193.04 0)
 			(hide yes)
 			(show_name no)
@@ -22840,13 +23633,24 @@
 				)
 			)
 		)
+		(property "LCSC" "C106210"
+			(at 231.14 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "7bc1d728-b71b-417a-a53e-8e6ced51e826")
 		)
 		(pin "2"
 			(uuid "3d0da7b7-5fc5-4f9f-9132-b7f9a537e1f8")
 		)
-		(pin "3"
+		(pin "2"
 			(uuid "beba6c09-e617-4559-b445-63fa7ad22aac")
 		)
 		(instances
@@ -22891,7 +23695,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 345.44 99.06 0)
 			(hide yes)
 			(show_name no)
@@ -22914,6 +23718,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 345.44 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C4190"
 			(at 345.44 99.06 0)
 			(hide yes)
 			(show_name no)
@@ -23050,7 +23865,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 154.94 96.52 0)
 			(hide yes)
 			(show_name no)
@@ -23073,6 +23888,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 154.94 96.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C23179"
 			(at 154.94 96.52 0)
 			(hide yes)
 			(show_name no)
@@ -23209,7 +24035,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL08"
+		(property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
 			(at 213.36 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -23232,6 +24058,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 213.36 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C16040"
 			(at 213.36 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -23465,7 +24302,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C2.5_5-4"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 294.64 193.04 0)
 			(hide yes)
 			(show_name no)
@@ -23498,13 +24335,24 @@
 				)
 			)
 		)
+		(property "LCSC" "C106210"
+			(at 294.64 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "2c78ddb1-4224-4f2d-a855-7246022119d9")
 		)
 		(pin "2"
 			(uuid "4a1322b4-20dc-41ca-a623-f75182c0ce8a")
 		)
-		(pin "3"
+		(pin "2"
 			(uuid "745b93b4-94b9-4bb2-ab25-c397938a1d3c")
 		)
 		(instances
@@ -23628,7 +24476,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL14"
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 363.22 121.92 0)
 			(hide yes)
 			(show_name no)
@@ -23651,6 +24499,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 363.22 121.92 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C12594"
 			(at 363.22 121.92 0)
 			(hide yes)
 			(show_name no)
@@ -23745,7 +24604,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 231.14 248.92 0)
 			(hide yes)
 			(show_name no)
@@ -23768,6 +24627,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 231.14 248.92 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C22962"
 			(at 231.14 248.92 0)
 			(hide yes)
 			(show_name no)
@@ -23826,7 +24696,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 154.94 101.6 0)
 			(hide yes)
 			(show_name no)
@@ -23849,6 +24719,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 154.94 101.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C23179"
 			(at 154.94 101.6 0)
 			(hide yes)
 			(show_name no)
@@ -23909,7 +24790,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL16"
+		(property "Footprint" "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm"
 			(at 304.8 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -23932,6 +24813,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 304.8 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C174050"
 			(at 304.8 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -24032,7 +24924,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 365.76 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -24055,6 +24947,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 365.76 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
 			(at 365.76 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -24113,7 +25016,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 58.42 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -24136,6 +25039,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 58.42 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C4216"
 			(at 58.42 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -24272,7 +25186,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 266.7 236.22 0)
 			(hide yes)
 			(show_name no)
@@ -24295,6 +25209,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 266.7 236.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25804"
 			(at 266.7 236.22 0)
 			(hide yes)
 			(show_name no)
@@ -24433,7 +25358,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL08"
+		(property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
 			(at 294.64 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -24456,6 +25381,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 294.64 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C6961"
 			(at 294.64 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -24782,7 +25718,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL08"
+		(property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
 			(at 167.64 203.2 0)
 			(hide yes)
 			(show_name no)
@@ -24805,6 +25741,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 167.64 203.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C6961"
 			(at 167.64 203.2 0)
 			(hide yes)
 			(show_name no)
@@ -24881,7 +25828,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:HC49U-V"
+		(property "Footprint" "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm"
 			(at 86.36 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -24914,11 +25861,28 @@
 				)
 			)
 		)
+		(property "LCSC" "C255914"
+			(at 86.36 109.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "3aaea367-ad43-4a72-9175-9f87b9a44279")
 		)
-		(pin "2"
+		(pin "3"
 			(uuid "65f65a7a-fe48-44ed-9f77-13aaca5da4f6")
+		)
+		(pin "4"
+			(uuid "ebda0ae0-eaa2-4f43-8d09-05674fc8a000")
+		)
+		(pin "2"
+			(uuid "59581929-0601-413e-bc8f-a7e000c7d808")
 		)
 		(instances
 			(project "Voicecard-4P-SMD"
@@ -24962,7 +25926,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 238.76 241.3 0)
 			(hide yes)
 			(show_name no)
@@ -24985,6 +25949,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 238.76 241.3 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C31850"
 			(at 238.76 241.3 0)
 			(hide yes)
 			(show_name no)
@@ -25043,7 +26018,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 121.92 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -25066,6 +26041,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 121.92 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C4216"
 			(at 121.92 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -25202,7 +26188,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 162.56 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -25225,6 +26211,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 162.56 180.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C4216"
 			(at 162.56 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -25283,7 +26280,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:C025-025X050"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 322.58 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -25306,6 +26303,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 322.58 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C14663"
 			(at 322.58 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -25364,7 +26372,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 71.12 208.28 0)
 			(hide yes)
 			(show_name no)
@@ -25387,6 +26395,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 71.12 208.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C23179"
 			(at 71.12 208.28 0)
 			(hide yes)
 			(show_name no)
@@ -25445,7 +26464,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 289.56 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -25468,6 +26487,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 289.56 180.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C4216"
 			(at 289.56 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -25604,7 +26634,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:E2,5-6"
+		(property "Footprint" "Capacitor_SMD:CP_Elec_6.3x7.7"
 			(at 256.54 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -25637,10 +26667,21 @@
 				)
 			)
 		)
-		(pin "+"
+		(property "LCSC" "C72477"
+			(at 256.54 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
 			(uuid "6c6a457d-6b92-4b0d-adf4-a19c5f6fafe1")
 		)
-		(pin "-"
+		(pin "2"
 			(uuid "e5a6a9bb-9843-46e6-93df-ffccb08cefea")
 		)
 		(instances
@@ -25763,7 +26804,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 248.92 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -25786,6 +26827,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 248.92 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C4216"
 			(at 248.92 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -25844,7 +26896,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:0204_7"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 381 198.12 0)
 			(hide yes)
 			(show_name no)
@@ -25867,6 +26919,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 381 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C4216"
 			(at 381 198.12 0)
 			(hide yes)
 			(show_name no)
@@ -25926,7 +26989,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL14"
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 281.94 139.7 0)
 			(hide yes)
 			(show_name no)
@@ -25949,6 +27012,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 281.94 139.7 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C12594"
 			(at 281.94 139.7 0)
 			(hide yes)
 			(show_name no)
@@ -26121,7 +27195,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Voicecard-4P-v01-import-fps:DIL16"
+		(property "Footprint" "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm"
 			(at 373.38 50.8 0)
 			(hide yes)
 			(show_name no)
