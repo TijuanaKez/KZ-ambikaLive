@@ -22,6 +22,7 @@ with tempfile.TemporaryDirectory(prefix="kz-ui-tests-") as directory:
         "controller/ui_pages/os_info_page.h", "avr/eeprom.h",
         "avrlib/watchdog_timer.h", "controller/diagnostics.h", "controller/storage.h",
         "avrlib/base.h", "controller/midi_dispatcher.h",
+        "controller/ui_pages/voice_assigner.h",
     ]
     for name in headers:
         path = temp / name

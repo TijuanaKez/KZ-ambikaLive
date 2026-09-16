@@ -61,7 +61,10 @@ struct ParameterEditor : UiPage {
   static bool OnIncrementAndCycle(int8_t, int8_t);
   static void UpdateScreen(), UpdateLeds();
 };
-constexpr uint8_t kNumVoices = 6;
+constexpr uint8_t kNumVoices = 6, kNumParts = 6;
+inline uint8_t byteInverse(uint8_t v) { return static_cast<uint8_t>(~v); }
+inline uint8_t byteOr(uint8_t a, uint8_t b) { return a | b; }
+inline uint8_t byteAnd(uint8_t a, uint8_t b) { return a & b; }
 constexpr uint8_t kAudioStarved = 0xfe, kAudioHeadroomUnsupported = 0xff;
 enum StackContext : uint8_t {
   STACK_CTX_IDLE, STACK_CTX_UI, STACK_CTX_LOAD, STACK_CTX_SAVE,
@@ -84,6 +87,12 @@ struct MidiDispatcher {
   uint8_t peak = 0;
   uint8_t out_peak() const { return peak; }
 } midi_dispatcher;
+struct VoiceAssigner : ParameterEditor {
+  static void OnInit(PageInfo*), SetActiveControl(ActiveControl);
+  static uint8_t OnIncrement(int8_t), OnClick(), OnPot(uint8_t, uint8_t);
+  static uint8_t OnNote(uint8_t, uint8_t);
+  static void UpdateScreen();
+};
 struct OsInfoPage : UiPage {
   static void OnInit(PageInfo*), UpdateScreen(), UpdateLeds();
   static uint8_t OnIncrement(int8_t), OnKey(uint8_t), OnClick();
@@ -110,9 +119,14 @@ struct Ui {
   int previous = 0;
   uint8_t active_part() { return 0; }
   State& state() { return state_; }
+  uint8_t last_page = 0;
   void ShowPage(uint8_t page) {
-    assert(page == 15 || page == 16);
-    ParameterEditor::OnInit(page == 15 ? &prefs_a : &prefs_b);
+    last_page = page;
+    // Only the preferences pages have fixtures here; other pages are just
+    // recorded, so a page that navigates away can be observed doing it.
+    if (page == 15 || page == 16) {
+      ParameterEditor::OnInit(page == 15 ? &prefs_a : &prefs_b);
+    }
   }
   void ShowPageRelative(int8_t increment) {
     ShowPage(UiPage::info_->next_page);
@@ -120,10 +134,27 @@ struct Ui {
   }
   void ShowPreviousPage() { ++previous; }
 } ui;
+struct PartMapping { uint8_t voice_allocation = 0; };
 struct Multi {
   struct Knob { uint8_t parameter = 0, part = 0, instance = 0; } knobs[8];
+  PartMapping mappings[6];
+  unsigned assignments = 0;
   Multi& data() { return *this; }
   Knob& knobAssignment(uint8_t i) { assert(i < 8); return knobs[i]; }
+  PartMapping& part_mapping(uint8_t i) { assert(i < 6); return mappings[i]; }
+  // Mirrors Multi::SolveAllocationConflicts: every voice claimed by another
+  // part is unavailable to this one.
+  uint8_t SolveAllocationConflicts(uint8_t constraint) {
+    uint8_t available = 0xff;
+    for (uint8_t i = 0; i < 6; ++i) {
+      if (i != constraint) {
+        mappings[i].voice_allocation &= available;
+        available &= ~mappings[i].voice_allocation;
+      }
+    }
+    return available;
+  }
+  void AssignVoicesToParts() { ++assignments; }
   Multi& part(uint8_t i) { assert(i < 6); return *this; }
   uint8_t lfo_value(uint8_t) { return 0; }
   bool running() { return false; }
@@ -135,6 +166,7 @@ struct Settings {
   bool snap() { return snapping; }
   bool show_help() { return help; }
 } system_settings;
+constexpr uint8_t kLcdNoCursorValue = 255;
 struct Display {
   char memory[83];
   void clear() {
@@ -142,9 +174,17 @@ struct Display {
     memory[0] = 'L'; memory[82] = 'R';
   }
   char* line_buffer(uint8_t line) { assert(line < 2); return memory + 1 + 40 * line; }
+  uint8_t cursor = kLcdNoCursorValue;
+  void set_cursor_character(char) {}
+  void set_cursor_position(uint8_t p) {
+    // 80 visible cells, or the no-cursor sentinel. Anything else is a bug.
+    assert(p == kLcdNoCursorValue || p < 80);
+    cursor = p;
+  }
   void check() { assert(memory[0] == 'L' && memory[82] == 'R'); }
 } display;
 struct Leds { void set_pixel(uint8_t, uint8_t) {} } leds;
+constexpr uint8_t kLcdNoCursor = 255;
 struct Parameter {
   uint8_t indexed_by = 255, level = 3, max_value = 1;
   void PrintObject(uint8_t, uint8_t, char* b, uint8_t width) const { std::memset(b, 'o', width); }
@@ -181,6 +221,7 @@ void OsInfoPage::FirmwareUpdateLeds() {}
 void OsInfoPage::FindFirmwareFiles(uint8_t) {}
 }  // namespace ambika
 #include "controller/ui_pages/os_info_page_diag.cc"
+#include "controller/ui_pages/voice_assigner.cc"
 
 int main() {
   using namespace ambika;
@@ -386,6 +427,48 @@ int main() {
     assert(timer.Due(64, 100));               // 100 ms elapsed exactly
     assert(timer.Due(500, 750) == 0);         // 536 ms elapsed, not yet
     assert(timer.Due(750, 750));              // 786 ms elapsed
+  }
+
+  // The voice assignment page (PAGE_MULTI). Its controls run 0..3 for the four
+  // parameters and 4..9 for the six voice slots -- but PageInfo::data is only
+  // eight bytes, so controls 8 and 9 have no entry and must never be used to
+  // index it. This page is also the one Carey found showing voices 1/3/5 with
+  // an unresponsive encoder.
+  {
+    PageInfo multi_page = {11, {58, 59, 60, 61, 255, 255, 255, 255}, 11};
+    for (uint8_t i = 0; i < 6; ++i) multi.mappings[i].voice_allocation = 0;
+    multi.mappings[0].voice_allocation = 0x15;  // the factory default: 1, 3, 5
+    multi.mappings[1].voice_allocation = 0x2a;  // and 2, 4, 6
+
+    VoiceAssigner::OnInit(&multi_page);
+    assert(VoiceAssigner::active_control_ == 0);
+
+    // Turning the encoder must walk every control, including 8 and 9, and must
+    // render each one without running off the display or the page data.
+    for (int step = 0; step < 9; ++step) {
+      VoiceAssigner::OnIncrement(1);
+      assert(VoiceAssigner::active_control_ == step + 1);
+      display.clear();
+      VoiceAssigner::UpdateScreen();
+      display.check();
+    }
+    assert(VoiceAssigner::active_control_ == 9);
+
+    // Clicking a voice slot toggles that voice for the active part.
+    for (uint8_t slot = 0; slot < 6; ++slot) {
+      VoiceAssigner::active_control_ = 4 + slot;
+      uint8_t before = multi.mappings[0].voice_allocation;
+      VoiceAssigner::OnClick();
+      uint8_t after = multi.mappings[0].voice_allocation;
+      assert(after != before);
+      assert(((after ^ before) & (1 << slot)) != 0);
+    }
+
+    // And walking back down must leave the page at the bottom, not underflow.
+    VoiceAssigner::active_control_ = 0;
+    ui.last_page = 0;
+    VoiceAssigner::OnIncrement(-1);
+    assert(ui.last_page == multi_page.next_page);
   }
 
   std::puts("PASS: preferences navigation, synthetic/invalid IDs, pots, rendering, "
