@@ -3,7 +3,7 @@
   "target": "controller",
   "variant": "diagnostic",
   "displayed_version": "v1.4",
-  "git_head": "2a2b55e651eea18612bcd67fd3363f62cac45dec",
+  "git_head": "c773654712e6649d3eceaa5580b1cc8debd49785",
   "source_state": "Working tree; exact source inputs included in source.tar.gz",
   "compiler": "avr-gcc (Homebrew AVR GCC 9.5.0) 9.5.0",
   "objcopy": "GNU objcopy (GNU Binutils) 2.46.0.20260210",
@@ -13,17 +13,17 @@
     "controller/makefile",
     "bin",
     "all",
-    "BUILD_ROOT=/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-controller-diagnostic-t03g0scv/",
+    "BUILD_ROOT=/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-controller-diagnostic-r55hw056/",
     "AVRLIB_TOOLS_PATH=/usr/local/bin/",
     "AVRLIB_TOOLS_PATH_LEGACY=/usr/local/bin/",
     "EXTRA_DEFINES=-DDISABLE_DEFAULT_UART_RX_ISR -DDIAGNOSTIC_BUILD",
-    "EXTRA_LD_FLAGS=,-Map,/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-controller-diagnostic-t03g0scv/firmware.map"
+    "EXTRA_LD_FLAGS=,-Map,/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-controller-diagnostic-r55hw056/firmware.map"
   ],
-  "flash_bytes": 53188,
+  "flash_bytes": 53190,
   "max_flash_bytes": 61440,
-  "static_sram_bytes": 3798,
+  "static_sram_bytes": 3734,
   "max_static_sram_bytes": 3968,
-  "remaining_sram_bytes": 298,
+  "remaining_sram_bytes": 362,
   "source_sha256": {
     "avrlib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "avrlib/adc.cc": "dc7ea1caad0ca70d087d8fb8c0cedf21efb3773e7f1f6eff1a08dbe2dabd8ff3",
@@ -103,7 +103,7 @@
     "controller/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "controller/bootloader/bootloader.cc": "7b491e624ee807767dec3d626fbcab98de4ce3bcc7afd97159f3cb8a81b111a4",
     "controller/bootloader/makefile": "233d5a7716880fb0d3955b7ead41227f906a751091251515a6c107d49023cde8",
-    "controller/controller.cc": "22d08c5d590234a3dc27268a61f5ed70944855081cdf939b0fb912a2b066b659",
+    "controller/controller.cc": "aa51622e5340703d2601be729e92793fd8ea286b48dd459621a516a799b6fbb5",
     "controller/controller.h": "f6c7ae0a77943e041a9cd8eac67fd4820333cdba16dfe65042351902baba1ad1",
     "controller/deferred_load.h": "d8cb3d5fce03ecf5088578c573d8b63b1d373d5748b4fa49a25a1c5d1df55ac9",
     "controller/diagnostics.cc": "e90b7d4a63693b60998954b611280abe196491b402e837ec9480819b600c3208",
@@ -115,7 +115,7 @@
     "controller/leds.h": "377761693823a2d65b97fbcb42f0854d3b9309de6661cb2b2bc8aa4e890f2e0d",
     "controller/makefile": "fe1c3fcbc66eb76359be5911af0f8e3512f547db92c5dc9857cb66f63724697a",
     "controller/midi_dispatcher.cc": "8a9571f1fbfa9324fc866517785392a767eeae4ce3efe67b75f2a4d453a0b4ac",
-    "controller/midi_dispatcher.h": "cdc58bbd2df69e6b8dab69a6a319b8d567bb3278201ad4bc57b07e6df2891e01",
+    "controller/midi_dispatcher.h": "b8e8a4e21c5fac4e541f1286f3833c92408b103c9965115702d519400dc5fb63",
     "controller/multi.cc": "8afa32ed78df6fcf18b305f32ccf00e21d6a8946a4349b09bfbd5eb5259a2849",
     "controller/multi.h": "724ceb788c52a578e134512d86d2359c4c0ab1cb8ca915af3b06cdd4380e43d9",
     "controller/note_stack.h": "eccaa85f88be758a4b13ccf7b264caee2ab402e60eeef1e4344cd9bfd83392a2",
@@ -170,14 +170,14 @@
     "scripts/build_firmware.py": "41e7447bc07d2ed0043df3ae25c8c07c4101ed5cce6028093b52426f4e13f3d6"
   },
   "artifact_sha256": {
-    "AMBIKA_DIAG3.BIN": "4f02fd65c7b44ed6384486354097b55bc55992e2c402201b1a8d59c8751ab3c8",
-    "ambika_controller.elf": "99c32b2abc6532d93ab30824c5a665448bcdad91617f357bf519a7b56c85e944",
-    "ambika_controller.hex": "0723163a3a659202a9ad1ab3f73c8cbe10926130025bbf0ef888911452bfb8f5",
-    "ambika_controller.map": "0bb7dd7771fc5920ea4f15443d3a0f17c5d2f5155c02bc20915a855a993e5a5e",
-    "build.log": "6bfa77da719825be7122b4e44954f2bbd62e533bdfa6ad3ac4a308051ab71cb8",
+    "AMBIKA_DIAG3.BIN": "652f97122a6eb74fc106d0cd290ade39cdd09a29b989a89af56709884fe9755f",
+    "ambika_controller.elf": "deeaa398e74add27e5f73353241feeda2ed3554c81448227442f053b683afebd",
+    "ambika_controller.hex": "58a00caccebecbdf12c4720da606c328cad44e19b6001d4e9eac8927e4429d95",
+    "ambika_controller.map": "c393be8204abe5d105a31f2caf8ba2cbd79d3f5c6d43901b6fc8c0d8cc712201",
+    "build.log": "66352c3c70e9fc7201e968dea7b02343d8c9eee20c106947c2a8cb6c8034fc64",
     "features.h": "4f8f39e5f2e000e9b4c90aa8802ff575b8245e5f5ec19f8ee95d258b0f1c92e6",
-    "size.txt": "8792d61689b8416e4775d8c1ae5b08f87fe8e46c56d27d500dce533ca9f1f6d5",
-    "source.tar.gz": "9a673842349b00ba37f0dfdbddfdbee6355a44f8d6559633638db80feac80266",
-    "symbols.txt": "16e563995bf0a6bfd7bec93fed08a4bdd7d34358a4b0b83ebc59ef5bae572a4e"
+    "size.txt": "0dc95d78349a2c6d21606b9c41742bc4aafb2ea8d140725d3d2b52fe94afab74",
+    "source.tar.gz": "770f3edda174cdf905d834d54c1bb1400b28f62b8b6df2eb53a0141b5e58bd48",
+    "symbols.txt": "cc8861238931b89825c54a67b99ecbd2b91162a55217abb3be870d72d731c5d3"
   }
 }

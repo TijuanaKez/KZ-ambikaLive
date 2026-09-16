@@ -4,14 +4,8 @@ Reports **v1.4**, same as the release, but this is the `DIAGNOSTIC_BUILD`. It
 replaces the firmware-update page with the memory screen, so it can only be
 reflashed by holding **S8** at power-on.
 
-Flash 53,188 / 61,440. Static SRAM 3,798 / 3,968, leaving **298 bytes** for the
-stack; the release build has 306.
-
-That is *less* headroom than the previous build, deliberately. The MIDI output
-buffer is back to Emilie's 128 bytes, and the stack safety now comes from
-bounding TIMER1 re-entrancy instead — see below. Measured peak stack was 334
-bytes *with* unbounded nesting; the guard should cut that well below 298, and
-the `LOW` reading is how we find out.
+Flash 53,190 / 61,440. Static SRAM 3,734 / 3,968, leaving **362 bytes** for the
+stack; the release build has 370.
 
 **Click the encoder to switch between the memory view and the ordinary
 firmware-update view.** Earlier diagnostic builds replaced the update page

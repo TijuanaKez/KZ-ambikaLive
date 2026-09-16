@@ -38,13 +38,17 @@ const uint8_t kDataEntryResendRate = 32;
 
 struct LowPriorityBufferSpecs {
   enum {
-    // Emilie's value, unchanged through MachFour and YAM. Briefly halved to 64
-    // on 2026-09-15 to buy stack headroom; reverted after MIDI stopped
-    // responding under a controller flood. The stack headroom now comes from
-    // bounding the TIMER1 re-entrancy in controller.cc instead, which is the
-    // actual cause rather than a symptom. Do not shrink this again without
-    // evidence from the MID reading on the diagnostic page.
-    buffer_size = 128,
+    // 128 was Emilie's value, unchanged through MachFour and YAM. Halved on
+    // evidence, 2026-09-16: the MID high-water mark on the diagnostic page
+    // reaches 11 in ordinary use and 28 under a deliberate mod and pitch wheel
+    // flood, so 64 leaves more than twice the worst observed depth. An earlier
+    // halving was reverted because MIDI stopped responding, but that turned out
+    // to be TIMER1 re-entrancy, not a full queue -- MID froze at 22 because the
+    // main loop had stopped, not because the buffer was full.
+    //
+    // Watch MID if this is ever in doubt. Raise it back the moment it
+    // approaches 64.
+    buffer_size = 64,
     data_size = 8,
   };
   typedef avrlib::DataTypeForSize<data_size>::Type Value;

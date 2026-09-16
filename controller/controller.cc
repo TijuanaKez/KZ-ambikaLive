@@ -65,22 +65,28 @@ inline void PollMidiIn() {
 // - Flushing the MIDI out data, at a rate of 4.882kHz
 // - Debouncing the switches and refreshing the LCD at 4.882kHz
 // - Ticking the ms sys clock at 4.882kHz / 4 = 1.221 kHz
-ISR(TIMER1_OVF_vect, ISR_NOBLOCK) {
-  // KZ MOD: ISR_NOBLOCK re-enables interrupts on entry, so this handler can
-  // interrupt itself if one pass ever takes longer than its 205 us period --
-  // which a MIDI controller flood makes likely, since PollMidiIn, FlushMidiOut
-  // and ui.Poll all live here. Each re-entry costs another full frame of stack,
-  // and this is the deepest interrupt in the firmware, so unbounded nesting
-  // walks the stack straight into static data.
-  //
-  // The guard bounds nesting at one. A tick that arrives while a previous one
-  // is still running is dropped; at 4.882 kHz that is invisible, and it is
-  // strictly better than the alternative, which is running out of SRAM.
+// KZ MOD: this used to be ISR_NOBLOCK, which re-enables interrupts in the
+// prologue so the handler can interrupt itself if a pass runs past its 205 us
+// period -- likely under a MIDI controller flood, since PollMidiIn,
+// FlushMidiOut and ui.Poll all live here. Each re-entry costs another frame of
+// the deepest interrupt in the firmware, so unbounded nesting walks the stack
+// into static data.
+//
+// Entering with interrupts disabled makes the test-and-set atomic; an earlier
+// attempt kept ISR_NOBLOCK and raced against the very interrupt it excluded,
+// because the flag was set after the prologue had already re-enabled them.
+// sei() then restores the nesting this ISR needs for the audio and voice card
+// timers, with re-entry of *this* handler bounded to one.
+//
+// A tick arriving while a pass is still running is dropped. At 4.882 kHz that
+// is invisible, and it is strictly better than running out of SRAM.
+ISR(TIMER1_OVF_vect) {
   static volatile uint8_t in_progress = 0;
   if (in_progress) {
     return;
   }
   in_progress = 1;
+  sei();
 
   static uint8_t cycle = 0;
   PollMidiIn();
@@ -94,6 +100,7 @@ ISR(TIMER1_OVF_vect, ISR_NOBLOCK) {
     cycle = 0;
     storage.Tick();
   }
+  cli();
   in_progress = 0;
 }
 
