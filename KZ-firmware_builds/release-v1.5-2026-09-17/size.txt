@@ -1,0 +1,18 @@
+/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-controller-release-5l8mv8lv/ambika_controller/ambika_controller.elf  :
+section                       size      addr
+.data                           60   8388864
+.text                        54202         0
+.bss                          3724   8388924
+.comment                        36         0
+.note.gnu.avr.deviceinfo        64         0
+.debug_aranges                4320         0
+.debug_info                 638781         0
+.debug_abbrev                60695         0
+.debug_line                 158106         0
+.debug_frame                 10844         0
+.debug_str                  179393         0
+.debug_loc                   93657         0
+.debug_ranges                20080         0
+Total                      1223962
+
+
