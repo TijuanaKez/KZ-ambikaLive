@@ -1,4 +1,4 @@
-/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-controller-diagnostic-vkz9a3os/ambika_controller/ambika_controller.elf  :
+/var/folders/9c/qfhlwqcj6pnfnlg0r104bq2c0000gn/T/kz-controller-diagnostic-giigy5d3/ambika_controller/ambika_controller.elf  :
 section                     size      addr
 .data                         58   8388864
 .text                      53132         0

@@ -606,7 +606,17 @@ pitch, all shapes and the filter all correct — which retired the silent-card
 risk that gated this whole plan. v2 work is proceeding on `master`; cut
 `v1-compat` from the `v1.4` tag if the v1 line ever needs maintenance. (§1)
 
-**Phase 1 — measure. INSTRUMENT BUILT 2026-09-15, readings outstanding.**
+**Phase 1 — measure. DONE 2026-09-16. AUD = 5 of 40, so the voice card uses
+about 12% of its cycle budget.** There is far more room for new oscillators than
+the plan assumed. Karplus-Strong, wavefolding and a band-limited ensemble are all
+affordable on that figure; measure each one here as it is written.
+
+Controller stack, settled the same way: peak use is **240 bytes**. It read 334
+while TIMER1 could re-enter itself without bound; an atomic re-entry guard in
+`controller.cc` cut it to 240. With the MIDI output buffer at Emilie's 128 that
+leaves 58 bytes of margin, so nothing else had to be sacrificed for it.
+
+**Phase 1 detail — the instrument.**
 Rather than a scope on the timing pins, each voice card now reports its audio
 render headroom over SPI (`COMMAND_GET_AUDIO_HEADROOM`) and the diagnostic
 controller shows all six on the `AUD` line. The value is the peak free space in

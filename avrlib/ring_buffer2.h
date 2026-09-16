@@ -19,6 +19,11 @@ private:
 public:
   RingBuffer2() = default;
 
+  // KZ MOD: the pointer arithmetic below masks with size - 1, so a size that is
+  // not a power of two silently corrupts it rather than failing to build.
+  static_assert(size > 0 && (size & (size - 1)) == 0,
+                "RingBuffer2 size must be a power of two");
+
 
   inline uint8_t capacity() const {
     return size;

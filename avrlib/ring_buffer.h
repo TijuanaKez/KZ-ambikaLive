@@ -38,6 +38,12 @@ class RingBuffer : public Input, Output {
     data_size = Owner::data_size
   };
 
+  // KZ MOD: writable() and readable() mask with size - 1, so a size that is not
+  // a power of two silently corrupts the pointer arithmetic rather than failing
+  // to build. 96 is the tempting one; it does not work.
+  static_assert(size > 0 && (size & (size - 1)) == 0,
+                "RingBuffer size must be a power of two");
+
   RingBuffer() = default;
   
   static inline uint8_t capacity() { return size; }
