@@ -1,7 +1,7 @@
 # Voice card SMD rebuild — plan
 
 Drafted September 15, 2026. This is the hardware track that runs alongside
-`VOICECARD_V2_PLAN.md` (the firmware track). It is deliberately staged so that
+`VOICECARD_V2_PLAN.md` (the firmware track, a local working document). It is deliberately staged so that
 each board can be built and tested against the *current* firmware before the
 next stage changes anything else.
 

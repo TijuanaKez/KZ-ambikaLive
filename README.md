@@ -1,71 +1,173 @@
 # KZ Ambika Live
 
-The single source repository for Carey's KZ Ambika firmware, incorporating the
-preserved local KZ work and controller stabilization on AVR GCC 9.5.0.
+A firmware fork for the **Mutable Instruments Ambika**, built on top of the
+[YAM fork](https://github.com/bjoeri/ambika) by bjoeri, which is itself built on
+Emilie Gillet's original.
 
-**Current release: v1.4 (2026-09-14)** — faster preset browsing.
-Download [AMBIKA.BIN](KZ-firmware_builds/release-v1.4-2026-09-14/AMBIKA.BIN):
-flash **52,550 bytes**, static SRAM **3,829 bytes**. Voice-card firmware is
-unchanged at v1.1 and does not need reflashing.
+Everything YAM adds is here too. What follows is what this fork adds on top.
 
-v1.3 before it was the stability milestone: the first published build on the
-modern AVR GCC 9 toolchain, with the preferences-page memory corruption fixed.
-Earlier KZ units report v1.2.
+**Latest release: [v1.5](../../releases/latest)** — controller only; voice cards
+stay on v1.1 and do not need reflashing.
 
-- [v1.4 release notes and installation](KZ-firmware_builds/release-v1.4-2026-09-14/README.md)
-- [v1.3 release notes](KZ-firmware_builds/release-v1.3-2026-09-14/README.md)
-- [Baseline, hardware sign-off and limits](docs/STABLE_BASELINE.md)
-- [Current handover and improvement plan](docs/KZ_AMBIKA_CODEX_HANDOVER.md)
-- [Repository history and consolidation](docs/REPOSITORY_CONSOLIDATION.md)
-- [Voice card v2 architecture plan](docs/VOICECARD_V2_PLAN.md) (breaking; not started)
-- [DIAG3 memory-diagnostic image](KZ-firmware_builds/diagnostic-2026-09-14-diag3/README.md)
+---
 
-## Install
+## Why you might want it
 
-Copy `AMBIKA.BIN` to the SD card root, then either use **Library -> more ->
-Firmware update**, or power off and hold **S8** (rightmost button) while powering
-on. Keep a backup of your working firmware first.
+- **It builds on a modern toolchain.** AVR GCC 9.5.0 and current avr-libc, with
+  no ancient CrossPack install required. `prog_char` and friends are gone.
+- **It should not run out of memory.** Earlier builds — including stock YAM —
+  could exhaust the controller's stack and corrupt memory. See *Stability* below.
+- **Preset browsing is fast**, and a good deal of the interface is quicker to
+  drive two-handed.
 
-## Build
+| | |
+|---|---:|
+| Controller flash | 54,262 / 61,440 |
+| Controller static SRAM | 3,784 / 3,968 |
+| Stack headroom | 312 bytes, against a measured peak of 254 |
+| Voice card | unchanged, v1.1 |
 
-Use Python 3, GNU Make, AVR GCC/avr-libc and AVR binutils. Put the AVR executables
-on PATH. The recorded build uses GCC 9.5.0 and binutils 2.46.0.20260210; other
-versions require their own size and behavior checks. The modified `avrlib/` is
-included directly; no submodule checkout or resource regeneration is needed.
+---
+
+## What this fork adds
+
+### Interface
+
+**ENV / LFO / MOD slot cycling with the page buttons.** Pressing a page button
+repeatedly cycles through its slots, so double-tapping ENV/LFO gets you to LFO 2
+directly. Good for muscle memory and two-handed operation.
+
+**Turbo patch name editing.** Jump straight to `A`, `a` or `1`, insert a space,
+or move the cursor with the buttons — `A | a | 1 | _ | <- | -> save | exit`.
+Renaming a patch stops being a chore.
+
+**Fast preset browsing.** Scrolling through presets no longer loads each one as
+you pass it. The name updates immediately and the patch loads once you settle,
+after a delay you set yourself (`ldly` on preferences page B, in milliseconds;
+0 restores the old behaviour). Previously every detent triggered a full patch
+load — a complete file parse, a voice-card parameter push, and sometimes a write
+back to the card.
+
+**Sequencer display.** Rests show as `---`, tracker style, which makes drum
+patterns far easier to read at a glance.
+
+**Performance page.** The first four buttons act as part mutes — good for
+jamming with the chord sequencer. Button 5 resyncs the part clocks.
+
+### Sound
+
+**`drm1` / `drm2` modulation destinations.** Like the Osc1/Osc2 pitch
+destinations but with **±32 semitones** of range, for pitch envelopes steep
+enough to make actual drums. The standard coarse-pitch destinations do not reach
+far enough, and the stock envelope curves are not steep enough either — but an
+envelope can be *squared* with a modifier to sharpen it:
+
+```
+Modul.  1 | srce mod1 | dest drm1 | amnt  32
+Modif.  1 | in1  env1 | in2  env1 | oper prod     <- squares Env1
+```
+
+That combination gets close to 808-style kicks and toms.
+
+**Solo polyphony mode.** Like mono, but uses a single voice. Useful when a patch
+was designed for one voice (legato, glide) and you want it on a part with several
+voices assigned, without the stacked/unison sound.
+
+**Arp latch mode.** Behaves like the Microkorg's: press a key once for note on,
+again for note off.
+
+**Chord sequencer mode.** The sequencer passes each block of four consecutive
+notes to the arpeggiator as a chord. `lenp` sets how many steps between chord
+changes; the note sequence is locked to 16 steps (four chords). Rests reduce the
+number of notes in a chord.
+
+### MIDI
+
+**Selectable CC maps** (preferences page B): Ambika standard, Shruthi XT, or
+Novation Launchkey.
+
+**SysEx patch name query.** A host can ask the Ambika for the name of any stored
+patch, sequence, program or multi without loading it — `0x16`/`0x17`/`0x18`/`0x1a`
+with the bank as the argument byte and the slot in `data[0]`. Intended for editor
+software; this is the groundwork for preset-name sync in a future AU/VST editor.
+
+### Source
+
+`common/features.h` carries compile-time switches for most of the above, so
+features can be disabled to recover flash while experimenting. Each switch is
+annotated with whether it actually does anything — several inherited ones did
+not.
+
+---
+
+## Stability
+
+Earlier builds of this fork, and stock YAM, can exhaust the controller's 4 KB of
+SRAM: the stack grows down into static data and corrupts it. It shows up as rare,
+unreproducible misbehaviour, usually after loading patches.
+
+v1.5 fixes it. The main cause was **link-time optimisation**, which Emilie's
+original build never used and which was added later while fighting the flash
+limit on a modern compiler. LTO inlines across translation units, so local
+variables that used to occupy separate, reused stack frames end up alive at the
+same time. The largest single stack frame on the controller was **128 bytes**
+with LTO and **58** without — in FatFs `check_fs`, which every file operation
+reaches.
+
+Measured peak stack use dropped from **336 bytes to 254**, against 312 available.
+
+Also fixed in v1.5: the 4.9 kHz timer interrupt could re-enter itself under a
+MIDI flood, each nesting costing another stack frame; 41 bytes of static SRAM
+were being reserved for a buffer nothing read; and the undo snapshot ran a full
+file save on *every* patch load with unsaved edits.
+
+`make -f controller/makefile ramsize` reports static SRAM against the limit.
+Note that passing it does not prove a build fits — the rule reserves 128 bytes
+for the stack and the real peak is about twice that.
+
+---
+
+## Installing
+
+Download `AMBIKA.BIN` from the [latest release](../../releases/latest), copy it
+to the root of the SD card, then either:
+
+- **Library → more → Firmware update**, or
+- power off, hold **S8** (rightmost button) while powering on, and release when
+  `SD update...` appears.
+
+The OS information page will show the version. Keep a backup of your current
+firmware first.
+
+Voice cards are unchanged from v1.1 and do not need reflashing. The v1.1 image
+is attached to releases for completeness.
+
+---
+
+## Building
+
+You need Python 3, GNU Make, AVR GCC/avr-libc and AVR binutils, with the AVR
+executables on `PATH`. Releases are built with GCC 9.5.0 and binutils
+2.46.0.20260210.
 
 ```sh
 python3 tests/run_controller_ui_tests.py --sanitizers undefined
 python3 scripts/build_firmware.py --target controller --variant release /tmp/kz-build
 ```
 
-Pass `--variant diagnostic` for the DIAG3 memory-instrumented image, or
-`--target voicecard` for the voice card. **No freshly compiled voice card image
-has ever been validated on hardware here** — see
-`KZ-firmware_builds/test-voicecard-2026-09-14/README.md` before flashing one. That
-image boots straight to a RAM/stack screen and replaces the firmware-update page,
-so it can only be reflashed with the hold-S8 method.
+`--target voicecard` builds the voice card instead, and `--variant diagnostic`
+builds the memory/CPU diagnostic image. The output directory must not already
+exist; the script builds in a temporary tree, enforces the flash and SRAM limits,
+and packages BIN/HEX/ELF with a map, build log, feature switches and a SHA-256
+manifest of every source input.
 
-The output directory must be new. The script builds in a fresh temporary directory,
-checks flash <61,440 and static SRAM <3,968, and packages BIN/HEX/ELF, a map, build
-log and exact source manifest. The test command needs a host C++ compiler
-(`clang++` by default, or `CXX`). It tests UI logic, not AVR interrupt timing.
+The modified `avrlib` is committed directly — no submodule setup, and no
+resource regeneration needed for an ordinary build.
 
-`common/features.h` controls optional features and modifications; record its
-configuration for every build. Do not treat old files in the ignored `build/`
-directory as freshly built firmware.
+---
 
-## About Ambika
-A hybrid MIDI polysynth and voicecard host.
+## Credits
 
-Ambika consists of a compact motherboard serving as a "host" for up to 6 sound synthesis voicecard. While this design is primarily intended to be a flexible hybrid polysynth, it could also be used as a drum module/drum machine.
-
-The motherboard comprises 6 audio outputs, each one connected to a voicecard ; a global mono output ; a pair of MIDI input/output ; a SD card slot ; a 5V/8V/-8V power supply capable of delivering 150mA on the 8V rails and 350mA on the 5V rail ; the master MCU and the user interface elements. The voicecards (a pair of each being attached to the 3 voicecard ports) are SPI slaves, they receive note and modulation data from the motherboard ; and output monophonic audio, ideally 1V pp.
-
-3 designs of voicecards implementing a refined version of the Shruthi-1 engine are provided. Each of those use a different filter (4-Pole with LM13700, 4-Pole with SSM2164, 2-Pole SVF with SSM2164).
-
-Original developer: Emilie Gillet (emilie.o.gillet@gmail.com)
-
-The firmware is released under a GPL3.0 license. It includes a variant of the formant synthesis algorithm used in Peter Knight's Cantarino speech synthesizer.
-
-The PCB layouts and schematics, documentation, analyses, simulations and 3D models are released under a Creative Commons cc-by-sa 3.0 license.
-
+Original Ambika by **Emilie Gillet** (Mutable Instruments). YAM fork by
+**bjoeri**. Some modernisation work derives from **MachFour**'s fork. Firmware
+is GPL-3.0; hardware documentation is CC-BY-SA 3.0.

@@ -22,4 +22,4 @@ AUD nnn nnn nnn nnn nnn nnn  clk:fw     exit
   which includes every v1.1 card. `254` means that card's buffer ran dry.
 
 This is the instrument the v1.5 stack work was done with, and it is meant to stay
-usable: every new oscillator in the v2 plan should have its cost recorded here.
+usable for measuring the cost of future changes.

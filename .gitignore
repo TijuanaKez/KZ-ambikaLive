@@ -28,6 +28,17 @@
 # OS X crap
 .DS_Stor?
 
+# Working notes, not for the public repository. These stay on disk (and in
+# iCloud) but are deliberately not published: they are the running engineering
+# record and planning material, not documentation for users.
+/.claude/
+/AGENTS.md
+/CLAUDE.md
+/docs/KZ_AMBIKA_CODEX_HANDOVER.md
+/docs/VOICECARD_V2_PLAN.md
+/docs/REPOSITORY_CONSOLIDATION.md
+/docs/STABLE_BASELINE.md
+
 # Local compiler output. Reviewed firmware packages live in KZ-firmware_builds.
 /build/
 *.size
