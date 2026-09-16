@@ -59,7 +59,8 @@ enum SystemSettingsParameter : uint8_t {
   PRM_SYSTEM_VOICECARD_SWAP_LEDS_COLORS,
   PRM_SYSTEM_CC_MAP,
   PRM_SYSTEM_LAUNCHKEY_MODE,
-  PRM_SYSTEM_BROWSE_LOAD_DELAY
+  PRM_SYSTEM_BROWSE_LOAD_DELAY,
+  PRM_SYSTEM_SNAPSHOT
 };
 
 struct SystemSettingsData {
@@ -77,7 +78,13 @@ struct SystemSettingsData {
     // been still for this long. Stored in units of 10 ms so it fits one byte;
     // 0 loads immediately, which is the pre-v1.4 behaviour.
     uint8_t browse_load_delay;
-    uint8_t padding[5]; // KZ MOD Reduced from 8 to 5 to allow for extra 3 settings
+    // KZ MOD: whether loading an edited patch first writes an undo snapshot.
+    // That snapshot is a full Storage::Save plus an Unlink, which is the
+    // deepest stack path in the firmware, and it runs on every load while the
+    // edit buffer is dirty -- measured as the cause of the controller's stack
+    // low watermark reaching 0. 0 disables it and loses undo history.
+    uint8_t snapshot;
+    uint8_t padding[4]; // KZ MOD Reduced from 8 to 4 to allow for extra 4 settings
     uint8_t checksum;
   };
 
@@ -125,6 +132,9 @@ public:
   inline uint8_t& launchkey_mode() { // KZ MOD - getters for new params
     return data.params.launchkey_mode;
   }
+  inline uint8_t& snapshot() { // KZ MOD - undo snapshot on load
+    return data.params.snapshot;
+  }
   inline uint8_t& browse_load_delay() { // KZ MOD - deferred library load
     return data.params.browse_load_delay;
   }
@@ -142,6 +152,8 @@ static_assert(offsetof(SystemSettingsData::Parameters, midi_cc_map) == PRM_SYSTE
               offsetof(SystemSettingsData::Parameters, launchkey_mode) == PRM_SYSTEM_LAUNCHKEY_MODE &&
               offsetof(SystemSettingsData::Parameters, browse_load_delay) ==
                   PRM_SYSTEM_BROWSE_LOAD_DELAY &&
+              offsetof(SystemSettingsData::Parameters, snapshot) ==
+                  PRM_SYSTEM_SNAPSHOT &&
               offsetof(SystemSettingsData::Parameters, checksum) == 15,
               "Settings parameter IDs must match stored byte offsets");
 

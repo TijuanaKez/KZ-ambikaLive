@@ -16,7 +16,7 @@
 #define DIAGNOSTIC_BUILD
 
 namespace ambika {
-constexpr uint8_t kNumParameters = 78, kNumParametersPerPage = 8;
+constexpr uint8_t kNumParameters = 79, kNumParametersPerPage = 8;
 constexpr uint8_t kLcdWidth = 40, kDelimiter = 7;
 constexpr uint8_t PAGE_ENV_LFO = 3, PAGE_SYSTEM_SETTINGS = 15;
 constexpr uint8_t PAGE_SYSTEM_SETTINGS_B = 16, LED_STATUS = 14, LED_8 = 7;
@@ -99,7 +99,7 @@ struct OsInfoPage : UiPage {
 };
 
 PageInfo prefs_a = {15, {66,67,71,72,68,69,70,0xf8}, 16};
-PageInfo prefs_b = {16, {75,76,255,255,255,255,255,0xf9}, 15};
+PageInfo prefs_b = {16, {75,76,77,78,255,255,255,0xf9}, 15};
 struct Ui {
   struct State {
     uint8_t values[8] = {};
@@ -212,11 +212,12 @@ int main() {
     assert(ParameterEditor::active_control_ == 0);
   }
   ParameterEditor::OnInit(&prefs_b);
-  ParameterEditor::OnIncrement(1);
-  ParameterEditor::OnIncrement(1);
-  assert(ParameterEditor::active_control_ == 7);  // Skip five unused cells.
+  // Preferences page B now carries four settings, so the walk to the back
+  // control skips three unused cells rather than five.
+  for (int i = 0; i < 4; ++i) ParameterEditor::OnIncrement(1);
+  assert(ParameterEditor::active_control_ == 7);
   ParameterEditor::OnIncrement(-1);
-  assert(ParameterEditor::active_control_ == 1);
+  assert(ParameterEditor::active_control_ == 3);
   ParameterEditor::OnClick();
   auto before = parameter_manager.writes;
   ParameterEditor::OnIncrement(1);
@@ -263,7 +264,7 @@ int main() {
   ParameterEditor::OnInit(&knobs);
   for (unsigned id = 0; id < 256; ++id) {
     multi.knobs[0].parameter = id;
-    assert(ParameterEditor::parameter_index(0) == (id < 78 ? id : 255));
+    assert(ParameterEditor::parameter_index(0) == (id < 79 ? id : 255));
   }
 
   // Exercise the actual diagnostic renderer at boundary values.

@@ -114,7 +114,7 @@ struct Parameter {
 };
 
 // counts parameters in Patch.h
-constexpr uint8_t kNumParameters = 78; // KZ MOD: 3 Extra system parameters
+constexpr uint8_t kNumParameters = 79; // KZ MOD: 4 Extra system parameters
 
 // The parameter manager is the class who knows how to apply a parameter change
 // for each specific object type.

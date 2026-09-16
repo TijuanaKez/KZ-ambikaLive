@@ -26,6 +26,7 @@
 
 #include "avrlib/filesystem/filesystem.h"
 #include "avrlib/filesystem/file.h"
+#include "controller/system_settings.h"
 #include "controller/voicecard_tx.h"
 
 namespace ambika {
@@ -155,7 +156,10 @@ class Storage {
     return Load(STORAGE_PREVIOUS_CLIPBOARD, location, 1);
   }
   static FilesystemStatus Load(const StorageLocation location) {
-    if (has_user_changes(location)) {
+    // KZ MOD: the snapshot is a full Save plus an Unlink -- the deepest stack
+    // path in the firmware -- and without the setting it runs on every load of
+    // an edited patch, which is ordinary browsing.
+    if (system_settings.data().snapshot() && has_user_changes(location)) {
       Snapshot(location);
     }
     return Load(STORAGE_BANK, location, 1);

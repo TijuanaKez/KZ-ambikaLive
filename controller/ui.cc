@@ -162,7 +162,7 @@ constexpr PageInfo page_registry[] PROGMEM = {
 
   { PAGE_SYSTEM_SETTINGS_B,
     &ParameterEditor::event_handlers_,
-    { 75, 76, 77, 0xff, 0xff, 0xff, 0xff, 0xf9, },
+    { 75, 76, 77, 78, 0xff, 0xff, 0xff, 0xf9, },
     PAGE_SYSTEM_SETTINGS, 8, 0xf0,
   },
 

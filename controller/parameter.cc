@@ -980,6 +980,13 @@ static constexpr Parameter parameters[] PROGMEM = {
     UNIT_TIME_MS, 0, kMaxBrowseLoadDelay,
     1, 0, 0xff, 0xff,
     STR_RES_LDLY, STR_RES_LOAD_DELAY, STR_RES_SYSTEM },
+
+  // 78
+  { PARAMETER_LEVEL_SYSTEM,
+    SystemSettingsParameter::PRM_SYSTEM_SNAPSHOT,
+    UNIT_BOOLEAN, 0, 1,
+    1, 0, 0xff, 0xff,
+    STR_RES_UNDO, STR_RES_UNDO_HISTORY, STR_RES_SYSTEM },
 };
 
 static_assert(sizeof(parameters) / sizeof(parameters[0]) == kNumParameters,

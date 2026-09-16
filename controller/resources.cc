@@ -404,6 +404,8 @@ static const char str_res_rasia[] PROGMEM = "rasia";
 // reproduces these indices.
 static const char str_res_ldly[] PROGMEM = "ldly";
 static const char str_res_load_delay[] PROGMEM = "load delay";
+static const char str_res_undo[] PROGMEM = "undo";
+static const char str_res_undo_history[] PROGMEM = "undo history";
 
 
 const char* const string_table[] PROGMEM = {
@@ -808,6 +810,8 @@ const char* const string_table[] PROGMEM = {
   str_res_rasia,
   str_res_ldly,
   str_res_load_delay,
+  str_res_undo,
+  str_res_undo_history,
 };
 
 const uint16_t lut_res_lfo_increments[] PROGMEM = {

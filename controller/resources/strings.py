@@ -415,4 +415,6 @@ ___
 equal
 ldly
 load delay
+undo
+undo history
 """

@@ -40,6 +40,21 @@ trigger.
 - **AUD** — audio CPU load per voice card, in audio ticks consumed per 40-sample
   block. See below.
 
+## The undo setting
+
+Preferences page B has a new **`undo`** switch. It controls whether loading an
+edited patch first writes an undo snapshot.
+
+That snapshot is a full `Storage::Save` plus an `Unlink` — the deepest stack path
+in the firmware — and it ran on *every* load while the edit buffer was dirty,
+which is just ordinary patch browsing. It is what drove the stack low watermark
+to 0, confirmed by the `sav` context tag.
+
+**It defaults to off**, because the byte it occupies was previously padding and
+reads zero on existing settings. Off is also the safe default: on costs the
+deepest path in the firmware, off costs the undo history in the version manager.
+Turn it on if you use undo, and watch `LOW`.
+
 ## Reading AUD — this is the CPU budget, without a scope
 
 Each voice card now tracks the free space left in its 128-sample audio buffer at
