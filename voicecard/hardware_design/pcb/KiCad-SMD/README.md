@@ -165,22 +165,78 @@ JLCPCB 2-layer standard, set in the `.kicad_pro`:
 | Default | 0.2 mm | 0.6 / 0.3 mm | everything else |
 | Power | 0.4 mm | 0.6 / 0.3 mm | +5V, VCC, VEE, GND |
 
-### DRC at the starting point
+### Light placement pass
 
-`kicad-cli pcb drc` reports 196 unconnected-item errors, which is the whole
-point of this state: no track has been laid. Besides those:
+Olivier's arrangement is kept: nothing was compacted or regrouped, and the
+rows of passives stay where they were. Only these moved (`place.py`):
 
-- **1 error**, `copper_edge_clearance`: C33's pad crosses the board edge,
-  because the 6.3 mm electrolytic sits where a smaller through-hole can sat.
-  It goes away when C33 is placed.
-- **57 warnings**: silkscreen overlap, silk over copper, silk clipped by the
-  edge, two undersized 'SEL' texts, and 4 `lib_footprint_mismatch` on the
-  Eagle-imported mounting holes. All inherited from the import, not caused by
-  the SMD work: the untouched `../KiCad/` baseline board reports 205
-  violations of the same kinds, including 6 of those mismatches.
+**Decoupling.** Every 100n sat 5.97–13.99 mm from the supply pins it serves,
+because the SOIC and TQFP bodies are so much smaller than the DIPs they
+replaced. Each is now beside its IC's supply pad, assigned to minimise total
+travel:
 
-Silkscreen is worth a pass after placement; reference designators are what
-JLC's assembly drawing needs.
+| Cap | Serves | Gap |
+|---|---|---|
+| C16 / C3 | IC1 VCC pad 4 / VEE pad 11 | 2.88 / 2.88 mm |
+| C5 / C18 | IC2 VCC pad 11 / VEE pad 6 | 1.32 / 1.32 mm |
+| C6 / C20 | IC3 VCC pad 8 / VEE pad 4 | 1.32 / 1.32 mm |
+| C8 / C11 | IC4 VCC pad 16 / VEE pad 9 | 1.28 / 1.55 mm |
+| C12 / C24 | IC5 VCC pad 8 / VEE pad 4 | 1.32 / 1.32 mm |
+| C29 | IC6 VDD pad 1 | 1.58 mm |
+| C30 | IC7 VCC pads 4 and 6 | 2.42 / 2.83 mm |
+| C28 | IC7 AVCC pad 18 | 0.88 mm |
+
+**Crystal loop.** Q3, C31 and C32 moved from 10–17 mm away to sit against
+IC7's XTAL pins: Q3's terminals are now 1.65 mm (XTAL2, pad 8) and 3.35 mm
+(XTAL1, pad 7) from the MCU, with the load caps flanking the crystal. The
+3225's two terminals are diagonally opposite, so one of them is always the
+far one; the two placements are within 0.05 mm of each other in total length.
+
+**C33** moved from the bottom-right corner, where its pad crossed the board
+edge, to the free band at (191.5, 113.5). It could not simply move inboard:
+that corner is boxed in by the U$5 mounting hole, ISP0, R33 and JP4, and the
+9.5 mm can does not fit between them.
+
+**Q1 and Q2 are not an expo pair, so they were left alone.** Read from the
+netlist: each is a separate op-amp servo current source. Q1's base is driven
+by IC1D's output with R1 from its emitter back to IC1D's inverting input, and
+its collector feeds I_GAIN (IC2 pin 16); Q2 is the same topology around IC1A
+with R12, feeding I_RESO (IC2 pin 1). They share no node, and neither is an
+exponential converter — the V/Oct exponential conversion is internal to the
+SSI2164, whose four CTRL pins are driven from F_CV via IC1B, with R28 (the
+trimmer silkscreened V/Oct) setting the scale through R15. Placing them
+touching would buy nothing.
+
+**Grid and orientation.** All unlocked footprints are on a 0.5 mm grid, except
+C25, which has 0.06 mm of slack between JP1 and JP3 and so keeps its imported
+position rather than being nudged into a locked connector. 24 0603 parts had
+their orientation normalised to their own axis (-90 to 90, 180 to 0) so each
+group agrees; nothing was rotated by 90 degrees, so no pad moved.
+
+Locked parts — connectors, mounting holes, the outline — did not move.
+
+### DRC after placement
+
+```
+** Found 88 DRC violations **
+** Found 196 unconnected items **
+
+ 196  [unconnected_items]      error    <- nothing routed yet
+  51  [silk_over_copper]       warning
+  25  [silk_overlap]           warning
+   6  [silk_edge_clearance]    warning
+   4  [lib_footprint_mismatch] warning
+   2  [text_height]            warning
+```
+
+`copper_edge_clearance` is **zero**, as is `courtyards_overlap`. The
+silkscreen warnings rose from 57 to 82 because parts are now closer together;
+that is for the silkscreen pass after routing, where plan §3 turns values off
+and leaves reference designators on for JLC's assembly drawing. The 4 library
+mismatches are still the Eagle-imported mounting holes.
+
+Renders and the ratsnest drawing are written to `build/` (gitignored):
+`voicecard-4p-smd-front.png`, `-back.png`, `-ratsnest.png`.
 
 ## Next (not done)
 
