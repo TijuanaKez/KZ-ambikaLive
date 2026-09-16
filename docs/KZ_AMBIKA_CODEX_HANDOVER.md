@@ -245,6 +245,41 @@ Historical notes say the original environment required:
 
 Known size constraints:
 
+### Controller SRAM: the margin is inherited, not caused by this work
+
+Measured 2026-09-17, after Carey asked whether the stack trouble meant the new
+toolchain was misconfigured. Static SRAM (`data + bss`), all built with AVR GCC
+9.5.0 and this repository's avrlib except where noted:
+
+| Tree | Static SRAM | Free for stack |
+|---|---:|---:|
+| **ambikaYAM-(NoMod)** — the release most people run | **3,806** | 290 |
+| ambika-MACHFOUR — unvalidated modernisation | 3,794 | 302 |
+| **This repository** | **3,790** | **306** |
+
+So the GCC 9 port and every KZ modification together have made the controller's
+static footprint *slightly smaller* than the known-good YAM build. The toolchain
+is not misconfigured and our work did not eat the margin: **the margin was always
+this thin.**
+
+YAM was built by force-including a shim that defines away the old avrlib's
+`STATIC_ASSERT`, with `pichenettes/avril` at HEAD supplying the template `FourCC`
+it expects. Modern avr-libc still declares the deprecated `prog_*` typedefs, so
+nothing else was needed. Caveat: this is YAM's *source* compiled with GCC 9, not
+its original GCC 4 binary. `.bss` is determined by data structures rather than
+code generation, so the comparison holds for SRAM; `.text` would not be
+comparable.
+
+The consequence worth absorbing: YAM has the same FatFs, the same `f_rename`,
+and the same snapshot-on-load, running in 290 bytes of stack against a measured
+peak of 240 to 336. **The stock firmware everyone runs can also exhaust its
+stack.** This is not a regression we introduced; it is a latent fault in the
+lineage that the diagnostic build simply made visible for the first time.
+
+Pichenettes' `ramsize` rule -- static under 4096 - 128 -- reserves 128 bytes for
+the stack. Every build in the table passes it, and every one of them can still
+overflow. Treat the rule as necessary, not sufficient.
+
 -   Voice-card flash must remain below **32,256 bytes**. This corrects an earlier
     31,744 in these notes, which assumed a 1 KB bootloader. The voice card
     bootloader is linked at `0x7e00` and its makefile states it must fit 512
