@@ -4,8 +4,13 @@ Reports **v1.4**, same as the release, but this is the `DIAGNOSTIC_BUILD`. It
 replaces the firmware-update page with the memory screen, so it can only be
 reflashed by holding **S8** at power-on.
 
-Flash 53,190 / 61,440. Static SRAM 3,734 / 3,968, leaving **362 bytes** for the
-stack; the release build has 370.
+Flash 53,190 / 61,440. Static SRAM 3,798 / 3,968, leaving **298 bytes** for the
+stack.
+
+The MIDI output buffer is at Emilie's 128. This build changes **one** thing
+against the configuration where MIDI stopped responding: the TIMER1 re-entry
+guard is now atomic. If `LOW` is healthy here, the buffer never needed touching
+and the stack problem was always the re-entrancy.
 
 **Click the encoder to switch between the memory view and the ordinary
 firmware-update view.** Earlier diagnostic builds replaced the update page

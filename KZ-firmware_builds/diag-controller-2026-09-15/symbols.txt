@@ -1,5 +1,5 @@
 00002e2e T __bad_interrupt
-00800f96 B __bss_end
+00800fd6 B __bss_end
 0080013a B __bss_start
 00002ddc T __ctors_end
 00002dda T __ctors_start
@@ -29,7 +29,7 @@
 00000000 A __flmap_init_label
 00000003 A __FUSE_REGION_LENGTH__
 00000000 W __heap_end
-00800f96 B __heap_start
+00800fd6 B __heap_start
 00002dde W __init
 00000400 A __LOCK_REGION_LENGTH__
 0000cd32 T __mulhisi3
@@ -98,7 +98,7 @@
 00000001 a __zero_reg__
 0000cc84 T _div
 0080013a D _edata
-00800f96 B _end
+00800fd6 B _end
 0000cf8c T _etext
 0000cf10 T _exit
 0000c218 t global constructors keyed to 65535_0_adc.o.7298
@@ -108,20 +108,20 @@
 00008856 t ambika::OsInfoPage::OnIncrement(signed char)
 00800113 d ambika::OsInfoPage::show_memory_
 0000b468 t ambika::OsInfoPage::UpdateScreen()
-00800424 b ambika::OsInfoPage::audio_headroom_
+00800464 b ambika::OsInfoPage::audio_headroom_
 00000444 t ambika::OsInfoPage::event_handlers_
 000086a4 t ambika::OsInfoPage::UpdateVoiceCard(unsigned char) [clone .part.0]
 0000881c t ambika::OsInfoPage::FindFirmwareFiles(unsigned char)
-0080042a b ambika::OsInfoPage::audio_headroom_index_
-0080042b b ambika::OsInfoPage::found_firmware_files_
+0080046a b ambika::OsInfoPage::audio_headroom_index_
+0080046b b ambika::OsInfoPage::found_firmware_files_
 0000a9f0 t ambika::OsInfoPage::OnKey(unsigned char)
 000088b2 t ambika::OsInfoPage::OnInit(ambika::PageInfo*)
 0000888c t ambika::OsInfoPage::OnClick()
 0000837e t ambika::KnobAssigner::OnIncrement(signed char)
-008003e3 b ambika::KnobAssigner::active_knob_
+00800423 b ambika::KnobAssigner::active_knob_
 00008a88 t ambika::KnobAssigner::UpdateScreen()
 0000048c t ambika::KnobAssigner::event_handlers_
-008003e2 b ambika::KnobAssigner::num_parameters_
+00800422 b ambika::KnobAssigner::num_parameters_
 000082d2 t ambika::KnobAssigner::OnPot(unsigned char, unsigned char)
 0000841e t ambika::KnobAssigner::OnInit(ambika::PageInfo*)
 00002851 t ambika::string_table
@@ -135,27 +135,27 @@
 0000a88e t ambika::VoiceAssigner::OnClick()
 00006308 t ambika::MidiDispatcher::ForwardNote(ambika::Part*, unsigned char, unsigned char) [clone .part.0]
 0000973c t ambika::MidiDispatcher::ProcessSysEx(unsigned char)
-008004af b ambika::MidiDispatcher::current_bank_
-00800299 b ambika::MidiDispatcher::data_entry_counter_
+008004ef b ambika::MidiDispatcher::current_bank_
+008002d9 b ambika::MidiDispatcher::data_entry_counter_
 00800112 d ambika::MidiDispatcher::current_parameter_address_
 00006900 t ambika::MidiDispatcher::Send(unsigned char, unsigned char*, unsigned char)
 00005b62 t ambika::MidiDispatcher::Flush()
 000062f0 t ambika::MidiDispatcher::Send3(unsigned char, unsigned char, unsigned char)
 00006376 t ambika::MidiDispatcher::OnNote(ambika::Part*, unsigned char, unsigned char)
 00006308 t ambika::MidiDispatcher::OnNote(ambika::Part*, unsigned char, unsigned char) [clone .part.0]
-00800423 b ambika::MidiDispatcher::out_peak_
+00800463 b ambika::MidiDispatcher::out_peak_
 000053ac t ambika::SequenceEditor::actual_step(unsigned char, unsigned char)
 0000aaa0 t ambika::SequenceEditor::OnIncrement(signed char)
 0000b292 t ambika::SequenceEditor::UpdateScreen()
 000004d4 t ambika::SequenceEditor::event_handlers_
 0000acbe t ambika::SequenceEditor::SetActiveControl(ambika::ActiveControl)
 000053dc t ambika::SequenceEditor::OnPot(unsigned char, unsigned char)
-00800470 b ambika::SequenceEditor::step_
+008004b0 b ambika::SequenceEditor::step_
 0000acd2 t ambika::SequenceEditor::OnInit(ambika::PageInfo*)
 0000550e t ambika::SequenceEditor::OnNote(unsigned char, unsigned char)
 000054f0 t ambika::SequenceEditor::OnClick()
 000088de t ambika::SystemSettings::Init(bool)
-00800501 b ambika::SystemSettings::data_
+00800541 b ambika::SystemSettings::data_
 00005344 t ambika::VersionManager::UpdateLeds()
 0000b20a t ambika::VersionManager::UpdateScreen()
 0000045c t ambika::VersionManager::event_handlers_
@@ -176,16 +176,16 @@
 0000a67c t ambika::ParameterEditor::OnPot(unsigned char, unsigned char)
 0000adca t ambika::ParameterEditor::OnInit(ambika::PageInfo*)
 0000a856 t ambika::ParameterEditor::OnClick()
-0080046d b ambika::ParameterEditor::snapped_
+008004ad b ambika::ParameterEditor::snapped_
 00005592 t ambika::PerformancePage::UpdateLeds()
 00007960 t ambika::PerformancePage::OnIncrement(signed char)
-0080046e b ambika::PerformancePage::note_active_
+008004ae b ambika::PerformancePage::note_active_
 000004a4 t ambika::PerformancePage::event_handlers_
 00800114 d ambika::PerformancePage::note_
 0000791e t ambika::PerformancePage::OnClick()
 0080010f d ambika::ParameterManager::cached_index_
 00800100 d ambika::ParameterManager::dummy_parameter_
-00800289 b ambika::ParameterManager::cached_definition_
+008002c9 b ambika::ParameterManager::cached_definition_
 00005ef0 t ambika::ParameterManager::GetValue(ambika::Parameter const&, unsigned char, unsigned char)
 00007720 t ambika::ParameterManager::SetValue(ambika::Parameter const&, unsigned char, unsigned char, unsigned char, unsigned char)
 000077a0 t ambika::ParameterManager::Increment(ambika::Parameter const&, unsigned char, unsigned char, signed char, bool) [clone .constprop.0]
@@ -204,7 +204,7 @@
 00006a9a t ambika::VoicecardProtocolTx::BeginSdCard()
 000057f8 t ambika::VoicecardProtocolTx::FlushBuffers()
 0080014b b ambika::VoicecardProtocolTx::sd_card_busy_
-008004a8 b ambika::VoicecardProtocolTx::voice_status_
+008004e8 b ambika::VoicecardProtocolTx::voice_status_
 0000697a t ambika::VoicecardProtocolTx::BlockingTransaction(unsigned char, unsigned char)
 0000699e t ambika::VoicecardProtocolTx::Sync(unsigned char)
 00005798 t ambika::VoicecardProtocolTx::Write(unsigned char, unsigned char)
@@ -242,20 +242,20 @@
 0000018c t ambika::lut_res_scale_kaushik_todi
 0000027c t ambika::lut_res_scale_parameshwari
 00001eb4 t ambika::lut_res_arpeggiator_patterns
-0080034e b ambika::Ui::page_info_
+0080038e b ambika::Ui::page_info_
 0080014c b ambika::Ui::pot_value_
-0080035c b ambika::Ui::active_page_
+0080039c b ambika::Ui::active_page_
 00008136 t ambika::Ui::ShowDialogBox(unsigned char, ambika::Dialog, unsigned char)
 0000adf2 t ambika::Ui::CloseDialogBox(unsigned char)
-008004b0 b ambika::Ui::event_handlers_
+008004f0 b ambika::Ui::event_handlers_
 00800174 b ambika::Ui::inhibit_switch_
 0000aa6a t ambika::Ui::ShowPageRelative(signed char)
 0000a904 t ambika::Ui::ShowPreviousPage()
 000059c6 t ambika::Ui::MoveActiveControl(signed char)
-00800345 b ambika::Ui::most_recent_page_in_group_
-008003e4 b ambika::Ui::most_recent_non_system_page_
+00800385 b ambika::Ui::most_recent_page_in_group_
+00800424 b ambika::Ui::most_recent_non_system_page_
 00800164 b ambika::Ui::cycle_
-0080048a b ambika::Ui::state_
+008004ca b ambika::Ui::state_
 0000a672 t ambika::Ui::ShowPage(ambika::UiPageNumber)
 0000a5ac t ambika::Ui::ShowPage(ambika::UiPageNumber, unsigned char) [clone .part.0]
 00005ff2 t ambika::Part::AcceptNote(unsigned char)
@@ -277,62 +277,62 @@
 00006020 t ambika::Part::TuneNote(unsigned char)
 000084f0 t ambika::Part::InitPatch(ambika::InitializationMode)
 00005e6a t ambika::Part::TouchLfos()
-00800287 b ambika::Multi::idle_ticks_
-0080046f b ambika::Multi::step_count_
-00800288 b ambika::Multi::tick_count_
+008002c7 b ambika::Multi::idle_ticks_
+008004af b ambika::Multi::step_count_
+008002c8 b ambika::Multi::tick_count_
 00008556 t ambika::Multi::InitSettings(ambika::InitializationMode)
 0080016c b ambika::Multi::clock_counter_
-00800265 b ambika::Multi::tick_duration_
+008002a5 b ambika::Multi::tick_duration_
 008001a1 b ambika::Multi::num_clock_events_
 008001a2 b ambika::Multi::lfo_refresh_cycle_
 000075f8 t ambika::Multi::AssignVoicesToParts()
 008001a3 b ambika::Multi::lfo_refresh_counter_
-00800267 b ambika::Multi::tick_duration_table_
+008002a7 b ambika::Multi::tick_duration_table_
 0000614a t ambika::Multi::SolveAllocationConflicts(unsigned char)
 00006092 t ambika::Multi::ComputeInternalClockOverflowsTable()
 00007294 t ambika::Multi::Stop()
 000079c4 t ambika::Multi::Clock()
-008004c8 b ambika::Multi::data_
+00800508 b ambika::Multi::data_
 00007896 t ambika::Multi::Start()
 0000768c t ambika::Multi::Touch()
-00800298 b ambika::Multi::flags_
-00800768 b ambika::Multi::parts_
+008002d8 b ambika::Multi::flags_
+008007a8 b ambika::Multi::parts_
 0000724a t ambika::Multi::NoteOff(unsigned char, unsigned char, unsigned char) [clone .isra.0]
-00800500 b ambika::Multi::running_
+00800540 b ambika::Multi::running_
 000078ec t ambika::Multi::StartNote(unsigned char)
-00800489 b ambika::UiPage::edit_mode_
+008004c9 b ambika::UiPage::edit_mode_
 0000535e t ambika::UiPage::UpdateLeds()
 000053a6 t ambika::UiPage::OnIncrement(signed char)
 00005374 t ambika::UiPage::OnDialogClosed(unsigned char, unsigned char)
-0080048f b ambika::UiPage::active_control_
+008004cf b ambika::UiPage::active_control_
 000053aa t ambika::UiPage::SetActiveControl(ambika::ActiveControl)
 000053a2 t ambika::UiPage::OnIncrementAndCycle(signed char, signed char)
-00800471 b ambika::UiPage::info_
+008004b1 b ambika::UiPage::info_
 00009a82 t ambika::UiPage::OnKey(unsigned char)
 00005386 t ambika::UiPage::OnPot(unsigned char, unsigned char)
 00005376 t ambika::UiPage::OnIdle()
 0000538a t ambika::UiPage::OnClick()
 0000a4e4 t ambika::Library::CommitLoad()
 000056aa t ambika::Library::UpdateLeds()
-008004ae b ambika::Library::name_dirty_
+008004ee b ambika::Library::name_dirty_
 0000b09e t ambika::Library::OnIncrement(signed char)
 00006a72 t ambika::Library::SaveLocation()
 00009602 t ambika::Library::UpdateScreen()
-0080040b b ambika::Library::deferred_load_
+0080044b b ambika::Library::deferred_load_
 00009b88 t ambika::Library::OnDialogClosed(unsigned char, unsigned char)
 000095e2 t ambika::Library::UpdateLocation()
 00000474 t ambika::Library::event_handlers_
-0080041e b ambika::Library::is_edit_buffer_
-00800421 b ambika::Library::initialization_mode_
+0080045e b ambika::Library::is_edit_buffer_
+00800461 b ambika::Library::initialization_mode_
 000081ac t ambika::Library::ShowDiskErrorMessage()
 00008642 t ambika::Library::PrintActiveObjectName(char*)
-008003e5 b ambika::Library::loaded_objects_indices_
-0080041f b ambika::Library::more_
-0080040e b ambika::Library::name_
+00800425 b ambika::Library::loaded_objects_indices_
+0080045f b ambika::Library::more_
+0080044e b ambika::Library::name_
 0000ae72 t ambika::Library::OnKey(unsigned char)
 0000954a t ambika::Library::Browse()
 00009718 t ambika::Library::OnInit(ambika::PageInfo*)
-00800420 b ambika::Library::action_
+00800460 b ambika::Library::action_
 000056e0 t ambika::Library::OnClick()
 00800117 d ambika::Library::location_
 0000892a t ambika::Storage::EepromRead(void*, unsigned char, unsigned char**)
@@ -340,14 +340,14 @@
 0000858e t ambika::Storage::EepromWrite(void const*, unsigned char, unsigned char**)
 00008bac t ambika::Storage::GetFileName(ambika::StorageDir, ambika::StorageLocation const&)
 00005a5c t ambika::Storage::object_data(ambika::StorageLocation const&)
-0080042c b ambika::Storage::tmp_buffer_
+0080046c b ambika::Storage::tmp_buffer_
 000076a0 t ambika::Storage::TouchObject(ambika::StorageLocation const&)
 00006208 t ambika::Storage::SysExSendRaw(unsigned char, unsigned char, unsigned char const*, unsigned char, bool)
 000059dc t ambika::Storage::ForEachObject(ambika::StorageLocation const&, void (*)(ambika::StorageLocation const&))
 00006f4c t ambika::Storage::InitFilesystem()
 000094e8 t ambika::Storage::PreviousVersion(ambika::StorageLocation const&) [clone .constprop.0]
 00005ac0 t ambika::Storage::RIFFWriteObject(ambika::StorageLocation const&)
-0080046c b ambika::Storage::sysex_rx_state_
+008004ac b ambika::Storage::sysex_rx_state_
 000062b6 t ambika::Storage::SysExSendObject(ambika::StorageLocation const&)
 00800144 b ambika::Storage::sysex_rx_command_
 00800148 b ambika::Storage::sysex_rx_checksum_
@@ -358,11 +358,11 @@
 00009276 t ambika::Storage::Load(ambika::StorageDir, ambika::StorageLocation const&, unsigned char)
 00009c54 t ambika::Storage::Load(ambika::StorageLocation)
 00008ca6 t ambika::Storage::Save(ambika::StorageDir, ambika::StorageLocation const&)
-00800747 b ambika::Storage::file_
+00800787 b ambika::Storage::file_
 00008678 t ambika::Storage::Expand(char const*, char)
 00800175 b ambika::Storage::buffer_
 000099f6 t ambika::Storage::Snapshot(ambika::StorageLocation const&)
-00800495 b ambika::Storage::version_
+008004d5 b ambika::Storage::version_
 00006184 t ambika::FreeSram()
 000056fc t ambika::DialogBox::UpdateLeds()
 00005754 t ambika::DialogBox::OnIncrement(signed char)
@@ -370,7 +370,7 @@
 000025f4 t ambika::DialogBox::event_handlers_
 0000ae3c t ambika::DialogBox::OnKey(unsigned char)
 00005734 t ambika::DialogBox::OnPot(unsigned char, unsigned char)
-008003e1 b ambika::DialogBox::choice
+00800421 b ambika::DialogBox::choice
 0000ae1c t ambika::DialogBox::OnIdle()
 00005792 t ambika::DialogBox::OnInit(ambika::PageInfo*)
 0000ae30 t ambika::DialogBox::OnClick()
@@ -394,7 +394,7 @@
 00000c35 t ambika::str_res_on
 000007fe t ambika::str_res_up
 00002d6a t ambika::midi_cc_map
-00800422 b ambika::reset_cause
+00800462 b ambika::reset_cause
 00000630 t ambika::str_res____
 000007dc t ambika::str_res_1_1
 000007d0 t ambika::str_res_1_2
@@ -774,10 +774,10 @@
 00001ee0 t ambika::lfo_phase_increment_per_clock_tick
 00001f4e t ambika::octaves
 0000b204 t avrlib::AlignRight(char*, unsigned char)
-0080029c b avrlib::EventQueue<(unsigned char)8>::last_event_time_
+008002dc b avrlib::EventQueue<(unsigned char)8>::last_event_time_
 00006ba8 t avrlib::EventQueue<(unsigned char)8>::Touch()
 00006934 t avrlib::EventQueue<(unsigned char)8>::AddEvent(unsigned char, unsigned char, unsigned char)
-00800519 b avrlib::Filesystem::fs_
+00800559 b avrlib::Filesystem::fs_
 00006b30 t avrlib::Filesystem::Init(unsigned int) [clone .constprop.0]
 0000593e t avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2>::StartWrite(unsigned char)
 000059a2 t avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2>::SlowCommand(unsigned char)
@@ -786,28 +786,28 @@
 0080021a b avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2>::status_counter_
 0000598a t avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2>::SlowWrite(unsigned char)
 00005952 t avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2>::WriteData(unsigned char)
-0080039e b avrlib::RingBuffer<ambika::OddOutputBufferSpecs>::write_ptr_
-0080035e b avrlib::RingBuffer<ambika::OddOutputBufferSpecs>::buffer_
-0080035d b avrlib::RingBuffer<ambika::OddOutputBufferSpecs>::read_ptr_
-008003e0 b avrlib::RingBuffer<ambika::EvenOutputBufferSpecs>::write_ptr_
-008003a0 b avrlib::RingBuffer<ambika::EvenOutputBufferSpecs>::buffer_
-0080039f b avrlib::RingBuffer<ambika::EvenOutputBufferSpecs>::read_ptr_
-0080029b b avrlib::RingBuffer<ambika::LowPriorityBufferSpecs>::write_ptr_
+008003de b avrlib::RingBuffer<ambika::OddOutputBufferSpecs>::write_ptr_
+0080039e b avrlib::RingBuffer<ambika::OddOutputBufferSpecs>::buffer_
+0080039d b avrlib::RingBuffer<ambika::OddOutputBufferSpecs>::read_ptr_
+00800420 b avrlib::RingBuffer<ambika::EvenOutputBufferSpecs>::write_ptr_
+008003e0 b avrlib::RingBuffer<ambika::EvenOutputBufferSpecs>::buffer_
+008003df b avrlib::RingBuffer<ambika::EvenOutputBufferSpecs>::read_ptr_
+008002db b avrlib::RingBuffer<ambika::LowPriorityBufferSpecs>::write_ptr_
 000061f6 t avrlib::RingBuffer<ambika::LowPriorityBufferSpecs>::Write(unsigned char)
 0080021c b avrlib::RingBuffer<ambika::LowPriorityBufferSpecs>::buffer_
 000061de t avrlib::RingBuffer<ambika::LowPriorityBufferSpecs>::Overwrite(unsigned char)
-0080029a b avrlib::RingBuffer<ambika::LowPriorityBufferSpecs>::read_ptr_
-00800264 b avrlib::RingBuffer<ambika::HighPriorityBufferSpecs>::write_ptr_
-0080025c b avrlib::RingBuffer<ambika::HighPriorityBufferSpecs>::buffer_
+008002da b avrlib::RingBuffer<ambika::LowPriorityBufferSpecs>::read_ptr_
+008002a4 b avrlib::RingBuffer<ambika::HighPriorityBufferSpecs>::write_ptr_
+0080029c b avrlib::RingBuffer<ambika::HighPriorityBufferSpecs>::buffer_
 0000616c t avrlib::RingBuffer<ambika::HighPriorityBufferSpecs>::Overwrite(unsigned char)
 00800149 b avrlib::RingBuffer<ambika::HighPriorityBufferSpecs>::read_ptr_
-00800343 b avrlib::RingBuffer<avrlib::EventQueue<(unsigned char)8> >::write_ptr_
+00800383 b avrlib::RingBuffer<avrlib::EventQueue<(unsigned char)8> >::write_ptr_
 00800209 b avrlib::RingBuffer<avrlib::EventQueue<(unsigned char)8> >::buffer_
-00800344 b avrlib::RingBuffer<avrlib::EventQueue<(unsigned char)8> >::read_ptr_
-00800332 b avrlib::RingBuffer<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::write_ptr_
-008002f2 b avrlib::RingBuffer<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::buffer_
+00800384 b avrlib::RingBuffer<avrlib::EventQueue<(unsigned char)8> >::read_ptr_
+00800372 b avrlib::RingBuffer<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::write_ptr_
+00800332 b avrlib::RingBuffer<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::buffer_
 000058f2 t avrlib::RingBuffer<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::writable()
-008002f1 b avrlib::RingBuffer<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::read_ptr_
+00800331 b avrlib::RingBuffer<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::read_ptr_
 0080017f b avrlib::RingBuffer<avrlib::SerialInput<avrlib::SerialPort<avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)3, (unsigned char)8>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)5, (unsigned char)32>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)4, (unsigned char)16>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)1, (unsigned char)2>, avrlib::UBRR0HRegister, avrlib::UBRR0LRegister, avrlib::UDR0Register, (unsigned char)32, (unsigned char)32> > >::write_ptr_
 00800180 b avrlib::RingBuffer<avrlib::SerialInput<avrlib::SerialPort<avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)3, (unsigned char)8>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)5, (unsigned char)32>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)4, (unsigned char)16>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)1, (unsigned char)2>, avrlib::UBRR0HRegister, avrlib::UBRR0LRegister, avrlib::UDR0Register, (unsigned char)32, (unsigned char)32> > >::buffer_
 008001a0 b avrlib::RingBuffer<avrlib::SerialInput<avrlib::SerialPort<avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)3, (unsigned char)8>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)5, (unsigned char)32>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)4, (unsigned char)16>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0BRegister, (unsigned char)7, (unsigned char)128>, avrlib::BitInRegister<avrlib::UCSR0ARegister, (unsigned char)1, (unsigned char)2>, avrlib::UBRR0HRegister, avrlib::UBRR0LRegister, avrlib::UDR0Register, (unsigned char)32, (unsigned char)32> > >::read_ptr_
@@ -826,18 +826,18 @@
 000058ee t avrlib::BitInRegister<avrlib::PORTCRegister, (unsigned char)4, (unsigned char)16>::set()
 000058ea t avrlib::BitInRegister<avrlib::PORTCRegister, (unsigned char)7, (unsigned char)128>::clear()
 0080014a b avrlib::BicolorLedArray<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)4>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)7>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)5>, (unsigned char)2>::refresh_cycle_
-00800473 b avrlib::BicolorLedArray<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)4>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)7>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)5>, (unsigned char)2>::buffered_pixels_
+008004b3 b avrlib::BicolorLedArray<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)4>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)7>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)5>, (unsigned char)2>::buffered_pixels_
 008001fa b avrlib::BicolorLedArray<avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)4>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)7>, avrlib::Gpio<avrlib::Port<avrlib::PINCRegister, avrlib::PORTCRegister, avrlib::DDRCRegister>, (unsigned char)5>, (unsigned char)2>::pixels_
 00006924 t avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::set_status(unsigned char)
 000059b6 t avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::line_buffer(unsigned char)
 008001a6 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::scan_column_
 008001f9 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::scan_position_
-0080048e b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::cursor_position_
+008004ce b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::cursor_position_
 00800115 d avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::cursor_character_
 00800219 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::previous_status_counter_
 008001a7 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::scan_position_last_write_
 008001f8 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::blink_
-008002a0 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::local_
+008002e0 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::local_
 008001a8 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::remote_
 0080021b b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::status_
 008001a5 b avrlib::BufferedDisplay<avrlib::Hd44780Lcd<avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)3>, avrlib::Gpio<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (unsigned char)2>, avrlib::ParallelPort<avrlib::Port<avrlib::PINDRegister, avrlib::PORTDRegister, avrlib::DDRDRegister>, (avrlib::ParallelPortMode)1>, (unsigned char)40, (unsigned char)2> >::scan_row_
@@ -853,7 +853,7 @@
 00800169 b avrlib::timer0_fractional
 00800165 b avrlib::timer0_milliseconds
 00800172 b avrlib::HysteresisPotScanner<(unsigned char)8, (unsigned char)0, (unsigned char)8, (unsigned char)7>::scan_cycle_
-00800333 b avrlib::HysteresisPotScanner<(unsigned char)8, (unsigned char)0, (unsigned char)8, (unsigned char)7>::thresholds_
+00800373 b avrlib::HysteresisPotScanner<(unsigned char)8, (unsigned char)0, (unsigned char)8, (unsigned char)7>::thresholds_
 00800154 b avrlib::HysteresisPotScanner<(unsigned char)8, (unsigned char)0, (unsigned char)8, (unsigned char)7>::value_
 00006d78 t avrlib::File::Open(char const*, unsigned char, unsigned int) [clone .constprop.0]
 0000491a t avrlib::File::Read(unsigned char*, unsigned int, unsigned int*) [clone .constprop.0]
@@ -918,7 +918,7 @@
 000025c9 t ambika::Storage::GetFileName(ambika::StorageDir, ambika::StorageLocation const&)::__c
 000025c2 t ambika::Storage::GetFileName(ambika::StorageDir, ambika::StorageLocation const&)::__c
 00002708 t ambika::DialogBox::UpdateScreen()::__c
-00800482 b avrlib::UnsafeItoa<int>(int, unsigned char, char*)::digits
+008004c2 b avrlib::UnsafeItoa<int>(int, unsigned char, char*)::digits
 00002e08 t .do_clear_bss_loop
 00002e0a t .do_clear_bss_start
 00002df6 t .L__do_copy_data_loop
@@ -2717,7 +2717,7 @@
 00000000 N .Lproducer
 00000017 N .Luint16_t_name
 0000000f N .Luint8_t_name
-00800494 b CardType
+008004d4 b CardType
 000032f0 t check_fs
 00003360 t chk_mounted
 00003808 t clust2sect
@@ -2740,9 +2740,9 @@
 0000cf10 W exit
 0000508e t f_open.constprop.0
 00006db8 t f_unlink
-00800517 b FatFs
+00800557 b FatFs
 000045ee t follow_path
-00800490 b Fsid
+008004d0 b Fsid
 00003b12 t get_fat
 0000cdb4 t L0
 000079dc t L0
@@ -3102,7 +3102,7 @@
 0000ce72 T memcpy
 0000ce04 T memcpy_P
 0000ce84 T memset
-00800511 b midi_parser
+00800551 b midi_parser
 00003884 t move_window
 0000396c t put_fat.part.0
 00002e40 t rcvr_datablock
@@ -3117,8 +3117,8 @@
 0000cea0 T strlen
 0000ce3a T strncpy_P
 00006bbc t sync
-00800493 b Timer1
-00800492 b Timer2
+008004d3 b Timer1
+008004d2 b Timer2
 000032c2 t validate
 00002ec2 t wait_ready
 00002ee4 t xmit_datablock
