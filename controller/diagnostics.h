@@ -26,7 +26,8 @@ enum StackContext : uint8_t {
   STACK_CTX_IDLE,
   STACK_CTX_UI,          // UI event dispatch and page rendering
   STACK_CTX_LOAD,        // Storage::Load, including the snapshot it triggers
-  STACK_CTX_SAVE,        // Storage::Save
+  STACK_CTX_SAVE,        // Storage::Save, writing the file itself
+  STACK_CTX_BACKUP,      // Save's autobackup: Unlink then Rename, the deepest
   STACK_CTX_SYSEX,       // SysEx receive/reply
   STACK_CTX_SD_TICK,     // the periodic filesystem tick
   STACK_CTX_MIDI,        // MIDI input dispatch

@@ -524,6 +524,10 @@ FilesystemStatus Storage::Save(StorageDir type, const StorageLocation& location)
   
   // Create a backup of the older version.
   if (type == STORAGE_CLIPBOARD || (type == STORAGE_BANK && system_settings.data().autobackup())) {
+    // Unlink then Rename: f_unlink is 66 bytes of locals and f_rename 87, the
+    // deepest frame in the firmware. Marked separately from the rest of Save so
+    // the diagnostic page can tell "saving" from "making the backup first".
+    STACK_CONTEXT(STACK_CTX_BACKUP);
     char* backup_name = tmp_buffer_ + kNameScratchOffset;
     strcpy(backup_name, name);
     backup_name[strlen(backup_name) - 3] = '~';

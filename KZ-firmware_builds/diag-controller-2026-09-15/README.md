@@ -25,8 +25,19 @@ AUD nnn nnn nnn nnn nnn nnn  clk:fw     exit
 
 The three-letter tag at the end of line 0 is **which code path was running when
 the stack reached its deepest point**: `idl`, `ui `, `lod` (Storage::Load and the
-snapshot it triggers), `sav`, `sys` (SysEx), `sdt` (the periodic filesystem
-tick) or `mid` (MIDI input). LOW on its own is a latch with no context; this
+snapshot it triggers), `sav`, `sys` (SysEx), `bak` (Save's autobackup:
+Unlink then Rename), `sdt` (the periodic filesystem tick) or `mid` (MIDI input).
+
+`bak` is separated from `sav` because it is the deepest path in the firmware:
+`f_rename` alone has 87 bytes of locals, against 53 for `f_open`. A deliberate
+bank save with autobackup on is therefore *deeper* than the snapshot that was
+removed — removing snapshots took the deep path off ordinary browsing, but it
+did not make saving any shallower. **Saving is the real worst case and still
+needs measuring.**
+
+If `bak` turns out to be what reaches zero, `autobackup` is already a
+preferences switch: turning it off drops Unlink and Rename from a bank save and
+leaves only the `f_open` path. LOW on its own is a latch with no context; this
 says who set it, which is the only way to chase a drop that has no repeatable
 trigger.
 

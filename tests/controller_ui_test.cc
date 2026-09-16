@@ -65,7 +65,8 @@ constexpr uint8_t kNumVoices = 6;
 constexpr uint8_t kAudioStarved = 0xfe, kAudioHeadroomUnsupported = 0xff;
 enum StackContext : uint8_t {
   STACK_CTX_IDLE, STACK_CTX_UI, STACK_CTX_LOAD, STACK_CTX_SAVE,
-  STACK_CTX_SYSEX, STACK_CTX_SD_TICK, STACK_CTX_MIDI, STACK_CTX_LAST
+  STACK_CTX_BACKUP, STACK_CTX_SYSEX, STACK_CTX_SD_TICK, STACK_CTX_MIDI,
+  STACK_CTX_LAST
 };
 uint8_t stack_low_context = STACK_CTX_IDLE;
 inline uint8_t U8(int v) { return static_cast<uint8_t>(v); }

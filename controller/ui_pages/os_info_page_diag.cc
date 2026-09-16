@@ -138,7 +138,7 @@ void OsInfoPage::MemoryUpdateScreen() {
   // Which code path was running when the stack reached its deepest point. LOW
   // on its own is a latch with no context; this says who set it.
   static const char context_names[] PROGMEM =
-      "idl" "ui " "lod" "sav" "sys" "sdt" "mid";
+      "idl" "ui " "lod" "sav" "bak" "sys" "sdt" "mid";
   uint8_t context = stack_low_context < STACK_CTX_LAST ? stack_low_context
                                                        : U8(STACK_CTX_IDLE);
   memcpy_P(&buffer[36], &context_names[context * 3], 3);
