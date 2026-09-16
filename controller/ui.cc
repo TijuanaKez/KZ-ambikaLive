@@ -21,6 +21,7 @@
 
 #include "avrlib/string.h"
 
+#include "controller/diagnostics.h"
 #include "controller/display.h"
 #include "controller/leds.h"
 #include "controller/multi.h"
@@ -344,6 +345,7 @@ const uint8_t part_leds_remap[] PROGMEM = { 0, 3, 1, 4, 2, 5 };
 
 /* static */
 void Ui::DoEvents() {
+  STACK_CONTEXT(STACK_CTX_UI);
   display.Tick();
   
   uint8_t redraw = 0;

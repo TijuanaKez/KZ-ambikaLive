@@ -135,6 +135,13 @@ void OsInfoPage::MemoryUpdateScreen() {
   memcpy_P(&buffer[28], PSTR("RST "), 4);
   buffer[32] = NibbleToAscii(highNibble(ResetCause()));
   buffer[33] = NibbleToAscii(lowNibble(ResetCause()));
+  // Which code path was running when the stack reached its deepest point. LOW
+  // on its own is a latch with no context; this says who set it.
+  static const char context_names[] PROGMEM =
+      "idl" "ui " "lod" "sav" "sys" "sdt" "mid";
+  uint8_t context = stack_low_context < STACK_CTX_LAST ? stack_low_context
+                                                       : U8(STACK_CTX_IDLE);
+  memcpy_P(&buffer[36], &context_names[context * 3], 3);
 
   // Audio render headroom per voice card: free space left in the audio buffer
   // just before a block was rendered. Around 40 is healthy, rising means the

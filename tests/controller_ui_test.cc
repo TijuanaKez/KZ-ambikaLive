@@ -9,6 +9,7 @@
 #include "controller/deferred_load.h"
 
 #define PSTR(s) (s)
+#define PROGMEM
 #define strncpy_P std::strncpy
 #define memcpy_P std::memcpy
 #define IGNORE_UNUSED(x) (void)(x)
@@ -62,6 +63,12 @@ struct ParameterEditor : UiPage {
 };
 constexpr uint8_t kNumVoices = 6;
 constexpr uint8_t kAudioStarved = 0xfe, kAudioHeadroomUnsupported = 0xff;
+enum StackContext : uint8_t {
+  STACK_CTX_IDLE, STACK_CTX_UI, STACK_CTX_LOAD, STACK_CTX_SAVE,
+  STACK_CTX_SYSEX, STACK_CTX_SD_TICK, STACK_CTX_MIDI, STACK_CTX_LAST
+};
+uint8_t stack_low_context = STACK_CTX_IDLE;
+inline uint8_t U8(int v) { return static_cast<uint8_t>(v); }
 // Records which cards were polled, so the test can check the round-robin.
 struct VoicecardTx {
   uint8_t polled[kNumVoices] = {};
@@ -312,7 +319,24 @@ int main() {
         assert(std::memcmp(display.line_buffer(1) + 4 + i * 4, want, 3) == 0);
       }
     }
+
     for (uint8_t i = 0; i < kNumVoices; ++i) assert(voicecard_tx.polled[i] == 5);
+
+    // The stack context tag must name whichever path set the low watermark,
+    // and must fall back to "idl" for an out-of-range value.
+    for (uint8_t ctx : {uint8_t(STACK_CTX_IDLE), uint8_t(STACK_CTX_LOAD),
+                        uint8_t(STACK_CTX_MIDI), uint8_t(STACK_CTX_LAST),
+                        uint8_t(200)}) {
+      stack_low_context = ctx;
+      display.clear();
+      OsInfoPage::UpdateScreen();
+      display.check();
+      const char* want = ctx == STACK_CTX_LOAD ? "lod"
+                       : ctx == STACK_CTX_MIDI ? "mid" : "idl";
+      assert(std::memcmp(display.line_buffer(0) + 36, want, 3) == 0);
+    }
+    stack_low_context = STACK_CTX_IDLE;
+
     voicecard_tx.reply = 40;
     display.clear();
     OsInfoPage::UpdateScreen();

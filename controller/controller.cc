@@ -56,6 +56,7 @@ inline void FlushMidiOut() {
 }
 
 inline void PollMidiIn() {
+  STACK_CONTEXT(STACK_CTX_MIDI);
   if (midi_io.readable()) {
     midi_in_buffer.NonBlockingWrite(midi_io.ImmediateRead());
   }
@@ -88,6 +89,10 @@ ISR(TIMER1_OVF_vect) {
   in_progress = 1;
   sei();
 
+#ifdef DIAGNOSTIC_BUILD
+  SampleStackDepth();
+#endif
+
   static uint8_t cycle = 0;
   PollMidiIn();
   FlushMidiOut();
@@ -98,6 +103,7 @@ ISR(TIMER1_OVF_vect) {
   ++cycle;
   if (cycle == 48) {
     cycle = 0;
+    STACK_CONTEXT(STACK_CTX_SD_TICK);
     storage.Tick();
   }
   cli();

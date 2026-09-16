@@ -19,9 +19,16 @@ outright, which made it impossible to flash a voice card while running one.
 ## What it shows
 
 ```
-RAM  nnnnn LOW  nnnnn MID nnn RST xx
+RAM  nnnnn LOW  nnnnn MID nnn RST xx  ctx
 AUD nnn nnn nnn nnn nnn nnn  clk:fw     exit
 ```
+
+The three-letter tag at the end of line 0 is **which code path was running when
+the stack reached its deepest point**: `idl`, `ui `, `lod` (Storage::Load and the
+snapshot it triggers), `sav`, `sys` (SysEx), `sdt` (the periodic filesystem
+tick) or `mid` (MIDI input). LOW on its own is a latch with no context; this
+says who set it, which is the only way to chase a drop that has no repeatable
+trigger.
 
 - **RAM** — free SRAM between the heap start and the stack pointer.
 - **LOW** — untouched-stack watermark. Measured at **30** on 2026-09-15, so peak

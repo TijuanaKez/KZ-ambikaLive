@@ -37,6 +37,20 @@ uint16_t FreeSram() {
   return stack > start ? stack - start : 0;
 }
 
+volatile uint8_t stack_context = STACK_CTX_IDLE;
+volatile uint8_t stack_low_context = STACK_CTX_IDLE;
+static uint16_t lowest_stack_pointer = 0xffff;
+
+// Sampled from the TIMER1 interrupt: a compare against the running minimum,
+// and a byte store only when a new low is actually reached.
+void SampleStackDepth() {
+  uint16_t stack = SP;
+  if (stack < lowest_stack_pointer) {
+    lowest_stack_pointer = stack;
+    stack_low_context = stack_context;
+  }
+}
+
 uint16_t UntouchedSram() {
   uintptr_t start = reinterpret_cast<uintptr_t>(&::__heap_start);
   uintptr_t address = start;

@@ -25,6 +25,7 @@
 #include "avrlib/op.h"
 #include "avrlib/string.h"
 
+#include "controller/diagnostics.h"
 #include "controller/display.h"
 #include "controller/midi_dispatcher.h"
 #include "controller/multi.h"
@@ -401,6 +402,7 @@ void Storage::RIFFWriteObject(const StorageLocation& location) {
 
 /* static */
 FilesystemStatus Storage::Load(StorageDir type, const StorageLocation& location, uint8_t load_contents) {
+  STACK_CONTEXT(STACK_CTX_LOAD);
   {
     // Load data from SD
 
@@ -502,6 +504,7 @@ FilesystemStatus Storage::Load(StorageDir type, const StorageLocation& location,
 
 /* static */
 FilesystemStatus Storage::Save(StorageDir type, const StorageLocation& location) {
+  STACK_CONTEXT(STACK_CTX_SAVE);
   scoped_resource<SdCardSession> session;
 
   FilesystemStatus s;
@@ -738,6 +741,7 @@ void Storage::SysExParseCommand() {
 
 /* static */
 void Storage::SysExAcceptCommand() {
+  STACK_CONTEXT(STACK_CTX_SYSEX);
   uint8_t success = 1;
   
   StorageLocation location {
