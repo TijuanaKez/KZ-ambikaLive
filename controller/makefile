@@ -22,6 +22,11 @@ PACKAGES       = avrlib \
 		controller \
 		controller/ui_pages
 EXTRA_DEFINES  = -DDISABLE_DEFAULT_UART_RX_ISR
+
+# KZ MOD: no LTO on the controller. See avrlib/makefile.mk -- it costs about
+# 2 KB of flash, which this target has spare, and buys back stack, which it does
+# not. Pichenettes' original build did not use LTO either.
+LTO_FLAGS      =
 RESOURCES      = controller/resources
 SYSEX_FLAGS    = --page_size=128 --device_id=4
 MMC_CONFIG     = \

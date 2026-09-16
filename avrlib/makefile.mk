@@ -83,8 +83,21 @@ COMPILE_FLAGS = \
 			-fverbose-asm \
 			-fdata-sections \
 			-ffunction-sections \
-			-flto \
+			$(LTO_FLAGS) \
 			-mrelax
+# KZ MOD: link-time optimisation, added by MachFour. Pichenettes' original avril
+# did not use it.
+#
+# LTO inlines across translation units, which merges callees into their callers
+# and can leave locals that used to occupy separate, reused frames live at the
+# same time. Measured on the controller: the largest single stack frame is 128
+# bytes with LTO (FatFs check_fs, reached through chk_mounted by every file
+# operation) against 58 without it. It costs about 2 KB of flash to turn off.
+#
+# The controller turns it off: it is short of stack and has flash to spare. The
+# voice card keeps it: it is short of cycles, and LTO helps there.
+LTO_FLAGS ?= -flto
+
 # optional extra flags.
 # -mcall-prologues may cause code to be slower as registers are saved and popped
 EXTRA_FLAGS ?= -mcall-prologues
@@ -107,7 +120,7 @@ CFLAGS        = -std=c11
 CXXFLAGS      = -std=c++2a -fno-exceptions -fno-non-call-exceptions \
 				-fno-use-cxa-atexit -fno-rtti
 ASFLAGS       = -mmcu=$(MCU) -I. -x assembler-with-cpp
-LDFLAGS       = -mmcu=$(MCU) -lm -Os -flto -Wl,--relax -Wl,--gc-sections$(EXTRA_LD_FLAGS)
+LDFLAGS       = -mmcu=$(MCU) -lm -Os $(LTO_FLAGS) -Wl,--relax -Wl,--gc-sections$(EXTRA_LD_FLAGS)
 
 # ------------------------------------------------------------------------------
 # Source compiling

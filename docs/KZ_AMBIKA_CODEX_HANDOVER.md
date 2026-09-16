@@ -280,6 +280,37 @@ Pichenettes' `ramsize` rule -- static under 4096 - 128 -- reserves 128 bytes for
 the stack. Every build in the table passes it, and every one of them can still
 overflow. Treat the rule as necessary, not sufficient.
 
+### Why the peak is larger than Emilie's 128-byte budget: LTO
+
+Carey's argument, 2026-09-17: Emilie reserved 128 bytes for the stack and her
+builds did not crash, so her code must have stayed inside it, and something about
+the modern toolchain must be inflating ours. He was right, and the flag diff
+shows it.
+
+`pichenettes/avril` compiles with `-Os -mcall-prologues -fdata-sections
+-ffunction-sections -fshort-enums -fno-move-loop-invariants`, and links with
+`-Os -Wl,--gc-sections`. **No LTO anywhere.** MachFour added `-flto` to both
+`COMPILE_FLAGS` and `LDFLAGS`, and this tree inherited it.
+
+LTO inlines across translation units, so callees are merged into callers and
+locals that once occupied separate, reused frames can be live simultaneously.
+Measured on the controller, largest single stack frame:
+
+| Build | Largest frame | Where |
+|---|---:|---|
+| with `-flto` | **128** | FatFs `check_fs` |
+| without | 58 | `f_unlink` |
+
+`check_fs` is reached through `chk_mounted` by *every* FatFs entry point, so that
+128-byte frame sits under every file operation the firmware performs. That is a
+much better explanation for a 240-336 byte peak than anything in the source.
+
+`LTO_FLAGS` is now a makefile variable. The controller sets it empty: it is short
+of stack and has flash to spare, and this restores Emilie's configuration. The
+voice card keeps LTO, because it is short of cycles rather than stack and LTO
+helps there. Cost on the controller is about 2 KB of flash and it *saves* 6 bytes
+of static SRAM.
+
 -   Voice-card flash must remain below **32,256 bytes**. This corrects an earlier
     31,744 in these notes, which assumed a 1 KB bootloader. The voice card
     bootloader is linked at `0x7e00` and its makefile states it must fit 512
