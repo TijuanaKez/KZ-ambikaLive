@@ -99,7 +99,7 @@ struct OsInfoPage : UiPage {
 };
 
 PageInfo prefs_a = {15, {66,67,71,72,68,69,70,0xf8}, 16};
-PageInfo prefs_b = {16, {75,76,77,78,255,255,255,0xf9}, 15};
+PageInfo prefs_b = {16, {75,76,77,255,255,255,255,0xf9}, 15};
 struct Ui {
   struct State {
     uint8_t values[8] = {};
@@ -212,12 +212,12 @@ int main() {
     assert(ParameterEditor::active_control_ == 0);
   }
   ParameterEditor::OnInit(&prefs_b);
-  // Preferences page B now carries four settings, so the walk to the back
-  // control skips three unused cells rather than five.
-  for (int i = 0; i < 4; ++i) ParameterEditor::OnIncrement(1);
+  // Preferences page B carries three settings in the default build, so the
+  // walk to the back control skips four unused cells rather than five.
+  for (int i = 0; i < 3; ++i) ParameterEditor::OnIncrement(1);
   assert(ParameterEditor::active_control_ == 7);
   ParameterEditor::OnIncrement(-1);
-  assert(ParameterEditor::active_control_ == 3);
+  assert(ParameterEditor::active_control_ == 2);
   ParameterEditor::OnClick();
   auto before = parameter_manager.writes;
   ParameterEditor::OnIncrement(1);

@@ -40,20 +40,24 @@ trigger.
 - **AUD** — audio CPU load per voice card, in audio ticks consumed per 40-sample
   block. See below.
 
-## The undo setting
+## Snapshots are compiled out
 
-Preferences page B has a new **`undo`** switch. It controls whether loading an
-edited patch first writes an undo snapshot.
+`DISABLE_SNAPSHOT` is now set in `common/features.h`, so the undo snapshot is
+gone from this build entirely — no code, no UI item.
 
-That snapshot is a full `Storage::Save` plus an `Unlink` — the deepest stack path
-in the firmware — and it ran on *every* load while the edit buffer was dirty,
-which is just ordinary patch browsing. It is what drove the stack low watermark
-to 0, confirmed by the `sav` context tag.
+That snapshot was a full `Storage::Save` plus an `Unlink` (`f_open` 53,
+`f_mkdir` 66, `f_unlink` 66 — the three deepest frames in the firmware) and it
+ran on *every* patch load while the edit buffer was dirty, which is ordinary
+browsing. It is what drove `LOW` to 0, confirmed by the `sav` context tag.
 
-**It defaults to off**, because the byte it occupies was previously padding and
-reads zero on existing settings. Off is also the safe default: on costs the
-deepest path in the firmware, off costs the undo history in the version manager.
-Turn it on if you use undo, and watch `LOW`.
+Emptying `Storage::Snapshot` rather than guarding its seven call sites means
+Paste, Swap, the shift-key snapshot, the version manager and the init dialog all
+still work — they simply no longer record undo history. Flash drops about 320
+bytes as the linker discards everything the body reached.
+
+Undefining the switch restores the feature and exposes an `undo` toggle on
+preferences page B, for anyone who wants it and has the stack headroom. Both
+configurations build.
 
 ## Reading AUD — this is the CPU budget, without a scope
 

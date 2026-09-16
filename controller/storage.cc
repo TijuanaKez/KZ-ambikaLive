@@ -226,6 +226,14 @@ uint8_t Storage::has_user_changes(const StorageLocation& location) {
 
 /* static */
 void Storage::Snapshot(const StorageLocation& location) {
+#ifdef DISABLE_SNAPSHOT
+  // The body is the deepest stack path in the firmware: a full Save plus an
+  // Unlink. Emptying it here rather than guarding the seven call sites means
+  // Paste, Swap, the shift-key snapshot, the version manager and the init
+  // dialog all keep working, simply without recording undo history. The
+  // linker then drops everything this used to reach.
+  IGNORE_UNUSED(location);
+#else
   StorageLocation l = location;
   uint8_t version = version_[location.index()];
   l.slot = version;
@@ -241,6 +249,7 @@ void Storage::Snapshot(const StorageLocation& location) {
     fs_.Unlink(forward_version_name);
   }
   version_[location.index()] = version;
+#endif  // DISABLE_SNAPSHOT
 }
 
 /* static */

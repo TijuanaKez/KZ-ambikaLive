@@ -162,7 +162,11 @@ constexpr PageInfo page_registry[] PROGMEM = {
 
   { PAGE_SYSTEM_SETTINGS_B,
     &ParameterEditor::event_handlers_,
+#ifdef DISABLE_SNAPSHOT
+    { 75, 76, 77, 0xff, 0xff, 0xff, 0xff, 0xf9, },
+#else
     { 75, 76, 77, 78, 0xff, 0xff, 0xff, 0xf9, },
+#endif
     PAGE_SYSTEM_SETTINGS, 8, 0xf0,
   },
 

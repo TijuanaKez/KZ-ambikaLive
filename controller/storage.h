@@ -26,6 +26,7 @@
 
 #include "avrlib/filesystem/filesystem.h"
 #include "avrlib/filesystem/file.h"
+#include "common/features.h"
 #include "controller/system_settings.h"
 #include "controller/voicecard_tx.h"
 
@@ -156,9 +157,8 @@ class Storage {
     return Load(STORAGE_PREVIOUS_CLIPBOARD, location, 1);
   }
   static FilesystemStatus Load(const StorageLocation location) {
-    // KZ MOD: the snapshot is a full Save plus an Unlink -- the deepest stack
-    // path in the firmware -- and without the setting it runs on every load of
-    // an edited patch, which is ordinary browsing.
+    // Snapshot is compiled to nothing under DISABLE_SNAPSHOT; see
+    // common/features.h for why it is off by default.
     if (system_settings.data().snapshot() && has_user_changes(location)) {
       Snapshot(location);
     }

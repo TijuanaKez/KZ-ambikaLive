@@ -8,6 +8,7 @@
 // grepping for consumers. Several of these do nothing at all -- do not assume a
 // switch works because of its name.
 //
+//   DISABLE_SNAPSHOT          works; removes the deepest stack path
 //   DISABLE_CARD_INFO_PAGE    works
 //   DISABLE_VERSION_MANAGER   works, but see the page-table static_assert
 //   DISABLE_RAGAS             only hides the raga control on the PART page. The
@@ -26,6 +27,21 @@
 //                             the resonance inversion it is meant to apply was
 //                             lost in the MachFour merge and is now restored in
 //                             voicecard/voice.cc.
+
+// KZ MOD 2026-09-16: removes the undo snapshot that Storage::Load writes
+// whenever the edit buffer is dirty. That snapshot is a full Storage::Save plus
+// an Unlink -- f_open 53, f_mkdir 66, f_unlink 66, the three deepest stack
+// frames in the firmware -- and it runs on every patch load after you touch a
+// knob, which is ordinary browsing. It drove the controller's stack low
+// watermark to 0, confirmed on hardware by the 'sav' context tag on the
+// diagnostic page.
+//
+// Defined by default: a feature that can collide the stack with static data is
+// not worth offering. Undefining it restores the snapshot and exposes an `undo`
+// switch on preferences page B, for anyone who wants undo and has the headroom.
+// The version manager page still builds either way, but with snapshots off
+// there is nothing for it to step back to.
+#define DISABLE_SNAPSHOT
 
 #define DISABLE_CARD_INFO_PAGE
 //#define DISABLE_VERSION_MANAGER
