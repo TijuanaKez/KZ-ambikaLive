@@ -30,6 +30,7 @@
 
 # Local compiler output. Reviewed firmware packages live in KZ-firmware_builds.
 /build/
+*.size
 __pycache__/
 
 # Keep the build evidence shipped with reviewed firmware packages. The Eagle

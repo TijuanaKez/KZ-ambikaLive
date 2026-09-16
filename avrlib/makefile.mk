@@ -212,6 +212,24 @@ $(BUILD_DIR)$(TARGET).top_symbols: $(TARGET_ELF)
 size: $(TARGET).size
 	cat $(TARGET).size
 
+# KZ MOD: restored from Pichenettes' original makefile, where it was lost in the
+# MachFour refactor. Static SRAM is data + bss; his note says it must stay under
+# 4096 - 128 for the controller, i.e. 3968, reserving 128 bytes for the stack.
+#
+# Treat that 128 as optimistic. Measured peak stack on this firmware is 240 to
+# 336 bytes, mostly FatFs -- f_rename alone has 87 bytes of locals -- so passing
+# this check does NOT prove the build fits. scripts/build_firmware.py enforces
+# the same limit, and the LOW reading on the diagnostic page is what actually
+# settles it.
+ramsize: $(TARGET).size
+	@awk '/^Program:/ { next } \
+	      /^Data:/ { gsub(/[^0-9]/, "", $$2); print "static SRAM (data+bss): " $$2 } \
+	     ' $(TARGET).size 2>/dev/null; \
+	$(SIZE) $(TARGET_ELF) | awk 'NR==2 { \
+	  printf "data %s + bss %s = %d bytes static SRAM\n", $$2, $$3, $$2+$$3; \
+	  if ($$2+$$3 >= 3968) print "OVER the 3968 limit"; \
+	  else printf "%d bytes left for the stack\n", 4096-($$2+$$3); }'
+
 size_report:  build/$(TARGET)/$(TARGET).lss build/$(TARGET)/$(TARGET).top_symbols
 
 .PHONY: all clean depends upload resources
