@@ -277,15 +277,49 @@ simultaneous oscillators, large tables, or per-sample division. Plaits is even
 further out of reach than BRAIDS — it is a 32-bit floating-point engine.
 
 **Concrete suggestion:** do not try to reproduce BRAIDS, and do not re-add what
-Ambika already does. Priorities, per Carey, September 14, 2026:
+Ambika already does. Priorities, revised by Carey on September 17, 2026 after
+listening to Karplus-Strong examples and finding them unmusical:
 
-1. **Better basic subtractive waveforms** (§6b) — the stated top priority.
-2. **Karplus-Strong pluck** — the most wanted new algorithm. See the prior art
-   in §5b before writing any of it.
-3. **Wavefolding** — cheap, genuinely absent. See §5b; a working implementation
-   already exists to study.
-4. **Band-limited ensemble** — only if the cycle budget allows, and only as an
-   *additional* shape. `QUAD_SAW_PAD` stays exactly as it is (§6).
+1. **A better saw.** Carey's own patches are mostly saw -- the bank A survey puts
+   `POLYBLEP_SAW` at 40.8% of all oscillators, more than double anything else --
+   so this is where quality work pays back most. See §6b, and note that the
+   budget for it is now known: **12% of CPU and 13 KB of flash are free.**
+2. **A wider signal path.** 12-bit rather than 8-bit, into the 12-bit DAC that is
+   already fitted. Previously ruled marginal on cycle cost; the measurement
+   changes that. See §4 and the correction below.
+3. **Wavefolding** — cheap, genuinely absent, and Carey likes the idea.
+4. **Band-limited ensemble** — only as an *additional* shape. `QUAD_SAW_PAD`
+   stays exactly as it is (§6).
+
+**Karplus-Strong is dropped**, September 17, 2026: Carey listened to examples and
+did not find it musical. The delay-line reasoning in this document is retained
+only because a comb/allpass could still be reached the same way, and because the
+RAM analysis was what originally constrained the signal-path decision.
+
+### The signal-path question reopens
+
+§4 concluded that widening to 12-bit was the smaller lever, and §4a downgraded it
+further on the basis that measured aliasing (-40 dB) sat above the 8-bit
+quantization floor (-48 dB), so the floor was not the limiting artefact.
+
+**That measurement was taken on Emilie's wavetable saw, not on polyBLEP.** The
+zone-crossfade she describes is a fundamentally noisier generator than the
+polyBLEP renderer this tree now actually reaches (§6c -- before the dispatch fix,
+shape 1 was rendering the bandlimited wavetable saw, so nobody here has heard the
+polyBLEP saw until now).
+
+So the ordering to establish, in this order:
+
+1. **A/B the polyBLEP saw that now works** against the old wavetable saw. This
+   costs nothing and may already be the improvement Carey is asking for. Until
+   somebody listens, the rest is speculation.
+2. **Measure where the aliasing now sits.** If polyBLEP has pushed it below
+   -48 dB, then the 8-bit floor *is* the limiting artefact and widening the path
+   becomes the single biggest available win.
+3. Only then choose between higher-order polyBLEP, minBLEP with a residual table
+   (13 KB of flash makes this affordable for the first time), and 2x oversampling
+   with decimation (affordable at 12% load, but the decimation filter is the
+   expensive part on an 8-bit core).
 
 That is a bigger sonic change than a dozen half-working ports, and it fits.
 
