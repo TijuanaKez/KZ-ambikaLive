@@ -413,7 +413,13 @@ inline void Voice::RenderOscillators() {
   for (uint8_t i = 0; i < kNumOscillators; ++i) {
     int16_t pitch = base_pitch;
     // -36 / +36 semitones by the range controller.
-    if (patch().osc(i).shape() != WAVEFORM_FM) {
+    //
+    // KZ MOD: WAVEFORM_FM_FB was missing from this test. Both FM shapes use
+    // `range` as the modulator frequency ratio rather than as a coarse tune --
+    // see set_fm_parameter above -- so adding it to the pitch as well detunes
+    // the carrier. YAM excludes both; this tree excluded only WAVEFORM_FM.
+    if (patch().osc(i).shape() != WAVEFORM_FM &&
+        patch().osc(i).shape() != WAVEFORM_FM_FB) {
       pitch += S16(patch().osc(i).range() * 128);
     }
     // -1 / +1 semitones by the detune controller.
