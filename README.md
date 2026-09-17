@@ -15,8 +15,8 @@ stay on v1.1 and do not need reflashing.
 
 - **It builds on a modern toolchain.** AVR GCC 9.5.0 and current avr-libc, with
   no ancient CrossPack install required. `prog_char` and friends are gone.
-- **It should not run out of memory.** Earlier builds — including stock YAM —
-  could exhaust the controller's stack and corrupt memory. See *Stability* below.
+- **It should not run out of memory.** Earlier builds *of this fork* could
+  exhaust the controller's stack and corrupt memory. See *Stability* below.
 - **Preset browsing is fast**, and a good deal of the interface is quicker to
   drive two-handed.
 
@@ -102,19 +102,25 @@ not.
 
 ## Stability
 
-Earlier builds of this fork, and stock YAM, can exhaust the controller's 4 KB of
-SRAM: the stack grows down into static data and corrupts it. It shows up as rare,
+Earlier builds of this fork could exhaust the controller's 4 KB of SRAM: the
+stack grows down into static data and corrupts it. It shows up as rare,
 unreproducible misbehaviour, usually after loading patches.
 
-v1.5 fixes it. The main cause was **link-time optimisation**, which Emilie's
-original build never used and which was added later while fighting the flash
-limit on a modern compiler. LTO inlines across translation units, so local
-variables that used to occupy separate, reused stack frames end up alive at the
-same time. The largest single stack frame on the controller was **128 bytes**
-with LTO and **58** without — in FatFs `check_fs`, which every file operation
-reaches.
+v1.5 fixes it. The cause was **link-time optimisation**. Emilie's original build
+never used `-flto`; it was added later, while fighting the flash limit on a
+modern compiler, and this fork inherited it. LTO inlines across translation
+units, so local variables that used to occupy separate, *reused* stack frames end
+up alive at the same time. The largest single stack frame on the controller was
+**128 bytes** with LTO and **58** without — in FatFs `check_fs`, which every file
+operation reaches through `chk_mounted`.
 
 Measured peak stack use dropped from **336 bytes to 254**, against 312 available.
+
+This does **not** apply to stock YAM, which is built with the old GCC 4 toolchain
+and no LTO. Compiling YAM's source with GCC 9 gives 3,806 bytes of static SRAM
+against this fork's 3,784, so the static footprints are comparable — but its
+runtime peak has never been measured here, and the mechanism that caused the
+problem was absent from it. There is no evidence stock YAM is affected.
 
 Also fixed in v1.5: the 4.9 kHz timer interrupt could re-enter itself under a
 MIDI flood, each nesting costing another stack frame; 41 bytes of static SRAM
