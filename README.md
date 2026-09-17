@@ -81,6 +81,13 @@ notes to the arpeggiator as a chord. `lenp` sets how many steps between chord
 changes; the note sequence is locked to 16 steps (four chords). Rests reduce the
 number of notes in a chord.
 
+The point of it is that **one Ambika multi can play a whole song on its own** —
+a kick, a bass, pads and an arpeggiated or sequenced lead, every part following
+the same chord progression, with no external sequencer involved. Give each part
+its own arp or sequencer pattern and they all resolve against the chord that is
+currently playing. Combined with the part-mute buttons on the performance page,
+that is enough to arrange and perform a track from the front panel.
+
 ### MIDI
 
 **Selectable CC maps** (preferences page B): Ambika standard, Shruthi XT, or
