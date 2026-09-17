@@ -7,7 +7,12 @@ Targets:
                              page. BIN is AMBIKA.BIN, ready for a card root.
                  diagnostic  DIAG3 memory-instrumented image. Boots into the
                              RAM/LOW screen, replaces the firmware-update page.
-  voicecard    ATmega328P voice card. BIN is VOICE.BIN; rename per card number.
+  voicecard    ATmega328P voice card. Variants:
+                 release     The v2 build. No wavetables; that flash funds the
+                             new oscillator work.
+                 classic     Keeps the 16 wavetables and WAVEQUENCE. Same
+                             controller and same patch compatibility.
+               BIN is VOICE.BIN; rename per card number.
 
 WARNING on voicecard images: no freshly compiled voice card firmware has ever
 been validated on hardware in this project, and Carey's historical notes record
@@ -67,6 +72,15 @@ TARGETS = {
                 "defines": "",
                 "bin_name": "VOICE.BIN",
                 "label": "KZ Ambika Live voice card",
+                "require_no_dynamic_allocation": False,
+            },
+            # Keeps the 16 PPG-style wavetables and WAVEQUENCE, for anyone who
+            # wants them. Same controller, same enum positions, so patches load
+            # on either build.
+            "classic": {
+                "defines": "-DKZ_CLASSIC_WAVETABLES",
+                "bin_name": "VOICE.BIN",
+                "label": "KZ Ambika Live voice card (classic wavetables)",
                 "require_no_dynamic_allocation": False,
             },
         },

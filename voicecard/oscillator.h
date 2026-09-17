@@ -87,12 +87,14 @@ class Oscillator {
 
   inline void Render(OscillatorAlgorithm new_shape, uint8_t new_note, uint24_t new_phase_increment,
                      bool* new_sync_input, bool* new_sync_output, uint8_t* buffer) {
-    // KZ MOD: the wavetables are gone (voice card v2). Their enum slots are
-    // kept so existing patch bytes still mean what they meant, and render a
-    // polyBLEP saw instead. Remap before anything reads `shape`.
+#ifdef DISABLE_WAVETABLES
+    // The wavetables are not in this build. Their enum slots are kept so
+    // existing patch bytes still mean what they meant, and render a polyBLEP
+    // saw instead. Remap before anything reads `shape`.
     if (new_shape >= WAVEFORM_WAVETABLE_1 && new_shape <= WAVEFORM_WAVEQUENCE) {
       new_shape = WAVEFORM_POLYBLEP_SAW;
     }
+#endif
     shape = new_shape;
     note = new_note;
     phase_increment = new_phase_increment;
@@ -120,6 +122,11 @@ class Oscillator {
     }
     RenderFn fn;
     ResourcesManager::Load(fn_table, index, &fn);
+#ifndef DISABLE_WAVETABLES
+    if (new_shape == WAVEFORM_WAVEQUENCE) {
+      fn = &Oscillator::RenderWavequence;
+    }
+#endif
     (this->*fn)(buffer);
   }
   
@@ -177,6 +184,10 @@ class Oscillator {
   // combines previous three functions
   void RenderPolyBlepWave(uint8_t* buffer);
   void RenderNewTriangle(uint8_t* buffer);
+#ifndef DISABLE_WAVETABLES
+  void RenderInterpolatedWavetable(uint8_t* buffer);
+  void RenderWavequence(uint8_t* buffer);
+#endif
 
   // Pointer to the render function. Indexed by OscillatorAlgorithm, with the
   // wavetable block collapsed to a single slot -- see Render() above. This
@@ -208,9 +219,13 @@ class Oscillator {
       &Oscillator::RenderFilteredNoise,       // FILTERED_NOISE
       &Oscillator::RenderVowel,               // VOWEL
 
+#ifdef DISABLE_WAVETABLES
       // WAVETABLE_1..16 and WAVEQUENCE: remapped to POLYBLEP_SAW in Render(),
       // so this slot exists only to keep the indices of the shapes after it.
       &Oscillator::RenderSilence,
+#else
+      &Oscillator::RenderInterpolatedWavetable, // WAVETABLE_1..16, WAVEQUENCE
+#endif
 
       &Oscillator::RenderSimpleWavetable,     // OLD_SAW
       &Oscillator::RenderQuadSawPad,          // QUAD_PWM
