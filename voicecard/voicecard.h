@@ -39,7 +39,7 @@ static constexpr uint8_t kAudioBlockSize = kControlRate;
 // display-only -- the controller never gates on it --
 // so bumping it is safe, and it is the only way to tell from the OS information
 // page which cards are running a new build. Displayed as v1.2.
-constexpr uint8_t kSystemVersion = 0x15;
+constexpr uint8_t kSystemVersion = 0x16;
 
 static const auto kFirmwareUpdateFlagPtr = reinterpret_cast<uint8_t*>(E2END);
 

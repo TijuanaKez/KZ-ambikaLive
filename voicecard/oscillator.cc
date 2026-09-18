@@ -165,7 +165,12 @@ void Oscillator::RenderCzResoWave(uint8_t* buffer) {
   const uint8_t cz_wave_type = shape - WAVEFORM_CZ_SAW_LP; // == 8 for ztri
   const uint8_t cz_wave_shape = cz_wave_type / 4; // == 0 for saw, 1, for pulse, 2 for tri
   const uint8_t isBPorHP = byteAnd(cz_wave_type, 2); // == (filter_type >= 2) in boolean expressions
-  const uint16_t increment = highWord24(phase_increment) + ((highWord24(phase_increment) * U16(parameter)) / 4);
+  // KZ MOD: same 16-bit overflow as RenderQuadSawPad -- see the note there.
+  // This one sets the CZ resonance frequency, so it detuned the resonant peak
+  // rather than the fundamental. Matches YAM, including the truncation to
+  // uint16_t at the top of the range.
+  const uint16_t increment = U16(highWord24(phase_increment) +
+      ((U32(highWord24(phase_increment)) * parameter) >> 2u));
   uint16_t phase_2 = data.secondary_phase;
 
   uint24_t phase_tmp = phase;
@@ -337,7 +342,13 @@ void Oscillator::RenderDirtyPwm(uint8_t* buffer) {
 // ------- Quad saw (mit aliasing) -------------------------------------------
 void Oscillator::RenderQuadSawPad(uint8_t* buffer) {
   uint16_t phase_increment_tmp = highWord24(phase_increment);
-  uint16_t phase_spread = U32(phase_increment_tmp * U16(parameter)) >> 13u;
+  // KZ MOD: the widening has to be on an operand, not on the result. `int` is
+  // 16 bits on AVR, so `phase_increment_tmp * U16(parameter)` multiplied in 16
+  // bits and wrapped before U32() ever saw it -- a middle note gives roughly
+  // 700 * 255 = 178,500, well past 65,535. The detune spread was therefore
+  // wrong, and since the four saws are summed, the perceived pitch of the pad
+  // moved with it. YAM casts the operand: (integral * uint32_t(parameter)).
+  uint16_t phase_spread = U16((U32(phase_increment_tmp) * parameter) >> 13u);
   ++phase_spread;
   uint16_t increments[3];
   for (uint8_t i = 0; i < 3; ++i) {
